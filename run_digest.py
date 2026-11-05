@@ -116,7 +116,8 @@ def main() -> int:
         return EXIT_NO_PAPERS
 
     enrich(sections, args)
-    meta = {"week_range": f"{cutoff:%d %b} – {now:%d %b %Y}", "scanned": scanned, "picked": picked}
+    meta = {"week_range": f"{cutoff:%d %b} – {now:%d %b %Y}", "scanned": scanned, "picked": picked,
+            "issued": now}
     html = email_builder.build_html(sections, meta)
     text = email_builder.build_text(sections, meta)
     path = save(sections, meta, html, now)
@@ -125,7 +126,8 @@ def main() -> int:
     if args.dry_run:
         print("[dry-run] email not sent. Open out/latest.html in a browser to preview.")
         return 0
-    subject = f"📡 Research Radar · {meta['week_range']} · {picked} papers"
+    subject = (f"The Research Radar — Weekly Edition No. {now.isocalendar().week}, "
+               f"{now:%d %B %Y}: {picked} preprints")
     try:
         mailer.send(subject, html, text)
     except Exception as exc:

@@ -7,18 +7,20 @@ from llm import LLM
 NOT_STATED = "Not stated in the provided text."
 
 SYSTEM_PROMPT = (
-    "You are a careful research assistant who summarises academic papers.\n"
+    "You are the science correspondent of a quality broadsheet newspaper, reporting on new research papers.\n"
     "Rules:\n"
     "- Use ONLY the text provided by the user. Do not use outside knowledge.\n"
     "- Never invent numbers, datasets, baselines or results. Quote numbers only if they appear in the text.\n"
     f'- If something is not in the text, write exactly "{NOT_STATED}"\n'
-    "- Write in plain English for a final-year computer science student; briefly explain jargon.\n"
+    "- Write in a formal, neutral, journalistic register: third person, measured claims, no hype,\n"
+    "  no exclamation marks, no emojis, no first person. Prefer 'the authors report' to 'we'.\n"
+    "- Keep it readable for a final-year computer science student; explain technical terms briefly.\n"
     "- Reply with a single JSON object and nothing else."
 )
 
 INSIGHT_SCHEMA = """Return JSON with exactly these keys:
 {
-  "tldr": "one or two sentences",
+  "tldr": "a one- or two-sentence standfirst, as under a newspaper headline",
   "problem": "what problem the paper tackles",
   "approach": "how they tackle it",
   "key_findings": ["3 to 5 short bullet strings"],
@@ -117,8 +119,8 @@ def fallback_insight(paper: dict, domain: dict) -> dict:
 
 def fallback_overview(domain: dict, featured: list[dict], more: list[dict]) -> str:
     titles = "; ".join(p["title"] for p in featured[:2])
-    return (f"{len(featured) + len(more)} new papers in {domain['title']} made the cut this week. "
-            f"Highlights include: {titles}.")
+    return (f"This week the desk selected {len(featured) + len(more)} new preprints in {domain['title']}. "
+            f"Leading the section: {titles}.")
 
 
 # --- LLM-backed summariser -------------------------------------------------------
@@ -168,7 +170,8 @@ class Summarizer:
         lines = [f"- {p['title']}: {p.get('insight', {}).get('tldr', '')}" for p in featured]
         lines += [f"- {p['title']}" for p in more]
         user = (f"Domain focus: {domain['focus']}\n\nThis week's papers:\n" + "\n".join(lines) +
-                '\n\nWrite a 3-4 sentence overview of the week (max 90 words) about common themes, '
+                '\n\nWrite a 3-4 sentence editor\'s note on the week (max 90 words) in formal newspaper style, '
+                'covering the common themes, '
                 'using only the titles and summaries above. Return JSON: {"overview": "..."}')
         messages = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
         try:
