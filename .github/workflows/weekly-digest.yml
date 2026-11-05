@@ -16,8 +16,8 @@ concurrency:
 
 jobs:
   digest:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-24.04   # pinned: avoids the ubuntu-latest -> 26 migration surprise
+    timeout-minutes: 60
     env:
       LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
@@ -34,9 +34,9 @@ jobs:
       MAIL_TO: ${{ secrets.MAIL_TO }}
       CHAT_APP_URL: ${{ vars.CHAT_APP_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
@@ -45,11 +45,23 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build and send digest
-        run: python run_digest.py
+        # Exit code 4 = no papers (usually arXiv rate-limiting GitHub's shared IPs).
+        # Nothing was sent in that case, so wait 10 minutes and try once more.
+        run: |
+          set +e
+          python run_digest.py
+          code=$?
+          if [ "$code" -eq 4 ]; then
+            echo "::warning::arXiv returned no papers (likely HTTP 429). Retrying in 10 minutes..."
+            sleep 600
+            python run_digest.py
+            code=$?
+          fi
+          exit $code
 
       - name: Upload digest HTML
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: digest-${{ github.run_id }}
           path: out/

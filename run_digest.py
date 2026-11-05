@@ -16,6 +16,8 @@ from llm import LLM
 from summarizer import Summarizer, fallback_insight, rank
 from tavily_client import WebSearch
 
+EXIT_NO_PAPERS = 4   # distinct code so CI can safely retry (nothing was sent)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build and send the Research Radar digest")
@@ -109,8 +111,9 @@ def main() -> int:
     sections, scanned = collect(cutoff)
     picked = sum(len(s["featured"]) + len(s["more"]) for s in sections)
     if picked == 0:
-        print(f"ERROR: no papers found in the last {args.days} days for any domain.", file=sys.stderr)
-        return 1
+        print(f"ERROR: no papers found in the last {args.days} days for any domain "
+              "(arXiv may be rate-limiting this machine; see the '!' lines above).", file=sys.stderr)
+        return EXIT_NO_PAPERS
 
     enrich(sections, args)
     meta = {"week_range": f"{cutoff:%d %b} – {now:%d %b %Y}", "scanned": scanned, "picked": picked}

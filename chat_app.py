@@ -51,7 +51,7 @@ def load_digest(mtime: float) -> dict:
 
 @st.cache_data(show_spinner="Looking up the paper on arXiv…", ttl=86400)
 def fetch_paper(paper_id: str) -> dict | None:
-    return arxiv_client.fetch_by_id(paper_id)
+    return arxiv_client.fetch_by_id(paper_id, attempts=2)
 
 
 @st.cache_data(show_spinner="Downloading the preprint from arXiv…", ttl=86400, max_entries=20)
@@ -115,7 +115,7 @@ ALL = "all"
 def live_papers(code: str, days: int, keywords: str, limit: int) -> list[dict]:
     """Newest preprints in one official arXiv category, straight from the arXiv API."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
-    return arxiv_client.search_category(code, cutoff, keywords=keywords, max_results=limit)
+    return arxiv_client.search_category(code, cutoff, keywords=keywords, max_results=limit, attempts=2)
 
 
 def paper_categories(p: dict) -> list[str]:
