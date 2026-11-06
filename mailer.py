@@ -87,16 +87,18 @@ def send(subject: str, html: str, text: str, recipients: list[str] | None = None
     return failed
 
 
-def send_confirm_link(to: str, action: str, url: str) -> None:
+def send_confirm_link(to: str, action: str, url: str, lists: list[str] | None = None) -> None:
     """Email a one-click confirmation link for subscribe / unsubscribe."""
-    verb = "subscribe to" if action == "subscribe" else "unsubscribe from"
-    text = (f"Please confirm that you want to {verb} The Research Radar, a weekly review of new research "
+    names = {"weekly": "the weekly edition", "daily": "the daily brief"}
+    chosen = " and ".join(names[n] for n in (lists or ["weekly"]) if n in names) or "the newsletter"
+    verb = f"receive {chosen} of" if action == "subscribe" else "unsubscribe from"
+    text = (f"Please confirm that you want to {verb} The Research Radar, a review of new research "
             f"from arXiv.\n\nConfirm here:\n{url}\n\nThe link works for 24 hours. If you did not ask for this, "
             "ignore this email; nothing will change.\n\nThe Research Radar")
     title = "Confirm your subscription" if action == "subscribe" else "Confirm unsubscribing"
     html = (f'<div style="font:16px/1.6 Georgia,serif;color:#151515;max-width:520px;margin:24px auto;">'
             f'<div style="font:700 26px Georgia,serif;border-bottom:3px double #151515;padding-bottom:8px;">'
-            f'The Research Radar</div><p>Please confirm that you want to {verb} the weekly newsletter.</p>'
+            f'The Research Radar</div><p>Please confirm that you want to {verb} The Research Radar.</p>'
             f'<p><a href="{url}" style="display:inline-block;background:#151515;color:#fff;padding:12px 22px;'
             f'font:700 13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-decoration:none;">'
             f'{title.upper()}</a></p><p style="color:#6E6758;font-size:13px;">The link works for 24 hours. '

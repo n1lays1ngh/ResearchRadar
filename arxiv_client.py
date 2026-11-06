@@ -121,6 +121,37 @@ def search(query: str, cutoff: datetime, max_results: int = config.MAX_RESULTS_P
     return papers
 
 
+RSS_URL = "https://rss.arxiv.org/rss/"
+RSS_KEEP = {"new", "cross"}   # skip "replace"/"replace-cross": revised versions of older papers
+
+
+def rss_announcements(categories: list[str], attempts: int = config.ARXIV_ATTEMPTS) -> tuple[str, list[dict]]:
+    """Today's arXiv announcement for the given official categories, via the RSS feed (one request).
+
+    Returns (feed date as YYYY-MM-DD or "", papers). Empty on weekends and arXiv holidays.
+    """
+    feed = feedparser.parse(_get(RSS_URL + "+".join(sorted(set(categories))), {}, attempts=attempts).content)
+    day = ""
+    if feed.feed.get("published_parsed"):
+        day = time.strftime("%Y-%m-%d", feed.feed.published_parsed)
+    papers, seen = [], set()
+    for entry in feed.entries:
+        if entry.get("arxiv_announce_type", "new") not in RSS_KEEP:
+            continue
+        paper = _parse_entry(entry)
+        if not paper["id"] or paper["id"] in seen:
+            continue
+        seen.add(paper["id"])
+        # RSS summaries start with "arXiv:XXXX Announce Type: new Abstract: ..."
+        paper["abstract"] = re.sub(r"^arXiv:\S+\s+Announce Type:\s*\S+\s*Abstract:\s*", "", paper["abstract"])
+        # RSS gives one comma-separated author string
+        if len(paper["authors"]) == 1 and "," in paper["authors"][0]:
+            paper["authors"] = [a.strip() for a in paper["authors"][0].split(",") if a.strip()]
+        paper["announce_type"] = entry.get("arxiv_announce_type", "new")
+        papers.append(paper)
+    return day, papers
+
+
 def search_category(code: str, cutoff: datetime, keywords: str = "",
                     max_results: int = config.MAX_PAPERS, attempts: int = config.ARXIV_ATTEMPTS) -> list[dict]:
     """Newest papers in an official arXiv category (e.g. cs.CL), optionally filtered by keywords."""

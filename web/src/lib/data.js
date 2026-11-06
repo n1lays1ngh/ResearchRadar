@@ -20,12 +20,20 @@ function getJSON(url) {
 export const loadEditions = () => getJSON("/data/editions.json");
 export const loadEdition = (date) => getJSON(`/editions/${date}.json`);
 export const loadPaperIndex = () => getJSON("/data/papers.json");
+export const loadBriefs = () => getJSON("/data/briefs.json");
+export const loadBrief = (date) => getJSON(`/briefs/${date}.json`);
 
-/** Find a paper's report in the archive: { paper, section, edition } or null. */
+/** Find a paper in the archive: { paper, section, edition, featured } or { paper, section, brief }, or null. */
 export async function findReport(id) {
   const index = await loadPaperIndex();
   const hit = index[id];
   if (!hit) return null;
+  if (hit.brief) {
+    const brief = await loadBrief(hit.brief);
+    const section = brief.sections.find((s) => s.key === hit.section);
+    const paper = section?.papers.find((p) => p.id === id);
+    return paper ? { paper, section, brief } : null;
+  }
   const edition = await loadEdition(hit.date);
   const section = edition.sections.find((s) => s.key === hit.section);
   const featured = section?.featured.find((p) => p.id === id);

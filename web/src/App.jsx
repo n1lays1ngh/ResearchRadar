@@ -6,6 +6,7 @@ import { loadEditions } from "./lib/data";
 import { useAsync } from "./lib/hooks";
 import Archive from "./pages/Archive";
 import Article from "./pages/Article";
+import Brief from "./pages/Brief";
 import Browse from "./pages/Browse";
 import Confirm from "./pages/Confirm";
 import Front from "./pages/Front";
@@ -48,6 +49,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="edition/:date" element={<Front />} />
         <Route path="section/:key" element={<Section />} />
+        <Route path="brief" element={<Brief />} />
+        <Route path="brief/:date" element={<Brief />} />
         <Route path="paper/*" element={<Article />} />
         <Route path="archive" element={<Archive />} />
         <Route path="browse" element={<Browse />} />

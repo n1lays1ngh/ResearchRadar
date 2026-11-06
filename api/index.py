@@ -202,6 +202,7 @@ RESEND_GAP = 60
 class SubscribeIn(BaseModel):
     email: str = Field(max_length=254)
     action: Literal["subscribe", "unsubscribe"] = "subscribe"
+    lists: list[Literal["weekly", "daily"]] = Field(default_factory=lambda: ["weekly"], max_length=2)
     website: str = ""   # honeypot: real visitors never fill this hidden field
 
 
@@ -228,9 +229,10 @@ def subscribe(body: SubscribeIn, request: Request):
     if now - _recent.get(email, 0) < RESEND_GAP:
         raise HTTPException(429, "A confirmation link was just sent. Please check your inbox.")
     base = config.SITE_URL.rstrip("/") if config.SITE_URL else str(request.base_url).rstrip("/")
-    url = f"{base}/confirm?token={subscribers.make_token(email, body.action)}"
+    lists = subscribers.normalize_lists(body.lists)
+    url = f"{base}/confirm?token={subscribers.make_token(email, body.action, lists)}"
     try:
-        mailer.send_confirm_link(email, body.action, url)
+        mailer.send_confirm_link(email, body.action, url, lists)
     except Exception as exc:
         print(f"  ! confirmation email failed: {type(exc).__name__}: {exc}")
         raise HTTPException(502, "We couldn't send the confirmation email. Please try again later.")
@@ -242,18 +244,25 @@ def subscribe(body: SubscribeIn, request: Request):
 def confirm(body: ConfirmIn):
     _require_subscriptions()
     try:
-        email, action = subscribers.read_token(body.token)
+        email, action, lists = subscribers.read_token(body.token)
     except subscribers.SubscribersError as exc:
         raise HTTPException(400, str(exc))
     try:
         if action == "subscribe":
-            changed = subscribers.add(email)
-            msg = ("You're subscribed. The next edition arrives on Monday morning." if changed
-                   else "You're already subscribed.")
+            outcome = subscribers.add(email, lists)
+            what = _describe(lists)
+            msg = {"added": f"You're subscribed to {what}.",
+                   "updated": f"Your preferences are saved: you'll now get {what}.",
+                   "unchanged": f"You're already subscribed to {what}."}[outcome]
         else:
             changed = subscribers.remove(email)
             msg = "You've been unsubscribed." if changed else "That address wasn't subscribed."
     except Exception as exc:
         print(f"  ! subscriber update failed: {type(exc).__name__}: {exc}")
         raise HTTPException(502, "We couldn't update the subscriber list. Please try again later.")
-    return {"ok": True, "action": action, "email": email, "message": msg}
+    return {"ok": True, "action": action, "email": email, "lists": lists, "message": msg}
+
+
+def _describe(lists: list[str]) -> str:
+    names = {"weekly": "the weekly edition (Mondays)", "daily": "the daily brief (Monday to Friday)"}
+    return " and ".join(names[name] for name in lists)

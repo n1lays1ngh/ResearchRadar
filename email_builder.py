@@ -336,14 +336,14 @@ def _index(sections: list[dict]) -> str:
 </td></tr>"""
 
 
-def _app_links() -> str:
-    """'Read online / PDF · Subscribe · Unsubscribe' line, when the app URL is configured."""
+def _app_links(read_path: str = "", read_label: str = "Read online or download the PDF") -> str:
+    """'Read online / PDF · Subscribe · Unsubscribe' line, when the site URL is configured."""
     if not config.SITE_URL:
         return ""
     style = f"color:{INK};text-decoration:underline;"
-    links = [("Read online or download the PDF", config.site_url()),
+    links = [(read_label, config.site_url(read_path)),
              ("Subscribe", config.site_url("subscribe")),
-             ("Unsubscribe", config.site_url("subscribe", action="unsubscribe"))]
+             ("Unsubscribe or change", config.site_url("subscribe", action="unsubscribe"))]
     return (f'<div style="text-align:center;margin:0 0 12px;font:12.5px/1.6 {SERIF};color:{MUTED};">'
             + " &nbsp;·&nbsp; ".join(f'<a href="{e(u)}" style="{style}">{t}</a>' for t, u in links)
             + "</div>")
@@ -458,4 +458,121 @@ def build_text(sections: list[dict], meta: dict) -> str:
     if config.SITE_URL:
         out += ["", f"Read online or download the PDF: {config.site_url()}",
                 f"Unsubscribe: {config.site_url('subscribe', action='unsubscribe')}"]
+    return "\n".join(out)
+
+
+# --- daily brief ----------------------------------------------------------------------------------
+BRIEF_W = 680   # a single readable column: the brief is a quick morning read
+
+
+def _brief_item(i: int, p: dict) -> str:
+    links = [f'<a href="{e(p["abs_url"])}" style="color:{INK};">Abstract</a>',
+             f'<a href="{e(p["pdf_url"])}" style="color:{INK};">PDF</a>']
+    if chat_url(p["id"]):
+        links.append(f'<a href="{e(chat_url(p["id"]))}" style="color:{INK};">Discuss</a>')
+    cross = " · cross-listed" if p.get("announce_type") == "cross" else ""
+    return f"""
+<tr><td style="padding:14px 0;border-bottom:1px solid {HAIR};">
+ <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td valign="top" width="34" style="font:700 22px/1 {SERIF};color:{RED};padding-top:2px;">{i}</td>
+  <td valign="top">
+   <div style="font:700 18px/1.3 {SERIF};color:{INK};">
+    <a href="{e(chat_url(p['id']) or p['abs_url'])}" style="color:{INK};text-decoration:none;">{e(p['title'])}</a></div>
+   <div style="margin-top:6px;font:15px/1.55 {SERIF};color:{INK_2};">{e(p.get('summary', ''))}</div>
+   <div style="margin-top:6px;font:12px/1.5 {SANS};color:{MUTED};">
+    {e(byline(p.get('authors', []), 2))} · {e(", ".join(p.get('categories', [])[:3]))}{cross}
+    &nbsp;·&nbsp; {" &nbsp;·&nbsp; ".join(links)}</div>
+  </td></tr></table>
+</td></tr>"""
+
+
+def _brief_section(s: dict) -> str:
+    d = s["domain"]
+    name = arxiv_categories.NAMES.get(d["key"], d["title"])
+    if not s["papers"]:
+        body = _p("No new preprints matched this section today.", 14, MUTED, "8px 0 0", "font-style:italic;")
+        items = ""
+    else:
+        body = _p(e(s.get("lede", "")), 15, INK_2, "8px 0 4px", "font-style:italic;") if s.get("lede") else ""
+        items = ('<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">'
+                 + "".join(_brief_item(i, p) for i, p in enumerate(s["papers"], 1)) + "</table>")
+    return f"""
+<tr><td style="padding:22px {PAD} 4px;">
+ {_rule(3, INK, "0 0 10px")}
+ <div>{_caps(f"arXiv {d['key']}", RED, 10)}</div>
+ <div style="margin-top:2px;font:700 26px/1.15 {SERIF};color:{INK};">{e(name)}</div>
+ {body}{items}
+</td></tr>"""
+
+
+def build_brief_html(sections: list[dict], meta: dict) -> str:
+    """The daily brief email. sections: [{domain, lede, papers: [... with 'summary']}];
+    meta: issued (datetime), feed_date, total (papers announced today in these categories)."""
+    issued = meta["issued"]
+    date_line = issued.strftime("%A, %-d %B %Y")
+    count = sum(len(s["papers"]) for s in sections)
+    leads = [s["papers"][0]["title"] for s in sections if s["papers"]]
+    preheader = ("Today: " + "; ".join(leads))[:220] if leads else "Today's new research from arXiv."
+    html = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">
+<title>The Research Radar · Daily Brief · {e(date_line)}</title></head>
+<body style="margin:0;padding:0;background:{PAGE};">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all;">
+ {e(preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{PAGE};">
+<tr><td align="center" style="padding:20px 8px;">
+ <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+  style="max-width:{BRIEF_W}px;width:100%;background:{PAPER};border:1px solid {HAIR};word-break:break-word;overflow-wrap:anywhere;">
+  <tr><td style="padding:16px {PAD} 0;text-align:center;">
+   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td align="left">{_caps("Daily brief", RED, 9.5)}</td>
+    <td align="right">{_caps(date_line, INK, 9.5)}</td>
+   </tr></table>
+   {_rule(1, INK, "8px 0 0")}
+   <div style="padding:14px 0 4px;font:40px/1.05 {SERIF};font-weight:700;letter-spacing:-.02em;color:{INK};">
+    The Research Radar</div>
+   <div style="padding:0 0 12px;font:15px {SERIF};font-style:italic;color:{INK_2};">
+    The day&rsquo;s new preprints from arXiv, in brief</div>
+   {_double_rule()}
+   <div style="padding:7px 0;line-height:1.7;">
+    {_caps(f"{count} selected from {meta['total']} new announcements", INK, 9.5)}</div>
+   {_rule(1, INK)}
+  </td></tr>
+  {"".join(_brief_section(s) for s in sections)}
+  <tr><td style="padding:26px {PAD} 26px;">
+   {_double_rule("0 0 12px")}
+   {_p("Summaries are written by a language model from each paper&rsquo;s abstract and may contain errors. "
+       "Preprints are not peer-reviewed. The full weekly edition, with in-depth reports, arrives on Mondays.",
+       12.5, MUTED, "0 0 10px", "text-align:center;font-style:italic;")}
+   {_app_links("brief", "Read online")}
+  </td></tr>
+ </table>
+</td></tr></table>
+</body></html>"""
+    return _minify(html)
+
+
+def build_brief_text(sections: list[dict], meta: dict) -> str:
+    issued = meta["issued"]
+    out = ["THE RESEARCH RADAR: DAILY BRIEF", issued.strftime("%A, %-d %B %Y"),
+           f"{sum(len(s['papers']) for s in sections)} selected from {meta['total']} new announcements", "=" * 64]
+    for s in sections:
+        d = s["domain"]
+        out += ["", f"{arxiv_categories.NAMES.get(d['key'], d['title']).upper()} (arXiv {d['key']})", "-" * 64]
+        if not s["papers"]:
+            out.append("No new preprints matched this section today.")
+            continue
+        if s.get("lede"):
+            out += [s["lede"], ""]
+        for i, p in enumerate(s["papers"], 1):
+            out += [f"{i}. {p['title']}", f"   {p.get('summary', '')}",
+                    f"   {byline(p.get('authors', []), 2)} | {p['abs_url']}"]
+            if chat_url(p["id"]):
+                out.append(f"   Discuss: {chat_url(p['id'])}")
+    out += ["", "Summaries are written by a language model from each paper's abstract and may contain errors."]
+    if config.SITE_URL:
+        out += [f"Read online: {config.site_url('brief')}",
+                f"Unsubscribe or change what you get: {config.site_url('subscribe', action='unsubscribe')}"]
     return "\n".join(out)

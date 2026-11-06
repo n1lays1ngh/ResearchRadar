@@ -2,4 +2,5 @@ node_modules/
 dist/
 # generated from ../data/editions by scripts/sync-data.mjs
 public/editions/
+public/briefs/
 public/data/

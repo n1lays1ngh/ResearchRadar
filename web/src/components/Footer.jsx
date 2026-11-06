@@ -7,6 +7,7 @@ export default function Footer() {
         <div className="footer-plate">The Research Radar</div>
         <nav className="footer-links" aria-label="Footer">
           <Link to="/">Front Page</Link>
+          <Link to="/brief">Daily Brief</Link>
           <Link to="/archive">Archive</Link>
           <Link to="/browse">Browse arXiv</Link>
           <Link to="/subscribe">Subscribe</Link>

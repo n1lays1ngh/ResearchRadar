@@ -8,6 +8,10 @@ A research agent that works without being asked. Every Monday it:
 4. adds web context with Tavily (code and discussion links, plus "Beyond arXiv" journal results),
 5. emails a newspaper-style edition to you and every subscriber, and archives it as HTML + PDF.
 
+Plus a **daily brief**, Monday to Friday: one request to arXiv's RSS feed for the day's announcements,
+the same topic filters, one-sentence summaries (one LLM request per section), emailed to daily subscribers.
+Readers choose the weekly edition, the daily brief, or both.
+
 A companion **website** (React + Vite, with a FastAPI backend, both on Vercel) presents every edition as a
 broadsheet newspaper: front page, sections, full reports, an archive with PDF downloads, live arXiv
 browsing, **subscribe / unsubscribe** confirmed by email, and a chat on every paper grounded in its PDF.
@@ -25,13 +29,15 @@ email_builder.py   HTML email (tables + inline CSS) and plain-text version
 mailer.py          SMTP sending (one message per recipient; confirmation codes)
 pdf_export.py      edition HTML -> PDF with headless Chrome
 subscribers.py     encrypted subscriber list on the "subscribers" branch (+ admin CLI)
-run_digest.py      the weekly pipeline (CLI)
+run_digest.py      the weekly pipeline (arXiv API, full-text reports)
+run_brief.py       the daily brief (arXiv RSS, one-line summaries)
 api/index.py       FastAPI backend (chat, arXiv lookups, subscriptions), a Vercel Python function
 web/               React + Vite website (scripts/sync-data.mjs publishes data/editions as static files)
 vercel.json        Vercel build, function and routing settings
 .github/workflows/weekly-digest.yml   cron + manual + webhook trigger
 data/latest.json   written by each run, read by the chat page
 data/editions/     every edition as YYYY-MM-DD.json (website), .html (email) and .pdf
+data/briefs/       every daily brief as YYYY-MM-DD.json (website) and .html (email)
 ```
 
 ### Sections (official arXiv categories)
@@ -96,6 +102,10 @@ python run_digest.py --dry-run                                   # full pipeline
 # Real run (sends the email)
 python run_digest.py
 
+# Daily brief (RSS): dry run, then real
+python run_brief.py --dry-run          # open out/brief-latest.html
+python run_brief.py
+
 # Website (two terminals; see section 5)
 uvicorn api.index:app --reload --port 8000
 cd web && npm install && npm run dev
@@ -140,7 +150,18 @@ Push the repo to GitHub. Then go to **Settings → Secrets and variables → Act
 
 **Variables** tab: `SITE_URL`, for example `https://research-radar.vercel.app`. When it is set, every report in the email links to its page on the website, and the footer links to the online edition, the PDF and subscribe / unsubscribe.
 
-The workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
+Two workflows run on their own:
+
+| Workflow | When | What |
+|---|---|---|
+| `weekly-digest.yml` | Mondays 08:00 IST (`30 2 * * 1`) | the full edition to weekly subscribers |
+| `daily-brief.yml` | Monday to Friday 11:30 IST (`0 6 * * 1-5`) | the brief to daily subscribers, after arXiv's RSS feed refreshes at midnight US Eastern |
+
+They share a concurrency group, so on Mondays the brief waits for the edition instead of racing it to push.
+The brief never sends the same day twice (it checks `data/briefs/<date>.json` for `"sent": true`), and
+skips weekends and arXiv holidays, when the feed is empty. Run either by hand from the **Actions** tab.
+
+The weekly workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
 
 ### Webhook trigger
 
@@ -163,7 +184,8 @@ curl -X POST \
 | `/` | Front page of the latest edition: lead story, other leads, the week in brief, every section |
 | `/section/cs.CL` | One section with its overview, reports, briefs and journal links |
 | `/paper/<arXiv id>` | The full report, links to arXiv and the PDF, and **Ask about this paper** (streaming chat) |
-| `/archive`, `/edition/<date>` | Every edition, with **PDF** and email-version downloads |
+| `/brief`, `/brief/<date>` | The daily brief: numbered one-line summaries per section, recent briefs |
+| `/archive`, `/edition/<date>` | Every edition and brief, with **PDF** and email-version downloads |
 | `/browse` | Newest preprints in any of the 155 official arXiv categories, with keywords |
 | `/subscribe`, `/confirm` | Subscribe / unsubscribe, confirmed by a link sent by email |
 
@@ -203,7 +225,7 @@ it downloads the PDF. Old email links (`/?paper=<id>`) still work and redirect t
 
 ### Subscriptions
 
-Readers enter their email on the site and get a **confirmation link** by email; nothing changes until they
+Readers pick **the weekly edition, the daily brief, or both**, enter their email and get a **confirmation link** by email; nothing changes until they
 click it (double opt-in, so nobody can sign up or remove someone else). The link carries an encrypted token
 that expires after 24 hours. The list itself is stored **encrypted** in `subscribers.enc` on a separate
 `subscribers` branch: the repo is public, but without the key the file is unreadable, and signups don't
@@ -221,7 +243,8 @@ Setup (once):
 4. Vercel → project **Settings → Environment Variables**: `SUBSCRIBERS_KEY`, `GH_TOKEN` (the token from
    step 3), `GITHUB_REPO` (`OWNER/REPO`), `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`. Then **Redeploy**.
 5. Optional, locally: the same three subscriber values in `.env`. `python subscribers.py --list` shows the
-   subscribers, and `--add` / `--remove EMAIL` edits the list.
+   subscribers and what each gets; `--add EMAIL --lists weekly,daily` and `--remove EMAIL` edit the list.
+   Subscribing again with a different choice updates it.
 
 Check that it works by opening `https://<your site>/api/health`: `"subscriptions": true` means every
 setting is present.

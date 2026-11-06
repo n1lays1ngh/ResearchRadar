@@ -9,7 +9,7 @@ Signups are confirmed by an emailed link carrying an encrypted, expiring token (
 CLI (owner only):
   python subscribers.py --new-key          generate a SUBSCRIBERS_KEY
   python subscribers.py --list             show the current subscribers
-  python subscribers.py --add a@b.com      add / --remove a@b.com
+  python subscribers.py --add a@b.com [--lists weekly,daily]    add or update / --remove a@b.com
 """
 import argparse
 import base64
@@ -24,6 +24,7 @@ from cryptography.fernet import Fernet, InvalidToken
 import config
 
 API = "https://api.github.com"
+LISTS = ("weekly", "daily")   # the full Monday edition and the Monday-to-Friday brief
 EMAIL_RE = re.compile(r"^[^@\s,;<>\"']+@[^@\s,;<>\"']+\.[A-Za-z]{2,}$")
 
 
@@ -124,17 +125,36 @@ def _update(change) -> bool:
     return False
 
 
-def add(email: str) -> bool:
-    """Add an address; False if it was already subscribed."""
-    email = normalize_email(email)
+def normalize_lists(lists) -> list[str]:
+    """Valid newsletter names in canonical order; defaults to the weekly edition."""
+    chosen = [name for name in LISTS if name in (lists or [])]
+    return chosen or ["weekly"]
+
+
+def lists_of(item: dict) -> list[str]:
+    return normalize_lists(item.get("lists"))   # records from before daily briefs: weekly only
+
+
+def add(email: str, lists=("weekly",)) -> str:
+    """Subscribe or update preferences: 'added', 'updated' or 'unchanged'."""
+    email, lists = normalize_email(email), normalize_lists(lists)
     if not email:
         raise ValueError("invalid email address")
+    outcome = {"value": "added"}
 
     def change(items):
-        if any(i["email"] == email for i in items):
-            return None
-        return items + [{"email": email, "since": datetime.now(timezone.utc).isoformat(timespec="seconds")}]
-    return _update(change)
+        for item in items:
+            if item["email"] == email:
+                if lists_of(item) == lists:
+                    outcome["value"] = "unchanged"
+                    return None
+                item["lists"] = lists
+                outcome["value"] = "updated"
+                return items
+        return items + [{"email": email, "lists": lists,
+                         "since": datetime.now(timezone.utc).isoformat(timespec="seconds")}]
+    _update(change)
+    return outcome["value"]
 
 
 def remove(email: str) -> bool:
@@ -147,22 +167,24 @@ def remove(email: str) -> bool:
     return _update(change)
 
 
-def emails() -> list[str]:
-    return [i["email"] for i in _read()[0]]
+def emails(newsletter: str | None = None) -> list[str]:
+    """All subscribers, or those who get the given newsletter ('weekly' / 'daily')."""
+    return [i["email"] for i in _read()[0] if newsletter is None or newsletter in lists_of(i)]
 
 
 # --- confirmation links (stateless double opt-in for serverless hosting) ----------------------
 CONFIRM_TTL = 24 * 3600
 
 
-def make_token(email: str, action: str) -> str:
+def make_token(email: str, action: str, lists=("weekly",)) -> str:
     """Encrypted, expiring token for a confirm link; only the key holder can mint or read it."""
-    payload = json.dumps({"purpose": "confirm", "email": normalize_email(email), "action": action})
+    payload = json.dumps({"purpose": "confirm", "email": normalize_email(email), "action": action,
+                          "lists": normalize_lists(lists)})
     return _fernet().encrypt(payload.encode()).decode()
 
 
-def read_token(token: str) -> tuple[str, str]:
-    """(email, action) from a confirm token; raises SubscribersError if invalid or expired."""
+def read_token(token: str) -> tuple[str, str, list[str]]:
+    """(email, action, lists) from a confirm token; raises SubscribersError if invalid or expired."""
     try:
         data = json.loads(_fernet().decrypt(token.encode(), ttl=CONFIRM_TTL))
     except (InvalidToken, ValueError, TypeError) as exc:
@@ -170,7 +192,7 @@ def read_token(token: str) -> tuple[str, str]:
     if not isinstance(data, dict) or data.get("purpose") != "confirm" or \
             data.get("action") not in ("subscribe", "unsubscribe") or not normalize_email(data.get("email", "")):
         raise SubscribersError("This link is invalid or has expired.")
-    return data["email"], data["action"]
+    return data["email"], data["action"], normalize_lists(data.get("lists"))
 
 
 if __name__ == "__main__":
@@ -179,15 +201,17 @@ if __name__ == "__main__":
     group.add_argument("--new-key", action="store_true", help="print a new SUBSCRIBERS_KEY")
     group.add_argument("--list", action="store_true", help="list current subscribers")
     group.add_argument("--add", metavar="EMAIL")
+    parser.add_argument("--lists", default="weekly", help="with --add: weekly, daily or weekly,daily")
     group.add_argument("--remove", metavar="EMAIL")
     args = parser.parse_args()
     if args.new_key:
         print(new_key())
     elif args.list:
-        found = emails()
-        print("\n".join(found) if found else "(no subscribers yet)")
-        print(f"{len(found)} subscriber(s)")
+        items = _read()[0]
+        for item in items:
+            print(f"{item['email']:40} {'+'.join(lists_of(item))}")
+        print(f"{len(items)} subscriber(s): {len(emails('weekly'))} weekly, {len(emails('daily'))} daily")
     elif args.add:
-        print("added" if add(args.add) else "already subscribed")
+        print(add(args.add, args.lists.split(",")))
     else:
         print("removed" if remove(args.remove) else "was not subscribed")

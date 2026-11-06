@@ -130,17 +130,17 @@ def save(sections: list[dict], meta: dict, html: str, now: datetime) -> str:
     return latest
 
 
-def subscriber_emails() -> list[str]:
-    """Newsletter subscribers; [] (with a warning) if not configured or unreachable."""
+def subscriber_emails(newsletter: str = "weekly") -> list[str]:
+    """Subscribers to one newsletter; [] (with a warning) if not configured or unreachable."""
     if subscribers.missing_settings():
         print("[subscribers] not configured; sending to MAIL_TO only")
         return []
     try:
-        found = subscribers.emails()
+        found = subscribers.emails(newsletter)
     except Exception as exc:   # never skip the owner's copy because of the subscriber list
         print(f"  ! could not load subscribers: {exc}")
         return []
-    print(f"[subscribers] {len(found)} subscriber(s)")
+    print(f"[subscribers] {len(found)} {newsletter} subscriber(s)")
     return found
 
 

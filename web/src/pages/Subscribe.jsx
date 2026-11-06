@@ -5,14 +5,16 @@ import { useTitle } from "../lib/hooks";
 export default function Subscribe() {
   const [params] = useSearchParams();
   const action = params.get("action") === "unsubscribe" ? "unsubscribe" : "subscribe";
+  const list = params.get("list");
+  const lists = list === "daily" ? ["daily"] : list === "both" ? ["weekly", "daily"] : ["weekly"];
   useTitle(action === "subscribe" ? "Subscribe" : "Unsubscribe");
   return (
     <div className="wrap narrow subscribe-page">
-      <SubscribeBox key={action} initialAction={action} />
+      <SubscribeBox key={`${action}-${list}`} initialAction={action} initialLists={lists} />
       <div className="subscribe-facts">
         <div>
-          <strong>Every Monday, 8:00 IST.</strong> Three sections built on official arXiv categories, each with a lead
-          report, two further reports and the week&rsquo;s briefs.
+          <strong>Two newsletters.</strong> The weekly edition arrives on Mondays with in-depth reports on three
+          sections. The daily brief arrives Monday to Friday with one line on each of the day&rsquo;s relevant papers.
         </div>
         <div>
           <strong>Your address stays private.</strong> It is stored encrypted, used only to send the newsletter, and never

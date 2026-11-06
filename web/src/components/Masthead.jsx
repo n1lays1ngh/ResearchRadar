@@ -22,7 +22,7 @@ export default function Masthead({ latest }) {
         <Link to="/" className="nameplate" aria-label="The Research Radar, front page">
           The Research Radar
         </Link>
-        <p className="motto">A weekly review of new research from the arXiv preprint server</p>
+        <p className="motto">New research from the arXiv preprint server: a daily brief and a weekly review</p>
         <p className="edition-line">
           {latest ? (
             <>
@@ -44,6 +44,7 @@ export default function Masthead({ latest }) {
               {s.name}
             </NavLink>
           ))}
+          <NavLink to="/brief">Daily Brief</NavLink>
           <NavLink to="/browse">Browse arXiv</NavLink>
           <NavLink to="/archive">Archive</NavLink>
         </div>

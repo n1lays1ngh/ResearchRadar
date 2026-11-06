@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: weekly-digest
+  group: research-radar-commits   # shared with daily-brief.yml: runs queue instead of racing to push
   cancel-in-progress: false
 
 jobs:

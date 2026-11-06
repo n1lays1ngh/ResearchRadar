@@ -3,17 +3,17 @@ import SectionBlock from "../components/SectionBlock";
 import { ErrorNote, Loading } from "../components/Status";
 import { Kicker, Story } from "../components/Story";
 import SubscribeBox from "../components/SubscribeBox";
-import { loadEdition, loadEditions } from "../lib/data";
+import { loadBriefs, loadEdition, loadEditions } from "../lib/data";
 import { byline, isStated, longDate, readingTime } from "../lib/format";
 import { useAsync, useTitle } from "../lib/hooks";
 
 export default function Front() {
   const { date } = useParams();
   const { data, error, loading } = useAsync(async () => {
-    const editions = await loadEditions();
+    const [editions, briefs] = await Promise.all([loadEditions(), loadBriefs().catch(() => [])]);
     const meta = date ? editions.find((e) => e.date === date) : editions[0];
     if (!meta) return { editions, edition: null, meta: null };
-    return { editions, meta, edition: await loadEdition(meta.date) };
+    return { editions, meta, latestBrief: briefs[0], edition: await loadEdition(meta.date) };
   }, [date]);
   useTitle(date && data?.meta ? `Edition of ${longDate(data.meta.date, false)}` : "");
 
@@ -29,7 +29,7 @@ export default function Front() {
       </div>
     );
 
-  const { edition, meta, editions } = data;
+  const { edition, meta, editions, latestBrief } = data;
   const isLatest = editions[0].date === meta.date;
   const withLeads = edition.sections.filter((s) => s.featured.length);
   const [top, ...others] = withLeads;
@@ -71,6 +71,15 @@ export default function Front() {
           <SubscribeBox banner />
         </article>
         <aside className="front-right">
+          {latestBrief && isLatest && (
+            <Link className="brief-teaser" to="/brief">
+              <span className="kicker">The Daily Brief · {longDate(latestBrief.date, false)}</span>
+              <span className="brief-teaser-hed">{latestBrief.leads[0]?.title}</span>
+              <span className="brief-teaser-more">
+                {latestBrief.picked} papers from today&rsquo;s arXiv announcement →
+              </span>
+            </Link>
+          )}
           <h4 className="rail-title">The week in brief</h4>
           {edition.sections
             .filter((s) => s.overview)

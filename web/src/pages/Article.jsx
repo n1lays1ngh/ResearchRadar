@@ -30,7 +30,7 @@ export default function Article() {
   if (loading) return <Loading label="Fetching the report" />;
   if (error) return <ErrorNote error={error}>This paper couldn&rsquo;t be found.</ErrorNote>;
 
-  const { paper, section, edition, featured } = data;
+  const { paper, section, edition, brief, featured } = data;
   const ins = paper.insight;
   const cats = paper.categories || [];
   const authors = paper.authors || [];
@@ -42,10 +42,12 @@ export default function Article() {
           <Kicker>
             {section ? `${section.name} · ` : ""}
             {cats.slice(0, 3).join(" · ")}
-            {!featured && section ? " · In brief" : ""}
+            {!featured && edition ? " · In brief" : ""}
+            {brief ? " · Daily brief" : ""}
           </Kicker>
           <h1 className="article-hed">{paper.title}</h1>
           {ins && isStated(ins.tldr) && <p className="article-dek">{ins.tldr}</p>}
+          {!ins && paper.summary && <p className="article-dek">{paper.summary}</p>}
           <div className="article-byline">
             <span className="by">By {byline(authors, 6)}</span>
             <span className="meta">
@@ -120,11 +122,18 @@ export default function Article() {
                 {paper.abstract}
               </Labeled>
               <p className="editors-note">
-                {section
+                {brief
+                  ? "This paper appeared in the daily brief, which summarises abstracts only. Ask the desk about the full paper."
+                  : section
                   ? "This paper appeared in brief, so there is no full report. Ask the desk about it."
                   : "This paper hasn’t been covered in an edition. Ask the desk about it."}
               </p>
             </div>
+          )}
+          {brief && (
+            <p className="appeared-in">
+              Appeared in the <Link to={`/brief/${brief.date}`}>daily brief of {longDate(brief.date)}</Link>.
+            </p>
           )}
           {edition && (
             <p className="appeared-in">
