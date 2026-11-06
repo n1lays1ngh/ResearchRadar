@@ -13,6 +13,17 @@
       rel="stylesheet"
     />
     <title>The Rinfo</title>
+    <script>
+      // Apply the saved (or system) theme before the first paint, so dark mode never flashes white.
+      (function () {
+        try {
+          var t = localStorage.getItem("rinfo-theme");
+          if (t !== "dark" && t !== "light") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          document.documentElement.dataset.theme = t;
+          if (t === "dark") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0b0b0a");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

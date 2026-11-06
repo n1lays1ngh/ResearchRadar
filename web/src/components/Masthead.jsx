@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { longDate } from "../lib/format";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Masthead({ latest }) {
   const today = longDate(new Date().toISOString());
@@ -8,6 +9,7 @@ export default function Masthead({ latest }) {
       <div className="utility wrap">
         <span className="utility-date">{today}</span>
         <span className="utility-actions">
+          <ThemeToggle />
           {latest?.pdf && (
             <a className="utility-link" href={`/editions/${latest.date}.pdf`} download>
               Today&rsquo;s paper (PDF)
