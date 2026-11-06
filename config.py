@@ -8,26 +8,6 @@ import arxiv_categories
 load_dotenv()
 
 
-def _load_streamlit_secrets() -> None:
-    """On Streamlit (Cloud), copy top-level secrets into the environment so env() sees them.
-
-    Streamlit only does this itself once st.secrets has been touched, so do it explicitly.
-    Does nothing outside a running Streamlit app (CLI, GitHub Actions).
-    """
-    try:
-        from streamlit import runtime, secrets
-        if not runtime.exists():
-            return
-        for key, value in secrets.to_dict().items():
-            if isinstance(value, (str, int, float, bool)) and not (os.getenv(key) or "").strip():
-                os.environ[key] = str(value)
-    except Exception:   # no secrets file, or Streamlit not installed
-        pass
-
-
-_load_streamlit_secrets()
-
-
 def env(name: str, default: str = "") -> str:
     """Read an env var, treating empty / whitespace-only values as unset."""
     value = os.getenv(name)
@@ -84,7 +64,7 @@ ARXIV_BACKOFF_SECONDS = env_float("ARXIV_BACKOFF_SECONDS", 20.0)  # 20 s, 40 s, 
 PDF_MAX_PAGES = 25
 DIGEST_CONTEXT_CHARS = env_int("DIGEST_CONTEXT_CHARS", 9000)
 CHAT_CONTEXT_CHARS = env_int("CHAT_CONTEXT_CHARS", 14000)
-CHAT_APP_URL = env("CHAT_APP_URL")
+SITE_URL = env("SITE_URL", env("CHAT_APP_URL"))   # public URL of the web app (Vercel)
 USER_AGENT = env("USER_AGENT", "ResearchRadar/1.0 (weekly arXiv digest; personal research use)")
 
 # --- Email --------------------------------------------------------------------
@@ -111,15 +91,16 @@ EDITIONS_DIR = os.path.join(DATA_DIR, "editions")   # one .html (+ .pdf) per iss
 CHROME_BIN = env("CHROME_BIN")                      # optional; auto-detected for the PDF export
 
 
-def app_url(path: str = "", **params: str) -> str:
-    """Link into the Streamlit app (e.g. app_url('newsletter')), or '' when CHAT_APP_URL is unset."""
-    if not CHAT_APP_URL:
+def site_url(path: str = "", **params: str) -> str:
+    """Link into the web app, e.g. site_url('paper/2401.01234'), or '' when SITE_URL is unset."""
+    if not SITE_URL:
         return ""
-    url = CHAT_APP_URL.rstrip("/") + (f"/{path}" if path else "")
+    url = SITE_URL.rstrip("/") + "/" + path.lstrip("/")
     if params:
         from urllib.parse import urlencode
         url += "?" + urlencode(params)
     return url
+
 
 # --- Domains ------------------------------------------------------------------
 # Each digest section is an official arXiv category (https://arxiv.org/category_taxonomy).

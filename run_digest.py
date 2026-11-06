@@ -8,6 +8,7 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 
+import arxiv_categories
 import arxiv_client
 import config
 import email_builder
@@ -73,9 +74,31 @@ def enrich(sections: list[dict], args: argparse.Namespace) -> None:
     print(f"[usage] LLM requests: {llm_calls}, Tavily searches: {web.calls}")
 
 
+PAPER_FIELDS = ("id", "title", "abstract", "authors", "published", "categories", "abs_url", "pdf_url",
+                "insight", "links")
+
+
+def edition_data(sections: list[dict], meta: dict, now: datetime) -> dict:
+    """Everything the website needs to render one edition (data/editions/YYYY-MM-DD.json)."""
+    vol, _ = email_builder._edition({"issued": now})
+    out = {"date": f"{now:%Y-%m-%d}", "issued": now.isoformat(), "edition": vol,
+           "week_range": meta["week_range"], "scanned": meta["scanned"], "picked": meta["picked"],
+           "sections": []}
+    for s in sections:
+        d = s["domain"]
+        out["sections"].append({
+            "key": d["key"], "title": d["title"], "name": arxiv_categories.NAMES.get(d["key"], d["title"]),
+            "focus": d["focus"], "categories": d["categories"],
+            "overview": s.get("overview", ""), "beyond": s.get("beyond", []),
+            "featured": [{k: p.get(k) for k in PAPER_FIELDS} for p in s["featured"]],
+            "more": [{k: p.get(k) for k in PAPER_FIELDS} for p in s["more"]],
+        })
+    return out
+
+
 def save(sections: list[dict], meta: dict, html: str, now: datetime) -> str:
-    """Write out/latest.html, the archived edition (data/editions/YYYY-MM-DD.html + .pdf)
-    and data/latest.json. The app's newsletter page reads data/editions/."""
+    """Write out/latest.html, the archived edition (data/editions/YYYY-MM-DD.html/.json/.pdf)
+    and data/latest.json. The website is built from data/editions/."""
     os.makedirs(config.OUT_DIR, exist_ok=True)
     os.makedirs(config.EDITIONS_DIR, exist_ok=True)
     latest = os.path.join(config.OUT_DIR, "latest.html")
@@ -83,6 +106,8 @@ def save(sections: list[dict], meta: dict, html: str, now: datetime) -> str:
     for path in (latest, os.path.join(config.OUT_DIR, f"digest-{now:%Y-%m-%d}.html"), edition + ".html"):
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(html)
+    with open(edition + ".json", "w", encoding="utf-8") as fh:
+        json.dump(edition_data(sections, meta, now), fh, ensure_ascii=False, indent=1)
     if pdf_export.html_to_pdf(html, edition + ".pdf"):
         print(f"[saved] {edition}.pdf")
     papers = []

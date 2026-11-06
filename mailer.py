@@ -57,8 +57,8 @@ def send(subject: str, html: str, text: str, recipients: list[str] | None = None
     """
     recipients = recipients or config.MAIL_TO
     unsubscribe = [f"<mailto:{config.MAIL_FROM}?subject=unsubscribe>"]
-    if config.CHAT_APP_URL:
-        unsubscribe.append(f"<{config.app_url(action='unsubscribe')}>")
+    if config.SITE_URL:
+        unsubscribe.append(f"<{config.site_url('subscribe', action='unsubscribe')}>")
     failed: list[str] = []
     pending = list(recipients)
     for _ in range(2):   # second pass reconnects if Gmail dropped the connection mid-way
@@ -87,13 +87,19 @@ def send(subject: str, html: str, text: str, recipients: list[str] | None = None
     return failed
 
 
-def send_code(to: str, code: str, action: str) -> None:
-    """Email a one-time confirmation code for subscribe / unsubscribe."""
+def send_confirm_link(to: str, action: str, url: str) -> None:
+    """Email a one-click confirmation link for subscribe / unsubscribe."""
     verb = "subscribe to" if action == "subscribe" else "unsubscribe from"
-    text = (f"Your confirmation code is: {code}\n\n"
-            f"Enter it in the Research Radar app to {verb} the weekly newsletter. "
-            "It expires in 15 minutes.\n\n"
-            "If you did not request this, ignore this email; nothing will change.\n\n"
-            "The Research Radar")
+    text = (f"Please confirm that you want to {verb} The Research Radar, a weekly review of new research "
+            f"from arXiv.\n\nConfirm here:\n{url}\n\nThe link works for 24 hours. If you did not ask for this, "
+            "ignore this email; nothing will change.\n\nThe Research Radar")
+    title = "Confirm your subscription" if action == "subscribe" else "Confirm unsubscribing"
+    html = (f'<div style="font:16px/1.6 Georgia,serif;color:#151515;max-width:520px;margin:24px auto;">'
+            f'<div style="font:700 26px Georgia,serif;border-bottom:3px double #151515;padding-bottom:8px;">'
+            f'The Research Radar</div><p>Please confirm that you want to {verb} the weekly newsletter.</p>'
+            f'<p><a href="{url}" style="display:inline-block;background:#151515;color:#fff;padding:12px 22px;'
+            f'font:700 13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-decoration:none;">'
+            f'{title.upper()}</a></p><p style="color:#6E6758;font-size:13px;">The link works for 24 hours. '
+            f'If you did not ask for this, ignore this email; nothing will change.</p></div>')
     with _smtp() as smtp:
-        smtp.send_message(_message(f"The Research Radar: your confirmation code is {code}", to, text))
+        smtp.send_message(_message(f"The Research Radar: {title.lower()}", to, text, html))

@@ -2,8 +2,9 @@
 
 The repository is public, so the list is Fernet-encrypted with SUBSCRIBERS_KEY: anyone can see the
 file, nobody can read the addresses without the key. It lives on its own branch ("subscribers") so a
-new signup doesn't redeploy the Streamlit app or clash with the workflow's commits to main.
-Both the app (add/remove) and the weekly workflow (read) go through the GitHub contents API.
+new signup doesn't redeploy the website or clash with the workflow's commits to main.
+Both the API (add/remove) and the weekly workflow (read) go through the GitHub contents API.
+Signups are confirmed by an emailed link carrying an encrypted, expiring token (make_token/read_token).
 
 CLI (owner only):
   python subscribers.py --new-key          generate a SUBSCRIBERS_KEY
@@ -148,6 +149,28 @@ def remove(email: str) -> bool:
 
 def emails() -> list[str]:
     return [i["email"] for i in _read()[0]]
+
+
+# --- confirmation links (stateless double opt-in for serverless hosting) ----------------------
+CONFIRM_TTL = 24 * 3600
+
+
+def make_token(email: str, action: str) -> str:
+    """Encrypted, expiring token for a confirm link; only the key holder can mint or read it."""
+    payload = json.dumps({"purpose": "confirm", "email": normalize_email(email), "action": action})
+    return _fernet().encrypt(payload.encode()).decode()
+
+
+def read_token(token: str) -> tuple[str, str]:
+    """(email, action) from a confirm token; raises SubscribersError if invalid or expired."""
+    try:
+        data = json.loads(_fernet().decrypt(token.encode(), ttl=CONFIRM_TTL))
+    except (InvalidToken, ValueError, TypeError) as exc:
+        raise SubscribersError("This link is invalid or has expired.") from exc
+    if not isinstance(data, dict) or data.get("purpose") != "confirm" or \
+            data.get("action") not in ("subscribe", "unsubscribe") or not normalize_email(data.get("email", "")):
+        raise SubscribersError("This link is invalid or has expired.")
+    return data["email"], data["action"]
 
 
 if __name__ == "__main__":

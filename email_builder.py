@@ -34,11 +34,8 @@ def e(value) -> str:
 
 
 def chat_url(paper_id: str) -> str:
-    """Deep link into the Streamlit chat app, or '' when CHAT_APP_URL is unset."""
-    if not config.CHAT_APP_URL:
-        return ""
-    sep = "&" if "?" in config.CHAT_APP_URL else "?"
-    return f"{config.CHAT_APP_URL.rstrip('/')}{sep}paper={quote(paper_id)}"
+    """The paper's page on the web app (with chat), or '' when SITE_URL is unset."""
+    return config.site_url(f"paper/{quote(paper_id)}")
 
 
 def byline(authors: list[str], limit: int = 3) -> str:
@@ -341,12 +338,12 @@ def _index(sections: list[dict]) -> str:
 
 def _app_links() -> str:
     """'Read online / PDF · Subscribe · Unsubscribe' line, when the app URL is configured."""
-    if not config.CHAT_APP_URL:
+    if not config.SITE_URL:
         return ""
     style = f"color:{INK};text-decoration:underline;"
-    links = [("Read online or download the PDF", config.app_url()),
-             ("Subscribe", config.app_url(action="subscribe")),
-             ("Unsubscribe", config.app_url(action="unsubscribe"))]
+    links = [("Read online or download the PDF", config.site_url()),
+             ("Subscribe", config.site_url("subscribe")),
+             ("Unsubscribe", config.site_url("subscribe", action="unsubscribe"))]
     return (f'<div style="text-align:center;margin:0 0 12px;font:12.5px/1.6 {SERIF};color:{MUTED};">'
             + " &nbsp;·&nbsp; ".join(f'<a href="{e(u)}" style="{style}">{t}</a>' for t, u in links)
             + "</div>")
@@ -458,7 +455,7 @@ def build_text(sections: list[dict], meta: dict) -> str:
         out += ["", "=" * 64, ""]
     out.append("Reports are written by a language model from each paper's own text and may contain errors. "
                "Preprints are not peer-reviewed; consult the original paper before citing.")
-    if config.CHAT_APP_URL:
-        out += ["", f"Read online or download the PDF: {config.app_url()}",
-                f"Unsubscribe: {config.app_url(action='unsubscribe')}"]
+    if config.SITE_URL:
+        out += ["", f"Read online or download the PDF: {config.site_url()}",
+                f"Unsubscribe: {config.site_url('subscribe', action='unsubscribe')}"]
     return "\n".join(out)

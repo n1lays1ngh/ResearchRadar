@@ -32,7 +32,7 @@ jobs:
       SMTP_PASS: ${{ secrets.SMTP_PASS }}
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
-      CHAT_APP_URL: ${{ vars.CHAT_APP_URL }}
+      SITE_URL: ${{ vars.SITE_URL || vars.CHAT_APP_URL }}   # the Vercel site; links in the email
       # Subscribers: encrypted list on the "subscribers" branch, read with this run's own token.
       SUBSCRIBERS_KEY: ${{ secrets.SUBSCRIBERS_KEY }}
       GH_TOKEN: ${{ github.token }}

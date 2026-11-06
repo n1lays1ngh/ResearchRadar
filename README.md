@@ -8,9 +8,9 @@ A research agent that works without being asked. Every Monday it:
 4. adds web context with Tavily (code and discussion links, plus "Beyond arXiv" journal results),
 5. emails a newspaper-style edition to you and every subscriber, and archives it as HTML + PDF.
 
-A companion **Streamlit app** shows every edition (read online, download the PDF), lets readers
-**subscribe / unsubscribe** with an emailed confirmation code, and lets you chat with any paper,
-grounded in its PDF text.
+A companion **website** (React + Vite, with a FastAPI backend, both on Vercel) presents every edition as a
+broadsheet newspaper: front page, sections, full reports, an archive with PDF downloads, live arXiv
+browsing, **subscribe / unsubscribe** confirmed by email, and a chat on every paper grounded in its PDF.
 
 Everything runs on free tiers: **Gemini API** (LLM), **Tavily** (1,000 credits/month), **GitHub Actions** (scheduler) and **Gmail SMTP** (email).
 
@@ -26,10 +26,12 @@ mailer.py          SMTP sending (one message per recipient; confirmation codes)
 pdf_export.py      edition HTML -> PDF with headless Chrome
 subscribers.py     encrypted subscriber list on the "subscribers" branch (+ admin CLI)
 run_digest.py      the weekly pipeline (CLI)
-chat_app.py        Streamlit entry point (pages: app_pages/newsletter.py, app_pages/chat.py)
+api/index.py       FastAPI backend (chat, arXiv lookups, subscriptions), a Vercel Python function
+web/               React + Vite website (scripts/sync-data.mjs publishes data/editions as static files)
+vercel.json        Vercel build, function and routing settings
 .github/workflows/weekly-digest.yml   cron + manual + webhook trigger
 data/latest.json   written by each run, read by the chat page
-data/editions/     every edition as YYYY-MM-DD.html + .pdf, read by the newsletter page
+data/editions/     every edition as YYYY-MM-DD.json (website), .html (email) and .pdf
 ```
 
 ### Sections (official arXiv categories)
@@ -94,8 +96,9 @@ python run_digest.py --dry-run                                   # full pipeline
 # Real run (sends the email)
 python run_digest.py
 
-# Chat app
-streamlit run chat_app.py
+# Website (two terminals; see section 5)
+uvicorn api.index:app --reload --port 8000
+cd web && npm install && npm run dev
 ```
 
 | Flag | Effect |
@@ -135,7 +138,7 @@ Push the repo to GitHub. Then go to **Settings → Secrets and variables → Act
 | `MAIL_TO` | ✅ | comma-separated recipients (you); subscribers are added automatically |
 | `SUBSCRIBERS_KEY` | | enables subscriptions; see [Subscriptions](#subscriptions) |
 
-**Variables** tab: `CHAT_APP_URL`, for example `https://your-app.streamlit.app`. When it is set, every card gets a "Chat with this paper" button.
+**Variables** tab: `SITE_URL`, for example `https://research-radar.vercel.app`. When it is set, every report in the email links to its page on the website, and the footer links to the online edition, the PDF and subscribe / unsubscribe.
 
 The workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
 
@@ -153,66 +156,77 @@ curl -X POST \
 
 ---
 
-## 5. The app: newsletter + chat
+## 5. The website (React + FastAPI on Vercel)
+
+| Page | What it shows |
+|---|---|
+| `/` | Front page of the latest edition: lead story, other leads, the week in brief, every section |
+| `/section/cs.CL` | One section with its overview, reports, briefs and journal links |
+| `/paper/<arXiv id>` | The full report, links to arXiv and the PDF, and **Ask about this paper** (streaming chat) |
+| `/archive`, `/edition/<date>` | Every edition, with **PDF** and email-version downloads |
+| `/browse` | Newest preprints in any of the 155 official arXiv categories, with keywords |
+| `/subscribe`, `/confirm` | Subscribe / unsubscribe, confirmed by a link sent by email |
+
+The pages read static files: `web/scripts/sync-data.mjs` copies `data/editions/` into the build, so the
+newspaper loads instantly from Vercel's CDN. Only chat, browsing, paper lookup and subscriptions call the
+API (`api/index.py`, interactive docs at `/api/docs`).
+
+### Run it locally
 
 ```bash
-streamlit run chat_app.py
+pip install -r requirements-dev.txt          # adds uvicorn
+uvicorn api.index:app --reload --port 8000   # terminal 1: the API (reads .env)
+cd web && npm install && npm run dev         # terminal 2: http://localhost:5173 (proxies /api)
 ```
-**📰 The newsletter** (the home page): pick any archived edition, read it in the page, **Download PDF**
-or **Download HTML**, and subscribe or unsubscribe. Links in every email go here
-(`/?action=unsubscribe` preselects unsubscribing).
 
-**💬 Chat with a paper:**
-- **Papers from → This week's digest:** filter by the official arXiv categories in your digest (with counts, cross-lists included).
-- **Papers from → Latest on arXiv:** pick any of the 155 official categories (type to search). You can add keywords, a look-back window and a maximum number of papers.
-- Every paper page shows its category badges and three buttons: **arXiv abstract page**, **Open official PDF** and **Download preprint**. Chat answers come only from that PDF.
+### Deploy on Vercel (free Hobby plan)
 
-### Deploy on Streamlit Community Cloud
+1. Go to **https://vercel.com/new**, sign in with GitHub and **Import** this repository. Keep the root
+   directory as the repo root; `vercel.json` already sets the build (`web/`) and the API function.
+2. Before clicking Deploy, open **Environment Variables** and add (no quotes):
 
-1. Go to **https://share.streamlit.io**, then click **Create app** and pick this repo, branch `main`, main file `chat_app.py`.
-2. Under **Advanced settings → Secrets**, add top-level keys. Streamlit exposes them as environment variables:
-   ```toml
-   LLM_API_KEY = "..."
-   LLM_MODEL = "gemini-3.1-flash-lite"
-   TAVILY_API_KEY = "..."           # optional
-   # LLM_FALLBACK_BASE_URL / LLM_FALLBACK_API_KEY / LLM_FALLBACK_MODEL (optional)
-   ```
-   For subscriptions also add `SUBSCRIBERS_KEY`, `GH_TOKEN`, `GITHUB_REPO`, `SMTP_USER`, `SMTP_PASS`,
-   `MAIL_FROM` (see [Subscriptions](#subscriptions)).
-3. Deploy, copy the app URL and save it as the `CHAT_APP_URL` repository variable.
-4. Deep links work as `https://your-app.streamlit.app/?paper=2401.01234`. The sidebar also accepts any arXiv id or URL (`arXiv:2401.01234v2`, `https://arxiv.org/abs/...`).
+   | Name | Value |
+   |---|---|
+   | `LLM_API_KEY`, `LLM_MODEL` | as in `.env` (plus the `LLM_FALLBACK_*` ones if you use them) |
+   | `TAVILY_API_KEY` | optional, for "Also search the web" |
+   | `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM` | used to email confirmation links |
+   | `SUBSCRIBERS_KEY`, `GH_TOKEN`, `GITHUB_REPO` | see [Subscriptions](#subscriptions) |
+   | `SITE_URL` | your Vercel URL, e.g. `https://research-radar.vercel.app` (add after the first deploy) |
 
-The app redeploys when the workflow commits a new edition, so the archive and paper list stay current.
+3. **Deploy.** Copy the URL, set it as `SITE_URL` in Vercel (then **Redeploy**) and as the `SITE_URL`
+   repository **variable** on GitHub, so the emails link to the site.
+4. Every push to `main` redeploys, including the workflow's weekly commit, so a new edition appears on the
+   site within a minute or two of being emailed.
+
+The API is a serverless function (60 s limit), so the first chat on a paper takes a few seconds longer while
+it downloads the PDF. Old email links (`/?paper=<id>`) still work and redirect to the paper page.
 
 ### Subscriptions
 
-Readers enter their email in the app, receive a **6-digit code**, and type it back in (double opt-in, so
-nobody can sign up someone else). The list is stored **encrypted** in `subscribers.enc` on a separate
+Readers enter their email on the site and get a **confirmation link** by email; nothing changes until they
+click it (double opt-in, so nobody can sign up or remove someone else). The link carries an encrypted token
+that expires after 24 hours. The list itself is stored **encrypted** in `subscribers.enc` on a separate
 `subscribers` branch: the repo is public, but without the key the file is unreadable, and signups don't
-redeploy the app. Each Monday the workflow decrypts it and sends everyone **their own copy** (nobody sees
-other addresses; logs only show counts). Codes are rate-limited (one a minute, four an hour per address).
+trigger a redeploy. Each Monday the workflow decrypts it and sends everyone **their own copy** (nobody sees
+other addresses; logs show only counts).
 
 Setup (once):
 
-1. `python subscribers.py --new-key` and copy the key.
-2. GitHub → **Settings → Secrets → Actions**: add `SUBSCRIBERS_KEY`. (The workflow reads the list with its
-   own built-in token; nothing else is needed there.)
+1. `python subscribers.py --new-key` and copy the key. Generate it only once: a new key can't read the
+   existing list.
+2. GitHub → **Settings → Secrets and variables → Actions**: add the secret `SUBSCRIBERS_KEY`. The workflow
+   reads the list with its own built-in token.
 3. GitHub → **Settings → Developer settings → Fine-grained tokens → Generate**: *Only select repositories*
-   → this repo, *Repository permissions → Contents: Read and write*. This lets the app save the list.
-4. Streamlit → app **Settings → Secrets**, add:
-   ```toml
-   SUBSCRIBERS_KEY = "the key from step 1"
-   GH_TOKEN = "github_pat_..."
-   GITHUB_REPO = "OWNER/REPO"
-   SMTP_USER = "you@gmail.com"      # used to email the confirmation codes
-   SMTP_PASS = "your app password"
-   MAIL_FROM = "you@gmail.com"
-   ```
-5. Optional, for local use: the same three subscriber values in `.env`. Then
-   `python subscribers.py --list` shows the subscribers, and `--add` / `--remove EMAIL` edits the list.
+   → this repo, *Repository permissions → Contents: Read and write*. This lets the website save the list.
+4. Vercel → project **Settings → Environment Variables**: `SUBSCRIBERS_KEY`, `GH_TOKEN` (the token from
+   step 3), `GITHUB_REPO` (`OWNER/REPO`), `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`. Then **Redeploy**.
+5. Optional, locally: the same three subscriber values in `.env`. `python subscribers.py --list` shows the
+   subscribers, and `--add` / `--remove EMAIL` edits the list.
 
-> Keep `SUBSCRIBERS_KEY` safe: if you lose it the list can't be decrypted (subscribers would have to sign
-> up again). Gmail allows about 500 emails a day, which is plenty for a weekly newsletter.
+Check that it works by opening `https://<your site>/api/health`: `"subscriptions": true` means every
+setting is present.
+
+> Gmail allows about 500 emails a day, which is plenty for a weekly newsletter.
 
 ---
 
@@ -242,7 +256,7 @@ You can switch providers with env vars alone. Point `LLM_BASE_URL` / `LLM_API_KE
 ## 7. Notes for my report
 
 **Architecture.** The system is a batch agent on a schedule plus an interactive companion app, connected by one JSON file.
-`GitHub Actions (cron / webhook) → arXiv API → keyword ranker → PDF excerpt (pypdf) → LLM (structured JSON) → Tavily → HTML email (SMTP)` and `data/latest.json → Streamlit chat (RAG-style context stuffing)`.
+`GitHub Actions (cron / webhook) → arXiv API → keyword ranker → PDF excerpt (pypdf) → LLM (structured JSON) → Tavily → HTML email (SMTP) + data/editions/*.json` and `data/editions → React site on Vercel's CDN`, with `FastAPI (Vercel function) → PDF excerpt → LLM` for chat (RAG-style context stuffing).
 Each stage is a small module with a narrow interface, and the LLM provider is just an OpenAI-compatible URL plus a model name.
 
 **Grounding.** The LLM sees only the paper's own text: the abstract plus an excerpt made of ~65% from the start and the Conclusion section. The system prompt forbids outside knowledge and invented numbers, and requires *"Not stated in the provided text."* when a field is unknown. In chat, web results come in a separately labelled `WEB RESULTS` block, and the model must tag claims from it with `[web]`. The app lists the source links under the answer.
