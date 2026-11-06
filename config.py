@@ -65,7 +65,7 @@ PDF_MAX_PAGES = 25
 DIGEST_CONTEXT_CHARS = env_int("DIGEST_CONTEXT_CHARS", 9000)
 CHAT_CONTEXT_CHARS = env_int("CHAT_CONTEXT_CHARS", 14000)
 SITE_URL = env("SITE_URL", env("CHAT_APP_URL"))   # public URL of the web app (Vercel)
-USER_AGENT = env("USER_AGENT", "ResearchRadar/1.0 (weekly arXiv digest; personal research use)")
+USER_AGENT = env("USER_AGENT", "Rinfo/1.0 (arXiv research digest; personal research use)")
 
 # --- Email --------------------------------------------------------------------
 SMTP_HOST = env("SMTP_HOST", "smtp.gmail.com")

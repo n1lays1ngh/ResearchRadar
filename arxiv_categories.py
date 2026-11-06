@@ -178,7 +178,7 @@ GROUPS: dict[str, dict[str, str]] = {
 NAMES = {code: name for group in GROUPS.values() for code, name in group.items()}
 GROUP_OF = {code: g for g, cats in GROUPS.items() for code in cats}
 
-# Shown first in pickers: the categories closest to Research Radar's three domains.
+# Shown first in pickers: the categories closest to Rinfo's three sections.
 SUGGESTED = ["cs.CL", "cs.AI", "cs.LG", "cs.IR", "cs.MA", "cs.DC", "cs.PF", "cs.AR",
              "eess.SY", "eess.SP", "cs.SY", "stat.ML", "physics.app-ph", "cond-mat.mtrl-sci"]
 

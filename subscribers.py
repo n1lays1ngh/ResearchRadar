@@ -61,7 +61,7 @@ def _api(method: str, path: str, **kwargs) -> requests.Response:
     if missing:
         raise SubscribersError("Subscriptions are not configured; missing " + ", ".join(missing))
     headers = {"Authorization": f"Bearer {config.GH_TOKEN}", "Accept": "application/vnd.github+json",
-               "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "ResearchRadar"}
+               "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "Rinfo"}
     return requests.request(method, f"{API}/repos/{config.GITHUB_REPO}/{path}",
                             headers=headers, timeout=20, **kwargs)
 
@@ -196,7 +196,7 @@ def read_token(token: str) -> tuple[str, str, list[str]]:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Manage Research Radar subscribers")
+    parser = argparse.ArgumentParser(description="Manage Rinfo subscribers")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--new-key", action="store_true", help="print a new SUBSCRIBERS_KEY")
     group.add_argument("--list", action="store_true", help="list current subscribers")

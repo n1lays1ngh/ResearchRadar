@@ -23,7 +23,7 @@ EXIT_NO_PAPERS = 4   # distinct code so CI can safely retry (nothing was sent)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build and send the Research Radar digest")
+    parser = argparse.ArgumentParser(description="Build and send the Rinfo weekly edition")
     parser.add_argument("--dry-run", action="store_true", help="build files but do not send email")
     parser.add_argument("--no-llm", action="store_true", help="use abstract-based summaries only")
     parser.add_argument("--no-fulltext", action="store_true", help="skip PDF download")
@@ -172,8 +172,8 @@ def main() -> int:
         print("[dry-run] email not sent. Open out/latest.html in a browser to preview.")
         return 0
     recipients = list(dict.fromkeys(a.lower() for a in config.MAIL_TO + subscriber_emails()))
-    subject = (f"The Research Radar — Weekly Edition No. {now.isocalendar().week}, "
-               f"{now:%d %B %Y}: {picked} preprints")
+    subject = (f"Rinfo Weekly — No. {now.isocalendar().week}, "
+               f"{now:%-d %B %Y}: {picked} preprints")
     try:
         failed = mailer.send(subject, html, text, recipients)
     except Exception as exc:

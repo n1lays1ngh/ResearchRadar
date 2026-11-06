@@ -1,4 +1,4 @@
-name: Weekly Research Radar digest
+name: Rinfo weekly edition
 
 on:
   schedule:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: research-radar-commits   # shared with daily-brief.yml: runs queue instead of racing to push
+  group: rinfo-commits   # shared with daily-brief.yml: runs queue instead of racing to push
   cancel-in-progress: false
 
 jobs:
@@ -72,7 +72,7 @@ jobs:
 
       - name: Commit this edition (data/latest.json + data/editions/)
         run: |
-          git config user.name "research-radar-bot"
+          git config user.name "rinfo-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/latest.json data/editions
           if git diff --cached --quiet; then

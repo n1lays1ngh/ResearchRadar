@@ -1,4 +1,4 @@
-/* The Research Radar: an American-broadsheet look.
+/* Rinfo: an American-broadsheet look.
    Blackletter nameplate, Bodoni-style display serif for headlines, a text serif for reading,
    a Franklin-style grotesque for kickers and furniture, hairline column rules, one spot red. */
 
@@ -10,7 +10,7 @@
   --muted: #666461;
   --rule: #dcdad5;
   --red: #a3141a;
-  --plate: "UnifrakturMaguntia", "Old English Text MT", Georgia, serif;
+  --plate: "Pirata One", "Old English Text MT", Georgia, serif;
   --display: "Playfair Display", "Bodoni 72", Didot, Georgia, serif;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Libre Franklin", "Franklin Gothic Medium", "Helvetica Neue", Arial, sans-serif;
@@ -236,7 +236,7 @@ code {
 }
 .nameplate {
   display: inline-block;
-  font: 400 clamp(42px, 7.4vw, 92px) / 1 var(--plate);
+  font: 400 clamp(56px, 9vw, 112px) / 1 var(--plate);
   letter-spacing: 0.005em;
   color: var(--ink);
 }

@@ -9,7 +9,7 @@ const QUICK = [
   ["Reuse in my project", "How could I reuse the ideas or code from this paper in my own project?"],
 ];
 
-const storageKey = (id) => `rr-chat:${id}`;
+const storageKey = (id) => `rinfo-chat:${id}`;
 
 function loadHistory(id) {
   try {

@@ -1,4 +1,4 @@
-"""Research Radar API (FastAPI), deployed as a Vercel Python function at /api/*.
+"""Rinfo API (FastAPI), deployed as a Vercel Python function at /api/*.
 
 Local:  uvicorn api.index:app --reload --port 8000     (the Vite dev server proxies /api here)
 
@@ -35,9 +35,9 @@ import subscribers  # noqa: E402
 from llm import LLM  # noqa: E402
 from tavily_client import WebSearch  # noqa: E402
 
-app = FastAPI(title="Research Radar API", docs_url="/api/docs", openapi_url="/api/openapi.json")
+app = FastAPI(title="Rinfo API", docs_url="/api/docs", openapi_url="/api/openapi.json")
 
-CACHE_DIR = "/tmp/research-radar"   # the only writable place on Vercel; survives warm invocations
+CACHE_DIR = "/tmp/rinfo"   # the only writable place on Vercel; survives warm invocations
 HISTORY_MESSAGES = 8
 SYSTEM_PROMPT = """You are the research desk of a quality newspaper, answering a reader's questions about ONE paper.
 Rules:

@@ -26,7 +26,7 @@ BRIEFS_DIR = os.path.join(config.DATA_DIR, "briefs")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build and send the Research Radar daily brief")
+    parser = argparse.ArgumentParser(description="Build and send the Rinfo daily brief")
     parser.add_argument("--dry-run", action="store_true", help="build files but do not send email")
     parser.add_argument("--no-llm", action="store_true", help="abstract-based summaries only")
     parser.add_argument("--force", action="store_true", help="rebuild/resend even if today's brief exists")
@@ -127,7 +127,7 @@ def main() -> int:
         print("[dry-run] email not sent. Open out/brief-latest.html to preview.")
         return 0
     recipients = list(dict.fromkeys(a.lower() for a in config.MAIL_TO + subscriber_emails("daily")))
-    subject = (f"The Research Radar — Daily Brief, {datetime.fromisoformat(date):%A %-d %B}: "
+    subject = (f"Rinfo Daily Brief — {datetime.fromisoformat(date):%A %-d %B}: "
                f"{picked} new preprint{'s' if picked != 1 else ''}")
     try:
         failed = mailer.send(subject, html, text, recipients)

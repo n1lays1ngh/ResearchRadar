@@ -38,7 +38,7 @@ export default function SubscribeBox({
   }
 
   const title =
-    action === "unsubscribe" ? "Unsubscribe" : compact || banner ? "Get The Research Radar by email" : "Subscribe";
+    action === "unsubscribe" ? "Unsubscribe" : compact || banner ? "Get Rinfo by email" : "Subscribe";
 
   return (
     <div className={`subscribe-box${compact ? " compact" : ""}${banner ? " banner" : ""}`}>

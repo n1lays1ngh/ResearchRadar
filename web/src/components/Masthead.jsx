@@ -19,10 +19,10 @@ export default function Masthead({ latest }) {
         </span>
       </div>
       <div className="wrap nameplate-wrap">
-        <Link to="/" className="nameplate" aria-label="The Research Radar, front page">
-          The Research Radar
+        <Link to="/" className="nameplate" aria-label="Rinfo, front page">
+          Rinfo
         </Link>
-        <p className="motto">New research from the arXiv preprint server: a daily brief and a weekly review</p>
+        <p className="motto">Research, in brief · a daily brief and a weekly review of new preprints from arXiv</p>
         <p className="edition-line">
           {latest ? (
             <>

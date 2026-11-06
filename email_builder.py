@@ -370,7 +370,7 @@ def _build_html(sections: list[dict], meta: dict) -> str:
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">
-<title>The Research Radar · {e(date_line)}</title></head>
+<title>Rinfo Weekly · {e(date_line)}</title></head>
 <body style="margin:0;padding:0;background:{PAGE};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all;">
  {e(preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
@@ -387,9 +387,9 @@ def _build_html(sections: list[dict], meta: dict) -> str:
    </tr></table>
    {_rule(1, INK, "8px 0 0")}
    <div style="padding:18px 0 6px;text-align:center;font:58px/1.02 {SERIF};
-    font-weight:700;letter-spacing:-.02em;color:{INK};">The Research Radar</div>
+    font-weight:700;letter-spacing:-.01em;color:{INK};">Rinfo</div>
    <div style="padding:0 0 14px;text-align:center;font:16px {SERIF};font-style:italic;color:{INK_2};">
-    A weekly review of new research from the arXiv preprint server</div>
+    Research, in brief &middot; the weekly review of new preprints from arXiv</div>
    {_double_rule()}
    <div style="padding:7px 0;text-align:center;line-height:1.7;">
     {_caps(f"Weekly edition · {meta['week_range']} · {meta['scanned']} preprints read · "
@@ -405,14 +405,14 @@ def _build_html(sections: list[dict], meta: dict) -> str:
   <tr><td style="padding:34px {PAD} 30px;">
    {_double_rule("0 0 14px")}
    <div style="text-align:center;margin-bottom:10px;">{_caps("Colophon", INK, 10)}</div>
-   {_p("The Research Radar is compiled automatically each Monday from the arXiv preprint server. "
+   {_p("Rinfo is compiled automatically each Monday from the arXiv preprint server. "
        "Reports are written by a language model from each paper&rsquo;s own text and have not been "
        "reviewed by a human editor; they may contain errors. Preprints are not peer-reviewed. "
        "Consult the original paper before citing any claim. Links under &ldquo;Also online&rdquo; and "
        "&ldquo;Elsewhere in the journals&rdquo; are supplied by web search and do not imply endorsement.",
        12.5, MUTED, "0 0 10px", "text-align:center;font-style:italic;")}
    {_app_links()}
-   <div style="text-align:center;">{_caps(f"The Research Radar · {vol}", MUTED, 9)}</div>
+   <div style="text-align:center;">{_caps(f"Rinfo Weekly · {vol}", MUTED, 9)}</div>
   </td></tr>
  </table>
 </td></tr></table>
@@ -422,8 +422,8 @@ def _build_html(sections: list[dict], meta: dict) -> str:
 def build_text(sections: list[dict], meta: dict) -> str:
     """Plain-text edition for clients that don't render HTML."""
     vol, date_line = _edition(meta)
-    out = ["THE RESEARCH RADAR",
-           "A weekly review of new research from the arXiv preprint server",
+    out = ["RINFO WEEKLY",
+           "Research, in brief: the weekly review of new preprints from arXiv",
            f"{vol.upper()} | {date_line} | {meta['week_range']}",
            f"{meta['scanned']} preprints read, {meta['picked']} selected", "=" * 64, ""]
     for s in sections:
@@ -517,7 +517,7 @@ def build_brief_html(sections: list[dict], meta: dict) -> str:
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">
-<title>The Research Radar · Daily Brief · {e(date_line)}</title></head>
+<title>Rinfo Daily Brief · {e(date_line)}</title></head>
 <body style="margin:0;padding:0;background:{PAGE};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all;">
  {e(preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
@@ -531,10 +531,10 @@ def build_brief_html(sections: list[dict], meta: dict) -> str:
     <td align="right">{_caps(date_line, INK, 9.5)}</td>
    </tr></table>
    {_rule(1, INK, "8px 0 0")}
-   <div style="padding:14px 0 4px;font:40px/1.05 {SERIF};font-weight:700;letter-spacing:-.02em;color:{INK};">
-    The Research Radar</div>
+   <div style="padding:14px 0 4px;font:40px/1.05 {SERIF};font-weight:700;letter-spacing:-.01em;color:{INK};">
+    Rinfo</div>
    <div style="padding:0 0 12px;font:15px {SERIF};font-style:italic;color:{INK_2};">
-    The day&rsquo;s new preprints from arXiv, in brief</div>
+    Research, in brief &middot; the day&rsquo;s new preprints from arXiv</div>
    {_double_rule()}
    <div style="padding:7px 0;line-height:1.7;">
     {_caps(f"{count} selected from {meta['total']} new announcements", INK, 9.5)}</div>
@@ -556,7 +556,7 @@ def build_brief_html(sections: list[dict], meta: dict) -> str:
 
 def build_brief_text(sections: list[dict], meta: dict) -> str:
     issued = meta["issued"]
-    out = ["THE RESEARCH RADAR: DAILY BRIEF", issued.strftime("%A, %-d %B %Y"),
+    out = ["RINFO DAILY BRIEF", issued.strftime("%A, %-d %B %Y"),
            f"{sum(len(s['papers']) for s in sections)} selected from {meta['total']} new announcements", "=" * 64]
     for s in sections:
         d = s["domain"]

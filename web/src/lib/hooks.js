@@ -19,6 +19,6 @@ export function useAsync(load, deps) {
 
 export function useTitle(title) {
   useEffect(() => {
-    document.title = title ? `${title} | The Research Radar` : "The Research Radar";
+    document.title = title ? `${title} | Rinfo` : "Rinfo · Research, in brief";
   }, [title]);
 }

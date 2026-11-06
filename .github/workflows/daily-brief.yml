@@ -1,4 +1,4 @@
-name: Daily Research Radar brief
+name: Rinfo daily brief
 
 on:
   schedule:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: research-radar-commits   # shared with weekly-digest.yml
+  group: rinfo-commits   # shared with weekly-digest.yml
   cancel-in-progress: false
 
 jobs:
@@ -62,7 +62,7 @@ jobs:
 
       - name: Commit the brief (data/briefs/)
         run: |
-          git config user.name "research-radar-bot"
+          git config user.name "rinfo-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/briefs
           if git diff --cached --quiet; then
