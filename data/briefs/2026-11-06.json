@@ -1,6 +1,6 @@
 {
  "date": "2026-11-06",
- "issued": "2026-11-06T09:25:27.513684+00:00",
+ "issued": "2026-11-06T09:33:22.688538+00:00",
  "total": 601,
  "sections": [
   {
@@ -8,7 +8,7 @@
    "title": "cs.CL · Computation and Language",
    "name": "Computation and Language",
    "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
-   "lede": "Recent research addresses security, optimization, and architectural challenges in conversational AI and LLM agents. These studies introduce novel frameworks for backdoor attacks, model pruning under grammar constraints, medical dialogue memory, retrieval efficiency, and multilingual evaluation.",
+   "lede": "Recent research addresses critical challenges in conversational artificial intelligence, LLM agents, and retrieval-augmented generation. Studies span security vulnerabilities in proactive dialogue systems, model compression for structured generation, graph memory for medical dialogue, retrieval efficiency in conversational agents, and multilingual tool-use benchmarking.",
    "papers": [
     {
      "id": "2611.06969",
@@ -26,7 +26,7 @@
      "abs_url": "https://arxiv.org/abs/2611.06969",
      "pdf_url": "https://arxiv.org/pdf/2611.06969",
      "published": "2026-11-06",
-     "summary": "Researchers present an interactive backdoor attack framework using training-data poisoning to steer multi-turn interactions in proactive dialogue systems toward attacker-specified objectives while preserving normal utility.",
+     "summary": "The authors present an interactive backdoor attack framework for LLM-based proactive dialogue systems using training-data poisoning to steer multi-turn interactions toward attacker-specified objectives while preserving normal utility.",
      "announce_type": "new"
     },
     {
@@ -47,7 +47,7 @@
      "abs_url": "https://arxiv.org/abs/2611.07558",
      "pdf_url": "https://arxiv.org/pdf/2611.07558",
      "published": "2026-11-06",
-     "summary": "The authors propose SKIM, a token-role-guided pruning and distillation framework for LLM agents under structured generation, which consistently improves accuracy over baselines particularly in high-sparsity regimes.",
+     "summary": "The authors propose SKIM, a token-role-guided pruning and distillation framework for LLM agents under structured generation, which improves accuracy over baselines particularly in high-sparsity regimes.",
      "announce_type": "new"
     },
     {
@@ -68,7 +68,7 @@
      "abs_url": "https://arxiv.org/abs/2611.08433",
      "pdf_url": "https://arxiv.org/pdf/2611.08433",
      "published": "2026-11-06",
-     "summary": "A new graph memory system called MedGraph is introduced to maintain accurate patient states in long-term medical dialogues, achieving the highest overall accuracy on MedMemoryBench across multiple model backbones.",
+     "summary": "The authors introduce MedGraph, a graph memory system for longitudinal medical dialogue that extracts dated facts and links clinical records into chains, achieving the highest overall accuracy on MedMemoryBench.",
      "announce_type": "new"
     },
     {
@@ -90,7 +90,7 @@
      "abs_url": "https://arxiv.org/abs/2611.07899",
      "pdf_url": "https://arxiv.org/pdf/2611.07899",
      "published": "2026-11-06",
-     "summary": "Researchers evaluate a persistent retrieval subagent design for conversational agents that maintains retrieval history across turns, reducing response time and API costs compared to alternative retrieval architectures.",
+     "summary": "The authors compare conversational agent retrieval designs and find that a persistent retrieval subagent reduces API costs and token usage compared to skill-based retrieval while improving response times.",
      "announce_type": "new"
     },
     {
@@ -110,7 +110,7 @@
      "abs_url": "https://arxiv.org/abs/2611.07203",
      "pdf_url": "https://arxiv.org/pdf/2611.07203",
      "published": "2026-11-06",
-     "summary": "The authors present τ-bench-LILT, a natively localized multilingual extension of τ-bench covering four languages and domains, revealing significant performance drops for agent models in specific non-English settings.",
+     "summary": "The authors present tau-bench-LILT, a multilingual extension of tau3-bench covering four languages and domains, and find significant performance drops for agent models in specific non-English retail settings.",
      "announce_type": "new"
     }
    ]
@@ -120,7 +120,7 @@
    "title": "cs.LG · Machine Learning",
    "name": "Machine Learning",
    "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
-   "lede": "Recent research addresses the rapid expansion of edge computing by systematically mapping energy-aware Tiny Machine Learning on resource-constrained embedded systems. The studies highlight current methodologies, influencing technical factors, and optimization strategies while noting a lack of standardization in experimental practices.",
+   "lede": "Recent research addresses the rapid expansion of the Internet of Things and the corresponding rise in edge data generation. Studies examine energy measurement and optimization for machine learning tasks executed on resource-constrained embedded systems.",
    "papers": [
     {
      "id": "2611.07264",
@@ -143,7 +143,7 @@
      "abs_url": "https://arxiv.org/abs/2611.07264",
      "pdf_url": "https://arxiv.org/pdf/2611.07264",
      "published": "2026-11-06",
-     "summary": "A systematic mapping study of energy-aware Tiny Machine Learning finds that research frequently utilizes lightweight architectures and direct measurements, while revealing a lack of standardization in experimental platforms and reporting practices that limits reproducibility.",
+     "summary": "A systematic mapping study of energy-aware TinyML research identifies that current literature relies heavily on convolutional architectures and direct measurements, while revealing a lack of standardization in experimental platforms and reporting practices that hinders reproducibility.",
      "announce_type": "new"
     }
    ]
@@ -157,5 +157,5 @@
    "papers": []
   }
  ],
- "sent": false
+ "sent": true
 }
