@@ -172,7 +172,7 @@ def main() -> int:
         print("[dry-run] email not sent. Open out/latest.html in a browser to preview.")
         return 0
     recipients = list(dict.fromkeys(a.lower() for a in config.MAIL_TO + subscriber_emails()))
-    subject = (f"Rinfo Weekly — No. {now.isocalendar().week}, "
+    subject = (f"The Rinfo — Weekly Edition No. {now.isocalendar().week}, "
                f"{now:%-d %B %Y}: {picked} preprints")
     try:
         failed = mailer.send(subject, html, text, recipients)

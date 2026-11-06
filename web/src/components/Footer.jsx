@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <div className="footer-plate">Rinfo</div>
+        <div className="footer-plate">The Rinfo</div>
         <nav className="footer-links" aria-label="Footer">
           <Link to="/">Front Page</Link>
           <Link to="/brief">Daily Brief</Link>

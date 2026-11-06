@@ -1,4 +1,4 @@
-# Rinfo
+# The Rinfo
 
 *Research, in brief.* A daily brief and a weekly review of new preprints from arXiv.
 

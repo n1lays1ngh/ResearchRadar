@@ -92,16 +92,16 @@ def send_confirm_link(to: str, action: str, url: str, lists: list[str] | None = 
     names = {"weekly": "the weekly edition", "daily": "the daily brief"}
     chosen = " and ".join(names[n] for n in (lists or ["weekly"]) if n in names) or "the newsletter"
     verb = f"receive {chosen} of" if action == "subscribe" else "unsubscribe from"
-    text = (f"Please confirm that you want to {verb} Rinfo, a review of new research "
+    text = (f"Please confirm that you want to {verb} The Rinfo, a review of new research "
             f"from arXiv.\n\nConfirm here:\n{url}\n\nThe link works for 24 hours. If you did not ask for this, "
-            "ignore this email; nothing will change.\n\nRinfo")
+            "ignore this email; nothing will change.\n\nThe Rinfo")
     title = "Confirm your subscription" if action == "subscribe" else "Confirm unsubscribing"
     html = (f'<div style="font:16px/1.6 Georgia,serif;color:#151515;max-width:520px;margin:24px auto;">'
             f'<div style="font:700 26px Georgia,serif;border-bottom:3px double #151515;padding-bottom:8px;">'
-            f'Rinfo</div><p>Please confirm that you want to {verb} Rinfo.</p>'
+            f'The Rinfo</div><p>Please confirm that you want to {verb} The Rinfo.</p>'
             f'<p><a href="{url}" style="display:inline-block;background:#151515;color:#fff;padding:12px 22px;'
             f'font:700 13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-decoration:none;">'
             f'{title.upper()}</a></p><p style="color:#6E6758;font-size:13px;">The link works for 24 hours. '
             f'If you did not ask for this, ignore this email; nothing will change.</p></div>')
     with _smtp() as smtp:
-        smtp.send_message(_message(f"Rinfo: {title.lower()}", to, text, html))
+        smtp.send_message(_message(f"The Rinfo: {title.lower()}", to, text, html))
