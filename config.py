@@ -8,6 +8,26 @@ import arxiv_categories
 load_dotenv()
 
 
+def _load_streamlit_secrets() -> None:
+    """On Streamlit (Cloud), copy top-level secrets into the environment so env() sees them.
+
+    Streamlit only does this itself once st.secrets has been touched, so do it explicitly.
+    Does nothing outside a running Streamlit app (CLI, GitHub Actions).
+    """
+    try:
+        from streamlit import runtime, secrets
+        if not runtime.exists():
+            return
+        for key, value in secrets.to_dict().items():
+            if isinstance(value, (str, int, float, bool)) and not (os.getenv(key) or "").strip():
+                os.environ[key] = str(value)
+    except Exception:   # no secrets file, or Streamlit not installed
+        pass
+
+
+_load_streamlit_secrets()
+
+
 def env(name: str, default: str = "") -> str:
     """Read an env var, treating empty / whitespace-only values as unset."""
     value = os.getenv(name)
