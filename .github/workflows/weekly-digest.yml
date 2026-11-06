@@ -33,6 +33,9 @@ jobs:
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
       CHAT_APP_URL: ${{ vars.CHAT_APP_URL }}
+      # Subscribers: encrypted list on the "subscribers" branch, read with this run's own token.
+      SUBSCRIBERS_KEY: ${{ secrets.SUBSCRIBERS_KEY }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v5
 
@@ -67,14 +70,15 @@ jobs:
           path: out/
           if-no-files-found: ignore
 
-      - name: Commit data/latest.json
+      - name: Commit this edition (data/latest.json + data/editions/)
         run: |
           git config user.name "research-radar-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest.json
+          git add data/latest.json data/editions
           if git diff --cached --quiet; then
-            echo "No changes to data/latest.json"
+            echo "No changes to commit"
           else
-            git commit -m "Update digest data ($(date -u +%Y-%m-%d))"
+            git commit -m "Edition of $(date -u +%Y-%m-%d)"
+            git pull --rebase   # in case main moved while the digest was running
             git push
           fi

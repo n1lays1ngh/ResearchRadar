@@ -6,9 +6,11 @@ A research agent that works without being asked. Every Monday it:
 2. ranks them by keyword relevance,
 3. reads the PDFs of the best ones and has an LLM write a grounded, structured insight for each,
 4. adds web context with Tavily (code and discussion links, plus "Beyond arXiv" journal results),
-5. emails you a styled HTML digest.
+5. emails a newspaper-style edition to you and every subscriber, and archives it as HTML + PDF.
 
-A companion **Streamlit app** lets you chat with any paper, grounded in its PDF text.
+A companion **Streamlit app** shows every edition (read online, download the PDF), lets readers
+**subscribe / unsubscribe** with an emailed confirmation code, and lets you chat with any paper,
+grounded in its PDF text.
 
 Everything runs on free tiers: **Gemini API** (LLM), **Tavily** (1,000 credits/month), **GitHub Actions** (scheduler) and **Gmail SMTP** (email).
 
@@ -20,11 +22,14 @@ llm.py             OpenAI-compatible client: throttle, retries, fallback provide
 summarizer.py      keyword ranking, JSON insights, weekly overviews, abstract fallback
 tavily_client.py   web enrichment with a per-run budget
 email_builder.py   HTML email (tables + inline CSS) and plain-text version
-mailer.py          SMTP sending (SSL on 465, otherwise STARTTLS)
+mailer.py          SMTP sending (one message per recipient; confirmation codes)
+pdf_export.py      edition HTML -> PDF with headless Chrome
+subscribers.py     encrypted subscriber list on the "subscribers" branch (+ admin CLI)
 run_digest.py      the weekly pipeline (CLI)
-chat_app.py        Streamlit "chat with a paper" app
+chat_app.py        Streamlit entry point (pages: app_pages/newsletter.py, app_pages/chat.py)
 .github/workflows/weekly-digest.yml   cron + manual + webhook trigger
-data/latest.json   written by each run, read by the chat app
+data/latest.json   written by each run, read by the chat page
+data/editions/     every edition as YYYY-MM-DD.html + .pdf, read by the newsletter page
 ```
 
 ### Sections (official arXiv categories)
@@ -101,7 +106,9 @@ streamlit run chat_app.py
 | `--no-web` | skip Tavily |
 | `--days N` | look back N days instead of `DAYS_BACK` (7) |
 
-Outputs: `out/latest.html`, `out/digest-YYYY-MM-DD.html`, `data/latest.json`.
+Outputs: `out/latest.html`, `out/digest-YYYY-MM-DD.html`, `data/latest.json`, and the archived edition
+`data/editions/YYYY-MM-DD.html` + `.pdf`. The PDF needs Google Chrome or Chromium; set `CHROME_BIN` if it
+isn't found automatically. Without Chrome the run still works, just without a PDF.
 
 ---
 
@@ -125,11 +132,12 @@ Push the repo to GitHub. Then go to **Settings → Secrets and variables → Act
 | `SMTP_USER` | ✅ | your Gmail address |
 | `SMTP_PASS` | ✅ | Gmail App Password |
 | `MAIL_FROM` | ✅ | usually the same as `SMTP_USER` |
-| `MAIL_TO` | ✅ | comma-separated recipients |
+| `MAIL_TO` | ✅ | comma-separated recipients (you); subscribers are added automatically |
+| `SUBSCRIBERS_KEY` | | enables subscriptions; see [Subscriptions](#subscriptions) |
 
 **Variables** tab: `CHAT_APP_URL`, for example `https://your-app.streamlit.app`. When it is set, every card gets a "Chat with this paper" button.
 
-The workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json`, so the chat app always has the latest papers.
+The workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
 
 ### Webhook trigger
 
@@ -145,11 +153,16 @@ curl -X POST \
 
 ---
 
-## 5. The chat app
+## 5. The app: newsletter + chat
 
 ```bash
 streamlit run chat_app.py
 ```
+**📰 The newsletter** (the home page): pick any archived edition, read it in the page, **Download PDF**
+or **Download HTML**, and subscribe or unsubscribe. Links in every email go here
+(`/?action=unsubscribe` preselects unsubscribing).
+
+**💬 Chat with a paper:**
 - **Papers from → This week's digest:** filter by the official arXiv categories in your digest (with counts, cross-lists included).
 - **Papers from → Latest on arXiv:** pick any of the 155 official categories (type to search). You can add keywords, a look-back window and a maximum number of papers.
 - Every paper page shows its category badges and three buttons: **arXiv abstract page**, **Open official PDF** and **Download preprint**. Chat answers come only from that PDF.
@@ -164,10 +177,42 @@ streamlit run chat_app.py
    TAVILY_API_KEY = "..."           # optional
    # LLM_FALLBACK_BASE_URL / LLM_FALLBACK_API_KEY / LLM_FALLBACK_MODEL (optional)
    ```
+   For subscriptions also add `SUBSCRIBERS_KEY`, `GH_TOKEN`, `GITHUB_REPO`, `SMTP_USER`, `SMTP_PASS`,
+   `MAIL_FROM` (see [Subscriptions](#subscriptions)).
 3. Deploy, copy the app URL and save it as the `CHAT_APP_URL` repository variable.
 4. Deep links work as `https://your-app.streamlit.app/?paper=2401.01234`. The sidebar also accepts any arXiv id or URL (`arXiv:2401.01234v2`, `https://arxiv.org/abs/...`).
 
-The app redeploys when the workflow commits a new `data/latest.json`, so the paper list stays current.
+The app redeploys when the workflow commits a new edition, so the archive and paper list stay current.
+
+### Subscriptions
+
+Readers enter their email in the app, receive a **6-digit code**, and type it back in (double opt-in, so
+nobody can sign up someone else). The list is stored **encrypted** in `subscribers.enc` on a separate
+`subscribers` branch: the repo is public, but without the key the file is unreadable, and signups don't
+redeploy the app. Each Monday the workflow decrypts it and sends everyone **their own copy** (nobody sees
+other addresses; logs only show counts). Codes are rate-limited (one a minute, four an hour per address).
+
+Setup (once):
+
+1. `python subscribers.py --new-key` and copy the key.
+2. GitHub → **Settings → Secrets → Actions**: add `SUBSCRIBERS_KEY`. (The workflow reads the list with its
+   own built-in token; nothing else is needed there.)
+3. GitHub → **Settings → Developer settings → Fine-grained tokens → Generate**: *Only select repositories*
+   → this repo, *Repository permissions → Contents: Read and write*. This lets the app save the list.
+4. Streamlit → app **Settings → Secrets**, add:
+   ```toml
+   SUBSCRIBERS_KEY = "the key from step 1"
+   GH_TOKEN = "github_pat_..."
+   GITHUB_REPO = "OWNER/REPO"
+   SMTP_USER = "you@gmail.com"      # used to email the confirmation codes
+   SMTP_PASS = "your app password"
+   MAIL_FROM = "you@gmail.com"
+   ```
+5. Optional, for local use: the same three subscriber values in `.env`. Then
+   `python subscribers.py --list` shows the subscribers, and `--add` / `--remove EMAIL` edits the list.
+
+> Keep `SUBSCRIBERS_KEY` safe: if you lose it the list can't be decrypted (subscribers would have to sign
+> up again). Gmail allows about 500 emails a day, which is plenty for a weekly newsletter.
 
 ---
 

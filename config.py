@@ -75,11 +75,31 @@ SMTP_PASS = env("SMTP_PASS")
 MAIL_FROM = env("MAIL_FROM", SMTP_USER)
 MAIL_TO = [a.strip() for a in env("MAIL_TO").split(",") if a.strip()]
 
+# --- Subscribers (encrypted list on its own branch of the GitHub repo) ------------
+GH_TOKEN = env("GH_TOKEN")                                  # contents read/write on the repo
+GITHUB_REPO = env("GITHUB_REPO", env("GITHUB_REPOSITORY"))  # "owner/name"; set by GitHub Actions
+SUBSCRIBERS_KEY = env("SUBSCRIBERS_KEY")                    # python subscribers.py --new-key
+SUBSCRIBERS_BRANCH = env("SUBSCRIBERS_BRANCH", "subscribers")
+SUBSCRIBERS_PATH = "subscribers.enc"
+
 # --- Paths --------------------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join(BASE_DIR, "out")
 DATA_DIR = os.path.join(BASE_DIR, "data")
 LATEST_JSON = os.path.join(DATA_DIR, "latest.json")
+EDITIONS_DIR = os.path.join(DATA_DIR, "editions")   # one .html (+ .pdf) per issue
+CHROME_BIN = env("CHROME_BIN")                      # optional; auto-detected for the PDF export
+
+
+def app_url(path: str = "", **params: str) -> str:
+    """Link into the Streamlit app (e.g. app_url('newsletter')), or '' when CHAT_APP_URL is unset."""
+    if not CHAT_APP_URL:
+        return ""
+    url = CHAT_APP_URL.rstrip("/") + (f"/{path}" if path else "")
+    if params:
+        from urllib.parse import urlencode
+        url += "?" + urlencode(params)
+    return url
 
 # --- Domains ------------------------------------------------------------------
 # Each digest section is an official arXiv category (https://arxiv.org/category_taxonomy).

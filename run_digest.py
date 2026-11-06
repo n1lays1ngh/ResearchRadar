@@ -12,6 +12,8 @@ import arxiv_client
 import config
 import email_builder
 import mailer
+import pdf_export
+import subscribers
 from llm import LLM
 from summarizer import Summarizer, fallback_insight, rank
 from tavily_client import WebSearch
@@ -72,13 +74,17 @@ def enrich(sections: list[dict], args: argparse.Namespace) -> None:
 
 
 def save(sections: list[dict], meta: dict, html: str, now: datetime) -> str:
-    """Write out/latest.html, out/digest-YYYY-MM-DD.html and data/latest.json."""
+    """Write out/latest.html, the archived edition (data/editions/YYYY-MM-DD.html + .pdf)
+    and data/latest.json. The app's newsletter page reads data/editions/."""
     os.makedirs(config.OUT_DIR, exist_ok=True)
-    os.makedirs(config.DATA_DIR, exist_ok=True)
+    os.makedirs(config.EDITIONS_DIR, exist_ok=True)
     latest = os.path.join(config.OUT_DIR, "latest.html")
-    for path in (latest, os.path.join(config.OUT_DIR, f"digest-{now:%Y-%m-%d}.html")):
+    edition = os.path.join(config.EDITIONS_DIR, f"{now:%Y-%m-%d}")
+    for path in (latest, os.path.join(config.OUT_DIR, f"digest-{now:%Y-%m-%d}.html"), edition + ".html"):
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(html)
+    if pdf_export.html_to_pdf(html, edition + ".pdf"):
+        print(f"[saved] {edition}.pdf")
     papers = []
     for s in sections:
         d = s["domain"]
@@ -97,6 +103,20 @@ def save(sections: list[dict], meta: dict, html: str, now: datetime) -> str:
     with open(config.LATEST_JSON, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=2)
     return latest
+
+
+def subscriber_emails() -> list[str]:
+    """Newsletter subscribers; [] (with a warning) if not configured or unreachable."""
+    if subscribers.missing_settings():
+        print("[subscribers] not configured; sending to MAIL_TO only")
+        return []
+    try:
+        found = subscribers.emails()
+    except Exception as exc:   # never skip the owner's copy because of the subscriber list
+        print(f"  ! could not load subscribers: {exc}")
+        return []
+    print(f"[subscribers] {len(found)} subscriber(s)")
+    return found
 
 
 def main() -> int:
@@ -126,14 +146,17 @@ def main() -> int:
     if args.dry_run:
         print("[dry-run] email not sent. Open out/latest.html in a browser to preview.")
         return 0
+    recipients = list(dict.fromkeys(a.lower() for a in config.MAIL_TO + subscriber_emails()))
     subject = (f"The Research Radar — Weekly Edition No. {now.isocalendar().week}, "
                f"{now:%d %B %Y}: {picked} preprints")
     try:
-        mailer.send(subject, html, text)
+        failed = mailer.send(subject, html, text, recipients)
     except Exception as exc:
         print(f"ERROR: sending email failed: {exc}", file=sys.stderr)
         return 3
-    print(f"[sent] to {', '.join(config.MAIL_TO)}")
+    # Counts only: Actions logs of a public repo are public, so never print addresses.
+    print(f"[sent] {len(recipients) - len(failed)} of {len(recipients)} recipients"
+          + (f" ({len(failed)} failed)" if failed else ""))
     return 0
 
 

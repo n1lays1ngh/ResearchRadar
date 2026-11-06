@@ -130,10 +130,11 @@ def _cols(blocks: list[str], gap: int = 36) -> str:
         return ""
     n = len(blocks)
     width = (CONTENT_W - gap * (n - 1)) // n - 1
-    col = (f'<div style="display:inline-block;vertical-align:top;width:100%;max-width:{width}px;'
+    # class names are only used by the PDF print stylesheet (pdf_export.PRINT_CSS)
+    col = (f'<div class="rc" style="display:inline-block;vertical-align:top;width:100%;max-width:{width}px;'
            f'font-size:15px;text-align:left;">')
-    spacer = f'<div style="display:inline-block;width:{gap}px;height:1px;font-size:0;">&nbsp;</div>'
-    return f'<div style="font-size:0;">' + spacer.join(col + b + "</div>" for b in blocks) + "</div>"
+    spacer = f'<div class="rg" style="display:inline-block;width:{gap}px;height:1px;font-size:0;">&nbsp;</div>'
+    return f'<div class="rr" style="font-size:0;">' + spacer.join(col + b + "</div>" for b in blocks) + "</div>"
 
 
 def _deal(items: list[str], n: int) -> list[str]:
@@ -338,6 +339,19 @@ def _index(sections: list[dict]) -> str:
 </td></tr>"""
 
 
+def _app_links() -> str:
+    """'Read online / PDF · Subscribe · Unsubscribe' line, when the app URL is configured."""
+    if not config.CHAT_APP_URL:
+        return ""
+    style = f"color:{INK};text-decoration:underline;"
+    links = [("Read online or download the PDF", config.app_url()),
+             ("Subscribe", config.app_url(action="subscribe")),
+             ("Unsubscribe", config.app_url(action="unsubscribe"))]
+    return (f'<div style="text-align:center;margin:0 0 12px;font:12.5px/1.6 {SERIF};color:{MUTED};">'
+            + " &nbsp;·&nbsp; ".join(f'<a href="{e(u)}" style="{style}">{t}</a>' for t, u in links)
+            + "</div>")
+
+
 # --- public API ---------------------------------------------------------------------
 def _minify(html: str) -> str:
     """Drop indentation and whitespace between tags so Gmail doesn't clip the email (~102 KB limit)."""
@@ -400,6 +414,7 @@ def _build_html(sections: list[dict], meta: dict) -> str:
        "Consult the original paper before citing any claim. Links under &ldquo;Also online&rdquo; and "
        "&ldquo;Elsewhere in the journals&rdquo; are supplied by web search and do not imply endorsement.",
        12.5, MUTED, "0 0 10px", "text-align:center;font-style:italic;")}
+   {_app_links()}
    <div style="text-align:center;">{_caps(f"The Research Radar · {vol}", MUTED, 9)}</div>
   </td></tr>
  </table>
@@ -443,4 +458,7 @@ def build_text(sections: list[dict], meta: dict) -> str:
         out += ["", "=" * 64, ""]
     out.append("Reports are written by a language model from each paper's own text and may contain errors. "
                "Preprints are not peer-reviewed; consult the original paper before citing.")
+    if config.CHAT_APP_URL:
+        out += ["", f"Read online or download the PDF: {config.app_url()}",
+                f"Unsubscribe: {config.app_url(action='unsubscribe')}"]
     return "\n".join(out)
