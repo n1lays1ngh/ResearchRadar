@@ -3,7 +3,8 @@ name: The Rinfo daily brief
 on:
   schedule:
     # arXiv's RSS feed refreshes at midnight US Eastern (about 05:00 UTC), Monday to Friday.
-    - cron: "0 6 * * 1-5"   # 06:00 UTC = 11:30 IST
+    # On Saturday the same run sends the Week in Review, built from this week's briefs.
+    - cron: "0 6 * * 1-6"   # 06:00 UTC = 11:30 IST, Monday to Saturday
   workflow_dispatch:
   repository_dispatch:
     types: [send-brief]

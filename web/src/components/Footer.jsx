@@ -14,7 +14,7 @@ export default function Footer() {
           <Link to="/subscribe?action=unsubscribe">Unsubscribe</Link>
         </nav>
         {/* <p className="footer-note">
-          Compiled automatically each Monday from the arXiv preprint server. Reports are written by a language model
+          Compiled automatically each Sunday from the arXiv preprint server. Reports are written by a language model
           from each paper&rsquo;s own text and have not been reviewed by a human editor; they may contain errors.
           Preprints are not peer-reviewed. Consult the original paper before citing any claim.
         </p> */}

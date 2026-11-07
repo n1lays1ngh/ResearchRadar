@@ -63,6 +63,7 @@ for (const date of briefDates) {
   }
   briefs.push({
     date,
+    kind: brief.kind || "daily",   // "review" = Saturday's Week in Review
     total: brief.total,
     picked: brief.sections.reduce((n, s) => n + s.papers.length, 0),
     sections: brief.sections.map((s) => ({ key: s.key, name: s.name, count: s.papers.length })),

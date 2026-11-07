@@ -73,10 +73,15 @@ export default function Front() {
         <aside className="front-right">
           {latestBrief && isLatest && (
             <Link className="brief-teaser" to="/brief">
-              <span className="kicker">The Daily Brief · {longDate(latestBrief.date, false)}</span>
+              <span className="kicker">
+                {latestBrief.kind === "review" ? "The Week in Review" : "The Daily Brief"} ·{" "}
+                {longDate(latestBrief.date, false)}
+              </span>
               <span className="brief-teaser-hed">{latestBrief.leads[0]?.title}</span>
               <span className="brief-teaser-more">
-                {latestBrief.picked} papers from today&rsquo;s arXiv announcement →
+                {latestBrief.kind === "review"
+                  ? `The week's ${latestBrief.picked} best papers →`
+                  : `${latestBrief.picked} papers from today's arXiv announcement →`}
               </span>
             </Link>
           )}

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { requestSubscription } from "../lib/data";
 
 const OPTIONS = [
-  { key: "weekly", label: "The weekly edition", note: "Mondays: in-depth reports" },
-  { key: "daily", label: "The daily brief", note: "Monday to Friday: one line per paper" },
+  { key: "weekly", label: "The weekly edition", note: "Sundays: in-depth reports" },
+  { key: "daily", label: "The daily brief", note: "Monday to Friday, plus a Saturday week in review" },
 ];
 
 export default function SubscribeBox({

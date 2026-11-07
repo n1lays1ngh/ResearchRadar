@@ -59,7 +59,9 @@ export default function Archive() {
           <ul className="brief-archive">
             {data.briefs.map((b) => (
               <li key={b.date}>
-                <Link to={`/brief/${b.date}`}>{longDate(b.date)}</Link>
+                <Link to={`/brief/${b.date}`}>
+                  {b.kind === "review" ? `Week in Review, ${longDate(b.date, false)}` : longDate(b.date)}
+                </Link>
                 <span>
                   {b.picked} papers · {b.leads[0]?.title}
                 </span>

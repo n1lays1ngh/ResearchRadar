@@ -24,7 +24,7 @@ from cryptography.fernet import Fernet, InvalidToken
 import config
 
 API = "https://api.github.com"
-LISTS = ("weekly", "daily")   # the full Monday edition and the Monday-to-Friday brief
+LISTS = ("weekly", "daily")   # the full Sunday edition; the Mon-Fri brief + Saturday review
 EMAIL_RE = re.compile(r"^[^@\s,;<>\"']+@[^@\s,;<>\"']+\.[A-Za-z]{2,}$")
 
 

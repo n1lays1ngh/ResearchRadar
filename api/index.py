@@ -264,5 +264,6 @@ def confirm(body: ConfirmIn):
 
 
 def _describe(lists: list[str]) -> str:
-    names = {"weekly": "the weekly edition (Mondays)", "daily": "the daily brief (Monday to Friday)"}
+    names = {"weekly": "the weekly edition (Sundays)",
+             "daily": "the daily brief (Monday to Friday, plus a Saturday week in review)"}
     return " and ".join(names[name] for name in lists)

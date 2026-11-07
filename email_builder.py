@@ -405,7 +405,7 @@ def _build_html(sections: list[dict], meta: dict) -> str:
   <tr><td style="padding:34px {PAD} 30px;">
    {_double_rule("0 0 14px")}
    <div style="text-align:center;margin-bottom:10px;">{_caps("Colophon", INK, 10)}</div>
-   {_p("The Rinfo is compiled automatically each Monday from the arXiv preprint server. "
+   {_p("The Rinfo is compiled automatically each Sunday from the arXiv preprint server. "
        "Reports are written by a language model from each paper&rsquo;s own text and have not been "
        "reviewed by a human editor; they may contain errors. Preprints are not peer-reviewed. "
        "Consult the original paper before citing any claim. Links under &ldquo;Also online&rdquo; and "
@@ -486,11 +486,25 @@ def _brief_item(i: int, p: dict) -> str:
 </td></tr>"""
 
 
-def _brief_section(s: dict) -> str:
+def _brief_words(meta: dict) -> dict:
+    """Wording for the daily brief, or for Saturday's Week in Review (meta['kind'] == 'review')."""
+    if meta.get("kind") == "review":
+        days = len(meta.get("covered", []))
+        return {"label": "Week in review", "title": "Week in Review", "when": "this week", "lead": "This week",
+                "tagline": "the week&rsquo;s best new preprints from arXiv",
+                "stats": f"the best from {days} daily brief{'s' if days != 1 else ''} · "
+                         f"{meta['total']} announcements this week"}
+    count = sum(len(s["papers"]) for s in meta.get("sections", []))
+    return {"label": "Daily brief", "title": "Daily Brief", "when": "today", "lead": "Today",
+            "tagline": "the day&rsquo;s new preprints from arXiv",
+            "stats": f"{count} selected from {meta['total']} new announcements"}
+
+
+def _brief_section(s: dict, when: str = "today") -> str:
     d = s["domain"]
     name = arxiv_categories.NAMES.get(d["key"], d["title"])
     if not s["papers"]:
-        body = _p("No new preprints matched this section today.", 14, MUTED, "8px 0 0", "font-style:italic;")
+        body = _p(f"No new preprints matched this section {when}.", 14, MUTED, "8px 0 0", "font-style:italic;")
         items = ""
     else:
         body = _p(e(s.get("lede", "")), 15, INK_2, "8px 0 4px", "font-style:italic;") if s.get("lede") else ""
@@ -506,18 +520,18 @@ def _brief_section(s: dict) -> str:
 
 
 def build_brief_html(sections: list[dict], meta: dict) -> str:
-    """The daily brief email. sections: [{domain, lede, papers: [... with 'summary']}];
-    meta: issued (datetime), feed_date, total (papers announced today in these categories)."""
+    """The daily brief email (or Saturday's Week in Review). sections: [{domain, lede, papers: [... with
+    'summary']}]; meta: issued (datetime), total (announcements in these categories), kind, covered."""
     issued = meta["issued"]
     date_line = issued.strftime("%A, %-d %B %Y")
-    count = sum(len(s["papers"]) for s in sections)
+    w = _brief_words({**meta, "sections": sections})
     leads = [s["papers"][0]["title"] for s in sections if s["papers"]]
-    preheader = ("Today: " + "; ".join(leads))[:220] if leads else "Today's new research from arXiv."
+    preheader = (f"{w['lead']}: " + "; ".join(leads))[:220] if leads else "New research from arXiv."
     html = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">
-<title>The Rinfo · Daily Brief · {e(date_line)}</title></head>
+<title>The Rinfo · {w['title']} · {e(date_line)}</title></head>
 <body style="margin:0;padding:0;background:{PAGE};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all;">
  {e(preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
@@ -527,24 +541,24 @@ def build_brief_html(sections: list[dict], meta: dict) -> str:
   style="max-width:{BRIEF_W}px;width:100%;background:{PAPER};border:1px solid {HAIR};word-break:break-word;overflow-wrap:anywhere;">
   <tr><td style="padding:16px {PAD} 0;text-align:center;">
    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td align="left">{_caps("Daily brief", RED, 9.5)}</td>
+    <td align="left">{_caps(w["label"], RED, 9.5)}</td>
     <td align="right">{_caps(date_line, INK, 9.5)}</td>
    </tr></table>
    {_rule(1, INK, "8px 0 0")}
    <div style="padding:14px 0 4px;font:40px/1.05 {SERIF};font-weight:700;letter-spacing:-.01em;color:{INK};">
     The Rinfo</div>
    <div style="padding:0 0 12px;font:15px {SERIF};font-style:italic;color:{INK_2};">
-    Research, in brief &middot; the day&rsquo;s new preprints from arXiv</div>
+    Research, in brief &middot; {w["tagline"]}</div>
    {_double_rule()}
    <div style="padding:7px 0;line-height:1.7;">
-    {_caps(f"{count} selected from {meta['total']} new announcements", INK, 9.5)}</div>
+    {_caps(w["stats"], INK, 9.5)}</div>
    {_rule(1, INK)}
   </td></tr>
-  {"".join(_brief_section(s) for s in sections)}
+  {"".join(_brief_section(s, w["when"]) for s in sections)}
   <tr><td style="padding:26px {PAD} 26px;">
    {_double_rule("0 0 12px")}
    {_p("Summaries are written by a language model from each paper&rsquo;s abstract and may contain errors. "
-       "Preprints are not peer-reviewed. The full weekly edition, with in-depth reports, arrives on Mondays.",
+       "Preprints are not peer-reviewed. The full weekly edition, with in-depth reports, arrives on Sundays.",
        12.5, MUTED, "0 0 10px", "text-align:center;font-style:italic;")}
    {_app_links("brief", "Read online")}
   </td></tr>
@@ -556,13 +570,13 @@ def build_brief_html(sections: list[dict], meta: dict) -> str:
 
 def build_brief_text(sections: list[dict], meta: dict) -> str:
     issued = meta["issued"]
-    out = ["THE RINFO: DAILY BRIEF", issued.strftime("%A, %-d %B %Y"),
-           f"{sum(len(s['papers']) for s in sections)} selected from {meta['total']} new announcements", "=" * 64]
+    w = _brief_words({**meta, "sections": sections})
+    out = [f"THE RINFO: {w['title'].upper()}", issued.strftime("%A, %-d %B %Y"), w["stats"], "=" * 64]
     for s in sections:
         d = s["domain"]
         out += ["", f"{arxiv_categories.NAMES.get(d['key'], d['title']).upper()} (arXiv {d['key']})", "-" * 64]
         if not s["papers"]:
-            out.append("No new preprints matched this section today.")
+            out.append(f"No new preprints matched this section {w['when']}.")
             continue
         if s.get("lede"):
             out += [s["lede"], ""]

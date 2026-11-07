@@ -2,7 +2,7 @@
 
 *Research, in brief.* A daily brief and a weekly review of new preprints from arXiv.
 
-A research agent that works without being asked. Every Monday it:
+A research agent that works without being asked. Every Sunday it:
 
 1. pulls the past week's arXiv papers from three sections, each named after an official arXiv category (see [Sections](#sections-official-arxiv-categories)),
 2. ranks them by keyword relevance,
@@ -12,6 +12,8 @@ A research agent that works without being asked. Every Monday it:
 
 Plus a **daily brief**, Monday to Friday: one request to arXiv's RSS feed for the day's announcements,
 the same topic filters, one-sentence summaries (one LLM request per section), emailed to daily subscribers.
+arXiv announces nothing at weekends, so on **Saturday** daily subscribers get the **Week in Review** instead:
+the best papers from that week's briefs, re-ranked, with a fresh lede per section (no arXiv request at all).
 Readers choose the weekly edition, the daily brief, or both.
 
 A companion **website** (React + Vite, with a FastAPI backend, both on Vercel) presents every edition as a
@@ -156,14 +158,14 @@ Two workflows run on their own:
 
 | Workflow | When | What |
 |---|---|---|
-| `weekly-digest.yml` | Mondays 08:00 IST (`30 2 * * 1`) | the full edition to weekly subscribers |
-| `daily-brief.yml` | Monday to Friday 11:30 IST (`0 6 * * 1-5`) | the brief to daily subscribers, after arXiv's RSS feed refreshes at midnight US Eastern |
+| `weekly-digest.yml` | Sundays 08:00 IST (`30 2 * * 0`) | the full edition to weekly subscribers |
+| `daily-brief.yml` | Monday to Saturday 11:30 IST (`0 6 * * 1-6`) | the brief to daily subscribers, after arXiv's RSS feed refreshes at midnight US Eastern; on Saturday, the Week in Review (`python run_brief.py --review` builds one by hand) |
 
-They share a concurrency group, so on Mondays the brief waits for the edition instead of racing it to push.
+They share a concurrency group, so if both run at once one waits instead of racing the other to push.
 The brief never sends the same day twice (it checks `data/briefs/<date>.json` for `"sent": true`), and
-skips weekends and arXiv holidays, when the feed is empty. Run either by hand from the **Actions** tab.
+skips arXiv holidays, when the feed is empty. Run either by hand from the **Actions** tab.
 
-The weekly workflow runs every **Monday at 08:00 IST** (`30 2 * * 1` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
+The weekly workflow runs every **Sunday at 08:00 IST** (`30 2 * * 0` UTC). You can also start it from the **Actions** tab (*Run workflow*) or by webhook. Each run uploads `out/` as an artifact and commits `data/latest.json` and `data/editions/`, so the app always has the latest edition and papers.
 
 ### Webhook trigger
 
@@ -231,7 +233,7 @@ Readers pick **the weekly edition, the daily brief, or both**, enter their email
 click it (double opt-in, so nobody can sign up or remove someone else). The link carries an encrypted token
 that expires after 24 hours. The list itself is stored **encrypted** in `subscribers.enc` on a separate
 `subscribers` branch: the repo is public, but without the key the file is unreadable, and signups don't
-trigger a redeploy. Each Monday the workflow decrypts it and sends everyone **their own copy** (nobody sees
+trigger a redeploy. On each run the workflows decrypt it and sends everyone **their own copy** (nobody sees
 other addresses; logs show only counts).
 
 Setup (once):

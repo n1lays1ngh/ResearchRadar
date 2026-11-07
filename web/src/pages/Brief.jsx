@@ -13,7 +13,10 @@ export default function Brief() {
     if (i < 0 || !briefs.length) return { briefs, brief: null };
     return { briefs, index: i, edition: editions[0], brief: await loadBrief(briefs[i].date) };
   }, [date]);
-  useTitle(data?.brief ? `Daily Brief, ${longDate(data.brief.date, false)}` : "Daily Brief");
+  const review = data?.brief?.kind === "review";
+  const name = review ? "Week in Review" : "Daily Brief";
+  const when = review ? "this week" : "today";
+  useTitle(data?.brief ? `${name}, ${longDate(data.brief.date, false)}` : "Daily Brief");
 
   if (loading) return <Loading label="Fetching the brief" />;
   if (error) return <ErrorNote error={error}>The brief couldn&rsquo;t be loaded.</ErrorNote>;
@@ -21,7 +24,10 @@ export default function Brief() {
     return (
       <div className="wrap narrow empty">
         <h1 className="page-title">{date ? "No brief on that date" : "No daily brief yet"}</h1>
-        <p>The daily brief is published Monday to Friday, after arXiv&rsquo;s overnight announcement.</p>
+        <p>
+          The daily brief is published Monday to Friday, after arXiv&rsquo;s overnight announcement, with a Week in
+          Review on Saturday.
+        </p>
       </div>
     );
 
@@ -33,10 +39,12 @@ export default function Brief() {
   return (
     <div className="wrap brief-page">
       <header className="brief-head">
-        <div className="kicker">The Daily Brief</div>
+        <div className="kicker">{review ? "The Week in Review" : "The Daily Brief"}</div>
         <h1 className="brief-date">{longDate(brief.date)}</h1>
         <p className="brief-stats">
-          {picked} selected from {brief.total} new announcements on arXiv
+          {review
+            ? `The ${picked} best papers from ${brief.covered?.length || 0} daily brief${brief.covered?.length === 1 ? "" : "s"} (${brief.total} arXiv announcements this week)`
+            : `${picked} selected from ${brief.total} new announcements on arXiv`}
         </p>
         <nav className="brief-pager" aria-label="Other briefs">
           {older ? <Link to={`/brief/${older.date}`}>← {longDate(older.date, false)}</Link> : <span />}
@@ -52,7 +60,7 @@ export default function Brief() {
                 <span className="section-code">arXiv {s.key}</span>
               </div>
               {s.papers.length === 0 ? (
-                <p className="brief-empty">No new preprints matched this section today.</p>
+                <p className="brief-empty">No new preprints matched this section {when}.</p>
               ) : (
                 <>
                   {s.lede && <p className="brief-lede">{s.lede}</p>}
@@ -101,7 +109,7 @@ export default function Brief() {
             {briefs.slice(0, 10).map((b, i) => (
               <li key={b.date}>
                 <Link to={i === 0 ? "/brief" : `/brief/${b.date}`} className={b.date === brief.date ? "current" : ""}>
-                  {longDate(b.date)}
+                  {b.kind === "review" ? `Week in Review, ${longDate(b.date, false)}` : longDate(b.date)}
                 </Link>
                 <span>{b.picked} papers</span>
               </li>

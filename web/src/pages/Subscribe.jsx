@@ -13,8 +13,9 @@ export default function Subscribe() {
       <SubscribeBox key={`${action}-${list}`} initialAction={action} initialLists={lists} />
       <div className="subscribe-facts">
         <div>
-          <strong>Two newsletters.</strong> The weekly edition arrives on Mondays with in-depth reports on three
-          sections. The daily brief arrives Monday to Friday with one line on each of the day&rsquo;s relevant papers.
+          <strong>Two newsletters.</strong> The weekly edition arrives on Sundays with in-depth reports on three
+          sections. The daily brief arrives Monday to Friday with one line on each of the day&rsquo;s relevant papers,
+          and on Saturday a Week in Review with the week&rsquo;s best.
         </div>
         <div>
           <strong>Your address stays private.</strong> It is stored encrypted, used only to send the newsletter, and never

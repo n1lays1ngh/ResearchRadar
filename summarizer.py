@@ -183,17 +183,18 @@ class Summarizer:
             self._note_failure(f"{domain['key']} overview", exc)
             return fallback_overview(domain, featured, more)
 
-    def brief(self, domain: dict, papers: list[dict]) -> dict:
-        """Daily brief for one section, in one LLM request: a lede and one-sentence summaries."""
+    def brief(self, domain: dict, papers: list[dict], period: str = "today") -> dict:
+        """Brief for one section, in one LLM request: a lede and one-sentence summaries.
+        period: "today" (the daily brief) or "this week" (Saturday's week in review)."""
         if not papers or not self.active:
-            return fallback_brief(domain, papers)
+            return fallback_brief(domain, papers, period)
         try:
-            result = _brief_with_llm(self.llm, domain, papers)
+            result = _brief_with_llm(self.llm, domain, papers, period)
             self.failures = 0
             return result
         except Exception as exc:
             self._note_failure(f"{domain['key']} brief", exc)
-            return fallback_brief(domain, papers)
+            return fallback_brief(domain, papers, period)
 
 
 # --- arXiv topic queries, evaluated locally (for RSS items) ----------------------------------
@@ -251,28 +252,28 @@ def topic_matches(query: str, text: str) -> bool:
 BRIEF_WORDS = 40
 
 
-def fallback_brief(domain: dict, papers: list[dict]) -> dict:
+def fallback_brief(domain: dict, papers: list[dict], period: str = "today") -> dict:
     summaries = {}
     for p in papers:
         sents = _sentences(p["abstract"])
         words = (sents[0] if sents else p["abstract"]).split()
         summaries[p["id"]] = " ".join(words[:BRIEF_WORDS]) + ("…" if len(words) > BRIEF_WORDS else "")
     n = len(papers)
-    lede = (f"{n} new preprint{'s' if n != 1 else ''} in {domain['title']} matched the desk's interests today."
+    lede = (f"{n} new preprint{'s' if n != 1 else ''} in {domain['title']} matched the desk's interests {period}."
             if n else "")
     return {"lede": lede, "summaries": summaries, "source": "abstract"}
 
 
-def _brief_with_llm(llm: LLM, domain: dict, papers: list[dict]) -> dict:
+def _brief_with_llm(llm: LLM, domain: dict, papers: list[dict], period: str = "today") -> dict:
     listing = "\n\n".join(f"[{p['id']}] {p['title']}\nABSTRACT: {p['abstract'][:1500]}" for p in papers)
-    user = (f"Domain focus: {domain['focus']}\n\nToday's new papers:\n\n{listing}\n\n"
+    user = (f"Domain focus: {domain['focus']}\n\nThe new papers {period}:\n\n{listing}\n\n"
             f"For each paper write a one-sentence summary (max {BRIEF_WORDS} words) of what it does and finds, "
             "in formal newspaper style, using only its abstract. Then write a two-sentence lede (max 50 words) "
-            "on today's papers as a whole. Return JSON: "
+            f"on {period}'s papers as a whole. Return JSON: "
             '{"lede": "...", "summaries": {"<paper id>": "<summary>", ...}}')
     messages = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
     data = extract_json(llm.complete(messages, json_mode=True))
-    fallback = fallback_brief(domain, papers)["summaries"]
+    fallback = fallback_brief(domain, papers, period)["summaries"]
     got = data.get("summaries") if isinstance(data.get("summaries"), dict) else {}
     summaries = {p["id"]: (_as_text(got.get(p["id"])) if got.get(p["id"]) else fallback[p["id"]]) for p in papers}
     return {"lede": _as_text(data.get("lede")) if data.get("lede") else "", "summaries": summaries, "source": "llm"}
