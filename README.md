@@ -152,7 +152,7 @@ Push the repo to GitHub. Then go to **Settings → Secrets and variables → Act
 | `MAIL_TO` | ✅ | comma-separated recipients (you); subscribers are added automatically |
 | `SUBSCRIBERS_KEY` | | enables subscriptions; see [Subscriptions](#subscriptions) |
 
-**Variables** tab: `SITE_URL`, for example `https://rinfo.vercel.app`. When it is set, every report in the email links to its page on the website, and the footer links to the online edition, the PDF and subscribe / unsubscribe.
+**Variables** tab: `SITE_URL`, for example `https://research-radar-ebon.vercel.app`. When it is set, every report in the email links to its page on the website, and the footer links to the online edition, the PDF and subscribe / unsubscribe.
 
 Two workflows run on their own:
 
@@ -217,7 +217,7 @@ cd web && npm install && npm run dev         # terminal 2: http://localhost:5173
    | `TAVILY_API_KEY` | optional, for "Also search the web" |
    | `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM` | used to email confirmation links |
    | `SUBSCRIBERS_KEY`, `GH_TOKEN`, `GITHUB_REPO` | see [Subscriptions](#subscriptions) |
-   | `SITE_URL` | your Vercel URL, e.g. `https://rinfo.vercel.app` (add after the first deploy) |
+   | `SITE_URL` | your Vercel URL, e.g. `https://research-radar-ebon.vercel.app` (add after the first deploy) |
 
 3. **Deploy.** Copy the URL, set it as `SITE_URL` in Vercel (then **Redeploy**) and as the `SITE_URL`
    repository **variable** on GitHub, so the emails link to the site.

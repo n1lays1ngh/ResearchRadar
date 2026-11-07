@@ -64,7 +64,8 @@ ARXIV_BACKOFF_SECONDS = env_float("ARXIV_BACKOFF_SECONDS", 20.0)  # 20 s, 40 s, 
 PDF_MAX_PAGES = 25
 DIGEST_CONTEXT_CHARS = env_int("DIGEST_CONTEXT_CHARS", 9000)
 CHAT_CONTEXT_CHARS = env_int("CHAT_CONTEXT_CHARS", 14000)
-SITE_URL = env("SITE_URL", env("CHAT_APP_URL"))   # public URL of the web app (Vercel)
+# Public URL of the website (Vercel); every link in the emails points here.
+SITE_URL = env("SITE_URL", "https://research-radar-ebon.vercel.app")
 USER_AGENT = env("USER_AGENT", "Rinfo/1.0 (arXiv research digest; personal research use)")
 
 # --- Email --------------------------------------------------------------------

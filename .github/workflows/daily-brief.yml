@@ -33,7 +33,7 @@ jobs:
       SMTP_PASS: ${{ secrets.SMTP_PASS }}
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
-      SITE_URL: ${{ vars.SITE_URL || vars.CHAT_APP_URL }}
+      SITE_URL: ${{ vars.SITE_URL }}
       SUBSCRIBERS_KEY: ${{ secrets.SUBSCRIBERS_KEY }}
       GH_TOKEN: ${{ github.token }}
     steps:
