@@ -1,0 +1,165 @@
+{
+ "date": "2026-11-07",
+ "issued": "2026-11-07T08:44:30.423547+00:00",
+ "total": 601,
+ "kind": "review",
+ "covered": [
+  "2026-11-06"
+ ],
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses critical challenges in conversational AI, ranging from security vulnerabilities and model compression for structured generation to long-term memory maintenance and efficient retrieval. These studies collectively advance the reliability, efficiency, and safety of large language model agents across diverse multilingual and multi-turn environments.",
+   "papers": [
+    {
+     "id": "2611.06969",
+     "title": "Interactive Backdoor Attacks in LLM-Based Proactive Dialogue Systems",
+     "abstract": "LLM-based proactive dialogue systems provide goal-directed support through sustained interaction. Fine-tuning their underlying models on externally supplied dialogue data introduces backdoor risks. Existing LLM backdoor studies primarily focus on eliciting an attacker-specified response upon trigger activation. We present an interactive backdoor attack framework that uses training-data poisoning to steer post-trigger, multi-turn interactions toward an attacker-specified objective. Poisoned fine-tuning dialogues implant a trigger-conditioned guidance-policy bias that ordinary user utterances can activate, without deployment-time prompt modification or further attacker intervention. Specifically, we instantiate three complementary attacks under progressively expanded post-trigger interaction settings: (1) Direct Attack, which targets an immediate response deviation upon trigger activation, retaining the conventional trigger--response setting; (2) Constrained Progressive Attack, which progressively advances the attack objective along a predefined multi-turn trajectory; and (3) Unconstrained Progressive Attack, which extends target-directed steering to open-ended interactions with varied user continuations. Using psychological counseling as a representative setting, experiments on two LLM backbones and two dialogue datasets show that all three attacks effectively achieve their objectives under their respective interaction settings while largely preserving normal utility. Separate defense evaluations show that the tested training-data filters retain nearly all poisoned dialogues, while three post-admission baselines leave substantial residual attack-specific success.",
+     "authors": [
+      "Zhiyang Xia",
+      "Yuming Shang",
+      "Xi Zhang"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.06969",
+     "pdf_url": "https://arxiv.org/pdf/2611.06969",
+     "published": "2026-11-06",
+     "summary": "The authors present an interactive backdoor attack framework for LLM-based proactive dialogue systems using training-data poisoning to steer multi-turn interactions toward attacker-specified objectives while preserving normal utility.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.07558",
+     "title": "SKIM: Pruning Large Language Model Agents via Selective Knowledge Informed Masking",
+     "abstract": "Large Language Model (LLM) agents are increasingly deployed under structured generation, where grammar constraints enforce output format at inference time. Whereas existing compression methods target unconstrained generation, we first identify a fundamental mismatch: under structured generation, grammar constraints reduce the model's output distribution to valid tokens, and the logits matter most at the small set of positions that decide the agent's action. Motivated by this finding, we propose SKIM (Selective Knowledge-Informed Masking), the first pruning and distillation framework for LLM agents under structured generation, with both stages guided by token role. SKIM partitions token positions into context, decision, and format categories, and this partition drives two complementary axes: (1) category-aware pruning saliency scores that preserve parameters most relevant for decision positions; and (2) an on-policy distillation objective that aligns student and teacher on valid tokens, paired with category-aware feature matching. We evaluate SKIM on tool-calling benchmarks and within multi-step agent loops, across multiple model scales and sparsity levels. SKIM consistently improves accuracy over baselines, with its superiority becoming most striking in high-sparsity regimes where conventional methods struggle, demonstrating the potential of category-aware compression for deployment-time grammar-constrained agents.",
+     "authors": [
+      "Moonseok Choi",
+      "Jongwon Jeong",
+      "Minki Kang",
+      "Giung Nam",
+      "Juho Lee"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.07558",
+     "pdf_url": "https://arxiv.org/pdf/2611.07558",
+     "published": "2026-11-06",
+     "summary": "The authors propose SKIM, a token-role-guided pruning and distillation framework for LLM agents under structured generation, which improves accuracy over baselines particularly in high-sparsity regimes.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.08433",
+     "title": "MedGraph: Maintaining Patient State with Graph Memory for Long-Term Medical Dialogue",
+     "abstract": "LLM-based medical assistants that follow a patient across visits need a memory that keeps the patient's clinical state correct as it changes. We examine the errors of five memory systems on longitudinal medical dialogue and find three recurring causes: the retrieved evidence gives an outdated state, includes another person's health facts, or lacks a safety fact the answer depends on. We present MedGraph, a graph memory built for these three cases. Construction extracts dated facts from each session, attributes each fact to the person it describes, and links medication, diagnosis, and measurement records into chains that keep earlier states. Retrieval ranks the patient's chains as units, reads each chain at the time the question asks about, and adds the original dialogue text; a patient profile lists every recorded safety fact with every question. On MedMemoryBench, MedGraph has the highest overall accuracy with both a GPT and a Qwen backbone, 10.5 and 10.4 points above the strongest of five baselines, with efficient memory construction and answering in the GPT setting.",
+     "authors": [
+      "Donghua Zhang",
+      "Zizheng Wang",
+      "Ze Dong",
+      "Yiding Feng",
+      "Siyu Qian"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.08433",
+     "pdf_url": "https://arxiv.org/pdf/2611.08433",
+     "published": "2026-11-06",
+     "summary": "The authors introduce MedGraph, a graph memory system for longitudinal medical dialogue that extracts dated facts and links clinical records into chains, achieving the highest overall accuracy on MedMemoryBench.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.07899",
+     "title": "Persistent Retrieval for Conversational Agents: A Study of Retrieval Efficiency",
+     "abstract": "Conversational agents can retrieve information directly or delegate retrieval to a subagent. This design choice affects how retrieval history is maintained, what context each model call receives, and what information must be re-retrieved in follow-up questions. We compare three designs: skill-based retrieval in the main agent, a non-persistent retrieval subagent that generates a findings response, and our persistent retrieval subagent, which maintains retrieval history across turns and returns retrieved evidence directly to the main agent. Our approach also allows the main agent to request corrections from the same subagent. We evaluate the three designs on enterprise questions posed independently, within shared conversations, and as dependent follow-ups. Across five multi-turn settings, our approach uses 43.3% fewer recorded agent-model tokens and incurs 45.0% lower estimated API cost than skill-based retrieval, while reducing average response time by 9.1%. Compared with non-persistent retrieval, it reduces response time by 15.6 seconds per question, while using 65.1% more tokens and incurring 29.1% higher estimated API cost. Our approach shifts the retrieval subagent from producing synthesized responses to maintaining retrieval state and supplying evidence that the main agent can directly evaluate and use for answer generation.",
+     "authors": [
+      "Karthik Ravula",
+      "Sathwik Kowtha",
+      "Rishabh Verma",
+      "Kala Mehak Jain",
+      "Gunjit Mittal"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.IR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.07899",
+     "pdf_url": "https://arxiv.org/pdf/2611.07899",
+     "published": "2026-11-06",
+     "summary": "The authors compare conversational agent retrieval designs and find that a persistent retrieval subagent reduces API costs and token usage compared to skill-based retrieval while improving response times.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.07203",
+     "title": "{\\tau}-bench-LILT: Evaluating Conversational Agents on Realistic Multilingual Tool-Use Tasks",
+     "abstract": "Frontier evaluations of tool-using conversational agents are conducted almost exclusively in English, leaving a critical gap for organizations deploying agents in other languages and regions. We present ${\\tau}$-bench-LILT, a multilingual extension of ${\\tau^3}$-bench covering German, Korean, Turkish, and Farsi in the airline, retail, telecom, and banking domains. We natively localize every layer of the benchmark: customer databases are populated with culturally appropriate records, user-simulator prompts are refined iteratively through contrastive annotation by native-language experts, and tasks are updated according to the localized database and to reflect realistic tasks in the target region. Evaluation across eight agent models shows the largest drops compared to English in the Korean and Farsi retail domains, by up to 61 points in pass^4. Code and data released at https://github.com/lilt/tau-bench-lilt.",
+     "authors": [
+      "Kaden Uhlig",
+      "Kiarash Mokhtari",
+      "An{\\i}l Arslan",
+      "Yunsu Kim",
+      "Joern Wuebker"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.07203",
+     "pdf_url": "https://arxiv.org/pdf/2611.07203",
+     "published": "2026-11-06",
+     "summary": "The authors present tau-bench-LILT, a multilingual extension of tau3-bench covering four languages and domains, and find significant performance drops for agent models in specific non-English retail settings.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses the rapid expansion of the Internet of Things by examining energy-aware Tiny Machine Learning on resource-constrained platforms. The studies highlight heterogeneous methodologies and optimization strategies while emphasizing the need for greater standardization to improve reproducibility.",
+   "papers": [
+    {
+     "id": "2611.07264",
+     "title": "Energy Measurement and Optimization of TinyML in Resource-Constrained Embedded Systems: A Systematic Mapping Study",
+     "abstract": "The rapid expansion of the Internet of Things (IoT) has increased the volume of data generated at the network edge, where many devices operate under severe memory, processing, and energy constraints. In this context, Tiny Machine Learning (TinyML) enables machine learning (ML) tasks to be executed on microcontrollers, smart sensors, and other resource-constrained platforms. However, the literature remains heterogeneous regarding the algorithms evaluated, energy-measurement methods, reported metrics, influencing factors, and optimization strategies. This study presents a systematic mapping of energy-aware TinyML research. It identifies the main models and learning approaches, classifies energy-evaluation methodologies and metrics, examines the technical factors affecting energy consumption, and organizes the reported optimization techniques into a structured taxonomy. The findings highlight the frequent use of convolutional and lightweight architectures, direct measurements and analytical estimations, and factors related to model architecture, hardware, communication, numerical precision, and input characteristics. The optimization strategies were grouped into model compression, hardware-aware design, system and communication optimization, and data and processing optimization. The results also reveal limited standardization in experimental platforms, measurement procedures, and reporting practices, limiting reproducibility and direct comparison across studies. This mapping provides an updated overview of the field and guidance for developing and evaluating more energy-efficient TinyML solutions.",
+     "authors": [
+      "Clariele Almeida",
+      "Renan Beserra",
+      "Rafael Moura",
+      "Danilo Ara\\'ujo",
+      "Bruno Nogueira",
+      "S\\'ergio Chevtchenko",
+      "Ermeson Andrade"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AR",
+      "cs.ET"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.07264",
+     "pdf_url": "https://arxiv.org/pdf/2611.07264",
+     "published": "2026-11-06",
+     "summary": "A systematic mapping study of energy-aware TinyML research identifies that current literature relies heavily on convolutional architectures and direct measurements, while revealing a lack of standardization in experimental platforms and reporting practices that hinders reproducibility.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "",
+   "papers": []
+  }
+ ],
+ "sent": true
+}
