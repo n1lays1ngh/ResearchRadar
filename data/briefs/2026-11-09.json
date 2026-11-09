@@ -1,0 +1,197 @@
+{
+ "date": "2026-11-09",
+ "issued": "2026-11-09T15:19:36.827287+00:00",
+ "total": 580,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses critical security, architectural, ethical, and practical challenges in conversational AI and language model deployment. These studies examine memory poisoning vulnerabilities, conversational memory compaction strategies, agentic moral decision-making, prompt-based watermarking, and persona-dependent variations in health advice.",
+   "papers": [
+    {
+     "id": "2611.09721",
+     "title": "MemoryDojo: Benchmarking Poisoning Through LLM Agent Memory",
+     "abstract": "LLM agents benefit from using memory systems to improve performance on long-horizon, multi-session tasks. However, memory introduces a critical attack surface. Malicious instructions encountered in one session may be stored and propagated through memory before being retrieved and acted upon in later sessions. Because memory systems differ in how they process and retrieve information, the downstream effects of poisoning can vary significantly across systems. To quantify the effects of poisoning across different memory architectures, we introduce MemoryDojo, a benchmark for tracing the lifecycle of poisoned information through agent memory and measuring its influence on subsequent agent behavior. MemoryDojo is easily extensible, consists of 155 multi-session long-horizon trajectories covering four domains, and supports five different memory systems. Through our evaluation, we find that all memory systems are susceptible to memory poisoning, with substantial variation in downstream effects. We further propose a memory-aware poison optimization process that increases the poisoning efficacy, highlighting differences between memory architectures. We hope that MemoryDojo will support research on understanding and mitigating agentic memory risks.",
+     "authors": [
+      "David H. Yang",
+      "Blake Bullwinkel",
+      "Amanda Minnich",
+      "Mohammad Mohammadi Amiri",
+      "Giorgio Severi"
+     ],
+     "categories": [
+      "cs.CR",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09721",
+     "pdf_url": "https://arxiv.org/pdf/2611.09721",
+     "published": "2026-11-09",
+     "summary": "The authors introduce MemoryDojo, a benchmark for evaluating poisoning across five agent memory systems, and find that all tested architectures are susceptible to malicious instructions propagated through multi-session tasks.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.09807",
+     "title": "Compaction, decay and reinforcement in a two-tier conversational memory: a paired evaluation against retrieval-augmented generation",
+     "abstract": "A conversational agent that remembers has to decide what to keep. Retrieval-augmented generation keeps the transcript and searches it; the alternative is to compact each turn into atomic facts and search those. We compare the two on LoCoMo, with both arms answering all 1,985 questions in one window, against the same stores, with the same generator and judge, and both predictions on one row, which licenses McNemar's exact test on the 512 questions where they disagree. On the four categories comparable work reports, compaction scores 71.4 per cent against 64.6, a lead of 6.8 points (p = 5.5e-08) at 34 per cent fewer prompt tokens. On all five, including the adversarial set comparable work drops, the lead falls to 2.0 and stops being significant, because the baseline leads adversarial by 14.6. That loss has a structure. Our lead falls as the reference answer demands more source wording, 9.6 points ahead at one or two reference words and 3.1 behind past eight, with token overlap moving the same way, so the judge is not the cause. Compaction keeps what a fact asserts and discards how it was said, so it wins where the answer is a value and loses where it is a phrasing. We also report four negative results with their power calculations.",
+     "authors": [
+      "Osamudiamen Edogun",
+      "Joshua Obigwe",
+      "Irfan Mehmood"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09807",
+     "pdf_url": "https://arxiv.org/pdf/2611.09807",
+     "published": "2026-11-09",
+     "summary": "The authors compare conversational memory compaction against retrieval-augmented generation on LoCoMo and report that compaction achieves higher accuracy on value-based answers while utilizing fewer prompt tokens.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.09326",
+     "title": "ABHBench: Evaluating Moral Decision-Making of Foundation Models from an Agentic Perspective",
+     "abstract": "Foundation models are increasingly deployed as agentic systems that perceive context and act autonomously, raising the need to evaluate their moral behavior as active decision-makers. Existing benchmarks, however, largely ask models to judge human actions from third-person textual vignettes, leaving untested how models behave when they themselves become the acting agent. We introduce ABHBench, a multimodal benchmark built from Detroit: Become Human, an interactive narrative game, to evaluate how foundation models make moral decisions in first-person human-android dilemmas. ABHBench places foundation models in branching narrative scenarios with visual observations, dialogue, memory, and action choices. Inspired by Asimov's Three Laws of Robotics, our framework measures Harmlessness, Obedience, and Self-preservation to capture the core tensions in human-AI relations, along with Autonomy, Stability, and Certainty to assess decision-making patterns. Across 12 foundation models, we find that moral behavior changes substantially under situated agentic context: 75% of models shift significantly between a text-only abstraction and the matched multimodal DBH scenario, and reasoning-enhanced models show no monotonic gains in consistency or human-oriented behavior. These results highlight the necessity of evaluating moral behavior in situated agentic contexts rather than relying on third-person judgment alone.",
+     "authors": [
+      "Chaoran Li",
+      "Yukun Li",
+      "Zeyuan Zhao",
+      "Shao Zhang",
+      "Xihuai Wang",
+      "Ying Wen"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09326",
+     "pdf_url": "https://arxiv.org/pdf/2611.09326",
+     "published": "2026-11-09",
+     "summary": "The authors introduce ABHBench, a multimodal benchmark based on an interactive narrative game, and find that 75 percent of evaluated foundation models shift their moral behavior significantly when placed in situated agentic contexts.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2605.16336",
+     "title": "On Seeding Watermarks to Detect Verbatim LLM Copy-Paste Responses",
+     "abstract": "Large language models (LLMs) have made fluent essay writing, code drafting, and quiz answering instantly available to students at every level, from secondary school through graduate study. Many educators do not object to LLM use \\emph{per~se}; what they need to detect is the case in which a student pastes the assignment prompt into a chatbot and submits the model's reply verbatim, without engaging with the work. Existing post-hoc AI-text detectors remain unreliable and have been shown to penalise non-native English writers, while output-side watermarks require cooperation from the model provider. We propose an alternative that the educator controls directly: an input-side watermark in which an invisible instruction is embedded inside the visible assignment prompt itself. An LLM that ingests the prompt verbatim quietly reads the hidden instruction and writes a tell-tale signature into its reply, exposing the copy-and-paste pathway specifically. We describe SteganoPrompt, a single-page, zero-dependency web tool that encodes an arbitrary printable-ASCII payload into the deprecated Unicode Tags block (\\texttt{U+E0000}--\\texttt{U+E007F}). The encoded string is visually identical to the original, survives common copy-paste channels (Word, Google Docs, PDF, Markdown, Slack, e-mail, the major learning-management systems), and is tokenized as ordinary text by most frontier models. We evaluate compliance across eight LLM families and a representative set of educational content channels. To keep deployment transparent, disclosure is built into the tool itself: every encoded brief also carries a brief, always-on academic-integrity reminder for the student, and we set out concrete guidance recommending for its disclosed, ethical use in the classroom. The tool is released under the MIT licence at https://ezharjan.github.io/SteganoPrompt/.",
+     "authors": [
+      "Aizierjiang Aiersilan",
+      "Artin Yousefi",
+      "Robert Pless"
+     ],
+     "categories": [
+      "cs.CR",
+      "cs.AI",
+      "cs.CL",
+      "cs.CY",
+      "cs.ET"
+     ],
+     "abs_url": "https://arxiv.org/abs/2605.16336",
+     "pdf_url": "https://arxiv.org/pdf/2605.16336",
+     "published": "2026-11-09",
+     "summary": "The authors propose SteganoPrompt, an input-side watermarking tool that embeds invisible instructions into assignment prompts using the Unicode Tags block to detect verbatim copy-pasted LLM responses.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2610.42039",
+     "title": "Same Question, Different Answers: Auditing Persona-Dependent Variation in Six LLMs on Smoking-Cessation Advice",
+     "abstract": "Hundreds of millions of people now ask large language model (LLM) chatbots for health advice, which raises a question that is simple to pose and hard to answer: does everyone get the same advice? We audit six widely deployed LLMs from four providers on smoking cessation, a domain with codified clini- cal guidance and substantial public-health stakes, by putting the same four cessation questions to twelve user personas that differ in life stage, self-described expertise, and smoking history, for a total of 2,880 responses. What the models say depends on who appears to be asking. Every model named FDA-approved prescription cessation medications less often to teen personas than to adult personas, by 32 to 67 percentage points, and in five of six models a persona presenting health- care expertise received fewer facts than a persona presenting none. We then evaluate one deployable intervention: a short system prompt specifying a factual floor, the set of core med- ical facts every user should receive when they are relevant, while leaving tone, vocabulary, and framing free to adapt. The prompt narrows persona differences in every model, but its effect on overall fact coverage varies in both magnitude and direction across models, so a prompt validated on one system cannot be assumed to transfer to another. Two cautions frame these results. Equal mention rates are not always the correct clinical target, because prescription cessation pharmacother- apy is not recommended for minors, so a defensible factual floor must be age-aware rather than uniform. And because our personas vary on several attributes at once, we report scenario- level differences rather than isolated effects of age or expertise. We release all 2,880 responses and the analysis code.",
+     "authors": [
+      "Artin Yousefi",
+      "Aizierjiang Aiersilan",
+      "Lorien C Abroms",
+      "David A Broniatowski"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2610.42039",
+     "pdf_url": "https://arxiv.org/pdf/2610.42039",
+     "published": "2026-11-09",
+     "summary": "The authors audit six large language models on smoking-cessation advice across twelve user personas and find that the generated medical advice varies substantially depending on the persona asking the question.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses the environmental impact of machine learning by exploring carbon-aware client selection in federated learning, life-cycle carbon assessments for high-performance computing clusters, and unified early-exit runtimes for heterogeneous edge workloads. These studies highlight ongoing efforts to optimize energy efficiency and reduce carbon emissions across distributed and resource-constrained systems.",
+   "papers": [
+    {
+     "id": "2611.09552",
+     "title": "Towards Sustainable Federated Learning via Carbon-Aware Client Selection",
+     "abstract": "The Information/Communication Technology (ICT) industry is severely challenging the global environment due to the sharply rising carbon emissions generated by machine learning (ML) workloads. Federated Learning (FL) is one of the prominent distributed ML systems used in applications with billions of client devices, such as Google Gboard and Apple Siri. Nearly half of the total carbon footprint in FL originates from client-side computation during local training. However, existing client selection strategies in FL primarily focus on minimizing energy consumption rather than carbon emissions, despite the fact that carbon impact depends not only on computational load but also on the underlying carbon intensity of the energy source. In this paper, we address this gap by proposing a carbon-aware fair client selection strategy (CA-FCS) designed to minimize the carbon emissions associated with model training on client devices. In contrast to existing approaches for reducing carbon emissions in FL, we incorporate hourly carbon intensity and a realistic energy consumption model developed using empirical measurements from Google Pixel smartphones to estimate client-side carbon emissions in FL. Since repeatedly selecting low-carbon clients may reduce data diversity and degrade global model performance, particularly under non-independent and identically distributed (non-IID) data settings, CA-FCS incorporates fairness into client selection to mitigate this issue. We conduct extensive experiments under realistic FL settings for mobile devices, where client participation is constrained by device availability conditions, such as charging status and Wi-Fi connectivity. The results demonstrate that our method reduces client-side carbon emissions by up to 46% while maintaining competitive model accuracy.",
+     "authors": [
+      "Wentao Gao",
+      "Omid Tavallaie",
+      "Albert Y. Zomaya"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09552",
+     "pdf_url": "https://arxiv.org/pdf/2611.09552",
+     "published": "2026-11-09",
+     "summary": "The authors propose a carbon-aware fair client selection strategy for federated learning to minimize client-side emissions while maintaining data diversity and global model performance.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.09251",
+     "title": "Green500: Adventure in Qualifying a Cluster",
+     "abstract": "Energy effciency has become a key metric for evaluating High Performance Computing (HPC) systems, as reflected by the Green500 ranking. However, energy effciency alone does not capture the full environmental impact of an HPC cluster. Using the Kuma cluster at EPFL, we report on two Green500 measurement campaigns at Level 2 and Level 3, and extend this analysis to a full carbon footprint assessment using the MITSI life-cycle based methodology. GPU power capping experiments show that energy effciency peaks at 450 W, achieving an 11% performance loss offset by a 20% reduction in energy consumption. When embodied emissions are accounted for, the optimal power cap for carbon effciency shifts to 500 W under Switzerland's low-carbon electrical grid, revealing a tension between minimizing usage and embodied contributions. We discuss the challenges of generalizing this approach into a broader carbon-based HPC ranking, and argue that moving beyond energy effciency is both necessary and feasible.",
+     "authors": [
+      "Nicolas Richart",
+      "Xavier Ouvrard",
+      "Julia Paolini",
+      "Manuel Cubero-Castan",
+      "Gilles Fourestey"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09251",
+     "pdf_url": "https://arxiv.org/pdf/2611.09251",
+     "published": "2026-11-09",
+     "summary": "The authors report on Green500 measurement campaigns and a life-cycle carbon assessment for the Kuma cluster, revealing that optimal power caps differ depending on whether energy efficiency or embodied carbon emissions are prioritized.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.09159",
+     "title": "UniExit: A Unified Latency-Aware Early-Exit Runtime for Heterogeneous Edge AI",
+     "abstract": "Edge applications increasingly combine CNN-based perception with edge-deployable Transformer-based language models, but deploying such heterogeneous workloads on resource-constrained devices is challenging because inference latency varies with both input difficulty and runtime hardware state. Early-exit inference reduces computation by terminating at intermediate stages, yet existing methods are often model-specific and rely on static latency profiles that become stale under dynamic edge conditions. This paper presents UniExit, a unified latency-aware early-exit runtime for heterogeneous edge AI. UniExit abstracts CNN blocks and Transformer layers as ordered stages and applies a common latency-aware routing policy while retaining model-specific quality mechanisms. It predicts the cost of reaching the next exit from runtime state and inference progress to make budget-aware continue-or-exit decisions. UniExit combines runtime-state-aware latency prediction, cache-based prediction reuse, trend-aware fallback, and CNN-specific exit stabilization to provide low-overhead and robust online control. We implement UniExit on multiple edge and edge-cloud platforms and evaluate it with representative CNN and Transformer-based language-model workloads. Across single-workload, concurrent heterogeneous, and edge-cloud settings, UniExit consistently improves deadline satisfaction and latency-accuracy trade-offs over existing progressive inference baselines, while reducing redundant exit-module computation and task-level energy consumption.",
+     "authors": [
+      "Yuhang Guan",
+      "Huanle Zhang",
+      "Xiaomin Ouyang",
+      "Zhidan Liu"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09159",
+     "pdf_url": "https://arxiv.org/pdf/2611.09159",
+     "published": "2026-11-09",
+     "summary": "The authors present UniExit, a unified latency-aware early-exit runtime for heterogeneous edge artificial intelligence that improves deadline satisfaction and latency-accuracy trade-offs across various platforms.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "",
+   "papers": []
+  }
+ ],
+ "sent": true
+}
