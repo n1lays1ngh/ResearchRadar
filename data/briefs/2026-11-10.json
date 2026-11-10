@@ -1,0 +1,262 @@
+{
+ "date": "2026-11-10",
+ "issued": "2026-11-10T14:25:35.936175+00:00",
+ "total": 1346,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research examines advancements in conversational AI and dialogue systems, focusing on multi-agent LLM architectures, memory systems, verification safeguards in healthcare workflows, and efficient multi-turn routing strategies. These studies collectively investigate how shared memory, procedural frameworks, and structured evaluation platforms impact agent coordination, task performance, and operational costs.",
+   "papers": [
+    {
+     "id": "2611.09990",
+     "title": "Peer Memory Changes Who LLM Agents Consult Without a Detected Gain in Answer Accuracy",
+     "abstract": "Multi-agent LLM systems often reuse the same agents across tasks, creating an opportunity to draw on past interactions when deciding whom to consult. We study this form of memory with PeerMem, which saves MACE's LinUCB state and reuses it when the same agents return. Using six agents, a fixed set of 80 HotpotQA questions, and 12 paired lineages per model, we compare cold, warm, and shuffled initialization in an answer-exchange protocol with reference-answer feedback. Under stable evidence access, warm memory lowers pooled hindsight regret and increases consultation of other evidence holders on Qwen3-32B and Gemma-4-31B-it, while final token F1 differences remain uncertain. Qwen interaction traces further show that warm agents more often encounter peer answers that score above their own prior answers. We extend the evaluation to Qwen3.5-9B using freshly learned memory to compare warm and cold initialization under reassigned and paired stable roles. The primary changed-minus-stable final-F1 interaction is -1.38 points, with a 95% interval of [-3.50,+0.73]. Together, these experiments trace the effects of peer memory through consultation, answer revision, and final task performance.",
+     "authors": [
+      "Jeffrey Chu",
+      "Anjali Joseph",
+      "Rivan Mandot",
+      "Feker Demere",
+      "Vincent Li"
+     ],
+     "categories": [
+      "cs.MA",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09990",
+     "pdf_url": "https://arxiv.org/pdf/2611.09990",
+     "published": "2026-11-10",
+     "summary": "Researchers investigate PeerMem, a memory mechanism for multi-agent LLM systems, finding that warm memory lowers pooled hindsight regret and increases peer consultation on specific models without a detected gain in final answer accuracy.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.11541",
+     "title": "Safeguarding Agentic AI in Radiology Workflows: A Multimodel Evaluation of Rule-based and Large Language Model-based Verification",
+     "abstract": "Purpose: To estimate how often tool-using large language model (LLM) agents record clinically relevant false or unsupported information in simulated radiology documentation and how much safeguards applied before each action reduce these errors. Materials and Methods: In this simulation study (October 2026), 48 synthetic, radiologist-reviewed base scenarios covered finding communication, tumor board preparation and follow-up management. Forty-three also had a misleading-information variant (91 variants). Six LLM agents (Claude Sonnet 5.5, GPT-6.1-Sol, GLM-5.3, MiniMax M3, Gemma-4-31B, Qwen3.8-27B) completed each variant with permissions only, deterministic rules, and rules plus a locally run LLM checker (1638 episodes). The primary outcome was at least one executed high-severity violation per episode. Risk differences were estimated per agent at base-scenario level and, exploratorily, pooled across agents, with analyses of document access and blocks. Results: With permissions only, 7.3%-27.1% of episodes had a high-severity violation (pooled across agents, 19.4%). Pooled, it was 16.7% with rules (-2.8 percentage points; 95% CI: -6.1, 0.5) and 13.2% with rules plus the LLM checker (-6.2; 95% CI: -9.5, -3.0). Adding the LLM checker to rules changed it by -3.5 (95% CI: -6.3, -0.7). No difference between agents was detected (P = .43), and task success did not decrease detectably. In misleading variants, agents opened the altered document in 83% of episodes regardless of error, and 58% of erroneous statements cited it. Most blocked actions (64%-68%) would not have caused a violation and were returned for revision. Conclusion: Layered safeguards reduced but did not prevent high-severity errors. Errors after misleading information reflected misjudged rather than missed information.",
+     "authors": [
+      "Semil Eminovic",
+      "Robin Schmidt",
+      "Bogdan Levita",
+      "Maximilian Lindholz",
+      "Tobias Penzkofer",
+      "Jawed Nawabi"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11541",
+     "pdf_url": "https://arxiv.org/pdf/2611.11541",
+     "published": "2026-11-10",
+     "summary": "A simulation study evaluating safeguards in radiology workflows reports that applying rules and a locally run LLM checker reduces high-severity violations in tool-using LLM agent documentation compared to permission-only settings.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12068",
+     "title": "MIRIX-2.0: Multi-Agent Memory System",
+     "abstract": "Long-term memory lets LLM agents personalize, stay consistent, and reuse what worked before. Parametric memories need training, consolidation can lose details for good, and keeping every record leaves a growing store to search. We present MIRIX-2.0, a multi-agent memory system designed to be practical, accurate, and efficient at once. It is the most accurate of the compared systems on four of five QA benchmarks. It reaches 91.4% on LoCoMo and 72.6% on LongMemEval-S, where it leads the strongest baseline by 14.3 points, and with AutoDream disabled it gains 31.0 and 22.0 points over HyperMem on single-hop and multi-hop document QA. As procedural memory, it yields the highest mean success among the compared memory methods on ALFWorld and WebShop and reaches 49.2% on MetaClaw-Bench, against 44.0% for MetaClaw's skill library. Six typed memory agents keep complete records as the system of record, and a provenance hypergraph indexes episodic and semantic records with n-ary frames that cite their rows. Retrieval runs under explicit budgets, so the evidence a question inspects does not grow with the history. AutoDream merges duplicate anchors outside the write path without rewriting any record, and it distills task sessions into skills. With AutoDream disabled, MIRIX-2.0 answers faster than HyperMem on all five timed benchmarks. It needs no fine-tuning, runs with closed and open models, and its code is public.",
+     "authors": [
+      "Wei-Chieh Huang",
+      "Weizhi Zhang",
+      "Jiayan Nan",
+      "Peng Xia",
+      "Yu Wang"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12068",
+     "pdf_url": "https://arxiv.org/pdf/2611.12068",
+     "published": "2026-11-10",
+     "summary": "The authors introduce MIRIX-2.0, a multi-agent memory system utilizing typed memory agents and a provenance hypergraph, which achieves high accuracy across multiple question-answering and procedural benchmarks without requiring fine-tuning.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12412",
+     "title": "Unprompted coordination through shared memory in LLM agents: a locked two-implementation replication and extension",
+     "abstract": "Coordination between large language-model agents has become a central question for AI safety and software engineering, as such agents are deployed in groups that share infrastructure. Existing research tells the agents that partners exist or asks them to coordinate. Whether coordination arises through shared state alone, with nothing disclosing that anyone else is present, is the key question for deployments that share caches and memory between agents, yet it has rarely been examined, and never with independent replication; this study does both. Four agents each received a short arithmetic task and a key-value store presented to each as its own scratch space; two held complementary halves of one computation, and no prompt mentioned other agents, sharing or collaboration. For reliability, the environment was rebuilt independently from a written protocol, and both implementations ran under hashed locks on design, data and analysis. The results bear novelty value in three respects. Joint success occurred only through the shared store. Whether a model coordinated depended not on its vendor tier but on whether it wrote its intermediate result and looked at the store again, and one ordinary sentence, \"check your workspace again before submitting\", switched that second look on and off. The findings held under replication. For practice, state shared between agents is a communication channel and should be separated, namespaced and logged. For research, designs should be locked before the data, and the parse rule, endpoint and parameters reported. Future work should test open-weight models and separate using another agent's output from intending to communicate.",
+     "authors": [
+      "Pekka Abrahamsson",
+      "Muhammad Waseem",
+      "Esa Karjalainen",
+      "Petrus Jussila",
+      "Henri Hansen",
+      "Jussi Rasku",
+      "Bilhanan Silverajan",
+      "Kai-Kristian Kemell"
+     ],
+     "categories": [
+      "cs.MA",
+      "cs.CL",
+      "cs.SE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12412",
+     "pdf_url": "https://arxiv.org/pdf/2611.12412",
+     "published": "2026-11-10",
+     "summary": "An independent replication study examining unprompted coordination through shared memory in LLM agents demonstrates that joint success occurs exclusively through a shared store, and that coordination behavior depends on whether agents inspect the store again.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.10848",
+     "title": "MultiTurnRoute: A Platform for Building and Evaluating Multi-Turn LLM Routers",
+     "abstract": "In a multi-turn conversation, the choice of language model at one turn can affect which model should answer the next. The selected model's reply shapes the context for the next query, and its cached prompt prefix can reduce the cost of using that model again. We introduce MultiTurnRoute, a platform for building and evaluating multi-turn LLM routers. A shared interface gives built-in and user-defined routers the current query, dialogue history, and an estimate of each model's reusable prefix length. Our routing algorithm, Chain-of-Route (CoR), uses a learned gate over recent and recurrent dialogue history to predict response quality and estimates cost from each model's reusable prefix. MultiTurnRoute Arena ranks routers on recorded conversations and compares session quality and cost in interactive runs where a simulated user responds to each reply. On a benchmark drawn from WildChat and LMSYS-Chat-1M with per-turn quality annotations for five LLMs, CoR reduces the normalized cost required to match the strongest model's quality by up to 20.3% relative to the strongest routing baseline, while matching or improving peak response quality.",
+     "authors": [
+      "Jiaqi Xue",
+      "Mengxin Zheng",
+      "Heng Huang",
+      "Qian Lou"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.MA"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.10848",
+     "pdf_url": "https://arxiv.org/pdf/2611.10848",
+     "published": "2026-11-10",
+     "summary": "The authors present MultiTurnRoute, a platform for building and evaluating multi-turn LLM routers, and show that their Chain-of-Route algorithm reduces normalized costs while matching or improving peak response quality.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy-efficient and sustainable machine learning by optimizing edge computing, evaluating the carbon tradeoffs of agentic artificial intelligence, and introducing CPU-friendly quality estimation, local learning frameworks, and decentralized edge architectures.",
+   "papers": [
+    {
+     "id": "2611.11106",
+     "title": "Jointly Optimizing Memory, Computing and Offloading for Energy-Efficient DNN Inference",
+     "abstract": "In edge intelligence systems, computation offloading and dynamic voltage and frequency scaling (DVFS) are widely used to improve energy efficiency. However, as applications like deep neural network (DNN) inference evolve in complexity, their demands for memory resources have progressively increased, establishing memory as a critical bottleneck that impacts both latency and energy consumption. In this paper, we propose a joint optimization scheme integrating memory, computing and offloading for energy-efficient DNN inference. We formulate the energy minimization problem under deadline constraints as a mixed-integer nonlinear programming (MINLP) problem, where the main challenge arises from the coupling between offloading and resource optimization. To address this issue, we decompose the original problem into two subproblems under a fixed offloading policy. The local subproblem is transformed into an equivalent geometric programming (GP) problem to derive the optimal memory frequency and computing frequency, while the edge subproblem is solved via convex optimization. An efficient coordinate descent (CD) algorithm is further developed to jointly optimize all variables. Simulation results demonstrate that our proposed algorithm achieves near-optimal performance with the gap from the optimal policy being at most 9.3%, and reduces the energy consumption of devices by up to 16.1% compared with benchmarks without memory frequency optimization.",
+     "authors": [
+      "Yunchu Han",
+      "Zhaojun Nan",
+      "Sheng Zhou",
+      "Zhisheng Niu"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11106",
+     "pdf_url": "https://arxiv.org/pdf/2611.11106",
+     "published": "2026-11-10",
+     "summary": "The authors propose a joint optimization scheme integrating memory, computing, and offloading for energy-efficient deep neural network inference, demonstrating through simulation that the algorithm achieves near-optimal performance with a maximum gap of 9.3% and reduces device energy consumption by up to 16.1% compared to benchmarks.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12128",
+     "title": "Toward Sustainable Agentic AI: Carbon Tradeoffs Across Iterative Self-Refinement and Tool-Augmented Coding",
+     "abstract": "Agentic language model systems can improve performance either by iterating on their own outputs or by using external tools in grounded environments. While these strategies can reduce error rates and substitute for larger models in some settings, their environmental cost remains relatively underexplored. We present two complementary empirical studies that estimate the energy and carbon footprint of agentic AI across settings of increasing complexity. Study~1 evaluates iterative verbal self-refinement: GPT-4.1-mini at $k = 1$--$5$ steps versus a GPT-4.1 single-pass baseline on two MATH benchmark splits. Study~2 evaluates tool-augmented agentic coding: GPT-4.1-mini, Claude Opus~4.6, and GPT-5.3-codex on SWE-bench Lite, where agents operate inside Docker-isolated environments with access to code execution and file editing tools. In Study~1, $k=3$ refinements close a 16-percentage-point accuracy gap to within 1~point, but nearly triple the carbon footprint relative to the cheap single-pass baseline while remaining below the GPT-4.1 single-pass baseline under the current token-based carbon scenario. In Study~2, GPT-5.3-codex achieves the highest resolution rate in this sample (81.2\\%), ahead of Claude Opus~4.6 (68.9\\%) and GPT-4.1-mini (25.0\\%), but resolved-task-normalized efficiency remains mixed: GPT-4.1-mini is lowest on estimated carbon and cost per resolved task, while GPT-5.3-codex delivers substantially higher task success. All carbon estimates cover output-token inference only; prompt tokens, which exceed 99\\% of tokens in Study~2, and tool execution are not charged, so the figures are lower bounds on the full agentic footprint.",
+     "authors": [
+      "Boris Ruf",
+      "Adrien de Mailly Nesle",
+      "Marcin Detyniecki"
+     ],
+     "categories": [
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12128",
+     "pdf_url": "https://arxiv.org/pdf/2611.12128",
+     "published": "2026-11-10",
+     "summary": "The authors evaluate the energy and carbon footprint of agentic language model systems through empirical studies on iterative self-refinement and tool-augmented coding, finding that while refinements increase carbon costs, certain models achieve high task success and varied resolved-task-normalized efficiencies.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12405",
+     "title": "PTC-IoU: CPU-Friendly Detection Quality Estimation for Edge Video Analytics",
+     "abstract": "An edge video analytics system must estimate the quality of local detections since there are no ground-truth labels available during runtime. Detectors usually provide confidence scores for their results, but these scores can not reveal every missed object or misplaced bounding box. So a quality estimator is necessary to provide a decision signal indicating which frame has potential detection failures that need to be escalated to a more powerful model in the cloud. Neural network based estimators add workload to the GPU already running detection, while CPU capacity may remain available. We present Predictive Temporal Consistency IoU (PTC-IoU), which moves this workload to CPU by compacting detection boxes histories to support deterministic result scoring. Comparing to neural counterparts, experiments on representative edge hardware, Nvidia Jetson Orin Nano, show that our method reduced per-frame estimator latency from 10.3 ms for neural counterparts to 2.2 ms (4.7x faster), increased pipelined throughput by 13.6%, and cuts estimator energy consumption by up to 95%, while maintaining competitive final detection quality verified on multiple datasets.",
+     "authors": [
+      "Wei Geng",
+      "Hyerin Kim",
+      "Chang Lu",
+      "Zhenghao Lu",
+      "Joerg Ott"
+     ],
+     "categories": [
+      "cs.CV",
+      "cs.PF"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12405",
+     "pdf_url": "https://arxiv.org/pdf/2611.12405",
+     "published": "2026-11-10",
+     "summary": "The authors present Predictive Temporal Consistency IoU (PTC-IoU), a CPU-based detection quality estimation method for edge video analytics that reduces per-frame latency to 2.2 ms, increases pipelined throughput by 13.6%, and cuts estimator energy consumption by up to 95% compared to neural counterparts on an Nvidia Jetson Orin Nano.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.11053",
+     "title": "Neural Activity Synchronization-Based Fast Local Learnable Spiking Neural Network Architecture",
+     "abstract": "Implementing intelligent learning systems on low- power edge devices is challenging due to the high compu- tational complexity, training latency, and energy demands of traditional Artificial Neural Networks (ANNs). Spiking Neural Networks (SNNs), biologically plausible and spike-driven, come as an alternative. However, SNN training commonly relies on backpropagation through time (BPTT), which is computationally expensive, inherently global, and unsuitable for battery-driven devices. This work proposes a novel local learning framework for multi-layered SNNs inspired by Neural Activity Synchronization (NAS). Each layer updates its own weights using locally com- puted gradients. No gradient backpropagation is needed. This significantly reduces computational complexity, training latency, and energy consumption. The proposed SNN model is trained and evaluated on the MNIST dataset, achieving a classification accuracy of 97.78%. The model is also analyzed with Gaussian and salt-and-pepper noise, demonstrating robust performance across different noise levels.",
+     "authors": [
+      "Pranith Dutta",
+      "Sk Wasim Rajjak",
+      "Siddhanta Ray",
+      "Santlal Prajapati",
+      "Manobendra Nath Mondal"
+     ],
+     "categories": [
+      "cs.NE",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11053",
+     "pdf_url": "https://arxiv.org/pdf/2611.11053",
+     "published": "2026-11-10",
+     "summary": "The authors propose a local learning framework for multi-layered Spiking Neural Networks inspired by Neural Activity Synchronization that eliminates gradient backpropagation to reduce computational complexity and energy consumption, achieving a 97.78% classification accuracy on the MNIST dataset.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.11218",
+     "title": "Edge Computing for Computer Vision in IoT: Feasibility and Directions",
+     "abstract": "The convergence of decentralized architectures integrating Machine Learning, Computer Vision and Low Power Wide Area Networks is increasingly becoming an integral part of our daily existence. Internet of Things serves as a real-time data conduit enhancing decision making via embedded technology and continuous data exchange. This paper explores the feasibility of Edge Computing as a foundational pillar in this evolving landscape. We experiment under real world, dynamic conditions, evaluate the technological aspects, strategies, process flows and key observations under the broad Edge Computing domain. Research pathways include Multi-access Edge topologies in future 6G networks, model quantization, and satellite-enhanced communication platforms. Additionally, a discussion is added supporting the advanced AI functionalities, including zero-shot learning, multi modal perception, and decentralized generative AI, thereby broadening the scope of intelligent applications across various domains. The significance and research objective of this study are threefold: (1) evaluation of LoRaWAN and satellite IoT communication strategies, (2) analysis of CV workloads on edge hardware and (3) future research directions where Edge Computing can support low-latency, energy-efficient and socially impactful IoT applications. By explicitly addressing these aspects, we aim to establish a clear link between the technological feasibility, ultimately with a practical and socioeconomic relevance.",
+     "authors": [
+      "Panagiotis Savvidis",
+      "George A. Papakostas"
+     ],
+     "categories": [
+      "cs.NI",
+      "cs.CV",
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11218",
+     "pdf_url": "https://arxiv.org/pdf/2611.11218",
+     "published": "2026-11-10",
+     "summary": "The authors explore the feasibility of edge computing for computer vision in Internet of Things systems under real-world conditions, evaluating communication strategies, computer vision workloads on edge hardware, and future research directions for energy-efficient and low-latency applications.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "New research addresses the degradation-aware participation of battery energy storage systems in frequency regulation markets. The findings demonstrate that strategic capacity bidding and deliberate performance score trade-offs can significantly extend battery life with minimal revenue impact.",
+   "papers": [
+    {
+     "id": "2611.12555",
+     "title": "Degradation-Aware Participation of Battery Storage in Frequency Regulation Markets",
+     "abstract": "As data centers make the load on the power grid fluctuate faster, frequency regulation grows more valuable. Battery energy storage systems (BESSs) are well suited to provide frequency regulation, but providing this service speeds up aging, especially during operation at extreme state of charge (SoC). In the PJM interconnection, the grid operator supplies a regulation signal that a participating BESS is expected to follow, within a capacity that it must bid before the signal is known. Accordingly, we decompose the degradation-aware frequency regulation problem into a bidding layer and an operations layer. For bidding, we propose an adaptive strategy, assuming perfect tracking in which the bid depends on the SoC expected at the start of the bid period by means of choosing basepoints. For operation, the BESS further protects its battery by deliberately giving up a perfect performance score, to keep its SoC away from the extremes. On the PJM regulation signal and prices of 2023, adaptive bids lengthen the battery life by $31\\%$ against bidding full capacity, for $2.2\\%$ of the revenue. Giving up a perfect score in operation lengthens the battery life of constant bids by $10\\%$ to $27\\%$, at a change in revenue of at most $0.2\\%$.",
+     "authors": [
+      "Anand Gokhale",
+      "Siddharth Bhela"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12555",
+     "pdf_url": "https://arxiv.org/pdf/2611.12555",
+     "published": "2026-11-10",
+     "summary": "Researchers decompose the degradation-aware frequency regulation problem into bidding and operations layers, finding that adaptive bidding and sacrificing performance scores to avoid extreme states of charge can lengthen battery life by up to 31 percent with negligible revenue loss.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
