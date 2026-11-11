@@ -1,0 +1,199 @@
+{
+ "date": "2026-11-11",
+ "issued": "2026-11-11T13:38:31.910229+00:00",
+ "total": 654,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research in conversational artificial intelligence and language model systems examines biomedical agent memory frameworks, social media simulation pipelines, cognitive graph retrieval architectures, and personality-driven cultural dialogue adaptation. Additional studies investigate shifting human evaluation standards in chatbot benchmarking over time.",
+   "papers": [
+    {
+     "id": "2611.13426",
+     "title": "BioMem: Agentic Memory for Biomedical LLM Agents",
+     "abstract": "Large language models (LLMs) have demonstrated considerable potential in biomedical applications, while agentic memory systems have emerged as a promising approach to preserving and utilizing information across tasks and interactions. However, a fundamental question remains: how effectively and reliably do these systems retain, retrieve, update, and utilize biomedical information? In this study, we systematically investigate agentic memory in the biomedical domain, focusing on task effectiveness, retrieval quality, information fidelity, and long-term robustness. We evaluate five memory approaches across four LLMs in three representative settings: biomedical knowledge reasoning, clinical prediction, and long-term conversational memory. Our analyses reveal how memory construction, evidence relevance, and conversational history shape downstream biomedical performance, highlighting the distinct challenges of retrieving relevant information, preserving its fidelity, and effectively utilizing it for reasoning. Building on these findings, we introduce Hybrid Memory Retrieval and Utilization (HMRU), a training-free framework that jointly enhances evidence accessibility and task-aware utilization to improve biomedical reasoning and long-term conversational memory. HMRU achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks, with additional gains in selected clinical prediction tasks. It further reduces conversational answer errors by 24.9% and closes 48.0% of the performance gap to full-context inference. Our findings provide a systematic characterization of biomedical agentic memory and practical insights into developing more effective and reliable memory-augmented LLM systems.",
+     "authors": [
+      "Mingchen Li",
+      "Yongkang Xiao",
+      "Rumeng Li",
+      "Rui Zhang",
+      "Hong Yu"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13426",
+     "pdf_url": "https://arxiv.org/pdf/2611.13426",
+     "published": "2026-11-11",
+     "summary": "The authors investigate agentic memory across biomedical large language models and introduce Hybrid Memory Retrieval and Utilization, a training-free framework that achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12922",
+     "title": "Using LLM Agents to Evaluate Prosocial Interventions on Social Media Platforms",
+     "abstract": "Social media platforms are a primary source of information for many users. Although research explores various interventions to promote prosocial content or demote harmful content on platforms, there are few systematic methods for evaluating competing intervention designs before conducting costly human-subject experiments. We develop a simulation-based evaluation pipeline built on the OASIS framework. We generate 13,835 LLM-based agents, each with a unique profile. Over 20 time steps, we expose them to real-world Twitter/X posts and let them comment, like, repost, or follow. We use those agents to systematically evaluate three interventions that increase exposure to verified news: adding content, upranking content, and celebrity source cues. All interventions significantly increase news engagement, with upranking news to prominent feed positions producing the largest effects. These effects hold across agents' gender, age, and education levels. We validate our injection treatment results against a comparable human-subject study and find strong directional alignment and similar dose-normalized efficiency. Our results suggest that LLM-based agent simulations can support early-stage evaluation of platform interventions before human-subject deployment, and upranking may be more effective than news volume or source.",
+     "authors": [
+      "Lucen Li",
+      "Erin Wertz",
+      "Muhammad Haroon",
+      "Anshuman Chhabra",
+      "Magdalena Wojcieszak"
+     ],
+     "categories": [
+      "cs.SI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12922",
+     "pdf_url": "https://arxiv.org/pdf/2611.12922",
+     "published": "2026-11-11",
+     "summary": "Researchers develop an OASIS-based simulation pipeline utilizing 13,835 large language model agents to evaluate social media interventions, finding that upranking verified news significantly increases engagement across various demographic groups.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.13127",
+     "title": "Activation-Guided Graph Retrieval for Cognitive Memory Reconstruction in Language Model Systems",
+     "abstract": "Retrieval-augmented language model systems generally select context by query-conditioned relevance. We argue that long-lived AI systems require a second operator: activation-conditioned memory availability. We specify an architecture in which request and goal cues seed an authorized memory graph, activation and fan attenuation allocate a bounded traversal frontier, retrieved entities recursively emit cues, and a typed evidence graph is reconstructed before generation. The specification yields five architectural consequences about candidate selection, traversal control, graph regularization, evidence reconstruction, and reinforcement. We derive implementation-level cost estimates and define ablations, failure conditions, and a reproducible evaluation protocol. The central claim is narrowed or falsified if a simpler graph reranker matches full traversal on causal and temporal recovery under equal budgets. This architecture-and-analysis preprint reports no benchmark measurements. If the claim holds, retrieval returns the evidence path that makes a memory available, not only a ranked list.",
+     "authors": [
+      "Marvin Danig (Achiral Research)"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.IR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13127",
+     "pdf_url": "https://arxiv.org/pdf/2611.13127",
+     "published": "2026-11-11",
+     "summary": "The authors propose an activation-guided graph retrieval architecture for cognitive memory reconstruction in language model systems, specifying operational mechanisms and reporting that the central claim is falsifiable if a simpler reranker matches full traversal performance.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.13207",
+     "title": "HiCAP: Hierarchical Cultural Adaptation via Personality for Dialogue Generation",
+     "abstract": "Cultural adaptation in dialogue systems refers to the ability to generate responses that conform to linguistic norms and social expectations across different cultures. However, existing dialogue generation approaches pay limited attention to the role of personality in shaping cultural expression and communication style. We therefore propose HiCAP, a novel framework that integrates personality traits into culturally adaptive dialogue generation. HiCAP employs a personality-conditioned control mechanism that hierarchically modulates response style by first aligning it with the cultural tone and then refining linguistic expression and content according to individual personality attributes. To embed these factors, the model combines supervised fine-tuning and instruction-based tuning, supported by dynamic instruction templates and multi-agent demonstrations to capture diverse combinations of culture and personality. Experiments on CulturalPersonas and CPED show that HiCAP achieves the strongest overall performance across various dialogue generation metrics, demonstrating effective cultural adaptability and personality modelling.",
+     "authors": [
+      "Lingzhi Shen",
+      "Xiaohao Cai",
+      "Yunfei Long",
+      "Imran Razzak",
+      "Shoaib Jameel"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13207",
+     "pdf_url": "https://arxiv.org/pdf/2611.13207",
+     "published": "2026-11-11",
+     "summary": "Researchers introduce HiCAP, a hierarchical framework integrating personality traits into culturally adaptive dialogue generation, which demonstrates strong overall performance and effective cultural adaptability across evaluation metrics on CulturalPersonas and CPED.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.14333",
+     "title": "AI Isn't Getting Dumber, We're Getting Pickier: Rising Standards in Human Evaluation of Large Language Models",
+     "abstract": "Users often complain that AI assistants such as ChatGPT are getting worse. Some versions do change, but human evaluation leaves a second possibility untested: the people judging may change. We separate the two on Chatbot Arena, a public platform where people compare answers from two anonymous large language models (LLMs) and pick the better one or say both are bad. We study 1,260,967 blind votes cast from May 2023 to August 2024 on pairs of models whose versions are fixed: dated vendor snapshots and models with fixed open weights. For the same pair of unchanged models, the share of votes saying \"both are bad\" rises by 1.71 percentage points a month on a mean of 17.1%, and by 1.91 points a month in 2024. In fourteen pairs observed often in both 2023 and 2024, it rose in every one, from 15.5% to 23.3%. The ranking does not trend: in 2024, the stronger model's share of decisive votes is flat. The rise holds within the same voter and on the same pair, and across arrival cohorts from their first recorded vote. It holds with prompt controls, in every major language, for dated vendor snapshots, open-weight models and models with stable answer length, and between interface changes. The drift is shared across models: month effects estimated from other models' pairs remove it from each model's own pairs. Platform-wide, the average model would be expected to score 78% against the 2023 average, yet the share of \"both are bad\" votes ended near where it began. The pattern fits a standard that follows the category's progress, so a product that stands still is judged as declining. Absolute verdicts on AI drifted while relative comparisons held steady, an evaluation drift that matters for LLM leaderboards and for the human feedback used to train models.",
+     "authors": [
+      "Zihan Chen",
+      "Lei Nico Zheng",
+      "Di Zhu"
+     ],
+     "categories": [
+      "cs.HC",
+      "cs.AI",
+      "cs.CL",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14333",
+     "pdf_url": "https://arxiv.org/pdf/2611.14333",
+     "published": "2026-11-11",
+     "summary": "The authors analyze 1,260,967 blind votes on Chatbot Arena from May 2023 to August 2024, finding that while model rankings remain stable, the share of 'both are bad' votes increases over time due to rising human evaluation standards.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy efficiency in machine learning infrastructure through novel attribution and serverless scaling techniques. The studies introduce methods to fairly allocate energy consumption in large language model batches and extend scale-to-zero capabilities to physical nodes in clusters.",
+   "papers": [
+    {
+     "id": "2611.13802",
+     "title": "Scaling Shapley Energy Attribution to Large LLM Batches",
+     "abstract": "LLM services have become essential infrastructure for applications such as chat assistants and coding agents. Service providers need to attribute resource consumption to individual requests for purposes such as billing. Among these resources, energy is a key metric for assessing the cost of serving each request. However, serving engines batch requests together, and GPUs report only aggregate energy consumption. Providers typically estimate each request's share in proportion to its token consumption, but this approach can produce substantially unfair estimates. The Shapley value provides a principled solution to fair energy allocation, but computing it directly requires $2^N-1$ GPU runs for $N$ requests, which is infeasible for large batches. To address this problem, we propose StepSplit. Across GPU generations, we observe that the energy consumed by each inference step, a forward pass over a batch, consists of a shared energy, largely due to reading model weights, and a request-specific energy. We derive a closed-form Shapley value: each request is charged its own energy plus an equal part of the shared energy of every step in which it participates. A microbenchmark of 2.5-17.8 minutes calibrates both parts of the step energy once per model and GPU configuration. Under static batching, StepSplit uses this closed form in a single pass over the scheduler log. Under continuous batching, removing a request can change how the remaining requests are batched, so StepSplit adds a correction to the closed form, computed by replaying the scheduler on a CPU. We evaluate StepSplit against Shapley values measured using 529,513 GPU runs. Under static batching with batch sizes of 8-256, StepSplit achieves an $L_1$ error of 0.4-4.3%, compared with 13.4-61.3% for token-proportional allocation. Under continuous batching with 8-128 requests, the corresponding errors are 0.5-6.4% and 20.6-71.7%.",
+     "authors": [
+      "Qi Luo",
+      "Ziwen Wang",
+      "Kunlin Li",
+      "Changxi Liu",
+      "Yun Chen"
+     ],
+     "categories": [
+      "cs.DC",
+      "cs.AR",
+      "cs.PF"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13802",
+     "pdf_url": "https://arxiv.org/pdf/2611.13802",
+     "published": "2026-11-11",
+     "summary": "The authors propose StepSplit, a method using a closed-form Shapley value to efficiently attribute energy consumption to individual requests in large language model batches based on shared and request-specific inference step energies.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.14026",
+     "title": "Energy-Proportional Serverless Computing on SBC Clusters",
+     "abstract": "Serverless computing promises to run code only on demand, yet the servers beneath it draw most of their power while idle, so energy consumption does not scale to zero with the workload. We show that the statelessness of serverless functions makes it possible to extend scale-to-zero from function instances to physical nodes, enabling energy proportionality. Our platform, built on tinyFaaS for clusters of single-board computers, treats node power state as part of worker selection, powering workers off when idle and back on under load. On a physical cluster, our approach reduces mean power draw by 39.6 % on a bursty, trace-based workload and by 46.7 % on a sparse one, without a detectable change in median latency on the bursty workload. The cost lands in the tail, where invocations that arrive while all workers are off wait about a minute for a node to boot. Under continuous load, the platform behaves like an always-on cluster.",
+     "authors": [
+      "Yuliya Sasinskaya",
+      "Natalie Carl",
+      "Niklas Kowallik",
+      "David Bermbach"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14026",
+     "pdf_url": "https://arxiv.org/pdf/2611.14026",
+     "published": "2026-11-11",
+     "summary": "The authors present a platform built on tinyFaaS for single-board computer clusters that extends scale-to-zero to physical nodes, reducing mean power draw by 39.6 percent on a bursty workload and 46.7 percent on a sparse one.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "Recent research addresses battery management systems through robust state-parameter estimation in second-order Thévenin models. The study introduces a dual identification and online estimation scheme that achieves exact parameter recovery and exponential convergence of states and capacity under verifiable conditions.",
+   "papers": [
+    {
+     "id": "2611.13202",
+     "title": "Robust State-Parameter Estimation in Second-Order Th\\'evenin Batteries",
+     "abstract": "We propose a scheme for estimating the full states and parameters of a second-order Th\\'evenin battery model, using distinct features of the measured current. An identification step, run during suitable rest intervals, identifies the resistances and capacitances of the two RC branches from the voltage relaxation by linear least squares, without knowledge of the open-circuit voltage (OCV) map. An online estimator then runs continuously: the polarization voltages are estimated by open-loop observers; the series resistance is updated at current jumps using least squares; the state of charge (SOC) is propagated by Coulomb counting using the current capacity estimate, and both estimates are updated periodically by a sliding-window regression. We show that the identification is exact under a mild rank condition, that the series resistance is recovered at the first current jump, and that the online state and capacity estimates converge exponentially under verifiable excitation conditions. We also establish robustness of the online estimator under bounded process disturbances and measurement noise.",
+     "authors": [
+      "Wissam Khennoune",
+      "G. Q. Bao Tran",
+      "Thach Ngoc Dinh",
+      "J\\'er\\'emy Van Gorp",
+      "Mathieu Moze"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13202",
+     "pdf_url": "https://arxiv.org/pdf/2611.13202",
+     "published": "2026-11-11",
+     "summary": "The authors propose a scheme for estimating the full states and parameters of a second-order Thévenin battery model using measured current features, finding that the method achieves exact identification, rapid series resistance recovery, and exponentially convergent online estimates under verifiable excitation conditions.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
