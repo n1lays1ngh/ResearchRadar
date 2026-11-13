@@ -1,0 +1,184 @@
+{
+ "date": "2026-11-13",
+ "issued": "2026-11-13T13:58:56.228233+00:00",
+ "total": 975,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses core challenges in conversational artificial intelligence and language model agents. The studies introduce new benchmarks and frameworks to improve multi-turn tool use, agent memory, speech preferences, spoken dialogue adaptation, and reinforcement learning.",
+   "papers": [
+    {
+     "id": "2611.14925",
+     "title": "ToolTurns: Benchmarking LLM Agents in Multi-Turn Dialogue",
+     "abstract": "Tool-using language models are increasingly deployed in conversational settings, yet most large-scale tool-use benchmarks focus on isolated requests. We introduce ToolTurns, a benchmark of 2,620 problems spanning 1,827 tools and 11,004 API endpoints across 47 categories. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. We also introduce an open-source user simulator that reveals withheld context through dialogue and generates follow-up requests, with a checker--fixer pipeline for improving its turns. Across nine language models, the best agent resolves 69.6% of individual requests but completes only 39.8% of full dialogues. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns. ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools.",
+     "authors": [
+      "Milad Gholami",
+      "Brendan King",
+      "Jeffrey Flanigan"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14925",
+     "pdf_url": "https://arxiv.org/pdf/2611.14925",
+     "published": "2026-11-13",
+     "summary": "The authors introduce ToolTurns, a benchmark of 2,620 problems to evaluate large language model agents in multi-turn dialogues, finding that models perform worse on follow-up requests than on initial ones.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.16051",
+     "title": "Human-Likeness and Conversational Preference Diverge for Synthesized Agent Speech in Customer-Service Calls",
+     "abstract": "Listeners can judge an agent's speech on how human it sounds (human-likeness) and on how much they would want to talk to it (conversational preference). Listening tests rarely ask about conversational preference, so the relation between the two judgments is unclear. We compared them in paired-choice tests on 120 turns that actors improvised as customer-service representatives. On each trial, two agents spoke the same turn. In Study 1, both agents came from six commercial text-to-speech systems, each with eight voices. In Study 2, one was the actor's original recording and the other a system. Some systems ranked higher on human-likeness, and others on conversational preference. Listeners chose systems over actors in 19% of human-likeness trials but 36% of conversational preference trials (and 49% for the most preferred system). On both judgments, variation among a system's voices was about three-quarters of that between systems. Of three automatic naturalness scores, two predicted lower human-likeness, and none predicted conversational preference. In this setting, listeners tended to favor faster speech and fewer pauses between clauses on both judgments, and more pitch variation for conversational preference. Thus, measuring only human-likeness or testing one voice per system can misjudge which agents listeners would rather talk to.",
+     "authors": [
+      "Jeffrey M. Girard",
+      "Antony D'Avirro",
+      "Jason Z. Zheng",
+      "Jacqueline R. Vertino",
+      "Benjamin Peloquin"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.HC",
+      "eess.AS"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16051",
+     "pdf_url": "https://arxiv.org/pdf/2611.16051",
+     "published": "2026-11-13",
+     "summary": "The authors examine customer-service agent speech and find that human-likeness and conversational preference diverge, meaning systems can rank differently on the two judgments.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.16223",
+     "title": "We Are What We Remember: Mental-State-Driven Memory for Long-Term Character Dialogue",
+     "abstract": "Shared history in human dialogue is not merely a repository of facts, but the foundation of evolving relationships and mutual understanding. However, mainstream conversational memory systems rely on passive semantic similarity over external fact stores, frequently retrieving topically similar records while missing relationally pivotal experiences. Inspired by cognitive psychology's Self-Memory System (SMS), we propose MindMem, a mental-state-driven memory framework that asynchronously consolidates shared experiences into source-linked mental states of the character, the user, and their relationship. At each turn, a specialized mental-state reasoner (Mind) contextualizes these persistent states to anticipate latent user needs, form proactive intentions, and recover supporting episodic evidence that surface-level matching overlooks. To evaluate history-sensitive adaptation beyond factual recall, we introduce MemReal-Bench, a longitudinal benchmark grounded in month-long real-user interactions across dyadic and group scenes. By pairing Direct Question Answering (DQA) with Situated Memory Realization (SMR), it tests whether agents bridge the gap between knowing past facts and naturally using shared history, world rules, and relational trajectories. On MemReal-Bench, MindMem reaches 59.03% SMR and 82.58% DQA, exceeding the strongest memory baseline by 24.19 and 9.19 percentage points, respectively, and outperforming oracle target-memory injection on SMR. Code and dataset are available at https://github.com/jiazhicheng7-ctrl/MindMem.",
+     "authors": [
+      "Zhicheng Jia",
+      "Shuchen Wu",
+      "Zhuoshi Tong",
+      "Haisen Liao",
+      "Sicheng Zhou"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16223",
+     "pdf_url": "https://arxiv.org/pdf/2611.16223",
+     "published": "2026-11-13",
+     "summary": "The authors propose MindMem, a mental-state-driven memory framework that consolidates shared experiences into persistent states, and evaluate it using a new longitudinal benchmark called MemReal-Bench.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.16816",
+     "title": "Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning",
+     "abstract": "To keep long interaction contexts tractable, stepwise group-relative training for multi-turn LLM agents materializes each source trajectory into multiple response rows and valid tokens. This expansion creates an outer-accounting problem distinct from within-trajectory credit assignment: row-based outcome statistics can count one episode outcome multiple times, while token-level reduction can assign unequal aggregate objective mass across trajectories. We term these effects outcome-statistics multiplicity and objective-mass imbalance. We introduce Outcome-Mass Alignment (OMA), a two-component method that makes both accounting choices explicit. Outcome Alignment computes outcome statistics over unique source trajectories, while Mass Alignment controls aggregate objective mass after within-trajectory aggregation of optimizer-native token objectives. Neither redesigns the base optimizer's credit assignment, importance ratios, or clipping. Across matched ALFWorld GRPO comparisons at two model scales, where failed trajectories typically expand much more than successful ones, OMA improves matched-horizon endpoint success by 7.0-9.4 percentage points. Ordinary WebShop exhibits weak or reversed expansion-outcome coupling and correspondingly mixed effects, whereas in a success-oriented WebShop setting, WebShop-SOL, OMA improves success nAUC from 0.399 to 0.511. Component ablations and GiGPO and GSPO comparisons further support component separability and cross-optimizer compatibility. These results show that trajectory expansion always defines an implicit weighting rule, but its practical effect depends on how expansion couples to outcomes and optimizer-native updates.",
+     "authors": [
+      "Dawei Zhang",
+      "Yubin Huangfu",
+      "Jessica Fan",
+      "Boyu Wei",
+      "Likang Wu",
+      "Hongke Zhao",
+      "Ming He",
+      "Zhu Teng"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16816",
+     "pdf_url": "https://arxiv.org/pdf/2611.16816",
+     "published": "2026-11-13",
+     "summary": "The authors introduce Outcome-Mass Alignment to control length-dependent trajectory influence in multi-turn large language model agent reinforcement learning, improving endpoint success across matched evaluations.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.14774",
+     "title": "An LLM Is All You Need: Data-Efficient Adaptation to Full-Duplex, Word-Level Spoken Dialogue",
+     "abstract": "Full-duplex spoken dialogue, in which a system listens while it speaks and can backchannel, yield the floor, and be interrupted, is usually obtained by training on hundreds of thousands to millions of hours of speech. This is costly, rewrites the language model that supplies the system's knowledge, and still leaves turn-taking either implicit or decided coarsely rather than word by word. We show that a frozen, general-purpose multimodal LLM can instead be adapted into a word-level full-duplex system with little data. Our system is a thinker-talker cascade on an 80 ms frame clock. The thinker keeps the LLM frozen and trains only lightweight adapters and a few new token embeddings (97M parameters); at every frame it emits one token of agent text, with pauses, yields, and onsets represented as tokens of the same vocabulary and kept legal by a finite-state machine. A four-stage curriculum, each stage anchored to the model's own behavior under the previous format, performs the conversion in about 30 GPU-hours. The talker reads only the thinker's discrete tokens, so the two halves are trained independently. On Full-Duplex-Bench and InteractionBench, the system is competitive with open-source full-duplex systems built through large-scale speech training: among them, it is the least likely to take the floor when the user merely pauses, backchannels most often, and leads in spoken-task accuracy, groundedness, and coherence over long conversations.",
+     "authors": [
+      "Tairan Chen",
+      "Richard Yucheng He",
+      "Yihang Liu",
+      "Baodong Cao",
+      "Chen Xu"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.SD",
+      "eess.AS"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14774",
+     "pdf_url": "https://arxiv.org/pdf/2611.14774",
+     "published": "2026-11-13",
+     "summary": "The authors demonstrate that a frozen multimodal large language model can be adapted into a word-level full-duplex spoken dialogue system using minimal data and a four-stage curriculum.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "New research investigates the energy and carbon costs of federated fine-tuning for large language models across different hardware configurations. The findings indicate that optimizing local training steps can significantly reduce energy consumption without compromising model accuracy.",
+   "papers": [
+    {
+     "id": "2611.16856",
+     "title": "Sustainable Federated Fine-Tuning with LoRA: Environmental Impact and Performance Footprint",
+     "abstract": "Federated Learning (FL) with Parameter-Efficient Fine-Tuning (PEFT) enables efficient adaptation of Large Language Models (LLMs), yet its energy and carbon costs across hardware remain poorly understood. We evaluated federated Low-Rank Adaptation (LoRA) fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps. CodeCarbon tracked energy and estimated CO$_2$-equivalent emissions. Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within these ranges. On A40 and RTX 6000 Ada, configurations with fewer steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption and higher accuracy per kWh. These findings support smaller local budgets for energy-efficient federated fine-tuning within the evaluated setting.",
+     "authors": [
+      "Pedro Augusto Londe Ribeiro",
+      "Rodrigo Moreira",
+      "Larissa Ferreira Rodrigues Moreira",
+      "Joberto S. B. Martins",
+      "Tereza C. Carvalho",
+      "Fl\\'avio de Oliveira Silva"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.NI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16856",
+     "pdf_url": "https://arxiv.org/pdf/2611.16856",
+     "published": "2026-11-13",
+     "summary": "The authors evaluated federated Low-Rank Adaptation (LoRA) fine-tuning across various GPUs, finding that local training steps account for the vast majority of energy and emission variations while configurations with fewer steps yield substantially lower energy consumption.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "New research presents advancements in battery cycler technology for investigating lithium-ion cell aging under specific current conditions. The studies demonstrate improved control schemes for tracking combined direct current and sinusoidal components in battery management systems.",
+   "papers": [
+    {
+     "id": "2611.16926",
+     "title": "Improved Single-Input Space Vector for DC-Biased Sinusoidal Current Control in Battery Cyclers",
+     "abstract": "This paper presents improvements to the single-input space vector (SISV) concept for current control in a battery cycler based on a two-phase interleaved buck converter. The cycler is controlled to output a dc-biased sinusoidal current, enabling investigation of second-harmonic ripple effects on lithium-ion cell aging. A modified SISV generation scheme is introduced to track current references containing both dc and sinusoidal components, and an impedance-angle compensation method is proposed to decouple the d and q control axes without disturbing dc tracking. A dq phase-portrait visualization method is also introduced to evaluate transient performance for both SISV and proportional-integral-resonant (PIR) control methods. Simulation and experimental results validate dc-biased sinusoidal current tracking using PIR control and SISV control with different decoupling schemes. The phase-portrait framework allows for straightforward evaluation of transient performance for both SISV and PIR control methods and supports controller tuning to obtain desired trajectories. The results demonstrate the feasibility of SISV-based current control as an alternative to PIR control for battery-cycler applications. The proposed improvements support the development of battery cyclers capable of controlling both dc and sinusoidal current components.",
+     "authors": [
+      "Manveer Aujla",
+      "Philip Lewoc",
+      "Harminderjit S. Toor",
+      "Ahmad Ali",
+      "Caniggia Viana",
+      "Narayan C. Kar"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16926",
+     "pdf_url": "https://arxiv.org/pdf/2611.16926",
+     "published": "2026-11-13",
+     "summary": "The authors report an improved single-input space vector current control scheme for battery cyclers that enables the tracking of dc-biased sinusoidal currents to investigate lithium-ion cell aging, demonstrating through simulation and experiment that this approach is a viable alternative to proportional-integral-resonant control.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
