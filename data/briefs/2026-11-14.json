@@ -1,0 +1,309 @@
+{
+ "date": "2026-11-14",
+ "issued": "2026-11-14T13:00:43.893812+00:00",
+ "total": 3555,
+ "kind": "review",
+ "covered": [
+  "2026-11-09",
+  "2026-11-10",
+  "2026-11-11",
+  "2026-11-13"
+ ],
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses critical limitations in conversational AI and LLM agents, focusing on memory systems, multi-turn tool use, security vulnerabilities, and workflow safety. These studies systematically evaluate how agents retain information, handle complex dialogues, resist memory poisoning, and maintain clinical accuracy.",
+   "papers": [
+    {
+     "id": "2611.13426",
+     "title": "BioMem: Agentic Memory for Biomedical LLM Agents",
+     "abstract": "Large language models (LLMs) have demonstrated considerable potential in biomedical applications, while agentic memory systems have emerged as a promising approach to preserving and utilizing information across tasks and interactions. However, a fundamental question remains: how effectively and reliably do these systems retain, retrieve, update, and utilize biomedical information? In this study, we systematically investigate agentic memory in the biomedical domain, focusing on task effectiveness, retrieval quality, information fidelity, and long-term robustness. We evaluate five memory approaches across four LLMs in three representative settings: biomedical knowledge reasoning, clinical prediction, and long-term conversational memory. Our analyses reveal how memory construction, evidence relevance, and conversational history shape downstream biomedical performance, highlighting the distinct challenges of retrieving relevant information, preserving its fidelity, and effectively utilizing it for reasoning. Building on these findings, we introduce Hybrid Memory Retrieval and Utilization (HMRU), a training-free framework that jointly enhances evidence accessibility and task-aware utilization to improve biomedical reasoning and long-term conversational memory. HMRU achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks, with additional gains in selected clinical prediction tasks. It further reduces conversational answer errors by 24.9% and closes 48.0% of the performance gap to full-context inference. Our findings provide a systematic characterization of biomedical agentic memory and practical insights into developing more effective and reliable memory-augmented LLM systems.",
+     "authors": [
+      "Mingchen Li",
+      "Yongkang Xiao",
+      "Rumeng Li",
+      "Rui Zhang",
+      "Hong Yu"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13426",
+     "pdf_url": "https://arxiv.org/pdf/2611.13426",
+     "published": "2026-11-11",
+     "summary": "The authors investigate agentic memory across biomedical large language models and introduce Hybrid Memory Retrieval and Utilization, a training-free framework that achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.14925",
+     "title": "ToolTurns: Benchmarking LLM Agents in Multi-Turn Dialogue",
+     "abstract": "Tool-using language models are increasingly deployed in conversational settings, yet most large-scale tool-use benchmarks focus on isolated requests. We introduce ToolTurns, a benchmark of 2,620 problems spanning 1,827 tools and 11,004 API endpoints across 47 categories. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. We also introduce an open-source user simulator that reveals withheld context through dialogue and generates follow-up requests, with a checker--fixer pipeline for improving its turns. Across nine language models, the best agent resolves 69.6% of individual requests but completes only 39.8% of full dialogues. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns. ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools.",
+     "authors": [
+      "Milad Gholami",
+      "Brendan King",
+      "Jeffrey Flanigan"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14925",
+     "pdf_url": "https://arxiv.org/pdf/2611.14925",
+     "published": "2026-11-13",
+     "summary": "The authors introduce ToolTurns, a benchmark of 2,620 problems to evaluate large language model agents in multi-turn dialogues, finding that models perform worse on follow-up requests than on initial ones.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.09990",
+     "title": "Peer Memory Changes Who LLM Agents Consult Without a Detected Gain in Answer Accuracy",
+     "abstract": "Multi-agent LLM systems often reuse the same agents across tasks, creating an opportunity to draw on past interactions when deciding whom to consult. We study this form of memory with PeerMem, which saves MACE's LinUCB state and reuses it when the same agents return. Using six agents, a fixed set of 80 HotpotQA questions, and 12 paired lineages per model, we compare cold, warm, and shuffled initialization in an answer-exchange protocol with reference-answer feedback. Under stable evidence access, warm memory lowers pooled hindsight regret and increases consultation of other evidence holders on Qwen3-32B and Gemma-4-31B-it, while final token F1 differences remain uncertain. Qwen interaction traces further show that warm agents more often encounter peer answers that score above their own prior answers. We extend the evaluation to Qwen3.5-9B using freshly learned memory to compare warm and cold initialization under reassigned and paired stable roles. The primary changed-minus-stable final-F1 interaction is -1.38 points, with a 95% interval of [-3.50,+0.73]. Together, these experiments trace the effects of peer memory through consultation, answer revision, and final task performance.",
+     "authors": [
+      "Jeffrey Chu",
+      "Anjali Joseph",
+      "Rivan Mandot",
+      "Feker Demere",
+      "Vincent Li"
+     ],
+     "categories": [
+      "cs.MA",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09990",
+     "pdf_url": "https://arxiv.org/pdf/2611.09990",
+     "published": "2026-11-10",
+     "summary": "Researchers investigate PeerMem, a memory mechanism for multi-agent LLM systems, finding that warm memory lowers pooled hindsight regret and increases peer consultation on specific models without a detected gain in final answer accuracy.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.09721",
+     "title": "MemoryDojo: Benchmarking Poisoning Through LLM Agent Memory",
+     "abstract": "LLM agents benefit from using memory systems to improve performance on long-horizon, multi-session tasks. However, memory introduces a critical attack surface. Malicious instructions encountered in one session may be stored and propagated through memory before being retrieved and acted upon in later sessions. Because memory systems differ in how they process and retrieve information, the downstream effects of poisoning can vary significantly across systems. To quantify the effects of poisoning across different memory architectures, we introduce MemoryDojo, a benchmark for tracing the lifecycle of poisoned information through agent memory and measuring its influence on subsequent agent behavior. MemoryDojo is easily extensible, consists of 155 multi-session long-horizon trajectories covering four domains, and supports five different memory systems. Through our evaluation, we find that all memory systems are susceptible to memory poisoning, with substantial variation in downstream effects. We further propose a memory-aware poison optimization process that increases the poisoning efficacy, highlighting differences between memory architectures. We hope that MemoryDojo will support research on understanding and mitigating agentic memory risks.",
+     "authors": [
+      "David H. Yang",
+      "Blake Bullwinkel",
+      "Amanda Minnich",
+      "Mohammad Mohammadi Amiri",
+      "Giorgio Severi"
+     ],
+     "categories": [
+      "cs.CR",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09721",
+     "pdf_url": "https://arxiv.org/pdf/2611.09721",
+     "published": "2026-11-09",
+     "summary": "The authors introduce MemoryDojo, a benchmark for evaluating poisoning across five agent memory systems, and find that all tested architectures are susceptible to malicious instructions propagated through multi-session tasks.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.11541",
+     "title": "Safeguarding Agentic AI in Radiology Workflows: A Multimodel Evaluation of Rule-based and Large Language Model-based Verification",
+     "abstract": "Purpose: To estimate how often tool-using large language model (LLM) agents record clinically relevant false or unsupported information in simulated radiology documentation and how much safeguards applied before each action reduce these errors. Materials and Methods: In this simulation study (October 2026), 48 synthetic, radiologist-reviewed base scenarios covered finding communication, tumor board preparation and follow-up management. Forty-three also had a misleading-information variant (91 variants). Six LLM agents (Claude Sonnet 5.5, GPT-6.1-Sol, GLM-5.3, MiniMax M3, Gemma-4-31B, Qwen3.8-27B) completed each variant with permissions only, deterministic rules, and rules plus a locally run LLM checker (1638 episodes). The primary outcome was at least one executed high-severity violation per episode. Risk differences were estimated per agent at base-scenario level and, exploratorily, pooled across agents, with analyses of document access and blocks. Results: With permissions only, 7.3%-27.1% of episodes had a high-severity violation (pooled across agents, 19.4%). Pooled, it was 16.7% with rules (-2.8 percentage points; 95% CI: -6.1, 0.5) and 13.2% with rules plus the LLM checker (-6.2; 95% CI: -9.5, -3.0). Adding the LLM checker to rules changed it by -3.5 (95% CI: -6.3, -0.7). No difference between agents was detected (P = .43), and task success did not decrease detectably. In misleading variants, agents opened the altered document in 83% of episodes regardless of error, and 58% of erroneous statements cited it. Most blocked actions (64%-68%) would not have caused a violation and were returned for revision. Conclusion: Layered safeguards reduced but did not prevent high-severity errors. Errors after misleading information reflected misjudged rather than missed information.",
+     "authors": [
+      "Semil Eminovic",
+      "Robin Schmidt",
+      "Bogdan Levita",
+      "Maximilian Lindholz",
+      "Tobias Penzkofer",
+      "Jawed Nawabi"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11541",
+     "pdf_url": "https://arxiv.org/pdf/2611.11541",
+     "published": "2026-11-10",
+     "summary": "A simulation study evaluating safeguards in radiology workflows reports that applying rules and a locally run LLM checker reduces high-severity violations in tool-using LLM agent documentation compared to permission-only settings.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses the growing environmental impact of machine learning by exploring carbon-aware client selection in federated learning, joint optimization for edge inference, and the carbon footprints of federated fine-tuning and agentic AI systems. New methods also improve energy attribution for large language model batches.",
+   "papers": [
+    {
+     "id": "2611.09552",
+     "title": "Towards Sustainable Federated Learning via Carbon-Aware Client Selection",
+     "abstract": "The Information/Communication Technology (ICT) industry is severely challenging the global environment due to the sharply rising carbon emissions generated by machine learning (ML) workloads. Federated Learning (FL) is one of the prominent distributed ML systems used in applications with billions of client devices, such as Google Gboard and Apple Siri. Nearly half of the total carbon footprint in FL originates from client-side computation during local training. However, existing client selection strategies in FL primarily focus on minimizing energy consumption rather than carbon emissions, despite the fact that carbon impact depends not only on computational load but also on the underlying carbon intensity of the energy source. In this paper, we address this gap by proposing a carbon-aware fair client selection strategy (CA-FCS) designed to minimize the carbon emissions associated with model training on client devices. In contrast to existing approaches for reducing carbon emissions in FL, we incorporate hourly carbon intensity and a realistic energy consumption model developed using empirical measurements from Google Pixel smartphones to estimate client-side carbon emissions in FL. Since repeatedly selecting low-carbon clients may reduce data diversity and degrade global model performance, particularly under non-independent and identically distributed (non-IID) data settings, CA-FCS incorporates fairness into client selection to mitigate this issue. We conduct extensive experiments under realistic FL settings for mobile devices, where client participation is constrained by device availability conditions, such as charging status and Wi-Fi connectivity. The results demonstrate that our method reduces client-side carbon emissions by up to 46% while maintaining competitive model accuracy.",
+     "authors": [
+      "Wentao Gao",
+      "Omid Tavallaie",
+      "Albert Y. Zomaya"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.09552",
+     "pdf_url": "https://arxiv.org/pdf/2611.09552",
+     "published": "2026-11-09",
+     "summary": "The authors propose a carbon-aware fair client selection strategy for federated learning to minimize client-side emissions while maintaining data diversity and global model performance.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.11106",
+     "title": "Jointly Optimizing Memory, Computing and Offloading for Energy-Efficient DNN Inference",
+     "abstract": "In edge intelligence systems, computation offloading and dynamic voltage and frequency scaling (DVFS) are widely used to improve energy efficiency. However, as applications like deep neural network (DNN) inference evolve in complexity, their demands for memory resources have progressively increased, establishing memory as a critical bottleneck that impacts both latency and energy consumption. In this paper, we propose a joint optimization scheme integrating memory, computing and offloading for energy-efficient DNN inference. We formulate the energy minimization problem under deadline constraints as a mixed-integer nonlinear programming (MINLP) problem, where the main challenge arises from the coupling between offloading and resource optimization. To address this issue, we decompose the original problem into two subproblems under a fixed offloading policy. The local subproblem is transformed into an equivalent geometric programming (GP) problem to derive the optimal memory frequency and computing frequency, while the edge subproblem is solved via convex optimization. An efficient coordinate descent (CD) algorithm is further developed to jointly optimize all variables. Simulation results demonstrate that our proposed algorithm achieves near-optimal performance with the gap from the optimal policy being at most 9.3%, and reduces the energy consumption of devices by up to 16.1% compared with benchmarks without memory frequency optimization.",
+     "authors": [
+      "Yunchu Han",
+      "Zhaojun Nan",
+      "Sheng Zhou",
+      "Zhisheng Niu"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.11106",
+     "pdf_url": "https://arxiv.org/pdf/2611.11106",
+     "published": "2026-11-10",
+     "summary": "The authors propose a joint optimization scheme integrating memory, computing, and offloading for energy-efficient deep neural network inference, demonstrating through simulation that the algorithm achieves near-optimal performance with a maximum gap of 9.3% and reduces device energy consumption by up to 16.1% compared to benchmarks.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.16856",
+     "title": "Sustainable Federated Fine-Tuning with LoRA: Environmental Impact and Performance Footprint",
+     "abstract": "Federated Learning (FL) with Parameter-Efficient Fine-Tuning (PEFT) enables efficient adaptation of Large Language Models (LLMs), yet its energy and carbon costs across hardware remain poorly understood. We evaluated federated Low-Rank Adaptation (LoRA) fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps. CodeCarbon tracked energy and estimated CO$_2$-equivalent emissions. Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within these ranges. On A40 and RTX 6000 Ada, configurations with fewer steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption and higher accuracy per kWh. These findings support smaller local budgets for energy-efficient federated fine-tuning within the evaluated setting.",
+     "authors": [
+      "Pedro Augusto Londe Ribeiro",
+      "Rodrigo Moreira",
+      "Larissa Ferreira Rodrigues Moreira",
+      "Joberto S. B. Martins",
+      "Tereza C. Carvalho",
+      "Fl\\'avio de Oliveira Silva"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.NI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16856",
+     "pdf_url": "https://arxiv.org/pdf/2611.16856",
+     "published": "2026-11-13",
+     "summary": "The authors evaluated federated Low-Rank Adaptation (LoRA) fine-tuning across various GPUs, finding that local training steps account for the vast majority of energy and emission variations while configurations with fewer steps yield substantially lower energy consumption.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.12128",
+     "title": "Toward Sustainable Agentic AI: Carbon Tradeoffs Across Iterative Self-Refinement and Tool-Augmented Coding",
+     "abstract": "Agentic language model systems can improve performance either by iterating on their own outputs or by using external tools in grounded environments. While these strategies can reduce error rates and substitute for larger models in some settings, their environmental cost remains relatively underexplored. We present two complementary empirical studies that estimate the energy and carbon footprint of agentic AI across settings of increasing complexity. Study~1 evaluates iterative verbal self-refinement: GPT-4.1-mini at $k = 1$--$5$ steps versus a GPT-4.1 single-pass baseline on two MATH benchmark splits. Study~2 evaluates tool-augmented agentic coding: GPT-4.1-mini, Claude Opus~4.6, and GPT-5.3-codex on SWE-bench Lite, where agents operate inside Docker-isolated environments with access to code execution and file editing tools. In Study~1, $k=3$ refinements close a 16-percentage-point accuracy gap to within 1~point, but nearly triple the carbon footprint relative to the cheap single-pass baseline while remaining below the GPT-4.1 single-pass baseline under the current token-based carbon scenario. In Study~2, GPT-5.3-codex achieves the highest resolution rate in this sample (81.2\\%), ahead of Claude Opus~4.6 (68.9\\%) and GPT-4.1-mini (25.0\\%), but resolved-task-normalized efficiency remains mixed: GPT-4.1-mini is lowest on estimated carbon and cost per resolved task, while GPT-5.3-codex delivers substantially higher task success. All carbon estimates cover output-token inference only; prompt tokens, which exceed 99\\% of tokens in Study~2, and tool execution are not charged, so the figures are lower bounds on the full agentic footprint.",
+     "authors": [
+      "Boris Ruf",
+      "Adrien de Mailly Nesle",
+      "Marcin Detyniecki"
+     ],
+     "categories": [
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12128",
+     "pdf_url": "https://arxiv.org/pdf/2611.12128",
+     "published": "2026-11-10",
+     "summary": "The authors evaluate the energy and carbon footprint of agentic language model systems through empirical studies on iterative self-refinement and tool-augmented coding, finding that while refinements increase carbon costs, certain models achieve high task success and varied resolved-task-normalized efficiencies.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.13802",
+     "title": "Scaling Shapley Energy Attribution to Large LLM Batches",
+     "abstract": "LLM services have become essential infrastructure for applications such as chat assistants and coding agents. Service providers need to attribute resource consumption to individual requests for purposes such as billing. Among these resources, energy is a key metric for assessing the cost of serving each request. However, serving engines batch requests together, and GPUs report only aggregate energy consumption. Providers typically estimate each request's share in proportion to its token consumption, but this approach can produce substantially unfair estimates. The Shapley value provides a principled solution to fair energy allocation, but computing it directly requires $2^N-1$ GPU runs for $N$ requests, which is infeasible for large batches. To address this problem, we propose StepSplit. Across GPU generations, we observe that the energy consumed by each inference step, a forward pass over a batch, consists of a shared energy, largely due to reading model weights, and a request-specific energy. We derive a closed-form Shapley value: each request is charged its own energy plus an equal part of the shared energy of every step in which it participates. A microbenchmark of 2.5-17.8 minutes calibrates both parts of the step energy once per model and GPU configuration. Under static batching, StepSplit uses this closed form in a single pass over the scheduler log. Under continuous batching, removing a request can change how the remaining requests are batched, so StepSplit adds a correction to the closed form, computed by replaying the scheduler on a CPU. We evaluate StepSplit against Shapley values measured using 529,513 GPU runs. Under static batching with batch sizes of 8-256, StepSplit achieves an $L_1$ error of 0.4-4.3%, compared with 13.4-61.3% for token-proportional allocation. Under continuous batching with 8-128 requests, the corresponding errors are 0.5-6.4% and 20.6-71.7%.",
+     "authors": [
+      "Qi Luo",
+      "Ziwen Wang",
+      "Kunlin Li",
+      "Changxi Liu",
+      "Yun Chen"
+     ],
+     "categories": [
+      "cs.DC",
+      "cs.AR",
+      "cs.PF"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13802",
+     "pdf_url": "https://arxiv.org/pdf/2611.13802",
+     "published": "2026-11-11",
+     "summary": "The authors propose StepSplit, a method using a closed-form Shapley value to efficiently attribute energy consumption to individual requests in large language model batches based on shared and request-specific inference step energies.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "Recent research addresses critical challenges in battery management systems by optimizing degradation-aware frequency regulation strategies and improving state-parameter estimation methods. Furthermore, new developments enhance current control techniques in battery cyclers to investigate the effects of ripple currents on cell aging.",
+   "papers": [
+    {
+     "id": "2611.12555",
+     "title": "Degradation-Aware Participation of Battery Storage in Frequency Regulation Markets",
+     "abstract": "As data centers make the load on the power grid fluctuate faster, frequency regulation grows more valuable. Battery energy storage systems (BESSs) are well suited to provide frequency regulation, but providing this service speeds up aging, especially during operation at extreme state of charge (SoC). In the PJM interconnection, the grid operator supplies a regulation signal that a participating BESS is expected to follow, within a capacity that it must bid before the signal is known. Accordingly, we decompose the degradation-aware frequency regulation problem into a bidding layer and an operations layer. For bidding, we propose an adaptive strategy, assuming perfect tracking in which the bid depends on the SoC expected at the start of the bid period by means of choosing basepoints. For operation, the BESS further protects its battery by deliberately giving up a perfect performance score, to keep its SoC away from the extremes. On the PJM regulation signal and prices of 2023, adaptive bids lengthen the battery life by $31\\%$ against bidding full capacity, for $2.2\\%$ of the revenue. Giving up a perfect score in operation lengthens the battery life of constant bids by $10\\%$ to $27\\%$, at a change in revenue of at most $0.2\\%$.",
+     "authors": [
+      "Anand Gokhale",
+      "Siddharth Bhela"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12555",
+     "pdf_url": "https://arxiv.org/pdf/2611.12555",
+     "published": "2026-11-10",
+     "summary": "Researchers decompose the degradation-aware frequency regulation problem into bidding and operations layers, finding that adaptive bidding and sacrificing performance scores to avoid extreme states of charge can lengthen battery life by up to 31 percent with negligible revenue loss.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.13202",
+     "title": "Robust State-Parameter Estimation in Second-Order Th\\'evenin Batteries",
+     "abstract": "We propose a scheme for estimating the full states and parameters of a second-order Th\\'evenin battery model, using distinct features of the measured current. An identification step, run during suitable rest intervals, identifies the resistances and capacitances of the two RC branches from the voltage relaxation by linear least squares, without knowledge of the open-circuit voltage (OCV) map. An online estimator then runs continuously: the polarization voltages are estimated by open-loop observers; the series resistance is updated at current jumps using least squares; the state of charge (SOC) is propagated by Coulomb counting using the current capacity estimate, and both estimates are updated periodically by a sliding-window regression. We show that the identification is exact under a mild rank condition, that the series resistance is recovered at the first current jump, and that the online state and capacity estimates converge exponentially under verifiable excitation conditions. We also establish robustness of the online estimator under bounded process disturbances and measurement noise.",
+     "authors": [
+      "Wissam Khennoune",
+      "G. Q. Bao Tran",
+      "Thach Ngoc Dinh",
+      "J\\'er\\'emy Van Gorp",
+      "Mathieu Moze"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13202",
+     "pdf_url": "https://arxiv.org/pdf/2611.13202",
+     "published": "2026-11-11",
+     "summary": "The authors propose a scheme for estimating the full states and parameters of a second-order Thévenin battery model using measured current features, finding that the method achieves exact identification, rapid series resistance recovery, and exponentially convergent online estimates under verifiable excitation conditions.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.16926",
+     "title": "Improved Single-Input Space Vector for DC-Biased Sinusoidal Current Control in Battery Cyclers",
+     "abstract": "This paper presents improvements to the single-input space vector (SISV) concept for current control in a battery cycler based on a two-phase interleaved buck converter. The cycler is controlled to output a dc-biased sinusoidal current, enabling investigation of second-harmonic ripple effects on lithium-ion cell aging. A modified SISV generation scheme is introduced to track current references containing both dc and sinusoidal components, and an impedance-angle compensation method is proposed to decouple the d and q control axes without disturbing dc tracking. A dq phase-portrait visualization method is also introduced to evaluate transient performance for both SISV and proportional-integral-resonant (PIR) control methods. Simulation and experimental results validate dc-biased sinusoidal current tracking using PIR control and SISV control with different decoupling schemes. The phase-portrait framework allows for straightforward evaluation of transient performance for both SISV and PIR control methods and supports controller tuning to obtain desired trajectories. The results demonstrate the feasibility of SISV-based current control as an alternative to PIR control for battery-cycler applications. The proposed improvements support the development of battery cyclers capable of controlling both dc and sinusoidal current components.",
+     "authors": [
+      "Manveer Aujla",
+      "Philip Lewoc",
+      "Harminderjit S. Toor",
+      "Ahmad Ali",
+      "Caniggia Viana",
+      "Narayan C. Kar"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16926",
+     "pdf_url": "https://arxiv.org/pdf/2611.16926",
+     "published": "2026-11-13",
+     "summary": "The authors report an improved single-input space vector current control scheme for battery cyclers that enables the tracking of dc-biased sinusoidal currents to investigate lithium-ion cell aging, demonstrating through simulation and experiment that this approach is a viable alternative to proportional-integral-resonant control.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
