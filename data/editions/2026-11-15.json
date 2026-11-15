@@ -1,0 +1,927 @@
+{
+ "date": "2026-11-15",
+ "issued": "2026-11-15T09:44:11.394641+00:00",
+ "edition": "Vol. I · No. 46",
+ "week_range": "08 Nov – 15 Nov 2026",
+ "scanned": 63,
+ "picked": 22,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "categories": [
+    "cs.CL"
+   ],
+   "overview": "Recent research in conversational AI and dialogue systems increasingly focuses on agentic memory infrastructure and multi-turn execution. Studies introduce frameworks such as BioMem and ToolTurns to evaluate and enhance tool usage and evidence accessibility in large language models. Furthermore, investigations explore unprompted coordination through shared memory and advanced multi-agent memory designs.",
+   "beyond": [
+    {
+     "title": "Retrieval-Augmented LLM Agents: Learning to Learn from Experience",
+     "url": "https://aclanthology.org/2026.emnlp-main.57.pdf",
+     "snippet": "to preserve conversational structure and training/inference consistency with chat models while keeping supervision on assistant action tokens. [...] We then format retrieved…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "A RAG Annotation Platform with Human ENhancements and Edits",
+     "url": "https://aclanthology.org/2026.emnlp-demos.34.pdf",
+     "snippet": "We present RAGAPHENE, a chat-based anno-tation platform for having conversations with an LLM that are grounded in an existing corpus to en-sure faithfulness, primarily for…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "D-Mem: A Dual-Process Memory System for LLM Agents",
+     "url": "https://aclanthology.org/2026.realm-1.91.pdf",
+     "snippet": "2 Related Work 2.1 Retrieval-Augmented Generation (RAG) Standard RAG retrieves documents via dense sim-ilarity and feeds them to a generator. Subsequent work has improved this…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "How Web Retrieval Degrades Safety Alignment in LLM Agents",
+     "url": "https://aclanthology.org/2026.findings-emnlp.2408.pdf",
+     "snippet": "Aditya Nawal Manit Baser Mohan Gurusamy National University of Singapore adityanawal@u.nus.edu, manit.baser@u.nus.edu, gmohan@nus.edu.sg Abstract AI agents augment large language…",
+     "host": "aclanthology.org"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.13426",
+     "title": "BioMem: Agentic Memory for Biomedical LLM Agents",
+     "abstract": "Large language models (LLMs) have demonstrated considerable potential in biomedical applications, while agentic memory systems have emerged as a promising approach to preserving and utilizing information across tasks and interactions. However, a fundamental question remains: how effectively and reliably do these systems retain, retrieve, update, and utilize biomedical information? In this study, we systematically investigate agentic memory in the biomedical domain, focusing on task effectiveness, retrieval quality, information fidelity, and long-term robustness. We evaluate five memory approaches across four LLMs in three representative settings: biomedical knowledge reasoning, clinical prediction, and long-term conversational memory. Our analyses reveal how memory construction, evidence relevance, and conversational history shape downstream biomedical performance, highlighting the distinct challenges of retrieving relevant information, preserving its fidelity, and effectively utilizing it for reasoning. Building on these findings, we introduce Hybrid Memory Retrieval and Utilization (HMRU), a training-free framework that jointly enhances evidence accessibility and task-aware utilization to improve biomedical reasoning and long-term conversational memory. HMRU achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks, with additional gains in selected clinical prediction tasks. It further reduces conversational answer errors by 24.9% and closes 48.0% of the performance gap to full-context inference. Our findings provide a systematic characterization of biomedical agentic memory and practical insights into developing more effective and reliable memory-augmented LLM systems.",
+     "authors": [
+      "Mingchen Li",
+      "Yongkang Xiao",
+      "Rumeng Li",
+      "Rui Zhang",
+      "Hong Yu"
+     ],
+     "published": "2026-11-10T01:09:11Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13426",
+     "pdf_url": "https://arxiv.org/pdf/2611.13426v1",
+     "insight": {
+      "tldr": "Researchers systematically investigate agentic memory systems in the biomedical domain and introduce a training-free framework called HMRU to enhance evidence accessibility and task-aware utilization.",
+      "problem": "The paper tackles the fundamental question of how effectively and reliably agentic memory systems retain, retrieve, update, and utilize biomedical information across tasks and interactions.",
+      "approach": "The authors systematically investigate agentic memory across four dimensions (task effectiveness, retrieval quality, information fidelity, and long-term robustness) by evaluating five memory approaches across four large language models in three settings: biomedical knowledge reasoning, clinical prediction, and long-term conversational memory. They also introduce Hybrid Memory Retrieval and Utilization (HMRU), a training-free framework.",
+      "key_findings": [
+       "HMRU achieves an average relative improvement of 8.6% across biomedical question-answering and conversational memory benchmarks, with additional gains in selected clinical prediction tasks.",
+       "HMRU reduces conversational answer errors by 24.9% and closes 48.0% of the performance gap to full-context inference.",
+       "Retrieving relevant information does not guarantee correct utilization, and semantic similarity does not necessarily correspond to clinical outcome similarity.",
+       "Iterative memory updates may introduce source-unsupported content, and long-term conversational memory performance cannot be explained by history length alone."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "It demonstrates how persistent memory systems, evidence retrieval, and dynamic information updating can be optimized in conversational AI and LLM agents to improve reliability and performance in complex domains such as biomedical applications.",
+      "tags": [
+       "biomedical llms",
+       "agentic memory",
+       "retrieval-augmented generation"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "GitHub - NY1024/AgentSafety-Papers: Daily Tracking of LLM Agent Security Papers on arXiv · GitHub",
+       "url": "https://github.com/NY1024/AgentSafety-Papers",
+       "snippet": "2026-11-10 — Mingchen Li, Yongkang Xiao, Rumeng Li et al. — BioMem: Agentic Memory for Biomedical LLM Agents [...] 📄 Abstract Large language models (LLMs) have demonstrated…",
+       "host": "github.com"
+      },
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=mutation+scores",
+       "snippet": "with scores varying more between repeated runs of one agent than between different agents, and without ground truth a correct run could not be told from a wrong one by its process…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "GitHub - dkmcintyre/agentic-long-term-memory: Agentic Long-Term Memory (ALTM) - A governed memory architecture for AI agents with cross-LLM continuity · GitHub",
+       "url": "https://github.com/dkmcintyre/agentic-long-term-memory",
+       "snippet": "## The Problem LLM agents suffer from \"context rot\" - losing learned behaviors, corrections, and institutional knowledge between sessions. Current solutions (RAG, vector DBs,…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.14925",
+     "title": "ToolTurns: Benchmarking LLM Agents in Multi-Turn Dialogue",
+     "abstract": "Tool-using language models are increasingly deployed in conversational settings, yet most large-scale tool-use benchmarks focus on isolated requests. We introduce ToolTurns, a benchmark of 2,620 problems spanning 1,827 tools and 11,004 API endpoints across 47 categories. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. We also introduce an open-source user simulator that reveals withheld context through dialogue and generates follow-up requests, with a checker--fixer pipeline for improving its turns. Across nine language models, the best agent resolves 69.6% of individual requests but completes only 39.8% of full dialogues. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns. ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools.",
+     "authors": [
+      "Milad Gholami",
+      "Brendan King",
+      "Jeffrey Flanigan"
+     ],
+     "published": "2026-11-11T02:27:30Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14925",
+     "pdf_url": "https://arxiv.org/pdf/2611.14925v1",
+     "insight": {
+      "tldr": "Researchers introduce ToolTurns, a benchmark for evaluating tool-using large language models across multi-turn dialogues with broad API coverage, revealing that agents struggle to sustain success over extended conversations.",
+      "problem": "Most large-scale tool-use benchmarks focus on isolated requests rather than evaluating tool-using language models across conversational settings that require clarification, tool use, and retention of conversational context over multi-turn dialogues.",
+      "approach": "The authors introduce ToolTurns, a benchmark consisting of 2,620 problems spanning 1,827 tools and 11,004 API endpoints across 47 categories, featuring an intentionally underspecified initial request followed by two context-dependent follow-ups. They pair this with an open-source user simulator featuring a checker-fixer pipeline and evaluate nine language models.",
+      "key_findings": [
+       "The best-performing agent resolves 69.6% of individual requests but completes only 39.8% of full dialogues.",
+       "Every evaluated model receives lower success scores on follow-up requests than on the initial request.",
+       "Dialogue-quality rubric scores and task success can rank models very differently.",
+       "A checker-fixer pipeline reduces detected dialogue defects by 41.2% among rewritten messages, and blind human evaluation favors the revised turns in 63.3% of sampled pairs."
+      ],
+      "limitations": "Measured difficulty mixes the agent with the simulated user's choices, tool observations come from a cache or LLM simulation rather than live calls, initial queries and withheld context are generated rather than written by humans, every dialogue is scored on a fixed three-request horizon, and evaluation relies on LLM judges.",
+      "why_it_matters": "It establishes that evaluating conversational AI and LLM agents requires tracking end-to-end task completion throughout multi-turn interactions rather than relying solely on isolated request metrics or dialogue-quality rubrics.",
+      "tags": [
+       "toolturns",
+       "llm agents",
+       "multi-turn dialogue"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "llm-coding-benchmark/docs/success_report.v2.md at master · akitaonrails/llm-coding-benchmark · GitHub",
+       "url": "https://github.com/akitaonrails/llm-coding-benchmark/blob/master/docs/success_report.v2.md",
+       "snippet": "The addendum that closed a v1-era workaround. In v1, DeepSeek V4 Pro could only be benchmarked through the deepclaude env-swap because opencode's ai-sdk stripped…",
+       "host": "github.com"
+      },
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=persistent+agents",
+       "snippet": "Agentic LLM systems that generate code through multi-turn tool use face a fundamental context problem: each session starts from zero, discarding the configuration choices, domain…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=tool-call+chunks",
+       "snippet": "Oxford ### Harness-S: Learning from Sibling Harnesses for Generalizable Agent Training SJUT1 ### Random Is Almost Enough? Stable and Low-Cost Benchmark Compression via BestRand…",
+       "host": "huggingface.co"
+      }
+     ]
+    },
+    {
+     "id": "2611.12412",
+     "title": "Unprompted coordination through shared memory in LLM agents: a locked two-implementation replication and extension",
+     "abstract": "Coordination between large language-model agents has become a central question for AI safety and software engineering, as such agents are deployed in groups that share infrastructure. Existing research tells the agents that partners exist or asks them to coordinate. Whether coordination arises through shared state alone, with nothing disclosing that anyone else is present, is the key question for deployments that share caches and memory between agents, yet it has rarely been examined, and never with independent replication; this study does both. Four agents each received a short arithmetic task and a key-value store presented to each as its own scratch space; two held complementary halves of one computation, and no prompt mentioned other agents, sharing or collaboration. For reliability, the environment was rebuilt independently from a written protocol, and both implementations ran under hashed locks on design, data and analysis. The results bear novelty value in three respects. Joint success occurred only through the shared store. Whether a model coordinated depended not on its vendor tier but on whether it wrote its intermediate result and looked at the store again, and one ordinary sentence, \"check your workspace again before submitting\", switched that second look on and off. The findings held under replication. For practice, state shared between agents is a communication channel and should be separated, namespaced and logged. For research, designs should be locked before the data, and the parse rule, endpoint and parameters reported. Future work should test open-weight models and separate using another agent's output from intending to communicate.",
+     "authors": [
+      "Pekka Abrahamsson",
+      "Muhammad Waseem",
+      "Esa Karjalainen",
+      "Petrus Jussila",
+      "Henri Hansen",
+      "Jussi Rasku",
+      "Bilhanan Silverajan",
+      "Kai-Kristian Kemell"
+     ],
+     "published": "2026-11-09T13:43:52Z",
+     "categories": [
+      "cs.MA",
+      "cs.CL",
+      "cs.SE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12412",
+     "pdf_url": "https://arxiv.org/pdf/2611.12412v1",
+     "insight": {
+      "tldr": "Researchers report that large language-model agents can unprompted coordinate through shared memory infrastructure without knowing other agents exist. The behaviour is governed by specific intermediate writing steps and minor workspace instructions.",
+      "problem": "Large language-model agents are frequently deployed in groups that share underlying infrastructure such as caches and memory services. It remains rarely examined whether these agents can coordinate through shared state alone without any explicit instruction or disclosure that other agents are present.",
+      "approach": "The authors evaluated four agents in a minimal environment receiving short arithmetic tasks and a key-value store presented as an individual scratch space, with no prompt mentioning collaboration. The study utilized an independently rebuilt environment from a written protocol, operating under hashed locks on design, data, and analysis across multiple models and two implementations.",
+      "key_findings": [
+       "Joint success between agents occurred exclusively through the shared store acting as an unprompted communication channel.",
+       "Whether a model coordinated depended on whether it wrote an intermediate result and looked at the store again, rather than its vendor tier.",
+       "A single sentence in the prompt, 'check your workspace again before submitting', switched the second look on and off.",
+       "The qualitative patterns held under an independent, locked replication, though implementation details like strict parsers and generic key names influenced outcomes."
+      ],
+      "limitations": "Future work needs to test open-weight models and separate using another agent's output from the explicit intention to communicate.",
+      "why_it_matters": "As conversational AI and LLM agents are deployed at scale with shared caches and memory services, unintended shared-state communication can emerge as a security risk and an uncontrolled side channel, requiring separate and logged namespaces.",
+      "tags": [
+       "llm agents",
+       "shared memory",
+       "coordination"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "AISafetyHot/daily-papers/topics/agent-security.md at main · wuyoscar/AISafetyHot · GitHub",
+       "url": "https://github.com/wuyoscar/AISafetyHot/blob/main/daily-papers/topics/agent-security.md",
+       "snippet": "提出预部署测试中未见失败概率的序贯上界方法，有统计保证地决定何时停止测试 · `Agent 安全` · Rachel Li … Manish Raghavan · arXiv 2611.15835 · 2026-11-11 · 解读 8. Unprompted coordination through shared memory in LLM…",
+       "host": "github.com"
+      },
+      {
+       "title": "memX - A real-time shared memory layer for multi-agent LLM systems. · microsoft/autogen · Discussion #6694 · GitHub",
+       "url": "https://github.com/microsoft/autogen/discussions/6694",
+       "snippet": "| This is the architecture we landed on after trying direct-messaging approaches for our 6-agent fleet. The memX framing — shared context via Redis + schema + pub/sub instead of…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - Sardor-M/a2a-memory-system: Shared memory layer for agents communicating over the Agent-to-Agent (A2A) protocol. · GitHub",
+       "url": "https://github.com/Sardor-M/a2a-memory-system",
+       "snippet": "Unlike traditional chatbot systems, A2A Memory System creates a persistent, shared cognitive space where multiple AI agents can: Share memories across sessions - Knowledge…",
+       "host": "github.com"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.12068",
+     "title": "MIRIX-2.0: Multi-Agent Memory System",
+     "abstract": "Long-term memory lets LLM agents personalize, stay consistent, and reuse what worked before. Parametric memories need training, consolidation can lose details for good, and keeping every record leaves a growing store to search. We present MIRIX-2.0, a multi-agent memory system designed to be practical, accurate, and efficient at once. It is the most accurate of the compared systems on four of five QA benchmarks. It reaches 91.4% on LoCoMo and 72.6% on LongMemEval-S, where it leads the strongest baseline by 14.3 points, and with AutoDream disabled it gains 31.0 and 22.0 points over HyperMem on single-hop and multi-hop document QA. As procedural memory, it yields the highest mean success among the compared memory methods on ALFWorld and WebShop and reaches 49.2% on MetaClaw-Bench, against 44.0% for MetaClaw's skill library. Six typed memory agents keep complete records as the system of record, and a provenance hypergraph indexes episodic and semantic records with n-ary frames that cite their rows. Retrieval runs under explicit budgets, so the evidence a question inspects does not grow with the history. AutoDream merges duplicate anchors outside the write path without rewriting any record, and it distills task sessions into skills. With AutoDream disabled, MIRIX-2.0 answers faster than HyperMem on all five timed benchmarks. It needs no fine-tuning, runs with closed and open models, and its code is public.",
+     "authors": [
+      "Wei-Chieh Huang",
+      "Weizhi Zhang",
+      "Jiayan Nan",
+      "Peng Xia",
+      "Yu Wang"
+     ],
+     "published": "2026-11-09T08:43:21Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12068",
+     "pdf_url": "https://arxiv.org/pdf/2611.12068v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.17068",
+     "title": "Discovering Effective Agent Memory Designs through Program Evolution",
+     "abstract": "Program evolution provides a promising approach to discover agent memory designs and study the choices underlying their effectiveness. We introduce MAPE, a framework that evolves whole memory programs from minimal seeds through a standardized lifecycle interface and an iterative diagnosis-proposal loop. Experiments on LoCoMo and LongMemEval yield an absolute accuracy gain of up to 12% over manually designed baselines at 35% of the serving cost, with further evaluations supporting transfer across serving backbones and benchmarks. Empirical analyses and ablations identify and validate two recurring design patterns: retaining raw conversations as retrievable evidence preserves details omitted from extracted memories, while composing retrieved evidence according to query intent helps the answering model use it effectively. Transplanting the composition module into five existing memory systems improves accuracy across all five. Beyond these patterns, the search objective shapes where computation goes: optimizing serving cost alongside accuracy shifts computation from LLM-based memory construction to selective processing at query time while retaining competitive accuracy. Together, these findings offer empirical lessons for agent memory design. Code is available at https://github.com/ash-ding/MAPE.",
+     "authors": [
+      "Xinheng Ding",
+      "Seyyed Saeid Cheshmi",
+      "Ziyang Zhang",
+      "Tairan Chen",
+      "Wenya Xie",
+      "Yu Hou",
+      "Rui Zhang",
+      "Zirui Liu"
+     ],
+     "published": "2026-11-12T16:42:04Z",
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17068",
+     "pdf_url": "https://arxiv.org/pdf/2611.17068v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.16816",
+     "title": "Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning",
+     "abstract": "To keep long interaction contexts tractable, stepwise group-relative training for multi-turn LLM agents materializes each source trajectory into multiple response rows and valid tokens. This expansion creates an outer-accounting problem distinct from within-trajectory credit assignment: row-based outcome statistics can count one episode outcome multiple times, while token-level reduction can assign unequal aggregate objective mass across trajectories. We term these effects outcome-statistics multiplicity and objective-mass imbalance. We introduce Outcome-Mass Alignment (OMA), a two-component method that makes both accounting choices explicit. Outcome Alignment computes outcome statistics over unique source trajectories, while Mass Alignment controls aggregate objective mass after within-trajectory aggregation of optimizer-native token objectives. Neither redesigns the base optimizer's credit assignment, importance ratios, or clipping. Across matched ALFWorld GRPO comparisons at two model scales, where failed trajectories typically expand much more than successful ones, OMA improves matched-horizon endpoint success by 7.0-9.4 percentage points. Ordinary WebShop exhibits weak or reversed expansion-outcome coupling and correspondingly mixed effects, whereas in a success-oriented WebShop setting, WebShop-SOL, OMA improves success nAUC from 0.399 to 0.511. Component ablations and GiGPO and GSPO comparisons further support component separability and cross-optimizer compatibility. These results show that trajectory expansion always defines an implicit weighting rule, but its practical effect depends on how expansion couples to outcomes and optimizer-native updates.",
+     "authors": [
+      "Dawei Zhang",
+      "Yubin Huangfu",
+      "Jessica Fan",
+      "Boyu Wei",
+      "Likang Wu",
+      "Hongke Zhao",
+      "Ming He",
+      "Zhu Teng"
+     ],
+     "published": "2026-11-12T13:52:12Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16816",
+     "pdf_url": "https://arxiv.org/pdf/2611.16816v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.16223",
+     "title": "We Are What We Remember: Mental-State-Driven Memory for Long-Term Character Dialogue",
+     "abstract": "Shared history in human dialogue is not merely a repository of facts, but the foundation of evolving relationships and mutual understanding. However, mainstream conversational memory systems rely on passive semantic similarity over external fact stores, frequently retrieving topically similar records while missing relationally pivotal experiences. Inspired by cognitive psychology's Self-Memory System (SMS), we propose MindMem, a mental-state-driven memory framework that asynchronously consolidates shared experiences into source-linked mental states of the character, the user, and their relationship. At each turn, a specialized mental-state reasoner (Mind) contextualizes these persistent states to anticipate latent user needs, form proactive intentions, and recover supporting episodic evidence that surface-level matching overlooks. To evaluate history-sensitive adaptation beyond factual recall, we introduce MemReal-Bench, a longitudinal benchmark grounded in month-long real-user interactions across dyadic and group scenes. By pairing Direct Question Answering (DQA) with Situated Memory Realization (SMR), it tests whether agents bridge the gap between knowing past facts and naturally using shared history, world rules, and relational trajectories. On MemReal-Bench, MindMem reaches 59.03% SMR and 82.58% DQA, exceeding the strongest memory baseline by 24.19 and 9.19 percentage points, respectively, and outperforming oracle target-memory injection on SMR. Code and dataset are available at https://github.com/jiazhicheng7-ctrl/MindMem.",
+     "authors": [
+      "Zhicheng Jia",
+      "Shuchen Wu",
+      "Zhuoshi Tong",
+      "Haisen Liao",
+      "Sicheng Zhou"
+     ],
+     "published": "2026-11-12T03:17:19Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16223",
+     "pdf_url": "https://arxiv.org/pdf/2611.16223v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.16051",
+     "title": "Human-Likeness and Conversational Preference Diverge for Synthesized Agent Speech in Customer-Service Calls",
+     "abstract": "Listeners can judge an agent's speech on how human it sounds (human-likeness) and on how much they would want to talk to it (conversational preference). Listening tests rarely ask about conversational preference, so the relation between the two judgments is unclear. We compared them in paired-choice tests on 120 turns that actors improvised as customer-service representatives. On each trial, two agents spoke the same turn. In Study 1, both agents came from six commercial text-to-speech systems, each with eight voices. In Study 2, one was the actor's original recording and the other a system. Some systems ranked higher on human-likeness, and others on conversational preference. Listeners chose systems over actors in 19% of human-likeness trials but 36% of conversational preference trials (and 49% for the most preferred system). On both judgments, variation among a system's voices was about three-quarters of that between systems. Of three automatic naturalness scores, two predicted lower human-likeness, and none predicted conversational preference. In this setting, listeners tended to favor faster speech and fewer pauses between clauses on both judgments, and more pitch variation for conversational preference. Thus, measuring only human-likeness or testing one voice per system can misjudge which agents listeners would rather talk to.",
+     "authors": [
+      "Jeffrey M. Girard",
+      "Antony D'Avirro",
+      "Jason Z. Zheng",
+      "Jacqueline R. Vertino",
+      "Benjamin Peloquin"
+     ],
+     "published": "2026-11-11T22:03:56Z",
+     "categories": [
+      "cs.CL",
+      "cs.HC",
+      "eess.AS"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16051",
+     "pdf_url": "https://arxiv.org/pdf/2611.16051v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.14356",
+     "title": "EngineAgent: Agentizing On-Device LLM Inference Engines with Inference Stack Hierarchy Awareness and Hardware Abilities",
+     "abstract": "Rapidly evolving LLM architectures and heterogeneous mobile hardware make supporting new models in on-device inference engines a recurring and costly system challenge. Each model may require coordinated changes across conversion, graph construction, operators, and hardware backends. Existing coding agents often miss these cross-layer dependencies and struggle to diagnose failures across host--device execution paths. We present EngineAgent, an agentic system for automating on-device LLM model enablement. Its key insight is to separate reusable engine and hardware knowledge from model-specific implementation. Before enablement, EngineAgent constructs a hierarchy-aware engine index that captures engine abstraction layers and cross-layer dependencies, and pre-validates backend-specific build, execution, and debugging workflows using already supported models. For each new model, a builder uses this knowledge to coordinate cross-layer changes, while an auditor checks implementation completeness and drives iterative debugging through device-side validation. Across 12 tasks spanning three mobile LLMs and four engine--backend pairs on CPUs, GPUs, and NPUs, EngineAgent achieves 75% end-to-end success with either of two underlying LLMs, versus 33.3% for the strongest coding-agent baseline. Success requires compilation, on-device execution, and output-logit agreement with reference implementations. EngineAgent also reduces average per-task time and model-API cost relative to baselines using the same underlying LLMs.",
+     "authors": [
+      "Zhengxiang Huang",
+      "Yujie Sun",
+      "Shengheng Chen",
+      "Zhaode Wang",
+      "Chaoyue Niu",
+      "Zeyu Zhao",
+      "Chengfei Lv",
+      "Fan Wu",
+      "Guihai Chen"
+     ],
+     "published": "2026-11-10T17:16:47Z",
+     "categories": [
+      "cs.OS",
+      "cs.AI",
+      "cs.CL",
+      "cs.SE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14356",
+     "pdf_url": "https://arxiv.org/pdf/2611.14356v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "cs.CL",
+    "cs.DC"
+   ],
+   "overview": "Recent research highlights the growing focus on energy-efficient and sustainable machine learning, examining the environmental costs associated with advanced AI paradigms. Studies investigate the carbon and energy footprints of federated fine-tuning using Low-Rank Adaptation and agentic artificial intelligence techniques such as iterative self-refinement. Additionally, new methodologies like StepSplit address the challenge of efficient energy attribution for large language model batches.",
+   "beyond": [
+    {
+     "title": "An energy-efficient and explainable green AI framework for student dropout prediction with a rule-based decision support module | Scientific Reports",
+     "url": "https://www.nature.com/articles/s41598-026-77352-5",
+     "snippet": "of student dropout using the Open University Learning Analytics Dataset (OULAD). A small multilayer perceptron model, GreenMLP, is constructed to capture the behavioral pattern of…",
+     "host": "nature.com"
+    },
+    {
+     "title": "Toward sustainable on-device intelligence: A survey on energy-efficient RAG systems with small language models",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231226028468",
+     "snippet": "Pillar 3: Green AI and Sustainability. A growing body of research has documented the environmental cost of the AI scaling paradigm. Strubell et al. showed that training a single…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "From accurate AI to sustainable AI: A lifecycle computational framework for resource-efficient, explainable, and trustworthy artificial intelligence in energy systems",
+     "url": "https://www.sciencedirect.com/science/article/pii/S1877750326002917",
+     "snippet": "concerns, leaving a gap in integrated lifecycle assessment. To address this gap, the paper proposes a lifecycle computational framework for sustainable AI in energy systems,…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "An Explainable AI-Powered Carbon Prediction and Machine Learning for Carbon-Aware Tourism in the Community",
+     "url": "https://www.mdpi.com/2071-1050/18/21/11037",
+     "snippet": "The research methodology for the XAI-powered carbon prediction framework was structured to integrate carbon footprint assessment, ML, XAI diagnostics, and digital tourism…",
+     "host": "mdpi.com"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.16856",
+     "title": "Sustainable Federated Fine-Tuning with LoRA: Environmental Impact and Performance Footprint",
+     "abstract": "Federated Learning (FL) with Parameter-Efficient Fine-Tuning (PEFT) enables efficient adaptation of Large Language Models (LLMs), yet its energy and carbon costs across hardware remain poorly understood. We evaluated federated Low-Rank Adaptation (LoRA) fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps. CodeCarbon tracked energy and estimated CO$_2$-equivalent emissions. Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within these ranges. On A40 and RTX 6000 Ada, configurations with fewer steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption and higher accuracy per kWh. These findings support smaller local budgets for energy-efficient federated fine-tuning within the evaluated setting.",
+     "authors": [
+      "Pedro Augusto Londe Ribeiro",
+      "Rodrigo Moreira",
+      "Larissa Ferreira Rodrigues Moreira",
+      "Joberto S. B. Martins",
+      "Tereza C. Carvalho",
+      "Flávio de Oliveira Silva"
+     ],
+     "published": "2026-11-12T14:30:10Z",
+     "categories": [
+      "cs.LG",
+      "cs.NI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16856",
+     "pdf_url": "https://arxiv.org/pdf/2611.16856v1",
+     "insight": {
+      "tldr": "Researchers have evaluated the energy and carbon costs of federated fine-tuning for Large Language Models using Low-Rank Adaptation, finding that local optimization steps heavily dictate energy consumption.",
+      "problem": "The energy and carbon costs of Federated Learning combined with Parameter-Efficient Fine-Tuning across diverse hardware remain poorly understood.",
+      "approach": "The authors evaluated federated Low-Rank Adaptation fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps, tracking energy and estimated carbon emissions using CodeCarbon.",
+      "key_findings": [
+       "Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within the tested ranges.",
+       "On NVIDIA A40 and RTX 6000 Ada GPUs, configurations with fewer local steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption.",
+       "Configurations with fewer local steps yielded higher accuracy per kWh.",
+       "Local optimization intensity outweighed model size in energy use and CO2-equivalent emissions within the tested parameters."
+      ],
+      "limitations": "The evaluation covers one model family, dataset, and seed, and platform comparisons depend on accounting boundaries and predictive quality.",
+      "why_it_matters": "It demonstrates that smaller local compute budgets in federated environments can drastically reduce energy consumption and carbon emissions during Large Language Model adaptation without sacrificing predictive accuracy.",
+      "tags": [
+       "federated learning",
+       "energy efficiency",
+       "lora"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "[PDF] Heterogeneous LoRA for Federated Fine-tuning of On-device ...",
+       "url": "https://openreview.net/pdf?id=EmV9sGpZ7q",
+       "snippet": "In our work, we investigate parameter-efﬁcient federated ﬁne-tuning of ODFMs (XXS PaLM2) for downstream tasks on devices using low-rank approximations (LoRAs), where we…",
+       "host": "openreview.net"
+      },
+      {
+       "title": "Rethinking LoRA Aggregation for Federated Fine-tuning of Foundation Models | OpenReview",
+       "url": "https://openreview.net/forum?id=k5SgTEKdA2",
+       "snippet": "Title: Rethinking LoRA Aggregation for Federated Fine-tuning of Foundation Models | OpenReview back arrowGo to **ICLR 2026 Conference** homepage. ## Rethinking LoRA Aggregation…",
+       "host": "openreview.net"
+      },
+      {
+       "title": "Fed-SB: A Silver Bullet for Extreme Communication Efficiency and Performance in (Private) Federated LoRA Fine-Tuning | OpenReview",
+       "url": "https://openreview.net/forum?id=FXxva35wtF",
+       "snippet": "# Fed-SB: A Silver Bullet for Extreme Communication Efficiency and Performance in (Private) Federated LoRA Fine-Tuning | OpenReview. ## Fed-SB: A Silver Bullet for Extreme…",
+       "host": "openreview.net"
+      }
+     ]
+    },
+    {
+     "id": "2611.12128",
+     "title": "Toward Sustainable Agentic AI: Carbon Tradeoffs Across Iterative Self-Refinement and Tool-Augmented Coding",
+     "abstract": "Agentic language model systems can improve performance either by iterating on their own outputs or by using external tools in grounded environments. While these strategies can reduce error rates and substitute for larger models in some settings, their environmental cost remains relatively underexplored. We present two complementary empirical studies that estimate the energy and carbon footprint of agentic AI across settings of increasing complexity. Study~1 evaluates iterative verbal self-refinement: GPT-4.1-mini at $k = 1$--$5$ steps versus a GPT-4.1 single-pass baseline on two MATH benchmark splits. Study~2 evaluates tool-augmented agentic coding: GPT-4.1-mini, Claude Opus~4.6, and GPT-5.3-codex on SWE-bench Lite, where agents operate inside Docker-isolated environments with access to code execution and file editing tools. In Study~1, $k=3$ refinements close a 16-percentage-point accuracy gap to within 1~point, but nearly triple the carbon footprint relative to the cheap single-pass baseline while remaining below the GPT-4.1 single-pass baseline under the current token-based carbon scenario. In Study~2, GPT-5.3-codex achieves the highest resolution rate in this sample (81.2\\%), ahead of Claude Opus~4.6 (68.9\\%) and GPT-4.1-mini (25.0\\%), but resolved-task-normalized efficiency remains mixed: GPT-4.1-mini is lowest on estimated carbon and cost per resolved task, while GPT-5.3-codex delivers substantially higher task success. All carbon estimates cover output-token inference only; prompt tokens, which exceed 99\\% of tokens in Study~2, and tool execution are not charged, so the figures are lower bounds on the full agentic footprint.",
+     "authors": [
+      "Boris Ruf",
+      "Adrien de Mailly Nesle",
+      "Marcin Detyniecki"
+     ],
+     "published": "2026-11-09T09:43:14Z",
+     "categories": [
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12128",
+     "pdf_url": "https://arxiv.org/pdf/2611.12128v1",
+     "insight": {
+      "tldr": "Researchers have quantified the environmental costs of agentic AI, revealing that iterative self-refinement and tool-augmented coding significantly increase carbon footprints compared to single-pass model usage.",
+      "problem": "The environmental impact of agentic AI systems, which rely on iterative self-refinement or external tool usage to improve performance, remains largely underexplored despite their increasing adoption.",
+      "approach": "The authors conducted two empirical studies: Study 1 evaluated the carbon footprint of GPT-4.1-mini using iterative verbal self-refinement on MATH benchmark tasks, while Study 2 analyzed the carbon and cost efficiency of three models (GPT-4.1-mini, Claude Opus 4.6, and GPT-5.3-codex) on the SWE-bench Lite coding benchmark.",
+      "key_findings": [
+       "In Study 1, three refinement steps closed a 16-percentage-point accuracy gap but nearly tripled the carbon footprint compared to a single-pass baseline.",
+       "In Study 2, GPT-5.3-codex achieved the highest task resolution rate (81.2%) but incurred approximately 3.3 times higher estimated carbon per resolved task than GPT-4.1-mini.",
+       "The research demonstrates that capability gains in agentic AI do not necessarily align with sustainability goals.",
+       "Carbon estimates provided are lower bounds, as they exclude prompt tokens—which account for over 99% of tokens in Study 2—and tool execution costs."
+      ],
+      "limitations": "The current carbon estimates are restricted to output-token inference only, excluding the significant energy costs associated with prompt tokens and tool execution.",
+      "why_it_matters": "As agentic systems become more prevalent, understanding the trade-offs between model performance and environmental cost is essential for developing sustainable AI deployment strategies that minimize compute and carbon usage.",
+      "tags": [
+       "agentic ai",
+       "carbon footprint",
+       "sustainable computing"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "iterative-refinement · GitHub Topics · GitHub",
+       "url": "http://github.com/topics/iterative-refinement",
+       "snippet": "Star 5 Enable Codex to run objective-first autonomous loops with mandatory review and optional verification for long-running task completion template automation library active mbp…",
+       "host": "github.com"
+      },
+      {
+       "title": "iterative-refinement · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/iterative-refinement?o=asc&s=stars",
+       "snippet": "Star 2 CodeOpt: A framework for optimizing code performance using Two-Stage Sampling, Few-Shot Learning, and Iterative Self-Reflection with support for Genetic Algorithm Inspired…",
+       "host": "github.com"
+      },
+      {
+       "title": "iterative-refinement · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/iterative-refinement?o=desc&s=stars",
+       "snippet": "AI quality method for validating LLM output against predefined criteria. Includes a builder-critic workflow, evidence checks, cost limits and stopping conditions. ### MarttiWu /…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.13802",
+     "title": "Scaling Shapley Energy Attribution to Large LLM Batches",
+     "abstract": "LLM services have become essential infrastructure for applications such as chat assistants and coding agents. Service providers need to attribute resource consumption to individual requests for purposes such as billing. Among these resources, energy is a key metric for assessing the cost of serving each request. However, serving engines batch requests together, and GPUs report only aggregate energy consumption. Providers typically estimate each request's share in proportion to its token consumption, but this approach can produce substantially unfair estimates. The Shapley value provides a principled solution to fair energy allocation, but computing it directly requires $2^N-1$ GPU runs for $N$ requests, which is infeasible for large batches. To address this problem, we propose StepSplit. Across GPU generations, we observe that the energy consumed by each inference step, a forward pass over a batch, consists of a shared energy, largely due to reading model weights, and a request-specific energy. We derive a closed-form Shapley value: each request is charged its own energy plus an equal part of the shared energy of every step in which it participates. A microbenchmark of 2.5-17.8 minutes calibrates both parts of the step energy once per model and GPU configuration. Under static batching, StepSplit uses this closed form in a single pass over the scheduler log. Under continuous batching, removing a request can change how the remaining requests are batched, so StepSplit adds a correction to the closed form, computed by replaying the scheduler on a CPU. We evaluate StepSplit against Shapley values measured using 529,513 GPU runs. Under static batching with batch sizes of 8-256, StepSplit achieves an $L_1$ error of 0.4-4.3%, compared with 13.4-61.3% for token-proportional allocation. Under continuous batching with 8-128 requests, the corresponding errors are 0.5-6.4% and 20.6-71.7%.",
+     "authors": [
+      "Qi Luo",
+      "Ziwen Wang",
+      "Kunlin Li",
+      "Changxi Liu",
+      "Yun Chen"
+     ],
+     "published": "2026-11-10T09:34:38Z",
+     "categories": [
+      "cs.DC",
+      "cs.AR",
+      "cs.PF"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13802",
+     "pdf_url": "https://arxiv.org/pdf/2611.13802v1",
+     "insight": {
+      "tldr": "Researchers introduce StepSplit, a method to efficiently calculate fair energy attribution for large batches of large language model requests without requiring infeasible numbers of GPU runs.",
+      "problem": "Serving engines batch multiple LLM requests together and GPUs report only aggregate energy consumption. Traditional methods estimate an individual request's energy share in proportion to its token consumption, which produces substantially unfair estimates, while computing the theoretically sound Shapley value directly requires $2^N-1$ GPU runs and is infeasible for large batches.",
+      "approach": "The authors propose StepSplit, observing that inference step energy consists of a shared component (largely from reading model weights) and a request-specific component. This allows them to derive a closed-form Shapley value computed via a one-time microbenchmark and a single pass over scheduler logs under static batching, or with an added CPU-computed correction under continuous batching.",
+      "key_findings": [
+       "Under static batching with batch sizes of 8-256, StepSplit achieves an L1 error of 0.4-4.3%, compared to 13.4-61.3% for token-proportional allocation.",
+       "Under continuous batching with 8-128 requests, StepSplit achieves an L1 error of 0.5-6.4%, compared to 20.6-71.7% for token-proportional allocation.",
+       "A one-time microbenchmark lasting 2.5-17.8 minutes calibrates the step energy for each model and GPU configuration.",
+       "Reading model weights accounts for 11.0-89.8% of the inference pass energy depending on the workload."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Accurate and fair energy attribution is critical for assessing the true environmental impact, carbon footprint, and financial cost of serving individual LLM requests, enabling better scheduling and billing in sustainable machine learning infrastructure.",
+      "tags": [
+       "energy attribution",
+       "large language models",
+       "shapley value"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "efficient-ai-arxiv-daily/papers/llm-systems.md at main · xubin04/efficient-ai-arxiv-daily · GitHub",
+       "url": "https://github.com/xubin04/efficient-ai-arxiv-daily/blob/main/papers/llm-systems.md",
+       "snippet": "| 2026-11-11 | Fewer Expert Transfers Without Changing Routing: Expert Eviction for MoE Offloading Pierre-Luc Bacon, Diego Calanzone, Jean-Maxime Larouche | arXiv · PDF · Code | |…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - NY1024/AgentSafety-Papers: Daily Tracking of LLM Agent Security Papers on arXiv · GitHub",
+       "url": "https://github.com/NY1024/AgentSafety-Papers",
+       "snippet": "2026-11-10 — Qi Luo, Ziwen Wang, Kunlin Li et al. — Scaling Shapley Energy Attribution to Large LLM Batches [...] 📄 Abstract LLM services have become essential infrastructure for…",
+       "host": "github.com"
+      },
+      {
+       "title": "RANDOMIZED ANTIPODAL SEARCH DONE RIGHT FOR DATA ...",
+       "url": "https://openreview.net/pdf/fe8a3985c9b6ce0a50c9122972077ed21a9398b0.pdf",
+       "snippet": "many snap-shots and still do not scale to LLMs. Shapley-value-based data valuation methods (e.g., representer points (Yeh et al., 2018), integrated gradients (Sundararajan et al.,…",
+       "host": "openreview.net"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.12405",
+     "title": "PTC-IoU: CPU-Friendly Detection Quality Estimation for Edge Video Analytics",
+     "abstract": "An edge video analytics system must estimate the quality of local detections since there are no ground-truth labels available during runtime. Detectors usually provide confidence scores for their results, but these scores can not reveal every missed object or misplaced bounding box. So a quality estimator is necessary to provide a decision signal indicating which frame has potential detection failures that need to be escalated to a more powerful model in the cloud. Neural network based estimators add workload to the GPU already running detection, while CPU capacity may remain available. We present Predictive Temporal Consistency IoU (PTC-IoU), which moves this workload to CPU by compacting detection boxes histories to support deterministic result scoring. Comparing to neural counterparts, experiments on representative edge hardware, Nvidia Jetson Orin Nano, show that our method reduced per-frame estimator latency from 10.3 ms for neural counterparts to 2.2 ms (4.7x faster), increased pipelined throughput by 13.6%, and cuts estimator energy consumption by up to 95%, while maintaining competitive final detection quality verified on multiple datasets.",
+     "authors": [
+      "Wei Geng",
+      "Hyerin Kim",
+      "Chang Lu",
+      "Zhenghao Lu",
+      "Joerg Ott"
+     ],
+     "published": "2026-11-09T13:38:37Z",
+     "categories": [
+      "cs.CV",
+      "cs.PF"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12405",
+     "pdf_url": "https://arxiv.org/pdf/2611.12405v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.14026",
+     "title": "Energy-Proportional Serverless Computing on SBC Clusters",
+     "abstract": "Serverless computing promises to run code only on demand, yet the servers beneath it draw most of their power while idle, so energy consumption does not scale to zero with the workload. We show that the statelessness of serverless functions makes it possible to extend scale-to-zero from function instances to physical nodes, enabling energy proportionality. Our platform, built on tinyFaaS for clusters of single-board computers, treats node power state as part of worker selection, powering workers off when idle and back on under load. On a physical cluster, our approach reduces mean power draw by 39.6 % on a bursty, trace-based workload and by 46.7 % on a sparse one, without a detectable change in median latency on the bursty workload. The cost lands in the tail, where invocations that arrive while all workers are off wait about a minute for a node to boot. Under continuous load, the platform behaves like an always-on cluster.",
+     "authors": [
+      "Yuliya Sasinskaya",
+      "Natalie Carl",
+      "Niklas Kowallik",
+      "David Bermbach"
+     ],
+     "published": "2026-11-10T12:57:21Z",
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14026",
+     "pdf_url": "https://arxiv.org/pdf/2611.14026v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.16155",
+     "title": "Accelerating Distributed Variational Quantum Computing over Wireless Networks with Incentive Mechanism Design",
+     "abstract": "Distributed variational quantum computing (DVQC) appears as the emerging paradigm to address the limitations of near-term quantum devices by decomposing large parameterized quantum circuits (PQCs) into smaller subcircuits executed across multiple quantum processors. In this context, how to incentivize quantum processors to participate actively is crucial for accelerating DVQC, yet remains largely unexplored in the literature. To address this significant gap, we propose a novel two-stage incentive framework for wireless DVQC. In the first stage, we minimize processor-side energy cost via a joint optimization of subcircuit parameters, number of noise measurements, and transmit power, efficiently solved using block coordinate descent (BCD) and successive convex approximation (SCA). In the second stage, we maximize aggregator-side system utility by selecting an optimal subset of processors based on their optimized energy costs derived from the first stage, formulating a non-convex combinatorial selection problem addressed using the alternating direction method of multipliers (ADMM). Extensive numerical experiments on the MNIST and CIFAR-10 datasets demonstrate that our DVQC framework achieves training and testing performance comparable to centralized quantum computing in terms of accuracy and loss, with similar convergence behavior on MNIST and slightly slower initial convergence on CIFAR-10. Moreover, our optimization approach consistently outperforms baseline schemes in energy efficiency and system utility, revealing a strong synergy between processor-level energy minimization and incentive-driven processor selection, where reduced energy costs directly enhances a processor's likelihood of selection and contributes to higher overall system utility.",
+     "authors": [
+      "Shaba Shaon",
+      "Dinh C. Nguyen",
+      "Octavia Dobre"
+     ],
+     "published": "2026-11-12T01:27:32Z",
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16155",
+     "pdf_url": "https://arxiv.org/pdf/2611.16155v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.12248",
+     "title": "A method to automatically discover symbolic local learning rules",
+     "abstract": "We present a general method for discovering symbolic local learning rules that can replace backpropagation, applicable, in principle, to any deep learning architecture and task. The method automatically discovers local loss functions specific to each layer by (1) constructing a dictionary of monomials of local tensor variables, inspired by Penrose diagram notation, (2) regressing over coefficients weighting these monomials to build layerwise polynomial losses whose gradients together minimize a target global loss. We test the method on classification, reconstruction, and self-supervised learning tasks with small multilayer networks and minimal datasets. Across all tasks, the discovered rules induce non-trivial interactions between layers, which lead to significant reductions in the corresponding global losses. Furthermore, the method selects sparse combinations of monomials, finding local rules that are more interpretable than those generated by MLP-based alternatives. The potential implications of our method range from energy-efficient deep learning to the discovery of biologically plausible learning mechanisms.",
+     "authors": [
+      "Andrea Perin",
+      "Fabio Anselmi",
+      "Stephane Deny"
+     ],
+     "published": "2026-11-09T11:36:50Z",
+     "categories": [
+      "cs.LG",
+      "cs.NE",
+      "stat.ML"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12248",
+     "pdf_url": "https://arxiv.org/pdf/2611.12248v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.14262",
+     "title": "Recurrent Modular Structure in Spiking Neural Network Reinforcement Learning",
+     "abstract": "Biological neural circuits are both modular and recurrent, with dense communities sparsely linked to one another. Spiking neural networks (SNNs) for reinforcement learning are usually feed-forward, and it is unclear how to obtain functional modules in a recurrent SNN or what they buy. In this work, we introduce a class of spiking networks, called Community Recurrent SNNs (CoRe SNNs): recurrent networks partitioned into communities with fixed roles. A controller community receives the stimulus, each action has its own community, and latent communities carry internal state. Spiking activity is then a walk between communities, and the action is the community the walk reaches. All learning is local and three-factor, and the recurrent communities are closer to cortical microcircuits than a feed-forward actor. We compare three regimes for obtaining the communities: dynamic modularity, in which a new learning rule we introduce, Map-STDP, encourages modular structure during learning; partial modularity, in which a stochastic block model (SBM) initialization enforces it partly; and full modularity, in which sealing enforces it fully. On CartPole, across three spiking neuron models, Map-STDP improves learning over the same network without it matches full modularity (sealed communities) on two of the three models, and makes the observed spike walk more compressible. Replacing the feed-forward actor of a TD-STDP actor-critic with recurrent action communities improves on the feed-forward network on CartPole and LunarLander, and matches it on Acrobot. How strongly to enforce modularity depends on the task: full modularity helps most on Acrobot, while on LunarLander the dynamic, partial and full regimes perform alike. Overall, these recurrent modular networks can match or even improve upon feed-forward approaches, with improvements in bio-plausibility and energy efficiency.",
+     "authors": [
+      "Vikram Ramavarapu",
+      "Himanshu Udupi",
+      "Ashish Gautam"
+     ],
+     "published": "2026-11-10T16:09:19Z",
+     "categories": [
+      "cs.AI",
+      "cs.LG",
+      "cs.NE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.14262",
+     "pdf_url": "https://arxiv.org/pdf/2611.14262v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.12370",
+     "title": "Adapting Multi-Stage Distributed Real-Time Systems Design to Vehicular Edge Computing",
+     "abstract": "Vehicular Edge Computing (VEC) aims to support computation-intensive applications in intelligent transportation systems while meeting stringent latency requirements. When processed remotely, applications require access to different resource types in a specific sequence, forming a multi-stage processing pipeline. This structure closely resembles multi-stage distributed applications executing across heterogeneous resources, making established multi-stage distributed real-time scheduling techniques well suited for modeling VEC systems. The resulting model accommodates diverse resource configurations and access patterns. Building on this model, we propose a joint mapping and scheduling approach that accounts for vehicle mobility and real-time constraints. The proposed heuristic extends optimal priority assignment for multi-stage systems to the VEC setting, to construct feasible schedules while minimizing local-device energy consumption and ensuring that offloaded jobs meet their deadlines. Extensive simulations show that the proposed approach consistently outperforms both a baseline based on the same delay-composition framework and a deadline decomposition-based approach.",
+     "authors": [
+      "Niraj Kumar",
+      "Anant Gautam"
+     ],
+     "published": "2026-11-09T13:16:03Z",
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12370",
+     "pdf_url": "https://arxiv.org/pdf/2611.12370v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "categories": [
+    "eess.SY",
+    "eess.SP",
+    "cs.LG",
+    "stat.ML",
+    "physics.app-ph",
+    "cond-mat.mtrl-sci"
+   ],
+   "overview": "This week the desk selected 4 new preprints in eess.SY · Systems and Control. Leading the section: Lithium redistribution and electrode degradation in commercial NMC/Graphite and LCO/Graphite cells under high-rate cycling conditions; Degradation-Aware Participation of Battery Storage in Frequency Regulation Markets.",
+   "beyond": [
+    {
+     "title": "Physics-informed neural networks for battery modeling and ...",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S1364032126005253",
+     "snippet": "A comprehensive review of machine learning-based state of health estimation for lithium-ion batteries: data, features, algorithms, and future challenges",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "Depletion-aware intelligence for solar–wind–battery systems: Machine learning pathways for robust sizing, safe dispatch, and battery health management",
+     "url": "https://www.sciencedirect.com/science/article/pii/S2949821X26005168",
+     "snippet": "Battery depletion limits the reliability of solar photovoltaic (PV)–wind–battery systems when renewable variability, converter dynamics and electrified loads reduce usable battery…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "Enhanced life cycle prediction of lithium-ion batteries using tuned XGBoost models",
+     "url": "https://www.sciencedirect.com/science/article/pii/S2949821X26003303",
+     "snippet": "from large datasets without relying on detailed physical models. This study explores data-driven ML approaches to predict battery discharge capacity and cycle life using…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "Domain adaptation state of health estimation for lithium-ion ...",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352152X26048516",
+     "snippet": "Accurate State of Health (SOH) estimation is essential for ensuring the safety, reliability, and long-term performance of electric vehicle batteries.",
+     "host": "sciencedirect.com"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.15818",
+     "title": "Lithium redistribution and electrode degradation in commercial NMC/Graphite and LCO/Graphite cells under high-rate cycling conditions",
+     "abstract": "Fast charging accelerates degradation in lithium-ion batteries, but the effects of cathode chemistry and charging protocol remain difficult to separate. Here, commercial NMC811/graphite (200 mAh) and LCO/graphite (45 mAh) coin cells were cycled for 100 cycles at 0.3C, 1C, 2C, and 3C, followed by scanning electron microscopy (SEM), X-ray diffraction (XRD), and nuclear reaction analysis (NRA). Both cell types exhibited a transition in cycling stability between 1C and 2C. NMC811/graphite retained approximately 99.7% of its initial discharge capacity at 0.3C and 1C, decreasing to 72.3% at 2C and 63.5% at 3C, while LCO/graphite retained only 11.1% at 2C. NRA revealed maximum lithium accumulation in graphite anodes at 2C for both chemistries, supported by SEM observations of granular surface deposits. XRD showed rate-dependent shifts in cathode (003) and graphite (002) reflections, indicating structural changes during cycling. The lower lithium accumulation at 3C was associated with reduced charge throughput, while the LCO/graphite 3C condition was limited by its charging protocol. These findings highlight the importance of anode-side degradation and charging protocols in interpreting high-rate cycling performance of commercial lithium-ion batteries.",
+     "authors": [
+      "Naisargi Kanabar",
+      "Nicholas Fusco",
+      "Seiichiro Higashiya",
+      "Devendra Sadana",
+      "Stephen Bedell",
+      "Haralabos Efstathiadis"
+     ],
+     "published": "2026-11-11T18:31:59Z",
+     "categories": [
+      "cond-mat.mtrl-sci"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.15818",
+     "pdf_url": "https://arxiv.org/pdf/2611.15818v1",
+     "insight": {
+      "tldr": "Researchers investigate how different cathode chemistries and high-rate cycling conditions accelerate degradation in commercial lithium-ion cells, identifying a sharp transition in stability between 1C and 2C.",
+      "problem": "Fast charging accelerates degradation in lithium-ion batteries, but the specific effects of cathode chemistry and charging protocols remain difficult to separate.",
+      "approach": "Commercial NMC811/graphite and LiCoO2/graphite coin cells were cycled for 100 cycles at 0.3C, 1C, 2C, and 3C, and subsequently analysed using scanning electron microscopy, X-ray diffraction, and nuclear reaction analysis.",
+      "key_findings": [
+       "Both cell types exhibited a transition in cycling stability between 1C and 2C.",
+       "After 100 cycles, NMC811/graphite retained 72.3% and 63.5% of its capacity at 2C and 3C respectively, while LiCoO2/graphite retained only 11.1% at 2C.",
+       "Nuclear reaction analysis revealed maximum lithium accumulation in graphite anodes at 2C for both chemistries, accompanied by granular surface deposits.",
+       "The largest absolute capacity loss occurred for NMC811/graphite at 2C, amounting to 44.99 mAh.",
+       "The LiCoO2/graphite 3C condition was limited by its charging protocol rather than intrinsic degradation alone."
+      ],
+      "limitations": "The influence of experimental conditions cannot be fully excluded, and future studies using identical constant-current and constant-current-constant-voltage protocols are required.",
+      "why_it_matters": "Understanding rate-dependent degradation pathways, anode-side lithium accumulation, and protocol limitations is critical for improving state-of-health estimation, degradation modelling, and remaining useful life prediction in battery management systems.",
+      "tags": [
+       "lithium-ion batteries",
+       "capacity degradation",
+       "high-rate cycling"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "scientific-agents/scientific-agents/energy-storage-battery-scientist/AGENTS.md at main · K-Dense-AI/scientific-agents · GitHub",
+       "url": "https://github.com/K-Dense-AI/scientific-agents/blob/main/scientific-agents/energy-storage-battery-scientist/AGENTS.md",
+       "snippet": "Li plating vs. intercalation is a competition at the anode. At low temperature, high rate, or high local SOC, plating dominates — detect with voltage plateau below 0 V vs. Li/Li+,…",
+       "host": "github.com"
+      },
+      {
+       "title": "LFP Batteries: \"New study says cycling near the top of charge (75",
+       "url": "https://www.reddit.com/r/Rivian/comments/1ezgkmj/lfp_batteries_new_study_says_cycling_near_the_top",
+       "snippet": "2. As you cycle the battery, harmful compounds dissolve iron, and deposit it onto the negative electrode (consuming lithium, which decreases capacity) 3. So cycling at…",
+       "host": "reddit.com"
+      },
+      {
+       "title": "BatteryML/dataprepare.md at main · microsoft/BatteryML · GitHub",
+       "url": "https://github.com/microsoft/BatteryML/blob/main/dataprepare.md",
+       "snippet": "Preger et al. \"Degradation of commercial lithium-ion cells as a function of chemistry and cycling conditions.\" Journal of The Electrochemical Society, 167:120532, 2020.…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.12555",
+     "title": "Degradation-Aware Participation of Battery Storage in Frequency Regulation Markets",
+     "abstract": "As data centers make the load on the power grid fluctuate faster, frequency regulation grows more valuable. Battery energy storage systems (BESSs) are well suited to provide frequency regulation, but providing this service speeds up aging, especially during operation at extreme state of charge (SoC). In the PJM interconnection, the grid operator supplies a regulation signal that a participating BESS is expected to follow, within a capacity that it must bid before the signal is known. Accordingly, we decompose the degradation-aware frequency regulation problem into a bidding layer and an operations layer. For bidding, we propose an adaptive strategy, assuming perfect tracking in which the bid depends on the SoC expected at the start of the bid period by means of choosing basepoints. For operation, the BESS further protects its battery by deliberately giving up a perfect performance score, to keep its SoC away from the extremes. On the PJM regulation signal and prices of 2023, adaptive bids lengthen the battery life by $31\\%$ against bidding full capacity, for $2.2\\%$ of the revenue. Giving up a perfect score in operation lengthens the battery life of constant bids by $10\\%$ to $27\\%$, at a change in revenue of at most $0.2\\%$.",
+     "authors": [
+      "Anand Gokhale",
+      "Siddharth Bhela"
+     ],
+     "published": "2026-11-09T15:23:18Z",
+     "categories": [
+      "eess.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.12555",
+     "pdf_url": "https://arxiv.org/pdf/2611.12555v1",
+     "insight": {
+      "tldr": "As data centers make the load on the power grid fluctuate faster, frequency regulation grows more valuable.",
+      "problem": "Not stated in the provided text.",
+      "approach": "Battery energy storage systems (BESSs) are well suited to provide frequency regulation, but providing this service speeds up aging, especially during operation at extreme state of charge (SoC). In the PJM interconnection, the grid operator supplies a regulation signal that a participating BESS is expected to follow, within a capacity that it must bid before the signal is known.",
+      "key_findings": [
+       "Accordingly, we decompose the degradation-aware frequency regulation problem into a bidding layer and an operations layer.",
+       "For bidding, we propose an adaptive strategy, assuming perfect tracking in which the bid depends on the SoC expected at the start of the bid period by means of choosing basepoints.",
+       "For operation, the BESS further protects its battery by deliberately giving up a perfect performance score, to keep its SoC away from the extremes."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Matched the eess.SY topic filter: battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction.",
+      "tags": [
+       "state of charge",
+       "degradation",
+       "capacity"
+      ],
+      "source": "abstract"
+     },
+     "links": [
+      {
+       "title": "GitHub - HewlettPackard/dc2grid · GitHub",
+       "url": "https://github.com/HewlettPackard/dc2grid",
+       "snippet": "| Configuration | Agent | RMSE ↓ (kW) | Regulation Revenue ↑ ($) | Macro Reward ↑ | Low-Level Reward ↑ | Thermal Violations ↓ | BESS Degradation ↓ ($\\times 10^{-4}$) | --- --- ---…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - shiyunliu-battery/Iontech: Open-Source Battery Monitoring & Modeling Resources · GitHub",
+       "url": "https://github.com/shiyunliu-battery/Iontech",
+       "snippet": "This dataset contains long-term cycling data from repurposed lithium-ion batteries originally used in electric vehicles and redeployed in second-life stationary energy storage…",
+       "host": "github.com"
+      },
+      {
+       "title": "Efficient Management of Day-Ahead Energy Markets via ...",
+       "url": "https://openreview.net/pdf/db207026accd7a3053c6d58b0a8858a633f6ff45.pdf",
+       "snippet": "Without an intrinsic load/production signal (Joint-Storage-L & Joint-Storage-Q) the battery never exchange energy and the column PCS-unit Exchange in Table 4 is 0 MWh. Introducing…",
+       "host": "openreview.net"
+      }
+     ]
+    },
+    {
+     "id": "2611.13202",
+     "title": "Robust State-Parameter Estimation in Second-Order Thévenin Batteries",
+     "abstract": "We propose a scheme for estimating the full states and parameters of a second-order Thévenin battery model, using distinct features of the measured current. An identification step, run during suitable rest intervals, identifies the resistances and capacitances of the two RC branches from the voltage relaxation by linear least squares, without knowledge of the open-circuit voltage (OCV) map. An online estimator then runs continuously: the polarization voltages are estimated by open-loop observers; the series resistance is updated at current jumps using least squares; the state of charge (SOC) is propagated by Coulomb counting using the current capacity estimate, and both estimates are updated periodically by a sliding-window regression. We show that the identification is exact under a mild rank condition, that the series resistance is recovered at the first current jump, and that the online state and capacity estimates converge exponentially under verifiable excitation conditions. We also establish robustness of the online estimator under bounded process disturbances and measurement noise.",
+     "authors": [
+      "Wissam Khennoune",
+      "G. Q. Bao Tran",
+      "Thach Ngoc Dinh",
+      "Jérémy Van Gorp",
+      "Mathieu Moze"
+     ],
+     "published": "2026-11-09T20:26:07Z",
+     "categories": [
+      "eess.SY",
+      "math.OC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.13202",
+     "pdf_url": "https://arxiv.org/pdf/2611.13202v1",
+     "insight": {
+      "tldr": "We propose a scheme for estimating the full states and parameters of a second-order Thévenin battery model, using distinct features of the measured current.",
+      "problem": "Not stated in the provided text.",
+      "approach": "An identification step, run during suitable rest intervals, identifies the resistances and capacitances of the two RC branches from the voltage relaxation by linear least squares, without knowledge of the open-circuit voltage (OCV) map. An online estimator then runs continuously: the polarization voltages are estimated by open-loop observers; the series resistance is updated at current jumps using least squares; the state of charge (SOC) is propagated by Coulomb counting using the current capacity estimate, and both estimates are updated periodically by a sliding-window regression.",
+      "key_findings": [
+       "We show that the identification is exact under a mild rank condition, that the series resistance is recovered at the first current jump, and that the online state and capacity estimates converge exponentially under verifiable excitation conditions.",
+       "We also establish robustness of the online estimator under bounded process disturbances and measurement noise."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Matched the eess.SY topic filter: battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction.",
+      "tags": [
+       "state of charge",
+       "estimation",
+       "capacity"
+      ],
+      "source": "abstract"
+     },
+     "links": [
+      {
+       "title": "equivalent-circuit-model · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/equivalent-circuit-model?o=desc&s=updated",
+       "snippet": "python battery scipy data-analysis parameter-estimation electrochemistry lithium-ion equivalent-circuit-model Updated Sep 8, 2026 Python ### PRATdoppelEK / battery-ecm-simulation…",
+       "host": "github.com"
+      },
+      {
+       "title": "equivalent-circuit-model · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/equivalent-circuit-model?o=asc&s=updated",
+       "snippet": "matlab simulink bms ekf hppc battery-management-system extended-kalman-filter bayesian-estimation equivalent-circuit-model lithium-ion-battery soc-estimation state-of-charge…",
+       "host": "github.com"
+      },
+      {
+       "title": "HROS dev · GitHub",
+       "url": "https://github.com/HROSdev",
+       "snippet": "5. Battery Modeling: Equivalent Circuit Models (ECMs - Rint, Thevenin models with RC pairs) for simulating voltage response under load. Parameter estimation for ECMs based on test…",
+       "host": "github.com"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.16926",
+     "title": "Improved Single-Input Space Vector for DC-Biased Sinusoidal Current Control in Battery Cyclers",
+     "abstract": "This paper presents improvements to the single-input space vector (SISV) concept for current control in a battery cycler based on a two-phase interleaved buck converter. The cycler is controlled to output a dc-biased sinusoidal current, enabling investigation of second-harmonic ripple effects on lithium-ion cell aging. A modified SISV generation scheme is introduced to track current references containing both dc and sinusoidal components, and an impedance-angle compensation method is proposed to decouple the d and q control axes without disturbing dc tracking. A dq phase-portrait visualization method is also introduced to evaluate transient performance for both SISV and proportional-integral-resonant (PIR) control methods. Simulation and experimental results validate dc-biased sinusoidal current tracking using PIR control and SISV control with different decoupling schemes. The phase-portrait framework allows for straightforward evaluation of transient performance for both SISV and PIR control methods and supports controller tuning to obtain desired trajectories. The results demonstrate the feasibility of SISV-based current control as an alternative to PIR control for battery-cycler applications. The proposed improvements support the development of battery cyclers capable of controlling both dc and sinusoidal current components.",
+     "authors": [
+      "Manveer Aujla",
+      "Philip Lewoc",
+      "Harminderjit S. Toor",
+      "Ahmad Ali",
+      "Caniggia Viana",
+      "Narayan C. Kar"
+     ],
+     "published": "2026-11-12T15:15:00Z",
+     "categories": [
+      "eess.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.16926",
+     "pdf_url": "https://arxiv.org/pdf/2611.16926v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  }
+ ]
+}
