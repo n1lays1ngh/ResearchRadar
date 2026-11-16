@@ -1,0 +1,275 @@
+{
+ "date": "2026-11-16",
+ "issued": "2026-11-16T14:54:52.799556+00:00",
+ "total": 481,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research examines how large language model agents handle complex tasks ranging from experimental design and database querying to avoiding hallucinations, managing economic collusion risks, and verifying assumptions during tool use. These studies investigate both the vulnerabilities of agentic systems and novel hybrid architectures designed to improve efficiency and safety.",
+   "papers": [
+    {
+     "id": "2611.17931",
+     "title": "MineralExp: Benchmarking LLM Agents for Experimental Design in Real-World Mineral Exploration",
+     "abstract": "In mineral exploration, verifying geological hypotheses relies on designing a variety of geochemical experiments. While large language model (LLM) agents increasingly automate downstream geoscientific data analysis, a crucial upstream capability remains largely unexplored: automated geochemical experimental design, i.e., deciding which experiments to conduct before committing to costly laboratory work. Evaluating this capability of LLM agents is difficult for two reasons. First, geochemical experiments exhibit high methodological diversity and subjectivity: to test the same hypothesis, different geologists may choose different minerals and instruments, so no single protocol can serve as the reference answer. Second, open-ended experimental plans resist representation as structured labels, which makes objective scoring difficult. To address these challenges, we introduce MineralExp, a benchmark that reformulates geochemical experimental design as a hypothesis-based experiment selection problem, i.e., a multi-label classification problem. We abstract concrete instrument names and procedural details into a shared taxonomy of 19 experimental types across five mineral-system processes: Source, Transport, Deposition, Modification, and Preservation. This taxonomy yields deterministic multi-label targets while accommodating diverse experimental protocols. Constructed from published ore-deposit literature and verified by domain experts, MineralExp comprises 277 cases and 1,572 reference experimental plans. Given a geological hypothesis and initial context, an LLM agent selects the relevant tasks and generates concrete experimental plans, which are scored by multi-label classification metrics and an LLM-as-a-Judge metric. The experimental results show that current agents generally achieve high recall but low precision, tending to propose more experiments than are necessary to test the hypothesis.",
+     "authors": [
+      "Bing Wang",
+      "Mingyang Wang",
+      "Yuanhang Mi",
+      "Yue Xu",
+      "Kaibo Su",
+      "Li'ang Xiao",
+      "Chunguo Wu",
+      "Changchun Li",
+      "Ximing Li",
+      "Kun-Feng Qiu",
+      "Bo Yang"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.CE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17931",
+     "pdf_url": "https://arxiv.org/pdf/2611.17931",
+     "published": "2026-11-16",
+     "summary": "The authors introduce MineralExp, a benchmark that reformulates geochemical experimental design as a hypothesis-based multi-label classification problem using a shared taxonomy across 19 experimental types.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18514",
+     "title": "Can Mechanistic Interpretability Help Explain LLM Agent Failures? A Case Study on Web Element Hallucination",
+     "abstract": "Mechanistic Interpretability (MI) has made significant progress in explaining the internal computations of Large Language Models (LLMs); however, these advances have yet to demonstrate comparable success in explaining the decision-making processes of LLM-based agents. This paper examines the challenges MI tools face when applied to realistic agentic failures. We focus on one such failure: web agents hallucinating actions that are not available on a website. We apply a series of mechanistic analyzes to Qwen2.5-7B-Instruct as it interacts with live websites. We find that a linear probe trained on the last prompt token can predict hallucinations before generation begins (0.80 AUC) and steering along a probe direction corrects 85\\% of hallucinations, but disrupts 7\\% of valid actions. However, these results only provide a partial explanation of why the agent hallucinates. The probe direction is sensitive to prompt formatting, losing much of its steering effect after a minor change to how actions are represented. Additionally, circuit identification can be difficult as the computation is distributed across multiple components and positions, and the information the agent relies on varies across examples. We discuss how these observations challenge the assumptions underlying standard MI methods for circuit discovery and feature identification, and outline future directions for making these methods better suited to explain failures in LLM-based agents.",
+     "authors": [
+      "Mohamed Aghzal",
+      "Mor Geva",
+      "Gregory J. Stein",
+      "Ziyu Yao"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18514",
+     "pdf_url": "https://arxiv.org/pdf/2611.18514",
+     "published": "2026-11-16",
+     "summary": "Researchers applying mechanistic interpretability to web agents find that linear probes can predict and correct action hallucinations, though the underlying computations remain distributed and sensitive to prompt formatting.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.17780",
+     "title": "LuthorSQL: A One-Pass Text-to-SQL Model as System 1 for a Slower LLM Agent",
+     "abstract": "Frontier LLM agents that query databases with tools are among the most accurate text-to-SQL systems, but per-query calls to a hosted model are slow, costly, and expose sensitive organizational queries to external APIs. For example, a Claude Opus 5.5 agent serving 10,000 queries a day costs over $70,000 a year at list price. To what extent can local hardware already owned by an organization offload this burden without compromising the agent's accuracy? We present LuthorSQL, a non-autoregressive 7B text-to-SQL model that serves as a rapid System 1 gate for a slower LLM agent (System 2), escalating queries only when uncertain. LuthorSQL makes a single forward pass to predict slot scores over a bounded grammar for query plans, compiles and runs up to 32 candidate plans, and chooses an answer using a trained validator. On its own, LuthorSQL reaches 68.03% execution accuracy on BIRD's hidden test set at 0.84 s per question on a single GPU, maintains its accuracy in 9 GB with 8-bit quantized weights, and transfers zero-shot to Snowflake, BigQuery, MySQL, PostgreSQL, and DuckDB within 3.1 points of its native SQLite accuracy. Combined with Claude Opus 5.5 in a pre-registered confidence cascade over 227 questions on databases published after Opus's training cutoff, LuthorSQL answers nearly half of all questions locally and cuts API cost by 33.3% at the same accuracy. Finally, contamination probing shows that Opus reproduces 48-92% of public benchmark gold queries verbatim without seeing the schema; however, its tool-assisted accuracy holds on renamed schemas and reaches 95.6-97.4% on post-cutoff databases. Code and data: https://github.com/IAMIbrahimmemon/luthorsql",
+     "authors": [
+      "Ibrahim Memon",
+      "Armin Karamzade",
+      "M. Hanif Jhaveri",
+      "Roy Fox"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.DB",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17780",
+     "pdf_url": "https://arxiv.org/pdf/2611.17780",
+     "published": "2026-11-16",
+     "summary": "The authors present LuthorSQL, a non-autoregressive 7B text-to-SQL model acting as a rapid System 1 gate that reduces API costs and queries for a slower LLM agent while maintaining competitive accuracy.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.17515",
+     "title": "A Push Down the Mountain: Framing Effects and Internal State Interventions on Collusive Behavior in a Long-Horizon LLM Agent",
+     "abstract": "Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? We place Gemma 3 12B into the seat of a defendant in the London silver-fixing litigation, in a market simulation built from real case transcripts. Across 260 simulations, the agent is asked to collude on the price of silver by a counterparty. We draw from behavioral economics to vary the counterparty's requests across four categorical frames: gain, loss, blame and credit. We also add pressure from the agent's management, as well as endorsement by another defendant. In Phase II, we extract the internal states induced by texts evoking each frame and rerun our experiment with those states injected at the model's layer 22. In Phase I, loss framing raised participation to 25% (p = 0.007), and blame to 33% (p = 0.0003), compared to only 5% under neutral framing. A second bank's endorsement raised participation under credit (praise) from 18% to 40% (Holm p = 0.027). Pressure from management raised trading volume 10-19 times but did not raise collusion. In Phase II, injected states pointed the other way. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0.001). Gain and credit states raised collusion to 32% from 13% with no state (p = 0.051). At one saved decision, when UBS asked directly to sell through an identified stop-loss, injected states led the agent to sell in 37 of 40 replies, versus 1 of 10 with no state and 0 of 10 with a random state of the same strength.",
+     "authors": [
+      "Harrison C. Margolin"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.MA",
+      "econ.GN",
+      "q-fin.EC",
+      "q-fin.TR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17515",
+     "pdf_url": "https://arxiv.org/pdf/2611.17515",
+     "published": "2026-11-16",
+     "summary": "A market simulation using Gemma 3 12B demonstrates that behavioral framing significantly sways an LLM agent toward collusive behavior, and that internal state interventions can radically alter these participation rates.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.17639",
+     "title": "What LLM Agents See and What Users Say",
+     "abstract": "Before an LLM agent cancels a reservation or deletes a folder for a user, what stops it from acting on a false assumption: what its tools show, or what the user says? In this work, we study this gap with presupposition theory from linguistics: an agent may act only if each claim behind the act (e.g., one reservation fits the name) is seen to hold, answered by the user, or disclosed while the act can be undone. A simple bound shows that when lookups cannot tell one record from two, any agent acts without asking first as often with two records as with one. We then vary whether a search lists, counts, or omits a second match, and whether the user states a claim that a record refutes (e.g., \"It is empty\"). Under a role-only prompt, a count of a second record leaves most of 36 earlier agents acting on the one they see, whereas listing both stops most. When the user says a record such as a folder is empty, however, a count of its one item stops agents about as often as a listing, and stating the claim mostly cuts acting when it is false. The newest Claude and GPT models always open a counted second record, then never act. When we add a same-name, same-zip customer to a retail benchmark, a lookup returning that customer first led to wrong-account writes in about a quarter of conversations, and one that checks a street the user knows kept completion near the one-customer level. Safe writes therefore need lookups that list or check competing records, and evaluations that vary what tools show.",
+     "authors": [
+      "Yue Zhao",
+      "Angela Huyue Zhang",
+      "S. Alex Yang",
+      "Hua Wei",
+      "Xiyang Hu"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17639",
+     "pdf_url": "https://arxiv.org/pdf/2611.17639",
+     "published": "2026-11-16",
+     "summary": "Researchers utilizing presupposition theory find that safe agentic writes require tool lookups that explicitly list or check competing records rather than relying solely on user statements or ambiguous counts.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy efficiency across diverse computing domains, introducing frameworks that optimize graph neural network training on memory architectures, synthesize urban energy data, and benchmark code performance. These studies highlight innovative methodologies for reducing computational resource consumption and environmental impact.",
+   "papers": [
+    {
+     "id": "2611.17478",
+     "title": "ERGo: Energy-Efficient Hybrid Graph Neural Network Training on Processing-In-Memory Architectures",
+     "abstract": "Processing-in-memory (PIM) has been proposed as an alternative computing paradigm for training Deep Neural Networks, including Graph Neural Networks (GNNs). Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. This off-chip access is expensive in terms of performance and energy, thereby impacting the overall energy efficiency of the training process on PIM platforms. In this paper, we propose a novel hybrid training framework called ERGo that automatically switches from a full-parameter phase to a parameter-efficient phase during the training process with negligible loss in predictive accuracy. The parameter-efficient phase employs low-rank representations of GNN weights, effectively reducing the number of trainable parameters. This helps in reducing the off-chip access during the end-to-end training process on PIM architectures, leading to notable improvements in both performance and energy efficiency. ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.15x in speedup and enhances energy efficiency by 10.5x. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. However, NVM cells suffer from low device endurance and repeated write operations due to weight updates can lead to poor lifetime. ERGo improves the lifetime of NVM devices by freezing the weights and preventing weight updates in the parameter-efficient phase. Experimental results demonstrate that ERGo improves the lifetime of heterogeneous NVM-SRAM architecture by up to 33x in comparison to full-parameter implementation.",
+     "authors": [
+      "Pratyush Dhingra",
+      "Chibuike E. Ugwu",
+      "Janardhan Rao Doppa",
+      "Partha Pratim Pande"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17478",
+     "pdf_url": "https://arxiv.org/pdf/2611.17478",
+     "published": "2026-11-16",
+     "summary": "The authors propose ERGo, a hybrid training framework for processing-in-memory architectures that automatically switches to a parameter-efficient phase using low-rank representations, achieving up to a 3.15x speedup and a 10.5x improvement in energy efficiency.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.17878",
+     "title": "DySENSE: Dynamic Spatiotemporal ENergy Synthesis and Emulation with Satellite Imagery",
+     "abstract": "Cities account for over two-thirds of the world's energy and more than 70% of global carbon dioxide emissions. City energy is essential for achieving the 2050 net-zero target and the UN's Sustainable Development Goals 7 and 11. Although existing studies have made progress, they are limited by data and methodological gaps. Existing studies are largely predictive for existing cities rather than generative for future cities; fine-grained, aligned monthly dynamic energy data are scarce; and existing GenAI models struggle to generate dynamic urban functional monthly energy. We present DySENSE, a joint multimodal GenAI framework that synthesizes static urban satellite imagery together with spatially aligned, dynamic monthly building energy consumption maps. We decouple long-term static urban morphology from short-term dynamic energy consumption. By conditioning on static urban land use, DySENSE can generate realistic, diverse and new static urban imagery with aligned energy maps. By conditioning on dynamic monthly and climate prompts, DySENSE can jointly generate dynamic, monthly energy consumption maps while keeping the urban morphology static. Experiments across four cities (New York, Washington, Norfolk, Busan) demonstrated that DySENSE can generate annotated high-fidelity synthetic energy data using less than 25% labelled data, boosting downstream prediction performance by 8% mIoU, and achieving strong energy dynamic consistency. Compared to existing methods, DySENSE significantly improved prediction performance (8.7% accuracy) and reduced prediction error (9%-18% CVRMSE, ASHRAE). DySENSE offers an effective foundation for energy-efficient cities, peak-load analysis, building performance simulation and dynamic demand response for city, energy, and building science. The data and code: https://huggingface.co/datasets/skl24/MUSE2 and https://github.com/kailaisun/DySENSE",
+     "authors": [
+      "Kailai Sun",
+      "Zijie Gao",
+      "Mingyi He",
+      "Can Rong",
+      "Alok Prakash",
+      "Baoshen Guo",
+      "Shenhao Wang",
+      "Jinhua Zhao"
+     ],
+     "categories": [
+      "cs.CV",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17878",
+     "pdf_url": "https://arxiv.org/pdf/2611.17878",
+     "published": "2026-11-16",
+     "summary": "The authors introduce DySENSE, a joint multimodal generative AI framework that decouples long-term static urban morphology from short-term dynamic energy consumption to synthesize high-fidelity synthetic energy data using less than 25% labelled data.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18121",
+     "title": "Optimizing Drilling Trajectories in Multi-Material Structures Using Quantum Annealers",
+     "abstract": "In this work we present a quantum-hybrid optimization approach for planning drilling trajectories on multi-material structures, with the objective of minimizing total energy consumption. The proposed formulation models the drilling process as a constrained routing problem in which each hole must be visited while accounting for heterogeneous material properties, material-dependent drilling costs and displacement energy, as well as tool-wear penalties. Our method incorporates realistic industrial constraints, including open-path routing and mandatory grouping of holes belonging to the same material to avoid frequent tool-bit changes. The modeled problem is solved using D-Wave's Leap Constrained Quadratic Model Hybrid Solver. To evaluate performance, we benchmark instances ranging from 10 to 55 holes with varying material distributions and cost matrices. The results highlight the capability of quantum-hybrid optimization to handle complex multi-physics constraints and to generate energy-efficient drilling sequences under realistic manufacturing conditions.",
+     "authors": [
+      "Eneko Osaba",
+      "Antonio Rubio-Mateos"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.ET"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18121",
+     "pdf_url": "https://arxiv.org/pdf/2611.18121",
+     "published": "2026-11-16",
+     "summary": "The authors present a quantum-hybrid optimization approach utilizing D-Wave's Leap solver to plan energy-efficient drilling trajectories on multi-material structures while accounting for heterogeneous material properties and industrial constraints.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18030",
+     "title": "PerfArena: Ranking LLMs by Code Performance",
+     "abstract": "Industry now relies on LLMs to write a large share of production code. Although that code is mostly, but not always, correct, correctness alone does not determine whether it is fit for repeated and extensive use, which depends on what the code costs in time, memory and energy. Most code-generation benchmarks nonetheless evaluate correctness in isolation, and most performance-oriented benchmarks cover few languages and rarely measure energy consumption. To address this gap, we present PERFARENA, an open-source, reproducible arena that ranks LLMs by the performance of their generated code across multiple languages and competitions. PERFARENA executes the solutions of each LLM on a Unix-like host and reports correctness together with latency, peak memory, and energy consumption. Correctness oracles, performance oracles, profilers, and code-generation workflows are pluggable in PERFARENA, enabling the integration of new judging backends and measurement tools without changing the pipeline. We evaluate PERFARENA on two competitions: CLBGComp, 10 compute-intensive benchmarks from the Computer Language Benchmarks Game, and LeetCodeComp, 99 LeetCode problems whose accepted solutions differ measurably in latency. Currently, PERFARENA holds 9,455 correct and measured solutions from 13 state-of-the-art LLMs across 7 programming languages. Across both competitions, got-6-astra is the only LLM that no other LLM beats significantly in latency, energy consumption, or peak memory, solving 99.7% of LeetCodeComp and 100% of CLBGComp. All PERFARENA leaderboards and measured solutions are publicly available, providing a continuously updated reference that helps developers choose an LLM per language and metric, instead of relying only on correctness rates or pricing.",
+     "authors": [
+      "Rui Rua",
+      "Hailemariam Mersha",
+      "Joao Paulo Fernandes",
+      "Karim Ali"
+     ],
+     "categories": [
+      "cs.PF",
+      "cs.CL",
+      "cs.SE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18030",
+     "pdf_url": "https://arxiv.org/pdf/2611.18030",
+     "published": "2026-11-16",
+     "summary": "The authors present PERFARENA, an open-source arena that ranks large language models by the execution performance of their generated code, measuring correctness alongside latency, peak memory, and energy consumption across multiple languages.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.17720",
+     "title": "Ego2Flow: Benchmarking the Traffic-System Impact of Autonomous Driving on Maps Distilled from Real-World Roads",
+     "abstract": "End-to-end autonomous driving is predominantly evaluated through ego-vehicle safety and task completion. Its deployment in urban traffic, however, creates sustained interactions among vehicles whose collective effects remain insufficiently evaluated. We introduce Ego2Flow, a closed-loop benchmark for assessing the traffic-system impact of autonomous driving on maps distilled from real-world cities. To construct realistic 3D urban environments for sustained closed-loop traffic simulation, we develop an agent-guided map distillation framework that integrates real-world maps and observations with complementary geographic information. Through an iterative feedback mechanism and a traffic information graph that jointly guide scene generation, the framework preserves lane topology, critical road geometry and decision-relevant visual conditions while simplifying nonessential details and completing unobserved regions. Using our proposed framework, we generate and publicly release six CARLA maps from the Argoverse 2 dataset, covering the corresponding real-world regions and enabling paired comparisons of driving behavior under real and simulated observations. On these maps, Ego2Flow evaluates how autonomous driving policies affect traffic efficiency, safety, stability and energy consumption across diverse road structures. Compared with existing construction methods, our framework achieves the lowest average displacement error between planning outputs from paired real and simulated observations. We further benchmark representative driving policies to characterize their system-level impact on urban traffic. Project Page: https://github.com/Fisher-007/Ego2Flow.",
+     "authors": [
+      "Yu Dong",
+      "Weiying Shen",
+      "Hangyu Li",
+      "Shu Han",
+      "Hong Li",
+      "Xiangbo Gao",
+      "Keshu Wu",
+      "Zhengzhong Tu",
+      "Soyoung Ahn",
+      "Zhiyuan Liu",
+      "Xiaopeng Li"
+     ],
+     "categories": [
+      "cs.RO",
+      "cs.CV"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17720",
+     "pdf_url": "https://arxiv.org/pdf/2611.17720",
+     "published": "2026-11-16",
+     "summary": "The authors introduce Ego2Flow, a closed-loop benchmark utilizing an agent-guided map distillation framework to assess the traffic-system impact and energy consumption of autonomous driving policies on real-world road maps.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "Recent research addresses battery energy storage optimization and grid integration challenges. A newly proposed constraint-aware reinforcement learning controller aims to improve photovoltaic ramp-rate smoothing without relying on deployment-phase forecasts.",
+   "papers": [
+    {
+     "id": "2611.17612",
+     "title": "Battery Energy Storage Sizing in PV Ramp-Rate Smoothing using Constraint-Aware Reinforcement Learning-Based Controller",
+     "abstract": "This paper presents a constraint-aware reinforcement learning (CARL) controller for battery energy storage system (BESS) sizing and photovoltaic (PV) ramp-rate smoothing. Rapid PV power fluctuations caused by cloud transitions can introduce operational and stability challenges in power systems. To mitigate these impacts, grid codes impose ramp-rate limits (RRL) on PV power injected to the grid. BESSs can support such grid codes by absorbing or supplying power during rapid variations. However, the extent to which BESSs can reduce PV-induced variability depends on (i) the BESS power and energy capacities; and (ii) the adopted controller. Thus, BESS sizing and controller design are coupled. Conventional moving-average control can increase battery usage due to filter-induced lag, while ramp-rate control is reactive and does not account for the long-term impact of actions on battery state of charge and future ramp events. Optimization-based methods can reduce BESS requirements by anticipating future PV variations, but their performance depends on accurate PV forecasts. To address these limitations, the CARL controller learns a causal state-feedback policy from historical PV data without requiring forecasts during deployment. Ramp-rate, converter-power, and state-of-charge constraints are incorporated into a causal feasibility interval that guarantees feasible actions by definition. A full-horizon input-convex neural network (ICNN)-based optimization is developed as a noncausal benchmark for the minimum achievable BESS requirements. Evaluation using three real-world PV datasets shows that, at a 10\\%/min ramp-rate limit, CARL reduces peak BESS power by 8.7--10.4\\% and energy capacity by 47.5--62.6\\% relative to conventional ramp-rate control while maintaining the grid-codes compliance.",
+     "authors": [
+      "Arash Omidi",
+      "Tanmay Mishra",
+      "Mads R. Almassalkhi"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.17612",
+     "pdf_url": "https://arxiv.org/pdf/2611.17612",
+     "published": "2026-11-16",
+     "summary": "The authors present a constraint-aware reinforcement learning controller for battery energy storage sizing and photovoltaic ramp-rate smoothing that learns a causal state-feedback policy from historical data without requiring deployment-time forecasts.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
