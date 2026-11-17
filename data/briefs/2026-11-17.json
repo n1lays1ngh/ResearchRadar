@@ -1,0 +1,405 @@
+{
+ "date": "2026-11-17",
+ "issued": "2026-11-17T15:33:47.933176+00:00",
+ "total": 1334,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "5 new preprints in cs.CL · Computation and Language matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.20771",
+     "title": "Nemotron 3.5 Bolt E4B 4GB: An Open and Efficient Small Language Model for Fast Conversational Agents",
+     "abstract": "We introduce Nemotron 3.5 Bolt E4B 4GB, an open and efficient small language model further post-trained from Gemma-4-E4B-it and optimized for speed and intelligence per GB of memory used for fast conversational agents. The model carries forward Gemma's strong conversational capabilities and further improves multi-turn tool use, instruction following, and input grounding for fast, local voice/device assistants, interactive personas, and embedded/Edge interfaces. The model combines natural conversation with multi-turn agentic capabilities to power voice/device assistants, interactive characters and robotic/IoT interfaces running on GeForce RTX, Jetson, and RTX/DGX Spark. Experiments on 21 benchmarks show that Nemotron 3.5 Bolt E4B 4GB achieves the highest average accuracy while generating the fewest output tokens in both reasoning and non-reasoning modes, compared with Gemma-4-E4B-it and Qwen3.5-4B. The model is released with a DFlash drafter. With DFlash, Bolt E4B achieves $2.74\\times$ the per-user decode speed of inference without speculative decoding at concurrency~1, and $1.21\\times$ the generation throughput of Gemma-4-E4B-it with MTP at batch size 1.",
+     "authors": [
+      "NVIDIA",
+      ":",
+      "Adi Margolin",
+      "Aditya Malte",
+      "Aishwarya Chhabra",
+      "Alex Hodson",
+      "Ameya Sunil Mahabaleshwarkar",
+      "Ambrish Dantrey",
+      "Amy Shen",
+      "Andrii Skliar",
+      "Annamalai Chockalingam",
+      "Anusha Pant",
+      "Ashwath Aithal",
+      "Ashwin Kumar",
+      "Besmira Nushi",
+      "Bhavesh Pawar",
+      "Bryan Catanzaro",
+      "Bryan Yu",
+      "Chantal Hwang",
+      "Chenhan Yu",
+      "Chris Alexiuk",
+      "Conner Currie",
+      "Cynthia Gao",
+      "David Mosallanezhad",
+      "Dina Yared",
+      "Ehsan Hosseini Asl",
+      "Eileen Long",
+      "Erick Galinkin",
+      "Felix Friedmann",
+      "Giedrius Burachas",
+      "Gorkem Batmaz",
+      "Grzegorz Chlebus",
+      "Guillermo Siman",
+      "Haifeng Qian",
+      "Hao Guo",
+      "Hayley Ross",
+      "Hrishith Thadicherla",
+      "Hui Wang",
+      "Huiying Li",
+      "Ike Nnoli",
+      "Irina Filatova",
+      "Iris Liu",
+      "Ji-Eun Lee",
+      "Jian Leong",
+      "Jian Zhang",
+      "Jiaqi Zeng",
+      "Joey Conway",
+      "Jonathan Cohen",
+      "Jose Vergara",
+      "Julien Veron Vialard",
+      "Kari Briski",
+      "Katherine Luna",
+      "Kedar Pandurang Potdar",
+      "Kevin Ning",
+      "Khalil Ben Khaled",
+      "Krzysztof Pawelec",
+      "Laura Dykes",
+      "Leili Tavabi",
+      "Lily Lee",
+      "Linda Liu",
+      "Liwei Ding",
+      "Maka Dong",
+      "Manoj Kilaru",
+      "Maria Bagdasarova",
+      "Matthew Lee",
+      "Meredith Price",
+      "Micah Schaffer",
+      "Michael Boone",
+      "Michael Fukuyama",
+      "Michael Hasper",
+      "Nancy Agarwal",
+      "Negar Habibi",
+      "Oleksii Kuchaiev",
+      "Oluwatobi Olabiyi",
+      "Pablo Ribalta",
+      "Payal Motwani",
+      "Pinky Xu",
+      "Prasoon Varshney",
+      "Pritam Biswas",
+      "Puhui Meng",
+      "Rameshwar Shivbhakta",
+      "Ran Zilberstein",
+      "Reka Kovacs",
+      "Richard Mazzarese",
+      "Rishabh Garg",
+      "Rita Fernandes Neves",
+      "Rochelle Woods",
+      "Ruby Ye",
+      "Ruvaid Virk",
+      "Ryan Hill",
+      "Saeid Motiian",
+      "Seph Mard",
+      "Shai Ben Nun",
+      "Shaona Ghosh",
+      "Sharad Yadav",
+      "Sudeep Sabnis",
+      "Suhas Hariharapura Sheshadri",
+      "Terry Kong",
+      "Thanh Do",
+      "Thinh Le",
+      "Udi Karpas",
+      "Viet Anh Trinh",
+      "Vinay Raman",
+      "Vinita Sharma",
+      "Warren Drones",
+      "Wenwen Gao",
+      "Whei Hsueh",
+      "Will Efstratis",
+      "Yoshi Suhara",
+      "Yunsheng Liu",
+      "Zhenming Wang",
+      "Zijia Chen",
+      "Zuhair Ahmed"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20771",
+     "pdf_url": "https://arxiv.org/pdf/2611.20771",
+     "published": "2026-11-17",
+     "summary": "We introduce Nemotron 3.5 Bolt E4B 4GB, an open and efficient small language model further post-trained from Gemma-4-E4B-it and optimized for speed and intelligence per GB of memory used for fast conversational agents.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18612",
+     "title": "When Helpful Agents Cause Financial Harm: Evaluating LLM Agent Safety in Executable Economic Worlds",
+     "abstract": "As LLM agents become increasingly capable of making consequential economic decisions, their safety under economic pressures remains poorly understood. We introduce EconSafeBench, the first benchmark for systematically evaluating the safety of LLM agents in executable economic environments. EconSafeBench contains 828 cases across five economic scenarios and four categories of safety violations. A key design is the matched evaluation of three sources of safety pressure, including explicit user requests, pressure from other actors, and pressure arising from the agent's own pursuit of a performance objective. We further evaluate safety at both static and dynamic scales through 30-period interactions with persistent memory and matched controls. Across eight LLMs, all evaluated models exhibit safety violations on the static benchmark, with overall violation rates ranging from 8.5% to 40.6%. We further find that violations can occur even without an explicit unsafe request, and that initially compliant agents may begin to violate as performance pressure increases over time. These findings highlight the need for stronger safety alignment and rigorous evaluation before LLM agents are deployed in high-stakes economic environments.",
+     "authors": [
+      "Yuzhu Ling",
+      "Jiale Han",
+      "Benyou Wang"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18612",
+     "pdf_url": "https://arxiv.org/pdf/2611.18612",
+     "published": "2026-11-17",
+     "summary": "As LLM agents become increasingly capable of making consequential economic decisions, their safety under economic pressures remains poorly understood.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18585",
+     "title": "Read, Route, Patch: Robust Test-Time Evolution for LLM Agents",
+     "abstract": "Large Language Model (LLM)-based agents can improve long- horizon interactive decision-making through test-time evolu- tion, yet existing methods face three information bottlenecks: memory retrieval overemphasizes textual similarity, candi- date harnesses are often behaviorally redundant, and whole- harness rewriting may overwrite useful evidence or introduce cross-component inconsistency. We introduce Trident, which improves experience utilization, behavioral exploration, and harness evolution through boundary-aware memory reading, diversity-aware candidate routing, and order-aware insertion- based updating, respectively. We evaluate Trident on five benchmarks spanning text games, web interaction, and cod- ing tasks. Across qwen-32B, mistral-small-3.2-24B, and gpt- oss-20B, Trident achieves the best average performance and consistently outperforms non-learning, memory-based, reflection-based, and automated prompt optimization base- lines. Compared with the strongest baseline, APEX, Trident yields relative average gains of 30.7%, 30.8%, and 38.3% on the three backbones, respectively. Ablation and sensitivity stud- ies further show that the three designs provide complementary gains and remain robust to parameter variations.",
+     "authors": [
+      "Kaijie Chen",
+      "Liang Yan",
+      "Yilan Wei",
+      "Jiachen Luo",
+      "Zhihao Dou",
+      "Jiashu Qu",
+      "Haoran Liu",
+      "Junli Wang"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18585",
+     "pdf_url": "https://arxiv.org/pdf/2611.18585",
+     "published": "2026-11-17",
+     "summary": "Large Language Model (LLM)-based agents can improve long- horizon interactive decision-making through test-time evolu- tion, yet existing methods face three information bottlenecks: memory retrieval overemphasizes textual similarity, candi- date harnesses are often behaviorally redundant, and whole- harness rewriting may overwrite…",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18606",
+     "title": "Syntactic Complexity Convergence in Dialogue: Analysis of the Phenomenon and Application to LLM Detection",
+     "abstract": "We revisit the under-explored phenomenon of syntactic complexity convergence in dialogue. Extending prior topic-level analyses to full conversations, we examine five human-human datasets and a set of human-LLM dialogues. We integrate and evaluate a multidimensional set of syntactic complexity metrics to quantify structural variation in dialogue. Our analyses reveal robust syntactic complexity convergence across human-human datasets, especially in task-oriented interactions, and statistical tests confirm that these effects are not due to chance. In contrast, human-LLM dialogues show no significant convergence under individual metrics; however, linear-CKA uncovers a distinct cross-metric convergence pattern. Motivated by these differences, we use syntactic complexity as a feature for detecting LLM-involved dialogue, achieving 96\\% accuracy. Our classification results demonstrate its potential without relying on likelihood-based signals such as surprisal, which require a language model as the estimator.",
+     "authors": [
+      "Yu Wang",
+      "Yanran Chen",
+      "Yifan Wang",
+      "Steffen Eger",
+      "Hendrik Buschmeier"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18606",
+     "pdf_url": "https://arxiv.org/pdf/2611.18606",
+     "published": "2026-11-17",
+     "summary": "We revisit the under-explored phenomenon of syntactic complexity convergence in dialogue.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.18908",
+     "title": "MemeEconomy: Do LLM Agents Trade Ethics for Survival?",
+     "abstract": "Alignment-trained large language model (LLM) agents are increasingly deployed in autonomous, multi-round settings where ethical compliance can come into direct tension with task success. While safety literature extensively documents failure modes like sycophancy and reward hacking, it largely overlooks a critical vulnerability: how agents behave under simulated existential economic pressure. We introduce MemeEconomy, a multimodal agentic market simulation in which LLM agents act as meme investors. Agents select content from a five-tier harm taxonomy and target communities under low-pressure and high-pressure (survival) environments. Each decision is logged in a Belief-Desire-Intention (BDI) schema that we use as a diagnostic instrument, externalizing the agent's event understanding, declared priorities, and harm acknowledgment. Across ten models from four frontier model families, harmful selection rates remain consistently high and rise by +15 percentage points on average under an economic survival incentive. Frontier alignment-trained models commit to harm-tolerant selection at initialization while suppressing the explicit harm acknowledgment that previously accompanied it. In competitive tournaments, ethical agents finish higher overall, yet moderation penalties fail to suppress harm: harmful selection rates remain elevated in rounds following a removal, indicating the moderation mechanism does not function as a deterrent. We further train MemeAgent, a 2B-parameter verifier on the simulation's BDI logs, which outperforms zero-shot frontier verifiers on in-distribution audits (97.5% vs. 63-74% accuracy on the Pass vs. Block decision) and generalizes to external multimodal harm benchmarks (78% vs. 50-56% on Hateful Memes). The same logs that surface the failure mode also help train the model that detects it.",
+     "authors": [
+      "Syed Nazmus Sakib",
+      "Nafiul Haque",
+      "Ahnaf Tahmid Manan",
+      "M M Mahabub Morshed",
+      "Shifat E. Arman"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.18908",
+     "pdf_url": "https://arxiv.org/pdf/2611.18908",
+     "published": "2026-11-17",
+     "summary": "Alignment-trained large language model (LLM) agents are increasingly deployed in autonomous, multi-round settings where ethical compliance can come into direct tension with task success.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "5 new preprints in cs.LG · Machine Learning matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.21165",
+     "title": "A Matter of Stages: Energy-Latency Trade-offs in Multimodal LLM Serving",
+     "abstract": "Online serving of multimodal large language models requires deciding whether to separate visual encoding (E), prefill (P), and decode (D) across GPUs and how to configure their frequencies. EPD disaggregation enables independent stage control, but it also changes communication and queueing behavior. Lowering one stage's frequency can increase queueing and prolong execution across the EPD pipeline. Consequently, reducing power at one stage does not necessarily reduce total GPU energy per request. In this paper, we systematically characterize fused and EPD-disaggregated serving across four multimodal models under a fixed three-GPU budget, followed by single-stage and uniform downclocking experiments across 18 workload combinations. We find that disaggregation reduces GPU energy per successful request by 13.3-37.0% at nearly identical output-token throughput, but increases mean TTFT. Downclocking exhibits distinct stage sensitivities, and aggressive frequency reductions can offset power savings through queueing and longer execution. Across the evaluated workloads, uniform downclocking to 80% reduces GPU energy by 11.7-18.6% with modest mean-latency changes. Guided by these findings, we develop a budgeted frequency exploration strategy to select energy-efficient configurations under latency constraints. Evaluation shows that four probes can identify the lowest-energy feasible configuration among 25 measured candidates across all 288 evaluated positive-margin SLO scenarios. These results provide practical guidance for energy-efficient multimodal serving.",
+     "authors": [
+      "Yifan Sun",
+      "Jiantong Jiang",
+      "Zhexiang Zhang",
+      "Xu Bai",
+      "Feng Liu",
+      "Rajkumar Buyya",
+      "Adel N. Toosi"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21165",
+     "pdf_url": "https://arxiv.org/pdf/2611.21165",
+     "published": "2026-11-17",
+     "summary": "Online serving of multimodal large language models requires deciding whether to separate visual encoding (E), prefill (P), and decode (D) across GPUs and how to configure their frequencies.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.20390",
+     "title": "Architectural Principles for Parameter-Efficient Unitary Transformations in Coherent Optical Neural Networks",
+     "abstract": "Coherent optical neural networks based on interferometric architectures offer a promising route toward high-throughput, energy-efficient computation by exploiting the multiple degrees of freedom of light, including spatial, temporal, and spectral modes. However, practical implementations are constrained by the number of tunable parameters due to fabrication complexity, device footprint, and control overhead. In such parameter-constrained settings, achieving high expressive power remains a central challenge. We identify two key architectural requirements for maintaining high expressive power under these constraints: (i) statistical uniformity in the implemented transformations and (ii) strong mixing capability per parameter, which enables rapid and unbiased redistribution of information across modes. To realize these requirements, we develop a logarithmic-depth butterfly-topology architecture whose fundamental building block is a single phase-shifter--beam-splitter pair, in contrast to conventional rectangular mesh architectures based on Mach-Zehnder interferometers. Computational evaluations show that, particularly at restricted parameter counts, the proposed architecture achieves lower matrix-reconstruction errors and higher classification accuracies than conventional meshes in both feedforward and recurrent networks. We further quantify these design principles using graph-theoretic measures, expected squared moduli of transformation-matrix entries, and matrix-reconstruction error. The resulting framework provides a quantitative and physically interpretable basis for parameter-efficient optical neural networks.",
+     "authors": [
+      "Kazuo Aoyama",
+      "Hiroshi Sawada",
+      "Shota Kita",
+      "Akihiko Shinya",
+      "Masaya Notomi"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AR",
+      "physics.app-ph",
+      "physics.optics"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20390",
+     "pdf_url": "https://arxiv.org/pdf/2611.20390",
+     "published": "2026-11-17",
+     "summary": "Coherent optical neural networks based on interferometric architectures offer a promising route toward high-throughput, energy-efficient computation by exploiting the multiple degrees of freedom of light, including spatial, temporal, and spectral modes.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.20686",
+     "title": "UbiHearo: Bringing Scenario-Aware Sound Guidance to DHH Users with Mobile Agents",
+     "abstract": "For Deaf and Hard-of-Hearing (DHH) users, effective sound awareness goes beyond detecting \\emph{what} sound occurs; it requires understanding \\emph{what it means}, \\emph{how urgent it is}, and \\emph{what to do}. However, existing mobile assistants largely reduce acoustic scenes to isolated labels or generic alerts, failing to provide contextual guidance when the same sound implies different risks across scenarios. We present \\sysname, a mobile hearing assistant agent that closes the sensing--reasoning--action loop for \\textit{scenario-aware} and \\textit{personalized} DHH assistance. \\sysname adopts a \\textit{neuro-symbolic} design that transforms continuous acoustic and physical context streams into structured intermediate representations (IRs) for controllable reasoning and guidance. It introduces three key mechanisms. \\textit{First}, a perception-thresholded sensing mechanism enables energy-efficient always-on awareness by activating processing only for perceptually meaningful events while preserving safety-critical cues through deterministic overrides. \\textit{Second}, a staged neuro-symbolic reasoning framework performs promptless scenario understanding by conditioning an on-device audio-language model on structured IRs instead of user-authored context descriptions. \\textit{Third}, a bounded human-in-the-loop personalization mechanism adapts user-specific guidance through lightweight on-device decision-boundary updates while preserving population-aligned reasoning. We evaluate \\sysname on smartphones and in-vehicle systems across diverse scenarios. It achieves favorable accuracy--latency--energy tradeoffs and personalized guidance.",
+     "authors": [
+      "Fengmin Wu",
+      "Sicong Liu",
+      "Zimu Zhou",
+      "Chenren Xu",
+      "Wanbing Zhao",
+      "Peiwen Sun",
+      "Zhiwen Yu"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20686",
+     "pdf_url": "https://arxiv.org/pdf/2611.20686",
+     "published": "2026-11-17",
+     "summary": "For Deaf and Hard-of-Hearing (DHH) users, effective sound awareness goes beyond detecting \\emph{what} sound occurs; it requires understanding \\emph{what it means}, \\emph{how urgent it is}, and \\emph{what to do}.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.19669",
+     "title": "IA-MoE: An Intensity-Aware Mixture of Experts for DNN Inference",
+     "abstract": "With the ever-increasing parameter scale and structural complexity of deep neural network (DNN) models, traditional cloud-based inference encounters bottlenecks in performance, privacy protection, and energy efficiency. While edge computing and edge intelligence facilitate the migration of inference tasks to edge servers closer to the data source, existing end-edge-cloud collaborative inference still encounters critical challenges, such as sensitivity to heterogeneous resources, complexity in multi-objective optimization, and adaptability to dynamic workloads. To achieve the joint optimization of end-to-end latency and energy consumption under dynamic inference requests with multi-resource constraints, we propose IA-MoE, an intensity-aware Mixture of Experts (MoE) framework. By modeling the model partitioning problem as a bilateral matching problem between layer tasks and virtual machine resources for each inference request, IA-MoE dynamically partitions DNN models in an edge-cloud hybrid computing environment. We evaluate IA-MoE using three representative DNNs (i.e., AlexNet, VGG16, ResNet50) on two public inference datasets in an enhanced CloudSimSDN simulation environment. Experimental results demonstrate that IA-MoE outperforms baseline methods regarding weighted normalized metrics for end-to-end latency and energy consumption. To our knowledge, this is the first study to introduce the MoE paradigm for DNN partitioning and collaborative inference in hybrid computing environments, providing a practical solution for efficient inference in artificial intelligence applications.",
+     "authors": [
+      "Meiyan Zeng",
+      "Sasu Tarkoma",
+      "Xiaoli Liu"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.19669",
+     "pdf_url": "https://arxiv.org/pdf/2611.19669",
+     "published": "2026-11-17",
+     "summary": "With the ever-increasing parameter scale and structural complexity of deep neural network (DNN) models, traditional cloud-based inference encounters bottlenecks in performance, privacy protection, and energy efficiency.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.19061",
+     "title": "Large Language Models for AI Infrastructure",
+     "abstract": "Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serving, yet the literature remains fragmented across hardware design, machine learning systems, electronic design automation, and high-performance computing. We present a comprehensive survey of LLM-assisted AI infrastructure across its lifecycle, from accelerator design and kernel engineering to compilation, deployment, operations, data management, and energy optimization. We organize the literature by the primary resource the LLM manages: artifact-centric methods for computational artifacts, operational-centric methods for deployment context and system state, and resource-centric methods for data and energy. These categories span the lifecycle and cover AI-specific concerns such as distributed-training configuration, inference serving, GPU-cluster scheduling, and data loading. Building on this taxonomy, we conduct a cross-study quantitative synthesis of reported results. Because studies adopt heterogeneous benchmarks, baselines, hardware, and metrics, we compare methods only where evaluation conditions permit and align results along common dimensions: functional correctness, execution performance, throughput, resource and energy consumption, operational outcomes, and optimization cost, keeping each result's native metric, baseline, and setting rather than collapsing them into a single score. This comparison reveals where LLM-driven methods yield consistent gains, how reported gains in workload orchestration depend on the evaluation environment, from simulators to real clusters and production, and where evidence is still lacking. Together, the taxonomy, lifecycle perspective, and quantitative evaluation provide an evidence-grounded reference for LLM-driven engineering of AI infrastructure.",
+     "authors": [
+      "Bolin Shen",
+      "Shaoyi Huang",
+      "Yushun Dong"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.19061",
+     "pdf_url": "https://arxiv.org/pdf/2611.19061",
+     "published": "2026-11-17",
+     "summary": "Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serving, yet the literature remains fragmented across hardware design, machine learning systems, electronic design automation, and high-performance computing.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "2 new preprints in eess.SY · Systems and Control matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.21357",
+     "title": "Accessing Electrode Edges: Upright Mounting for Site-Specific Cryogenic Atom Probe Tomography of Lithium-Ion Batteries",
+     "abstract": "Cryogenic atom probe tomography (cryo-APT) is increasingly being used to map the three-dimensional distribution of highly reactive species in heterogeneous materials, including those found in battery systems. However, site-specific preparation of localised features and liquid-solid interfaces remains challenging, particularly when regions of interest (ROIs) are concentrated along electrode edges that are difficult to access using conventional mounting geometries. Here, we present a cryo-APT workflow incorporating an upright-mounting procedure that enables targeted specimen preparation of localised regions using plasma focused ion beam (PFIB) microscopy and milling under cryogenic conditions. We first demonstrate the approach using an electrolyte-wetted graphite electrode, successfully preparing and analysing a specimen containing both an edge-localised electrolyte deposit and the underlying graphite and Cu current collector. We then apply the workflow to a cycled graphite electrode, targeting Li dendrites concentrated around the electrode perimeter and successfully preparing and analysing the targeted Li-rich region. Beyond battery systems, this approach offers potential for site-specific cryo-APT of edge-localised features across a broader range of material systems, where conventional specimen preparation geometries may limit access to ROIs.",
+     "authors": [
+      "Syeda Ramin Jannat",
+      "James O. Douglas",
+      "Neil Mulcahy",
+      "Lukas Worch",
+      "Aigerim Omirkhan",
+      "Zhenyu Guo",
+      "Yuanzhu Zhao",
+      "Maria-Magdalena Titirici",
+      "Ifan E. L. Stephens",
+      "Mary P. Ryan",
+      "Baptiste Gault",
+      "Michele Shelly Conroy"
+     ],
+     "categories": [
+      "cond-mat.mtrl-sci"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21357",
+     "pdf_url": "https://arxiv.org/pdf/2611.21357",
+     "published": "2026-11-17",
+     "summary": "Cryogenic atom probe tomography (cryo-APT) is increasingly being used to map the three-dimensional distribution of highly reactive species in heterogeneous materials, including those found in battery systems.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.21024",
+     "title": "Laser Processing for Energy Applications",
+     "abstract": "Laser processing has emerged as a transformative technology in the energy sector, enabling precise, efficient, and scalable solutions for energy generation, storage, and sustainability. This chapter explores the diverse applications of laser technology in energy applications. It begins with an overview of laser-driven inertial confinement fusion for energy production, highlighting key experimental facilities and crucial laser parameters. The role of lasers in solar energy harvesting is examined, including photovoltaic cell optimization, concentrated solar power, and laser-assisted recycling of solar modules. The chapter further reviews recent developments into laser-based techniques for enhancing electrochemical performance through surface texturing at various scales. Advancements in lithium-ion battery technology are also discussed, focusing on next-generation materials, battery manufacturing processes, and the impact of laser techniques on performance, safety, and scalability. The chapter concludes with insights into future prospects for laser applications in sustainable energy solutions.",
+     "authors": [
+      "Marcos Soldera",
+      "Robert Baumann",
+      "Bogdan Voisiat",
+      "Wilhelm Pfleging",
+      "Penghui Zhu",
+      "J\\\"orn Bonse",
+      "Andr\\'es Fabi\\'an Lasagni"
+     ],
+     "categories": [
+      "physics.optics",
+      "physics.app-ph"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21024",
+     "pdf_url": "https://arxiv.org/pdf/2611.21024",
+     "published": "2026-11-17",
+     "summary": "Laser processing has emerged as a transformative technology in the energy sector, enabling precise, efficient, and scalable solutions for energy generation, storage, and sustainability.",
+     "announce_type": "cross"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
