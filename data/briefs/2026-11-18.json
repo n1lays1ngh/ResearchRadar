@@ -1,0 +1,225 @@
+{
+ "date": "2026-11-18",
+ "issued": "2026-11-18T15:11:07.556006+00:00",
+ "total": 681,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses core challenges in conversational artificial intelligence and large language model agents. Studies explore memory dynamics, context governance, natural language programming frameworks, dynamic task allocation, and the comparative utility of decision models in contact centers.",
+   "papers": [
+    {
+     "id": "2611.21648",
+     "title": "Can an LLM dream? Testing the overfitted brain hypothesis on an agent with text memory",
+     "abstract": "Hoel (2021) proposed that dreams distort replayed experience so that the brain does not overfit to recent events. We test this hypothesis on an LLM agent (Claude Opus 5.5) that stores what it learns in a text memory and rewrites that memory each night from the day's conversation transcript. The agent goes through ten simulated days of conversation built from LongMemEval. We corrupt 5, 10, 20 or 40 percent of the transcript's turns before each nightly rewrite in one of two ways. Detail corruption changes one or two details in a turn to plausible wrong ones, or replaces the turn with one by the same speaker from an earlier day. Random-text corruption replaces half of the selected turns with a passage of Moby-Dick and inserts Moby-Dick words into the other half. A size limit on the memory, rising from 19,500 to 117,000 tokens over ten nights, set from human free-recall data, forces it to forget. We learned that corruption did not help the agent apply what it learned in earlier conversations to new tasks in any of 30 runs (ten conditions, three different conversation histories). Replacing details in 40 percent of turns lowered recall from 76 to 60 percent. Random text had no consistent effect on recall, with a paired difference of 0 $\\pm$ 2 points at 40 percent, because the model recognized it as corrupted and left it out of memory. Replaced details were stored as fact even when another turn held the correct value, and the agent answered 40 percent of those questions correctly, compared with 75 percent without corruption. These results suggest that a pretrained model can separate corrupted text from real events, so a fair test needs a learner that cannot make this separation as easily, such as a model fine-tuned on the corrupted days or an agent whose days take place in an invented world.",
+     "authors": [
+      "Eric Zou"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21648",
+     "pdf_url": "https://arxiv.org/pdf/2611.21648",
+     "published": "2026-11-18",
+     "summary": "Researchers tested the overfitted brain hypothesis on a Large Language Model agent with text memory, finding that transcript corruption did not improve transfer learning and that replaced details were erroneously stored as facts.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.22511",
+     "title": "LMLineage: Content Lineage and Context Governance for LLM Agents",
+     "abstract": "Interpretability for AI agents should not be confined to understanding the model's internal weights. It must also cover the agent's reasoning and decision-making process over multi-source context. We present LMLineage, an out-of-band system that attributes every output sentence of an agent session to its supporting input spans with calibrated confidences, without requiring white-box access to the model or any additional inference passes. On top of the lineage metadata, we build concept-drift micro compaction: instead of waiting for the context-length limit and summarizing everything, the system detects when previously used input documents have stopped being referenced (\"drifted\") and surgically compacts only those, preserving user instructions verbatim. We evaluate on a multi-tier corpus: 71 gold annotated sentences from 10 Chinese web-QA cases, plus 90 turns of independently collected multi-turn sessions across three generator models (gpt-4o-mini, qwen3.8-27b, deepseek-v4-flash). Results show that (i) window-level embedding similarity is far better aligned with LLM paraphrasing than whole document or lexical matching; (ii) the greedy-window fast path is both faster and more accurate on average than exhaustive line-matching (a multiple-comparisons bias in the latter inflates web recall at the cost of overall accuracy); (iii) per-turn attribution completes in 1s on a single GPU, remaining stable as context accumulates to 40 turns; and (iv) concept-drift detection is conservative (0% false compaction) with recall bounded by attribution accuracy. We further describe the concept-drift micro compaction design and an interactive incident-tracing/memory-cleaning case study. A companion patent application covers the lineage construction method.",
+     "authors": [
+      "Wei Hou",
+      "Jingxin Geng",
+      "Xin Chen",
+      "Zheqing Jiang"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22511",
+     "pdf_url": "https://arxiv.org/pdf/2611.22511",
+     "published": "2026-11-18",
+     "summary": "The authors present LMLineage, an out-of-band attribution and context governance system for Large Language Model agents, demonstrating that window-level embedding similarity effectively aligns with model paraphrasing.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23106",
+     "title": "Natural Language Programming: Rethinking Language, Memory, and Cognition in the Era of Generative AI",
+     "abstract": "Generative Artificial Intelligence is transforming the role of natural language in computational systems. In classical Natural Language Processing (NLP), language was treated as an object of computation: something to analyse, classify, translate, or generate. Large Language Models (LLMs) challenge this perspective, enabling natural language to function increasingly as an executable cognitive medium through which humans structure reasoning, orchestrate problem solving, and regulate hybrid human/AI workflows. This paper introduces Natural Language Programming (NLPg) as a theoretical and epistemological extension of traditional NLP. Rather than focusing on language understanding alone, NLPg conceptualises prompts as dynamic cognitive artefacts that externalise goals, constraints, assumptions, validation criteria, and intermediate reasoning states. Prompting is thus not merely a technical interaction technique, but a form of dialogic cognitive programming operating within distributed human/AI memory architectures. Building on theories of distributed cognition, extended mind, metacognition, and dialogic learning, the paper proposes the notion of Dialogic Working Memory, describing how prompts and conversational states function as temporary external memory structures supporting reasoning continuity and reflective regulation. We further map existing memory architectures (BTMA, SKGE, RMR) onto this framework, illustrating how episodic, semantic, and metacognitive layers support long-horizon conversational coherence. Finally, implications for computational linguistics and AI/mediated knowledge systems are discussed, suggesting a post symbolic and post interface paradigm in which natural language operates simultaneously as communication medium, executable specification, cognitive scaffold, and distributed memory architecture.",
+     "authors": [
+      "Giovanni Adorni",
+      "Daniele Grosso"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23106",
+     "pdf_url": "https://arxiv.org/pdf/2611.23106",
+     "published": "2026-11-18",
+     "summary": "This paper introduces Natural Language Programming as a theoretical extension of traditional Natural Language Processing, conceptualising prompts as dynamic cognitive artefacts operating within distributed human and artificial intelligence memory architectures.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23119",
+     "title": "Dynamic Task Allocation with Dialogue",
+     "abstract": "Effective multi-agent collaboration requires agents to adapt task allocation as goals and responsibilities evolve. Prior task-allocation frameworks often assume static goals, full observability, or rely on large language models (LLMs) without explicit, verifiable beliefs about task allocation or intent. These assumptions limit their applicability to real-world collaboration, where agents often lack full information about each other's actions, progress, or local environment. To support dynamic task allocation under partial observability, we introduce a communication-augmented Bayesian task-allocation framework. Our agent uses dialogue to reduce uncertainty about the environment and collaborators, while keeping decisions grounded in explicit probabilistic beliefs. We evaluate our framework in an Overcooked domain extended with dynamically arriving tasks under both full and partial object-space observability. Our communication agent consistently outperforms a vanilla LLM agent in both settings. Additionally, our framework performs comparably to a non-communicating task-allocation baseline under full observability, but substantially outperforms it under partial observability as task complexity increases by an average speed up of 0.585 and completes on average 18 timesteps faster. These results indicate that our agent is more efficient in dynamic task allocation than baselines in partially observable environments, and that communication is important as available information decreases.",
+     "authors": [
+      "Matthew Groholski",
+      "Weiwei Gu",
+      "Nakul Gopalan"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23119",
+     "pdf_url": "https://arxiv.org/pdf/2611.23119",
+     "published": "2026-11-18",
+     "summary": "The authors introduce a communication-augmented Bayesian task-allocation framework for multi-agent collaboration under partial observability, demonstrating that dialogue significantly improves task allocation efficiency compared to baseline models.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.22949",
+     "title": "Can Decision Models Replace LLMs in Real-World Contact Center Classification and Judging Tasks?",
+     "abstract": "Contact center systems often need to make bounded decisions, such as identifying a caller's intent, retrieving the knowledge-base article that answers a query, assessing agent compliance, or judging the output of AI models used in production. Decision models return a typed answer and its probability directly, making them a promising cost-effective alternative to generative Large Language Models (LLMs) in such bounded conversational tasks. However, their effectiveness in real-world contact center applications remains unclear. In this paper, we compare nine decision models against thirteen generative LLMs in zero-shot settings across eight contact center use cases: six classification tasks and two judging tasks. Our experiments demonstrate that many decision models can match the performance of frontier LLMs on contact center classification, and API-based closed decision models achieve this at the lowest per-request cost among the API models we evaluate. We further observe that their confident predictions are more accurate, enabling selective routing in real-world production scenarios. Across classification tasks, the main weakness of most decision models is abstention: they rarely choose the no-answer option, which accounts for most of their gap to the strongest LLMs (although Gemini-Decision-1 is the notable exception in this regard). We also find that the judging quality of decision models drops sharply for smaller models, and they are also more prone to position bias. In short, our findings provide practical guidance for selecting decision models based on abstention behavior, confidence, and deployment cost, rather than overall accuracy alone.",
+     "authors": [
+      "Md Tahmid Rahman Laskar",
+      "Xue-Yong Fu",
+      "Shashi Bhushan TN"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22949",
+     "pdf_url": "https://arxiv.org/pdf/2611.22949",
+     "published": "2026-11-18",
+     "summary": "Researchers evaluated decision models against generative Large Language Models across contact center tasks, finding that many decision models match frontier model classification performance at a lower cost despite challenges with abstention and position bias.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy and efficiency challenges across diverse computing and physical systems. The studies present infrastructure-level measurement pipelines, mobile inference frameworks, reinforcement learning for heating, and neural optimization methods.",
+   "papers": [
+    {
+     "id": "2611.22160",
+     "title": "Collecting Infrastructure-Level Measures for Energy Analysis in Modern Computing Infrastructures",
+     "abstract": "Modern HPC facilities are complex environments in which all components are tightly coupled; consequently, precisely modeling and accounting for energy consumption requires approaches that go beyond instrumenting individual compute nodes. Aiming for a cluster-wide vision, we designed a scalable data collection pipeline that aggregates fine-grained measurements from multiple subsystems-spanning component loads, software and hardware counters, sensors and energy-ensuring consistent sampling frequencies and synchronized data acquisition across the infrastructure. We present a dataset of comprehensive metrics collected at 1 Hz over one month from a production research data center supporting heterogeneous workloads, including HPC, Kubernetes services, and distributed storage. To illustrate what this approach makes possible in practice, we analyze two case studies-distributed I/O and large-language-model inference-showing how cluster-wide measurement reveals system-level dynamics missed by localized instrumentation. The proposed dataset and collection methodology provide a foundation for future work on predictive modeling, energy-aware resource management, and more efficient computing infrastructures.",
+     "authors": [
+      "Isac Pasianotto",
+      "Stefano Cozzini",
+      "Niccolo Tosato"
+     ],
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22160",
+     "pdf_url": "https://arxiv.org/pdf/2611.22160",
+     "published": "2026-11-18",
+     "summary": "Researchers present a scalable data collection pipeline and a one-month dataset of infrastructure-level measurements from a production research data center, demonstrating that cluster-wide monitoring reveals system-level dynamics missed by localized instrumentation.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.21691",
+     "title": "AdaFlowLite: Scalable and Non-blocking Inference on Asynchronous Mobile Data",
+     "abstract": "The rise of mobile devices equipped with numerous sensors, such as LiDAR and cameras, has driven the adoption of multi-modal deep intelligence for distributed sensing tasks, such as smart cabins and driving assistance. However, the arrival time of mobile sensory data vary due to modality size and network dynamics, which can lead to delays (if waiting for slow data) or accuracy decline (if inference proceeds without waiting). Moreover, the diversity and dynamic nature of mobile systems exacerbate this challenge. In response, we present a shift to \\textit{opportunistic} inference for asynchronous distributed multi-modal data, enabling inference as soon as partial data arrives. While existing methods focus on optimizing modality consistency and complementarity, known as modal affinity, they lack a \\textit{computational} approach to control this affinity in open-world mobile environments. % \\sysname pioneers the formulation of structured cross-modality affinity in mobile contexts using a hierarchical analysis-based normalized matrix. This approach accommodates the diversity and dynamics of modalities, generalizing across different types and numbers of inputs. Employing an multi-modal lightweight Swin Transformer (MMLST), \\sysname facilitates real-time and flexible data imputation, adapting to various modalities and downstream tasks without retraining. Experiments show that \\sysname significantly reduces inference latency by up to 80.4\\% and enhances accuracy by up to 62.1\\%, while achieving nearly a 50\\% reduction in energy consumption, outperforming status quo approaches. Also, this method can enhance LLM performance to preprocess asynchronous data.",
+     "authors": [
+      "Sicong Liu",
+      "Fengmin Wu",
+      "Yuan Gao",
+      "Bin Guo",
+      "Zimu Zhou",
+      "Hongkai Wen",
+      "Zhiwen Yu"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21691",
+     "pdf_url": "https://arxiv.org/pdf/2611.21691",
+     "published": "2026-11-18",
+     "summary": "The authors introduce AdaFlowLite, a non-blocking inference framework for asynchronous mobile data that employs a hierarchical analysis-based normalized matrix and a lightweight Swin Transformer, achieving up to an 80.4 percent reduction in inference latency and up to a 62.1 percent enhancement in accuracy.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23063",
+     "title": "Deep Reinforcement Learning for Heat Pump and Underfloor Heating Control: An End-to-End Case Study",
+     "abstract": "Efficient control of underfloor heating (UFH) systems coupled with heat pumps (HPs) is challenging due to the high thermal inertia of buildings and the slow dynamic response of UFH systems. Deep Reinforcement Learning (DRL) offers a data-driven control approach capable of simultaneously optimizing energy consumption and thermal comfort. However, the application of DRL-based controllers in occupied buildings under real operating conditions remains limited. This work presents and end-to-end case study (development, evaluation, and real-world deployment) of a DRL-based controller for an integrated UFH-HP system. First, a simulation-based pilot study was conducted to assess different DRL algorithms, control strategies, and configurations. Subsequently, a digital twin of a real residential building was developed and used to train DRL agents under simulated operating conditions. The best-performing agent was then deployed in the physical building without additional online fine-tuning. The results show that the controller successfully maintained indoor temperatures within the prescribed comfort limits while dynamically adjusting the HP supply temperature and UFH valve positions. These findings demonstrate the feasibility of deploying DRL controllers in occupied buildings and highlight their robustness and the practical challenges associated with transferring control policies from digital environments to real heating systems.",
+     "authors": [
+      "Antonio Manjavacas",
+      "David Su\\'arez-Caro",
+      "Alejandro Campoy-Nieves",
+      "Guillermo Rey",
+      "Gonzalo Satr\\'ustegui",
+      "Miguel Molina-Solana"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.SY",
+      "eess.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23063",
+     "pdf_url": "https://arxiv.org/pdf/2611.23063",
+     "published": "2026-11-18",
+     "summary": "This work details an end-to-end case study of a deep reinforcement learning controller for integrated heat pump and underfloor heating systems, finding that a trained agent deployed via a digital twin successfully maintains indoor comfort limits.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23130",
+     "title": "A Neural Envelope Method for Rapid Gradient-based Optimum Takeoff Trajectory Design",
+     "abstract": "Urban air mobility arises to mitigate ground traffic congestion. Multidisciplinary analysis and optimization (MDAO) has been introduced to reduce the energy consumption, thereby expanding aircraft performance. Surrogate-based MDAO lowers the cost of optimization, but multimodality disrupts global optimum search for both simulation-based and surrogate-based optimizations. Convex envelopes convert multimodal spaces into unimodal spaces, permitting efficient convex optimization; however, convexifying a design space may produce infeasible \"optimal\" designs due to complex design constraints. To address these challenges, this work proposes the coupling of a physics-constrained generative adversarial networks (physicsGAN) and neural envelope to transform original, constrained, non-convex optimizations into unconstrained, convex optimizations. Specifically, the physicsGAN discovers a feasible design space where all design candidates inherently satisfy all constraints, by penalizing surrogate-predicted constraint violations during training. Moreover, the neural envelope constructs a neural network-based convex envelope for the transformed objective function within the physicsGAN-discovered feasible space. Note that the neural envelope only needs to deal with objective function since constraints are inherently satisfied in the feasible space. The neural envelope is demonstrated on takeoff trajectory optimizations of the Airbus A3 Vahana eVTOL aircraft. Results show that neural envelopes achieve a 99.91% mean accuracy within a flight-condition space compared with reference convex envelopes. Neural-envelope-enabled optimizations achieve 99.84% accuracy on the global optimum design, costing only 0.04 seconds on average. The neural envelope accelerates the trajectory optimization by 53 and 162 times on average compared to the physicsGAN-enabled gradient-based and global optimizations, respectively.",
+     "authors": [
+      "Samuel Sisk",
+      "Xiaosong Du"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23130",
+     "pdf_url": "https://arxiv.org/pdf/2611.23130",
+     "published": "2026-11-18",
+     "summary": "The authors propose a method coupling physics-constrained generative adversarial networks with a neural envelope to transform constrained, non-convex takeoff trajectory optimizations into unconstrained, convex optimizations for aircraft design.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "New research introduces an advanced multi-scale framework combining deep learning with equivalent circuit models to improve battery health and remaining useful life predictions. The approach demonstrates enhanced accuracy on established industry benchmarks despite operating variability and measurement disturbances.",
+   "papers": [
+    {
+     "id": "2611.22455",
+     "title": "MARS: Feature-guided physics-informed deep learning for real-time battery health and lifetime prediction",
+     "abstract": "Accurate and robust estimation of battery state-of-health (SOH) and remaining useful life (RUL) is essential for safe and cost-effective operation of electrified transportation systems, yet it remains challenging under operating variability, non-stationary aging, and non-Gaussian measurement disturbances. This paper proposes Multi-scale Adaptive Robust State Estimation (MARS), a multi-scale adaptive robust state-estimation framework that couples a dual-branch temporal encoder with an equivalent-circuit-model-constrained differentiable generalized-correntropy adaptive Kalman filter. The encoder disentangles fast intra-cycle voltage-current-temperature dynamics from slow inter-cycle degradation, and the fused degradation context adaptively parameterizes the cycle-level process covariance, measurement covariance, and correntropy bandwidth. Through the unrolled robust filtering recursion, MARS performs physics-consistent state propagation and generalized-correntropy-based innovation correction, while uncertainty decomposition and Monte Carlo dropout provide calibrated prediction intervals for SOH estimation and conditional RUL prediction. Experiments on the NASA and CALCE benchmarks demonstrate improved SOH accuracy, achieving mean absolute error/root mean square error values of 0.72%/0.92% and 0.63%/0.80%, respectively, together with competitive conditional RUL performance against representative data-driven and hybrid baselines. The resulting conditional-RUL prediction intervals achieve coverage probabilities of 100.00% and 99.24% on NASA and CALCE, respectively. Ablation, disturbance-sensitivity, near-end-of-life, and runtime analyses further verify the contribution of each module and the practical inference cost for online battery management.",
+     "authors": [
+      "Innocent Izabayo",
+      "Haiquan Zhao"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22455",
+     "pdf_url": "https://arxiv.org/pdf/2611.22455",
+     "published": "2026-11-18",
+     "summary": "Researchers propose a multi-scale adaptive robust state-estimation framework called MARS that couples a dual-branch temporal encoder with a differentiable generalized-correntropy adaptive Kalman filter, achieving mean absolute error values of 0.72% on NASA and 0.63% on CALCE benchmarks for state-of-health estimation.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
