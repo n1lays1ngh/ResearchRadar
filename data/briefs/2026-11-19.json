@@ -1,0 +1,205 @@
+{
+ "date": "2026-11-19",
+ "issued": "2026-11-19T15:19:27.986236+00:00",
+ "total": 686,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses efficiency, probabilistic reasoning, and interpretability in conversational AI, dialogue systems, and large language model agents. The studies introduce novel frameworks for automated quantization, Bayesian network-guided patient dialogues, mechanistic tracing of reasoning, communication latency reduction, and unified fast-decision offloading.",
+   "papers": [
+    {
+     "id": "2611.23388",
+     "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
+     "abstract": "Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe differs across models and precisions. As a result, experts must redesign it for every new model, which is time-consuming and often sub-optimal. Fortunately, an LLM agent can take over this design by refining the recipe over rounds of building and evaluating candidates, so that more rounds lead to better recipes. However, evaluating one quantized reasoning model takes tens of GPU-hours, and combining methods from different codebases means porting each to the new architecture by hand. We present QDA, a system in which an agent designs the recipe for each model and precision. To make evaluation fast, QDA scores each candidate in minutes by its output KL divergence from the original model on reasoning traces that the agent never sees, and checks promising ones with long generations to catch failures such as repetition loops. To make building fast, QDA provides a library of public PTQ methods that are compatible with one another and with new model architectures. Across four reasoning models, QDA improves accuracy over the strongest public recipe by 0.9, 1.4 and 2.2 percentage points on average at W4A16, W4A8 and W3A16, using 64 GPU-hours per search. On the 320B-parameter MoE model GLM-5.3-Flash at NVFP4 W4A4, it recovers 98.3% of the FP8 model's accuracy, against 96.9% for the best vendor checkpoint. Every QDA checkpoint also runs on existing serving kernels with no inference overhead. We will release the library, the evaluator and the harness.",
+     "authors": [
+      "Xingyang Li",
+      "Tianlang Zhao",
+      "Song Han",
+      "Ligeng Zhu"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23388",
+     "pdf_url": "https://arxiv.org/pdf/2611.23388",
+     "published": "2026-11-19",
+     "summary": "The authors present QDA, a closed-loop system where an agent designs model quantization recipes using fast KL divergence scoring, improving accuracy across reasoning models and a large mixture-of-experts model while maintaining serving compatibility.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.24535",
+     "title": "ProbMedTOD: A Bayesian Network Guided Task-Oriented Dialogue System for Patient History Taking",
+     "abstract": "Patient history taking is a strategic, multi-turn process that refines diagnostic hypotheses through iterative questioning, mirroring clinical reasoning where each inquiry updates beliefs over candidate diagnoses. Deploying AI in this setting is constrained by privacy, cost, and latency, making Small Language Models (SLMs) a more desirable backbone compared to larger LLMs. However, SLMs capture only the fast, intuitive \"System 1\" side of this process and lack explicit mechanisms for the deliberative \"System 2\" reasoning needed to maintain and update diagnostic uncertainty over time. Bayesian Networks (BayesNets) offer a natural complement, providing an interpretable framework for auditable probabilistic belief tracking. Yet, clinical BayesNets are difficult to construct due to their reliance on expert curated structure, dependencies, and parameters. We introduce ProbMedTOD, which automatically synthesizes a clinical BayesNet from a small number of clinical notes in three stages: ontology building, structure prediction, and parameter estimation. ProbMedTOD then integrates the resulting BayesNet with SLMs, enabling probabilistic reasoning in multi-turn dialogues. A BayesNet Agent maintains real-time posterior distributions over diagnoses, while a Policy Agent picks diagnostically informative questions. Experiments on DDXPlus and MIMIC-IV Notes show that ProbMedTOD outperforms LLM-only and retrieval-based baselines, with especially strong gains for smaller models.",
+     "authors": [
+      "Vishal Vivek Saley",
+      "Bhavesh Gurnani",
+      "Dinesh Raghu",
+      "Mausam"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.24535",
+     "pdf_url": "https://arxiv.org/pdf/2611.24535",
+     "published": "2026-11-19",
+     "summary": "The authors introduce ProbMedTOD, a task-oriented dialogue system that automatically synthesizes clinical Bayesian networks from notes to integrate deliberative probabilistic belief tracking with small language models for patient history taking.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23403",
+     "title": "Tracking Representations in LLM Reasoning Traces for Iterated Games",
+     "abstract": "Large language model (LLM) agents achieve state-of-the-art performance across domains through chain-of-thought (CoT) reasoning. Despite their ubiquitous use, little is understood about the relationship between the externalized trace and the model's actual computation. We address this by investigating how LLM agents make decisions in iterative games with incomplete information. Using a series of mechanistic interpretability techniques, we find that the model forms and iteratively revises an internal representation of the game throughout the CoT. Once the model prematurely commits to an incorrect belief, it rarely recovers. This failure is manifested in both the literal trace and the layer activations. Ultimately, as multi-agent systems are more prevalent, our work opens the door to a more focused diagnosis of their strategic reasoning errors. For illustrative purposes, we offer an interactive visualizer of our methodology on selected sample traces at https://interp-self.github.io/gametrace/",
+     "authors": [
+      "Chaipat Tirapongprasert",
+      "Rajarshi Das",
+      "Parijat Dube"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.GT"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23403",
+     "pdf_url": "https://arxiv.org/pdf/2611.23403",
+     "published": "2026-11-19",
+     "summary": "The authors use mechanistic interpretability techniques to investigate how large language model agents form and iteratively revise internal representations during chain-of-thought reasoning in iterative games, finding that premature commitments to incorrect beliefs rarely recover.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23570",
+     "title": "Safe to Omit, Worth Omitting? Keeping the Answer and Cutting Latency When an LLM Agent Skips Another's Message",
+     "abstract": "In multi-agent systems, a receiver agent often waits for a helper agent's message (text or its latent KV cache), which can improve performance but adds latency. We study when a receiver agent can skip the message safely (the final answer rarely changes) and beneficially (the time saved exceeds the cost of deciding). Our mechanism reads the receiver agent's confidence without the message and uses a finite-sample test to certify a threshold at which, with high probability, at most 5% of skipped answers change; if none passes, the system keeps communicating. We test it on OpenBookQA, ARC-Challenge, and MMLU-Pro with three Qwen model pairs, on cross-family agents, and on SQuAD and GSM8K. Four insights emerge. First, oracle headroom is weak evidence that messages help: control inputs without answer-specific content, matched to change answers as often as real messages, reproduce a median 76% of the oracle's gain. Second, whether a message can be skipped depends on how often and how predictably it alters the answer, not on its accuracy; every certified KV-cache path is less accurate than the receiver agent alone. Third, where text messages help, skipping keeps most of their gain: on unseen questions in the four such settings, the policies skip 59 to 80% and keep an estimated 76 to 95% of the gain. In two prospective tests with all rules fixed in advance, our mechanism skips a three-agent system's verifier on 39.9% of sealed questions, keeping 12.55 of its 12.80-point gain, and a 32B helper on 68.4% of held-out questions, keeping its whole gain. Fourth, safety does not determine efficiency: at batch size one, skipping text saves hundreds of milliseconds per query and skipping KV cache far less. Certification extends to SQuAD but not to GSM8K. In eleven tests on unseen questions, every certified policy we could test kept its change rate's 95% upper bound below 5% under our answer parsers.",
+     "authors": [
+      "Xinyang Li",
+      "Chih-Hsuan Yang",
+      "Xiaolong Ma",
+      "Anjir Ahmed Chowdhury",
+      "Vikram Vasudevan",
+      "Rajeev Thakur",
+      "Feng Yan"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23570",
+     "pdf_url": "https://arxiv.org/pdf/2611.23570",
+     "published": "2026-11-19",
+     "summary": "The authors examine when a receiver agent can safely and beneficially skip another agent's message to reduce latency, demonstrating through a finite-sample test mechanism that skipping can preserve a large majority of performance gains.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.23751",
+     "title": "Thinking Fast, Anywhere: One System-1 for the Decision Points of Any Agent Workflow",
+     "abstract": "Autonomous LLM agents incur substantial cost and latency by invoking a large model (System-2) at every step, even when many intermediate actions choose among a small set of known candidates. Existing dual-system agents offload such decisions to a lightweight System-1 model, but rely on workflow-specific hooks authored per environment. We present AnyS1, a framework that turns human-authored procedural skills, whose instructions naturally specify where choices arise and which options apply, into a shared, domain-general source of decision points. Offline, AnyS1 mines grounded enumerable decisions across over 1,000 public skills, gathers execution-grounded trajectory states inside isolated containers to construct Any-DP, and trains a single calibrated 4B pointer System-1 with label smoothing. At run time, compiled workflows resolve routine decisions in one forward pass and fall back to System-2 when confidence falls below a calibrated threshold. Across three unseen benchmarks and distinct System-2 model families, AnyS1 preserves task reliability while cutting episode cost by 75-91% and model-call time by 63-92% relative to an uncompiled System-2 agent, and maintains performance under zero-shot threshold transfer.",
+     "authors": [
+      "Rui Li",
+      "Liyang He",
+      "Zheng Zhang",
+      "Zhenya Huang",
+      "Qi Liu"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23751",
+     "pdf_url": "https://arxiv.org/pdf/2611.23751",
+     "published": "2026-11-19",
+     "summary": "The authors present AnyS1, a framework that converts procedural skills into domain-general decision points to train a lightweight System-1 pointer model, successfully cutting episode cost and latency while preserving task reliability.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy efficiency in advanced computational paradigms by introducing adaptive routing for spiking vision transformers and agent-driven in situ training for optical neural networks. These studies demonstrate significant performance and efficiency gains across diverse hardware modalities.",
+   "papers": [
+    {
+     "id": "2611.23728",
+     "title": "AdaS-ViT: Test-Time Adaptive Routing for Spiking Vision Transformers with Ultra-High Energy Efficiency",
+     "abstract": "Spiking Neural Networks (SNNs) promise event-driven and energy-efficient vision, yet existing spiking vision transformers (S-ViTs) largely confine spiking tokens to fixed and uniform firing schemes along the temporal, spatial and channel dimensions, whereas suppressing the computational redundancy thus incurred calls for adaptive firing mechanisms that operate jointly across all three axes at test time. To this end, we propose the Adaptive Efficient Integrate-and-Fire (AdaE-IF) model, which consults the attention score of each spiking token and routes salient regions to fine-grained firing patterns while assigning energy-frugal coarse patterns to the remaining regions. Building on AdaE-IF, we further introduce Spiking Gated Self-Attention (S-GSA) and Spiking Local-Gated Unit (S-LGU), which enforce selective spike emission at token and channel granularity. We integrate the aforementioned mechanisms and modules into AdaS-ViT, a test-time adaptive-routing architecture trained with a progressive spatio-temporal curriculum that stabilizes the co-adaptation of firing precision and routing masks. Extensive experiments across benchmarks spanning diverse data scales and modalities demonstrate that AdaS-ViT consistently achieves highly competitive performance. Notably, on ImageNet-1k it consumes only 1.02 to 2.45 millijoules per image and attains an accuracy-per-energy ratio of 32$\\times$ to 72$\\times$, operating in an economical inference regime and thereby pushing the energy-efficiency boundary further.",
+     "authors": [
+      "Zecheng Hao",
+      "Zihan Huang",
+      "Shenghao Xie",
+      "Jiyuan Zhang",
+      "Zhaofei Yu",
+      "Tiejun Huang"
+     ],
+     "categories": [
+      "cs.NE",
+      "cs.AI",
+      "cs.CV"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23728",
+     "pdf_url": "https://arxiv.org/pdf/2611.23728",
+     "published": "2026-11-19",
+     "summary": "The authors introduce AdaS-ViT, an adaptive-routing spiking vision transformer that utilizes an Adaptive Efficient Integrate-and-Fire model, achieving high energy efficiency and competitive performance on benchmarks such as ImageNet-1k.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.23875",
+     "title": "In Situ Training of Optical Neural Networks by Coding Agents",
+     "abstract": "Optical neural networks promise fast, energy-efficient computing, but every device departs from its design and must be trained with the hardware. In situ training relies on an expert-built calibrated digital model of each device or on gradient-free trial and error. Coding agents, large language models that write and run programs, have shown an emergent ability to understand and edit the weights of digital neural networks. Here we introduce optics as code, a method in which a coding agent trains an optical neural network from measurements alone, through a harness that returns camera images of its probes and requires a hypothesis per request. We discovered that the agent forms a physical understanding of the optics and reparametrizes the network with interpretable optical elements tuned on the hardware. It outperforms gradient-free methods in classification and image encoding, approaching backpropagation through a calibrated model at a fraction of the cost. Needing neither per-device calibration nor gradients through the hardware, and improving with more capable models, optics as code offers a practical route to large, scalable optical neural networks and a general tool for calibrating and optimizing optical experiments.",
+     "authors": [
+      "Ilker Oguz",
+      "Colin Christian",
+      "Christophe Moser",
+      "Demetri Psaltis",
+      "Gordon Wetzstein"
+     ],
+     "categories": [
+      "physics.optics",
+      "cs.AI",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23875",
+     "pdf_url": "https://arxiv.org/pdf/2611.23875",
+     "published": "2026-11-19",
+     "summary": "The authors present optics as code, a method where coding agents train optical neural networks directly from measurements without per-device calibration or hardware gradients, outperforming gradient-free methods in classification and image encoding.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "1 new preprint in eess.SY · Systems and Control matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.24377",
+     "title": "LLM-Assisted Multi-Fidelity Bayesian Optimization: Fusing Expert Knowledge with Numerical Data",
+     "abstract": "Multi-fidelity Bayesian optimization (MFBO) reduces engineering design cost by combining inexpensive low-fidelity (LF) models with a few accurate high-fidelity (HF) evaluations and sequentially selecting designs to evaluate. However, when HF data are scarce, the LF-HF discrepancy is difficult to learn from numerical data alone, especially when physics omitted in the LF model makes it design-dependent. Yet even without sufficient data, domain experts often know which physics the LF model omits and under which conditions its effect grows. Existing multi-fidelity (MF) models cannot use such qualitative knowledge directly, but large language models (LLMs) can interpret it and compare designs accordingly. The proposed LLM-Assisted MFBO adds a knowledge basis to the conventional MF model: from an expert description of the omitted physics, an LLM judges which of two designs requires the larger signed residual correction, and a pairwise Gaussian process converts these judgments into the basis. HF data calibrate its contribution and sign, so the knowledge is not trusted blindly. On a lithium-ion battery design problem, the proposed method reduced the regret area under the curve of conventional MFBO by 61%. Knowledge quality, rather than the choice of LLM, determined whether the search was accelerated, as shown by a controlled study that varied the two independently. A knowledge-level ablation further quantified the contribution of each knowledge statement. These results show that LLM-interpreted expert knowledge can complement numerical data as an information source in MFBO.",
+     "authors": [
+      "Dongjun Han",
+      "Mingyu Lee",
+      "Ikjin Lee"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.24377",
+     "pdf_url": "https://arxiv.org/pdf/2611.24377",
+     "published": "2026-11-19",
+     "summary": "Multi-fidelity Bayesian optimization (MFBO) reduces engineering design cost by combining inexpensive low-fidelity (LF) models with a few accurate high-fidelity (HF) evaluations and sequentially selecting designs to evaluate.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
