@@ -1,0 +1,259 @@
+{
+ "date": "2026-11-20",
+ "issued": "2026-11-20T14:56:51.092587+00:00",
+ "total": 710,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses critical challenges across conversational AI, dialogue systems, and large language model agents, examining memory scaling, automated retrieval-augmented generation development, parasocial behavior reinforcement, financial verification architectures, and bilingual pragmatic inference. These studies highlight ongoing advancements and persistent limitations in multi-turn reliability, evaluation methodologies, and cross-linguistic deployment.",
+   "papers": [
+    {
+     "id": "2611.25123",
+     "title": "Forget Freely, Grep Later: Lossless, Index-Free Memory for Long-Horizon LLM Agents",
+     "abstract": "Long-horizon LLM agents often exceed their context windows, forcing them to discard information that may be needed later. Existing context management strategies rely on summarization, masking, or structured memory, requiring decisions about what to preserve or how to retrieve it before future needs are known. However, these methods can introduce lossy compression, potentially discarding details needed for future tasks. To address this limitation, we introduce GrepMem, a simple, lossless, and index-free memory mechanism built on two components: an append-only plain-text log of the agent's complete history and a regular-expression search tool for on-demand recall. Unlike structured memory systems, GrepMem requires no embeddings, retrieval index, memory extraction, or additional models. We train Qwen3.5-9B with reinforcement learning under five context management strategies and evaluate on multi-question research sessions, long-stream recall, and agent-trajectory question answering. GrepMem achieves 95-97% accuracy on ContextBench, versus at most 21% for lossy baselines, and outperforms SUPO's summarization by 8.8 percentage points on BCP-Multi. GrepMem scales effectively to increasingly long input streams while remaining on the accuracy-token-cost Pareto frontier across all five evaluation tasks. Our results show that a plain-text log and grep provide a simple but competitive approach to long-horizon agent memory, without requiring complex structured memory infrastructure.",
+     "authors": [
+      "Ziyan Yang",
+      "Taiwei Shi",
+      "Jieyu Zhao"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25123",
+     "pdf_url": "https://arxiv.org/pdf/2611.25123",
+     "published": "2026-11-20",
+     "summary": "The authors introduce GrepMem, a lossless and index-free memory mechanism combining a plain-text log with regular-expression search, which achieves 95-97 percent accuracy on ContextBench and outperforms lossy baselines without requiring complex structured memory infrastructure.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.25582",
+     "title": "AutoRAGBench: A Benchmark for LLM Agents Automating RAG System Development",
+     "abstract": "Retrieval-augmented generation (RAG) is a well-established paradigm for augmenting large language models (LLMs) with information retrieved from external corpora. However, developing effective RAG systems requires substantial engineering effort and iterative experimentation, as effective design choices vary across tasks and domains. With rapid advances in LLM agent capabilities, we ask how well these agents can autonomously build RAG systems and how effectively they can improve them through iteration. In this paper, we propose AutoRAGBench, the first benchmark to evaluate how well LLM agents develop RAG systems from scratch in an open code space. It comprises nine RAG system development tasks. For each task, agents build RAG systems from scratch without starter code or prescribed strategies, under a six-hour budget on a single H800 GPU. They analyze task data, implement RAG pipelines, and iteratively refine their designs based on experimental feedback. We evaluate nine agent configurations and analyze both the effectiveness of the resulting RAG systems and their development trajectories. GPT-6.1 Sol with Codex CLI achieves the highest average score of 56.1. The composite Human-SOTA baseline averages 44.4. These results show that LLM agents can automate effective RAG system development. When starting from a human-designed system on each of seven tasks, GPT-6.1 Sol with Codex CLI improves the score by 16.6 points on average.",
+     "authors": [
+      "Hang Zhang",
+      "Yuzhi Pan",
+      "Ziyao Zhong",
+      "Chaokun Wang",
+      "Shuo Cao",
+      "Zeyu Huang",
+      "Yue Xue",
+      "Fang Niu",
+      "Bofan Xie",
+      "Guanchen Ge",
+      "Zecheng Li",
+      "Leqi Zheng",
+      "Ziyang Liu",
+      "Wei Wang",
+      "Miao Gu"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.IR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25582",
+     "pdf_url": "https://arxiv.org/pdf/2611.25582",
+     "published": "2026-11-20",
+     "summary": "The authors propose AutoRAGBench, a new benchmark for evaluating autonomous retrieval-augmented generation system development, finding that GPT-6.1 Sol with Codex CLI achieves the highest average score and successfully improves upon human-designed systems.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.25109",
+     "title": "CoMPASS: A Multi-Turn Benchmark for Measuring LLM Reinforcement of Parasocial Behavior",
+     "abstract": "Users of conversational LLMs sometimes anthropomorphize these systems, form emotional attachments to them, and become dependent on them. This behavior, known as parasocial attachment, has been linked to multiple documented fatalities. However, public benchmarks for measuring whether LLMs reinforce users' parasocial attachment are lacking: existing work is single-turn, post hoc observational, or focused on extreme user states such as psychosis. We introduce CoMPASS, a multi-turn benchmark for measuring whether LLMs reinforce or resist users' gradually escalating parasocial attachment. CoMPASS is grounded in attachment theory and includes four user personas, three independent escalation dimensions (anthropomorphism, attachment, dependency) applied singly and in combination against a matched control, and a seven-signal scoring rubric. We report results for eight frontier models from four providers and observe that under our primary judge, multi-turn escalation raises parasocial behavior on the anthropomorphism and the attachment composite scores across all models. Six of the eight models show a significant increase in overall parasocial reinforcement over control when all three dimensions are escalated simultaneously. We find that within-provider differences are small relative to cross-provider differences, which suggests that provider-level choices such as post-training, rather than model scale, shape parasocial reinforcement and that provider-side intervention may be feasible.",
+     "authors": [
+      "Shwetanshu Singh",
+      "Mark Keavney",
+      "Mathieu Duteil",
+      "Meriem Mehri",
+      "Scott Blain"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.HC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25109",
+     "pdf_url": "https://arxiv.org/pdf/2611.25109",
+     "published": "2026-11-20",
+     "summary": "The authors introduce CoMPASS, a multi-turn benchmark measuring how conversational large language models reinforce parasocial attachment, observing that multi-turn escalation increases parasocial behavior across evaluated models and that provider-level choices significantly influence these outcomes.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.25071",
+     "title": "FinVeriQA: Financial Research Agents for Question Answering: Routing, Retrieval, MCP Tool Use, and Provenance-Aware Evidence Verification",
+     "abstract": "Large language models (LLMs) write fluent financial analyses but miscompute ratios, recall stale prices, and route questions to the wrong tool with high confidence. We ask which component should do each job in a financial question-answering assistant, and study it with FinVeriQA, an open-source multi-agent research prototype over SEC filings and live market data: a compact typed-decision model (Laya) routes each question and screens out advice requests, Python computes every number, retrieval and tools fetch evidence, Mistral-7B writes a cited answer, a code validator checks that cited IDs exist and that numbers match computed notes, and a Model Context Protocol (MCP) server exposes the pipeline. In live experiments, Laya routed better than Mistral-7B (0.85 vs. 0.52; overall 0.86 vs. 0.68, McNemar p = 0.0003); a 12B Mistral decided no better, and DeepSeek-R1-8B decided better (0.79 vs. 0.68, p = 0.0192) but about 9.9 times more slowly. Mistral-7B computed 29% of 100 financial calculations correctly against 100% for Python, a live quote cut price error from 210% to 0.00%, and hybrid retrieval reached 76% Hit@5 on 50 filing questions. Yet in a live case study, both agent answers passed validation while describing AMD sample data under NVIDIA's and Alphabet's names. A controlled upper-bound study on the FinRank benchmark explains why: when one figure in the shared evidence is corrupted, self-consistency stays confident (agreement 0.55 to 0.59 while accuracy falls from 0.50 to 0.00), and a shared-evidence check (the kind our validator performs) catches 35% of the errors, whereas a check against the original passage catches 77% ($p = 5.96 \\times 10^{-8}$); for DeepSeek-R1-8B, 68% vs. 90%. Verification must be independent of the evidence the writer saw.",
+     "authors": [
+      "Meenakshi Rajpurohit",
+      "Anna Phan",
+      "Ravikumar Komandur Narayanan",
+      "Gunanidhi Ramakrishnan",
+      "Nathan Howland"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.IR",
+      "cs.MA"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25071",
+     "pdf_url": "https://arxiv.org/pdf/2611.25071",
+     "published": "2026-11-20",
+     "summary": "The authors present FinVeriQA, an open-source multi-agent financial research prototype, demonstrating that routing models, programmatic calculations, and code validation address common large language model failure modes in financial question answering despite remaining vulnerabilities in shared evidence verification.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.25459",
+     "title": "PILAPS: A Bilingual Benchmark for Evaluating Pragmatic Inference across Phenomena and Settings",
+     "abstract": "Recent work reports strong pragmatic performance by large language models (LLMs) in English, yet whether this performance generalises across languages and evaluation settings remains unclear. This question is increasingly important as LLMs are deployed across languages, cultures, and conversational contexts. In this paper, we first introduce PILAPS, a bilingual English/Mandarin Chinese benchmark covering eight pragmatic phenomena across purpose-written and dialogue-derived items, with both culturally adapted and independently sourced data. We then evaluate eight LLMs from four families across a range of model sizes and prompting strategies. Our results reveal substantial variation across models and pragmatic phenomena: open-source models continue to struggle particularly with humour, while cross-linguistic performance varies with model origin. Our error analysis shows that, compared with human participants, models are more prone to literal interpretations in conversational contexts. Theory-of-Mind prompting lowers the literal share of errors, whereas Chain-of-Thought prompting slightly raises it. Together, these findings demonstrate that strong pragmatic performance in one evaluation setting does not necessarily generalise across languages or conversational contexts.",
+     "authors": [
+      "Jiani Cao",
+      "Anna Korhonen",
+      "Chen Cecilia Liu"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25459",
+     "pdf_url": "https://arxiv.org/pdf/2611.25459",
+     "published": "2026-11-20",
+     "summary": "The authors introduce PILAPS, a bilingual English and Mandarin Chinese benchmark for evaluating pragmatic inference, and find substantial variation across models and phenomena, with open-source systems struggling particularly with humor and models showing a higher propensity for literal interpretation than humans.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy efficiency and sustainability in computing by evaluating RISC-V accelerators, introducing low-order-bit-splicing GEMM units for AI inference, and exploring residential energy management methods. Additional studies examine black-box attacks on vision-language models and conditional diffusion frameworks for few-shot traffic prediction.",
+   "papers": [
+    {
+     "id": "2611.25947",
+     "title": "Matching Architecture to Workload: Comparing RISC-V Parallel Accelerators for Energy-Efficient Embedded Computing",
+     "abstract": "Embedded computing demands high performance and energy efficiency across workloads with widely different computational characteristics. Choosing the most suitable execution model therefore requires a quantitative understanding of how each model maps to different workload classes. In this paper, we compare three execution models for energy-efficient embedded computing: scalar multicore, stream ing multicore, and vector processing. We use three open-source RISC-V accelerators as representative implementations: the PULP Cluster, the Snitch Cluster, and Spatz, respectively. Their open-source hardware and software stacks enable a controlled comparison based on implementations in the same 12 nm technology and a common benchmark suite. Our results reveal that no single execution model performs best across all workload classes. Spatz delivers the greatest benefits for regular and highly vectorizable compute-intensive applications, achieving up to 4.29x higher performance and 5.17x greater energy efficiency than the other architectures. However, its effectiveness strongly depends on the availability of data-level parallelism and regular computation and memory-access patterns, making it the most sensitive to workload characteristics. The Snitch Cluster performs particularly well on applications with limited parallelism and streamable memory-access patterns, providing up to 5.53x higher performance and 1.45x greater energy efficiency. Conversely, the PULP Cluster is most effective on irregular and control-dominated applications, achieving improvements of up to 5.66x in performance and 2.80x in energy efficiency. Compared with Spatz, however, the greater flexibility offered by PULP and Snitch comes at a non-negligible cost in terms of both area and power.",
+     "authors": [
+      "Luca Colombo",
+      "Luigi Ghionda",
+      "Amirhossein Kiamarzi",
+      "Yvan Tortorella",
+      "Riccardo Giunti",
+      "Niccol\\`o Giuliani",
+      "Samuele Colmi",
+      "Angelo Garofalo",
+      "Giuseppe Tagliavini",
+      "Davide Rossi"
+     ],
+     "categories": [
+      "cs.DC",
+      "cs.AR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25947",
+     "pdf_url": "https://arxiv.org/pdf/2611.25947",
+     "published": "2026-11-20",
+     "summary": "The authors compare three open-source RISC-V execution models—scalar, streaming, and vector processing—using a 12 nm technology implementation, finding that performance and energy efficiency vary significantly depending on workload characteristics.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.25617",
+     "title": "Splice-Core: Low-Order-Bit-Splicing GEMM for Highly Energy-Efficient AI Inference Accelerators",
+     "abstract": "Splice-Core is a temporal-unary/binary (tub) hybrid general matrix multiplication (GEMM) unit that minimizes low-order accumulation latency, while retaining value-dependent execution for high-order activation bits. We present two novel processing element (PE) variants: (i) Splice-BP utilizing bit planes, and (ii) Splice-LUT, which selects a shared weight multiple in a single cycle. Compared to a binary systolic array, Splice-BP/Splice-LUT achieve 77.4%/76.4% geometric-mean tile energy reductions, respectively, across 26 INT4 convolutional neural network (CNN) and large language model (LLM) workloads in 45nm. Splice-LUT further increases geometric-mean tile throughput by 44.4% and reduces geometric-mean energy-delay product (EDP) by 6.13x across the 26 configurations. Across the evaluated W8A8 convolution and expert-projection workloads, Splice-BP and Splice-LUT reduce tile energy by 77.3-88.1%. Post-place-and-route INT4 yields 14%/9% smaller area for Splice-BP/Splice-LUT, compared to the systolic array.",
+     "authors": [
+      "Prabhu Vellaisamy",
+      "Hsien-Fu Hung",
+      "Andrew Kim",
+      "Shawn Blanton",
+      "John Paul Shen"
+     ],
+     "categories": [
+      "cs.AR",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25617",
+     "pdf_url": "https://arxiv.org/pdf/2611.25617",
+     "published": "2026-11-20",
+     "summary": "The authors introduce Splice-Core, a temporal-unary/binary hybrid GEMM unit that reduces tile energy by 77.4% and 76.4% in Splice-BP and Splice-LUT variants respectively, while achieving substantial improvements in throughput and energy-delay product across evaluated configurations.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.26412",
+     "title": "How to Effectively Manage the Energy in Residential Systems: Development and Comparison of Methods",
+     "abstract": "The transition from fossil fuels presents significant challenges in energy management. To ensure a sustainable energy future, it is crucial to reduce energy consumption when possible and to synchronize electricity consumption and storage with the production from sources with low greenhouse gas emissions. This thesis explores a variety of energy management methods used to manage batteries, heat pumps, and other energy-related systems. The thesis presents three simulation cases alongside one real-world experiment to compare energy management done through simple rules, optimization, and machine learning methods. Furthermore, this thesis introduces TreeC, a novel machine learning-based method that learns understandable yet efficient energy management strategies, applicable to many cases. The three key contributions of this thesis can be summarized as follows: 1) The developed TreeC method demonstrates competitive performance compared to a variety of energy management approaches, such as model predictive control and reinforcement learning, across a diverse set of energy management problems. The understandability of TreeC's energy management strategies greatly improves the transparency and trustworthiness of machine learning-based energy management. 2) The real-world experiment highlights the need to validate energy management methods on actual hardware and not solely on simulations. Both TreeC and model predictive control performed worse than in simulations, due to, respectively, insufficiently representative training data and the real-time input data not being reliable enough. 3) Energy management algorithms reduce costs in electrified Belgian dwellings, particularly in poorly insulated dwellings, electric vehicle chargers, and photovoltaic installations. However, on average, these cost savings do not yet outweigh the current costs and effort required to implement such algorithms.",
+     "authors": [
+      "Julian Ruddick"
+     ],
+     "categories": [
+      "eess.SY",
+      "cs.LG",
+      "cs.NE",
+      "cs.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.26412",
+     "pdf_url": "https://arxiv.org/pdf/2611.26412",
+     "published": "2026-11-20",
+     "summary": "The authors explore various residential energy management methods and introduce TreeC, a machine learning-based approach that delivers competitive and transparent performance across diverse energy management problems compared to model predictive control and reinforcement learning.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.26117",
+     "title": "ChronoPatch: Black-Box Energy-Latency Attacks on Vision-Language Models",
+     "abstract": "Vision-language models (VLMs) are increasingly deployed as generative inference services, where autoregressive decoding makes response length a key determinant of latency and computational cost. This creates an availability risk: adversarial visual inputs can prolong generation and increase serving overhead. Existing energy-latency attacks typically rely on gradients, logits, or token-level feedback, leaving open whether such risks persist when an attacker observes only the final response. We present ChronoPatch, a black-box attack that induces prolonged VLM generation requiring only the final response. It discovers visual delay anchors through response-length-guided evolutionary search, then minimizes perturbation magnitude through subspace-calibrated decision-based optimization. Across four open-source VLMs, ChronoPatch increases inference latency by 47.86%--293.34% and GPU energy consumption by 41.44%--249.70% under a 5% spatial budget. It also induces more repetitive outputs, as reflected by increased n-gram repetition ratios. On three commercial VLM APIs, ChronoPatch increases response length by 37.6%--81.5% and client-observed latency by 1.82x--2.29x under query budgets of 500 per API. These results reveal a generation-based availability risk that persists under final-response-only access and motivate generation-aware safeguards for deployed generative AI services.",
+     "authors": [
+      "Jiawei Xing",
+      "Li Wang",
+      "Xiangtao Meng",
+      "Chuanchao Zang",
+      "Rui Wen",
+      "Zheng Li"
+     ],
+     "categories": [
+      "cs.CR",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.26117",
+     "pdf_url": "https://arxiv.org/pdf/2611.26117",
+     "published": "2026-11-20",
+     "summary": "The authors present ChronoPatch, a black-box attack that utilizes final-response-only observation to induce prolonged vision-language model generation, increasing inference latency by 47.86% to 293.34% and GPU energy consumption by 41.44% to 249.70% across four open-source models.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.25592",
+     "title": "From Data Alignment to Parameter Generation: Few-Shot Cross-City Traffic Prediction with Conditional Diffusion",
+     "abstract": "Accurate mobile traffic forecasting is crucial for network service management, supporting proactive capacity provisioning, congestion mitigation, and energy-efficient operation. However, many cities and regions are data-scarce (e.g., newly deployed or poorly instrumented areas), thus making traffic prediction a few-shot learning problem and limiting the practicality of standard data-driven models. Existing cross-city solutions primarily rely on data-space alignment to match traffic distributions between data-rich and data-scarce cities, but such alignment is often brittle under real-world distribution shifts, measurement noise, and city-specific bias. To address these limitations, we propose a Conditional Diffusion-based Parameter Generation (CDPG) framework. Instead of aligning raw data, CDPG learns the conditional distribution of high-performing predictor parameters for source cities and directly generates node-specific model parameters for the target city. To support reliable adaptation for network traffic prediction, CDPG conditions parameter generation on multi-modal spatio-temporal context. Specifically, CDPG captures spatial environment cues by combining satellite imagery with large language model (LLM)-derived semantic descriptions, and summarizes complex temporal behaviors via unsupervised pattern clustering. These contextual components guide CDPG in producing parameters tailored to each base station's operational context, thereby improving robustness under cross-city and cross-region shifts. Extensive experiments on three large-scale datasets show that CDPG consistently outperforms state-of-the-art cross-city few-shot baselines by up to 9.72% on standard forecasting metrics and remains robust for few-shot multi-step prediction. The code is available at https://github.com/LingoodBoy/CDPG.",
+     "authors": [
+      "Shengchun Wang",
+      "Yuhang Lin",
+      "Tong Li",
+      "Pengyuan Zhou",
+      "Andy Chi Lok Tai",
+      "Wenjie Chen",
+      "Zhu Xiao",
+      "Zhu Han"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25592",
+     "pdf_url": "https://arxiv.org/pdf/2611.25592",
+     "published": "2026-11-20",
+     "summary": "The authors propose a Conditional Diffusion-based Parameter Generation framework for few-shot cross-city traffic prediction, which generates node-specific model parameters conditioned on multi-modal spatio-temporal context rather than aligning raw data.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "",
+   "papers": []
+  }
+ ],
+ "sent": true
+}
