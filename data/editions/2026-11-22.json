@@ -1,0 +1,1081 @@
+{
+ "date": "2026-11-22",
+ "issued": "2026-11-22T10:04:04.477014+00:00",
+ "edition": "Vol. I · No. 47",
+ "week_range": "15 Nov – 22 Nov 2026",
+ "scanned": 76,
+ "picked": 23,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "categories": [
+    "cs.CL"
+   ],
+   "overview": "Recent research highlights advancements in conversational AI and large language model agents, with a particular focus on long-horizon memory and retrieval-augmented generation systems. Investigators have introduced novel memory mechanisms, automated benchmarking tools for retrieval-augmented generation development, and highly efficient small language models tailored for rapid local conversational agents. Additional studies explore specialized applications including financial research agents, task-oriented dialogue systems, and agent-driven quantization design.",
+   "beyond": [
+    {
+     "title": "Multi-turn Conversational AI from Text to Multimodal Interaction",
+     "url": "https://aclanthology.org/2026.findings-emnlp.2467.pdf",
+     "snippet": "Tool use, retrieval, and proactive assistance. τ-Bench (Yao et al., 2025) evaluates agents in stateful user-tool interaction settings with task and policy constraints. ToolSandbox…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "Retrieval-Augmented LLM Agents: Learning to Learn from Experience",
+     "url": "https://aclanthology.org/2026.emnlp-main.57.pdf",
+     "snippet": "to preserve conversational structure and training/inference consistency with chat models while keeping supervision on assistant action tokens. [...] 3 EXPRAG: Experience…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "A RAG Annotation Platform with Human ENhancements and Edits",
+     "url": "https://aclanthology.org/2026.emnlp-demos.34.pdf",
+     "snippet": "We present RAGAPHENE, a chat-based anno-tation platform for having conversations with an LLM that are grounded in an existing corpus to en-sure faithfulness, primarily for…",
+     "host": "aclanthology.org"
+    },
+    {
+     "title": "D-Mem: A Dual-Process Memory System for LLM Agents",
+     "url": "https://aclanthology.org/2026.realm-1.91.pdf",
+     "snippet": "2 Related Work 2.1 Retrieval-Augmented Generation (RAG) Standard RAG retrieves documents via dense sim-ilarity and feeds them to a generator. Subsequent work has improved this…",
+     "host": "aclanthology.org"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.25123",
+     "title": "Forget Freely, Grep Later: Lossless, Index-Free Memory for Long-Horizon LLM Agents",
+     "abstract": "Long-horizon LLM agents often exceed their context windows, forcing them to discard information that may be needed later. Existing context management strategies rely on summarization, masking, or structured memory, requiring decisions about what to preserve or how to retrieve it before future needs are known. However, these methods can introduce lossy compression, potentially discarding details needed for future tasks. To address this limitation, we introduce GrepMem, a simple, lossless, and index-free memory mechanism built on two components: an append-only plain-text log of the agent's complete history and a regular-expression search tool for on-demand recall. Unlike structured memory systems, GrepMem requires no embeddings, retrieval index, memory extraction, or additional models. We train Qwen3.5-9B with reinforcement learning under five context management strategies and evaluate on multi-question research sessions, long-stream recall, and agent-trajectory question answering. GrepMem achieves 95-97% accuracy on ContextBench, versus at most 21% for lossy baselines, and outperforms SUPO's summarization by 8.8 percentage points on BCP-Multi. GrepMem scales effectively to increasingly long input streams while remaining on the accuracy-token-cost Pareto frontier across all five evaluation tasks. Our results show that a plain-text log and grep provide a simple but competitive approach to long-horizon agent memory, without requiring complex structured memory infrastructure.",
+     "authors": [
+      "Ziyan Yang",
+      "Taiwei Shi",
+      "Jieyu Zhao"
+     ],
+     "published": "2026-11-18T20:02:57Z",
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25123",
+     "pdf_url": "https://arxiv.org/pdf/2611.25123v1",
+     "insight": {
+      "tldr": "Researchers have developed GrepMem, a memory mechanism for long-horizon LLM agents that uses a simple, lossless plain-text log and regular-expression search to retrieve information without complex indexing.",
+      "problem": "Long-horizon LLM agents frequently exceed their context windows, forcing them to discard potentially vital information through lossy compression methods like summarization or masking.",
+      "approach": "The authors introduce GrepMem, which maintains an append-only plain-text log of the agent's complete history alongside a summarization loop, allowing the agent to perform on-demand recall using a regular-expression search tool.",
+      "key_findings": [
+       "GrepMem achieves 95-97% accuracy on ContextBench, significantly outperforming lossy baselines which reach at most 21%.",
+       "The method outperforms SUPO's summarization by 8.8 percentage points on the BCP-Multi benchmark.",
+       "GrepMem remains on the accuracy-token-cost Pareto frontier across all five evaluation tasks.",
+       "The system functions effectively without requiring embeddings, retrieval indices, memory extraction, or additional models."
+      ],
+      "limitations": "The approach relies on lexical search, which may be ineffective when relevant information cannot be identified through explicit search patterns, and the utility of lossless retrieval depends on the specific task requirements.",
+      "why_it_matters": "It offers a lightweight, competitive alternative to complex structured memory systems for LLM agents, demonstrating that preserving raw interaction histories can be more effective than lossy compression for long-horizon tasks.",
+      "tags": [
+       "llm agents",
+       "memory systems",
+       "context management"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "For future reference but maybe not. · GitHub",
+       "url": "https://gist.github.com/tkersey/e4d9923922d80c065f9d",
+       "snippet": "Most AI agents have amnesia. They process information when asked, then forget everything. This project gives agents a persistent, evolving memory that runs 24/7 as a lightweight…",
+       "host": "gist.github.com"
+      },
+      {
+       "title": "llm-wiki · GitHub",
+       "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f?permalink_comment_id=6368378",
+       "snippet": "We started with a Python implementation. The core was the same insight: stop re-deriving structure from scratch on every query. Build a persistent graph the agent reads instead of…",
+       "host": "gist.github.com"
+      },
+      {
+       "title": "Awesome-AI-Memory/README.md at main · IAAR-Shanghai/Awesome-AI-Memory · GitHub",
+       "url": "https://github.com/IAAR-Shanghai/Awesome-AI-Memory/blob/main/README.md",
+       "snippet": "Skip to content Navigation Menu Sign in Products Platform GitHub Repository hosting, code review, and collaboration Copilot AI coding agent for tasks, projects, and automated work…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.25582",
+     "title": "AutoRAGBench: A Benchmark for LLM Agents Automating RAG System Development",
+     "abstract": "Retrieval-augmented generation (RAG) is a well-established paradigm for augmenting large language models (LLMs) with information retrieved from external corpora. However, developing effective RAG systems requires substantial engineering effort and iterative experimentation, as effective design choices vary across tasks and domains. With rapid advances in LLM agent capabilities, we ask how well these agents can autonomously build RAG systems and how effectively they can improve them through iteration. In this paper, we propose AutoRAGBench, the first benchmark to evaluate how well LLM agents develop RAG systems from scratch in an open code space. It comprises nine RAG system development tasks. For each task, agents build RAG systems from scratch without starter code or prescribed strategies, under a six-hour budget on a single H800 GPU. They analyze task data, implement RAG pipelines, and iteratively refine their designs based on experimental feedback. We evaluate nine agent configurations and analyze both the effectiveness of the resulting RAG systems and their development trajectories. GPT-6.1 Sol with Codex CLI achieves the highest average score of 56.1. The composite Human-SOTA baseline averages 44.4. These results show that LLM agents can automate effective RAG system development. When starting from a human-designed system on each of seven tasks, GPT-6.1 Sol with Codex CLI improves the score by 16.6 points on average.",
+     "authors": [
+      "Hang Zhang",
+      "Yuzhi Pan",
+      "Ziyao Zhong",
+      "Chaokun Wang",
+      "Shuo Cao",
+      "Zeyu Huang",
+      "Yue Xue",
+      "Fang Niu",
+      "Bofan Xie",
+      "Guanchen Ge",
+      "Zecheng Li",
+      "Leqi Zheng",
+      "Ziyang Liu",
+      "Wei Wang",
+      "Miao Gu"
+     ],
+     "published": "2026-11-19T06:26:28Z",
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.IR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25582",
+     "pdf_url": "https://arxiv.org/pdf/2611.25582v1",
+     "insight": {
+      "tldr": "Researchers introduce AutoRAGBench, a new benchmark designed to evaluate how autonomously large language model agents can build and iteratively refine retrieval-augmented generation systems from scratch. The study demonstrates that advanced agent configurations can successfully automate RAG development, outperforming standard human-designed system baselines.",
+      "problem": "Developing effective retrieval-augmented generation (RAG) systems requires substantial engineering effort and iterative experimentation because optimal design choices vary significantly across different tasks and domains.",
+      "approach": "The authors propose AutoRAGBench, a benchmark comprising nine RAG system development tasks. In this framework, evaluated agent configurations build RAG pipelines from scratch in an open code space without starter code or prescribed strategies, operating under a six-hour budget on a single H800 GPU to analyze data, implement code, and refine designs based on experimental feedback.",
+      "key_findings": [
+       "GPT-6.1 Sol with Codex CLI achieved the highest average score of 56.1 across the benchmark tasks.",
+       "The composite Human-SOTA baseline achieved an average score of 44.4.",
+       "When starting from a human-designed system on each of seven tasks, GPT-6.1 Sol with Codex CLI improved the score by 16.6 points on average while preserving the methods' core mechanisms.",
+       "The evaluation analyzed nine distinct agent configurations across the nine RAG tasks using five answering models."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "For conversational AI and retrieval-augmented generation, automating the complex and time-consuming engineering of RAG pipelines through LLM agents can drastically lower the barrier to building domain-specific, context-grounded assistants. It shifts the development paradigm from manual code tuning to autonomous system design and iterative refinement.",
+      "tags": [
+       "rag",
+       "llm agents",
+       "benchmarking"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "GitHub - Agentic-Systems-Lab/Agentic-AutoRAG: Reasoning-driven optimizer for RAG pipelines: LLM agents diagnose retrieval failures and propose the next config. · GitHub",
+       "url": "https://github.com/Agentic-Systems-Lab/Agentic-AutoRAG",
+       "snippet": "Benchmark repository: lassebaerlandstrand/Agentic-AutoRAG-Bench `@misc{strand2026agenticautorag, title = {Agentic AutoRAG: RAG Pipeline Optimization through Reasoning-Driven…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - alenegro81/agenticrag-benchmark · GitHub",
+       "url": "https://github.com/alenegro81/agenticrag-benchmark",
+       "snippet": "``` poetry run python evaluate_rag_implementation.py ``` This step is slow — Docling parses every PDF and creates embeddings for all chunks. Once it completes you will not need to…",
+       "host": "github.com"
+      },
+      {
+       "title": "llm-as-judge · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/llm-as-judge?l=python&o=desc&s=updated",
+       "snippet": "Research quality framework - LLM-as-judge scoring gate for reports - 研究质量闸门（SynomosAI 四支柱 · research-quality-gate） Evaluate a RAG system through its real code path: deterministic…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.20771",
+     "title": "Nemotron 3.5 Bolt E4B 4GB: An Open and Efficient Small Language Model for Fast Conversational Agents",
+     "abstract": "We introduce Nemotron 3.5 Bolt E4B 4GB, an open and efficient small language model further post-trained from Gemma-4-E4B-it and optimized for speed and intelligence per GB of memory used for fast conversational agents. The model carries forward Gemma's strong conversational capabilities and further improves multi-turn tool use, instruction following, and input grounding for fast, local voice/device assistants, interactive personas, and embedded/Edge interfaces. The model combines natural conversation with multi-turn agentic capabilities to power voice/device assistants, interactive characters and robotic/IoT interfaces running on GeForce RTX, Jetson, and RTX/DGX Spark. Experiments on 21 benchmarks show that Nemotron 3.5 Bolt E4B 4GB achieves the highest average accuracy while generating the fewest output tokens in both reasoning and non-reasoning modes, compared with Gemma-4-E4B-it and Qwen3.5-4B. The model is released with a DFlash drafter. With DFlash, Bolt E4B achieves $2.74\\times$ the per-user decode speed of inference without speculative decoding at concurrency~1, and $1.21\\times$ the generation throughput of Gemma-4-E4B-it with MTP at batch size 1.",
+     "authors": [
+      "NVIDIA",
+      ":",
+      "Adi Margolin",
+      "Aditya Malte",
+      "Aishwarya Chhabra",
+      "Alex Hodson",
+      "Ameya Sunil Mahabaleshwarkar",
+      "Ambrish Dantrey",
+      "Amy Shen",
+      "Andrii Skliar",
+      "Annamalai Chockalingam",
+      "Anusha Pant",
+      "Ashwath Aithal",
+      "Ashwin Kumar",
+      "Besmira Nushi",
+      "Bhavesh Pawar",
+      "Bryan Catanzaro",
+      "Bryan Yu",
+      "Chantal Hwang",
+      "Chenhan Yu",
+      "Chris Alexiuk",
+      "Conner Currie",
+      "Cynthia Gao",
+      "David Mosallanezhad",
+      "Dina Yared",
+      "Ehsan Hosseini Asl",
+      "Eileen Long",
+      "Erick Galinkin",
+      "Felix Friedmann",
+      "Giedrius Burachas",
+      "Gorkem Batmaz",
+      "Grzegorz Chlebus",
+      "Guillermo Siman",
+      "Haifeng Qian",
+      "Hao Guo",
+      "Hayley Ross",
+      "Hrishith Thadicherla",
+      "Hui Wang",
+      "Huiying Li",
+      "Ike Nnoli",
+      "Irina Filatova",
+      "Iris Liu",
+      "Ji-Eun Lee",
+      "Jian Leong",
+      "Jian Zhang",
+      "Jiaqi Zeng",
+      "Joey Conway",
+      "Jonathan Cohen",
+      "Jose Vergara",
+      "Julien Veron Vialard",
+      "Kari Briski",
+      "Katherine Luna",
+      "Kedar Pandurang Potdar",
+      "Kevin Ning",
+      "Khalil Ben Khaled",
+      "Krzysztof Pawelec",
+      "Laura Dykes",
+      "Leili Tavabi",
+      "Lily Lee",
+      "Linda Liu",
+      "Liwei Ding",
+      "Maka Dong",
+      "Manoj Kilaru",
+      "Maria Bagdasarova",
+      "Matthew Lee",
+      "Meredith Price",
+      "Micah Schaffer",
+      "Michael Boone",
+      "Michael Fukuyama",
+      "Michael Hasper",
+      "Nancy Agarwal",
+      "Negar Habibi",
+      "Oleksii Kuchaiev",
+      "Oluwatobi Olabiyi",
+      "Pablo Ribalta",
+      "Payal Motwani",
+      "Pinky Xu",
+      "Prasoon Varshney",
+      "Pritam Biswas",
+      "Puhui Meng",
+      "Rameshwar Shivbhakta",
+      "Ran Zilberstein",
+      "Reka Kovacs",
+      "Richard Mazzarese",
+      "Rishabh Garg",
+      "Rita Fernandes Neves",
+      "Rochelle Woods",
+      "Ruby Ye",
+      "Ruvaid Virk",
+      "Ryan Hill",
+      "Saeid Motiian",
+      "Seph Mard",
+      "Shai Ben Nun",
+      "Shaona Ghosh",
+      "Sharad Yadav",
+      "Sudeep Sabnis",
+      "Suhas Hariharapura Sheshadri",
+      "Terry Kong",
+      "Thanh Do",
+      "Thinh Le",
+      "Udi Karpas",
+      "Viet Anh Trinh",
+      "Vinay Raman",
+      "Vinita Sharma",
+      "Warren Drones",
+      "Wenwen Gao",
+      "Whei Hsueh",
+      "Will Efstratis",
+      "Yoshi Suhara",
+      "Yunsheng Liu",
+      "Zhenming Wang",
+      "Zijia Chen",
+      "Zuhair Ahmed"
+     ],
+     "published": "2026-11-16T09:21:45Z",
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20771",
+     "pdf_url": "https://arxiv.org/pdf/2611.20771v1",
+     "insight": {
+      "tldr": "NVIDIA introduces Nemotron 3.5 Bolt E4B 4GB, an open, highly efficient small language model optimized for rapid local conversational agents and multi-turn tool use within a roughly 4 GB memory budget.",
+      "problem": "Conversational agents, interactive characters, and robotic interfaces require language models capable of reliable multi-turn tool use, instruction following, and state grounding while responding quickly and fitting within tight memory constraints for local deployment.",
+      "approach": "The authors further post-trained Gemma-4-E4B-it using reinforcement learning from verifiable rewards (RLVR) and reinforcement learning from human feedback (RLHF) via NeMo-RL and NeMo-Gym, optimized both reasoning and non-reasoning modes, added a conversational mode flag for concise spoken dialogue, and paired the model with a DFlash parallel drafter for speculative decoding.",
+      "key_findings": [
+       "Nemotron 3.5 Bolt E4B 4GB achieves the highest average accuracy across 21 benchmarks while generating the fewest output tokens in both reasoning and non-reasoning modes compared to Gemma-4-E4B-it and Qwen3.5-4B.",
+       "When using DFlash, the model achieves 2.74 times the per-user decode speed of inference without speculative decoding at concurrency 1.",
+       "On the coding subset of SPEED-Bench, the Q4_K_M Bolt E4B with DFlash achieves 1.21 times the generation throughput of Q4_K_M Gemma-4-E4B-it with MTP at batch size 1.",
+       "The chat template was successfully extended to order text before tool calls and results, allowing the assistant to acknowledge requests or explain actions prior to invocation."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "For conversational AI and dialogue systems, the model demonstrates how small language models can achieve high intelligence and conversational proficiency locally under strict memory limits (~4 GB). For LLM agents, its enhanced multi-turn tool use, instruction following, and DFlash-accelerated decoding provide a blueprint for building fast, responsive agentic workflows on edge devices without relying entirely on heavy cloud infrastructure.",
+      "tags": [
+       "small language model",
+       "conversational agents",
+       "speculative decoding"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+       "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB/raw/main/README.md",
+       "snippet": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB is a small language model (SLM) further post-trained from Gemma-4-E4B-it by NVIDIA. Nemotron-3.5-Bolt-E4B carries forward Gemma’s strong…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB · Hugging Face",
+       "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB?local-app=llama.cpp",
+       "snippet": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB is a small language model (SLM) further post-trained from Gemma-4-E4B-it by NVIDIA. Nemotron-3.5-Bolt-E4B carries forward Gemma’s strong…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB · Hugging Face",
+       "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+       "snippet": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB is a small language model (SLM) further post-trained from Gemma-4-E4B-it by NVIDIA. Nemotron-3.5-Bolt-E4B carries forward Gemma’s strong…",
+       "host": "huggingface.co"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.20759",
+     "title": "Instant Weight-Space Consolidation for Long-Term Memory in LLMs",
+     "abstract": "Agentic memory systems give LLMs persistent memory by extracting experience into text and retrieving it at query time, but the model itself does not evolve: however many interactions it has had, it starts each query the same. Extraction errors compound, implicit cross-session patterns that no single fragment states cannot be surfaced, and the construction cost grows with every conversation. Fine-tuning on past interactions does change the weights, but requires backpropagation at serving time and degrades on long histories. We introduce CLAM (Carried Latent Adapter Memory), which combines the strengths of both: a recurrent hypernetwork performs parametric consolidation, compiling a stream of session activations into a low-rank adapter in a single forward pass with no gradient steps and no language-model generation calls, while a complementary episodic buffer supplies verbatim detail at inference. A gated latent state carries knowledge across sessions in fixed size, so the parametric memory accumulates without growing. On LoCoMo and LongMemEval-S across three open models (2-7B parameters), CLAM leads all agentic baselines by 1-45 points and all gradient-based parametric methods by 10-45 points, while requiring zero generative LLM calls, zero gradient steps, and 3-151x less wall-clock time than extraction systems to build its memory. The two channels are complementary: the consolidated adapter adds 12-15 accuracy points when the episodic buffer misses the gold evidence, and still adds 4-5 points even with an oracle buffer.",
+     "authors": [
+      "Manan Suri",
+      "Dinesh Manocha"
+     ],
+     "published": "2026-11-16T09:09:55Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20759",
+     "pdf_url": "https://arxiv.org/pdf/2611.20759v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.25109",
+     "title": "CoMPASS: A Multi-Turn Benchmark for Measuring LLM Reinforcement of Parasocial Behavior",
+     "abstract": "Users of conversational LLMs sometimes anthropomorphize these systems, form emotional attachments to them, and become dependent on them. This behavior, known as parasocial attachment, has been linked to multiple documented fatalities. However, public benchmarks for measuring whether LLMs reinforce users' parasocial attachment are lacking: existing work is single-turn, post hoc observational, or focused on extreme user states such as psychosis. We introduce CoMPASS, a multi-turn benchmark for measuring whether LLMs reinforce or resist users' gradually escalating parasocial attachment. CoMPASS is grounded in attachment theory and includes four user personas, three independent escalation dimensions (anthropomorphism, attachment, dependency) applied singly and in combination against a matched control, and a seven-signal scoring rubric. We report results for eight frontier models from four providers and observe that under our primary judge, multi-turn escalation raises parasocial behavior on the anthropomorphism and the attachment composite scores across all models. Six of the eight models show a significant increase in overall parasocial reinforcement over control when all three dimensions are escalated simultaneously. We find that within-provider differences are small relative to cross-provider differences, which suggests that provider-level choices such as post-training, rather than model scale, shape parasocial reinforcement and that provider-side intervention may be feasible.",
+     "authors": [
+      "Shwetanshu Singh",
+      "Mark Keavney",
+      "Mathieu Duteil",
+      "Meriem Mehri",
+      "Scott Blain"
+     ],
+     "published": "2026-11-18T19:44:59Z",
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.HC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25109",
+     "pdf_url": "https://arxiv.org/pdf/2611.25109v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.22511",
+     "title": "LMLineage: Content Lineage and Context Governance for LLM Agents",
+     "abstract": "Interpretability for AI agents should not be confined to understanding the model's internal weights. It must also cover the agent's reasoning and decision-making process over multi-source context. We present LMLineage, an out-of-band system that attributes every output sentence of an agent session to its supporting input spans with calibrated confidences, without requiring white-box access to the model or any additional inference passes. On top of the lineage metadata, we build concept-drift micro compaction: instead of waiting for the context-length limit and summarizing everything, the system detects when previously used input documents have stopped being referenced (\"drifted\") and surgically compacts only those, preserving user instructions verbatim. We evaluate on a multi-tier corpus: 71 gold annotated sentences from 10 Chinese web-QA cases, plus 90 turns of independently collected multi-turn sessions across three generator models (gpt-4o-mini, qwen3.8-27b, deepseek-v4-flash). Results show that (i) window-level embedding similarity is far better aligned with LLM paraphrasing than whole document or lexical matching; (ii) the greedy-window fast path is both faster and more accurate on average than exhaustive line-matching (a multiple-comparisons bias in the latter inflates web recall at the cost of overall accuracy); (iii) per-turn attribution completes in 1s on a single GPU, remaining stable as context accumulates to 40 turns; and (iv) concept-drift detection is conservative (0% false compaction) with recall bounded by attribution accuracy. We further describe the concept-drift micro compaction design and an interactive incident-tracing/memory-cleaning case study. A companion patent application covers the lineage construction method.",
+     "authors": [
+      "Wei Hou",
+      "Jingxin Geng",
+      "Xin Chen",
+      "Zheqing Jiang"
+     ],
+     "published": "2026-11-17T10:05:59Z",
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22511",
+     "pdf_url": "https://arxiv.org/pdf/2611.22511v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.23388",
+     "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
+     "abstract": "Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe differs across models and precisions. As a result, experts must redesign it for every new model, which is time-consuming and often sub-optimal. Fortunately, an LLM agent can take over this design by refining the recipe over rounds of building and evaluating candidates, so that more rounds lead to better recipes. However, evaluating one quantized reasoning model takes tens of GPU-hours, and combining methods from different codebases means porting each to the new architecture by hand. We present QDA, a system in which an agent designs the recipe for each model and precision. To make evaluation fast, QDA scores each candidate in minutes by its output KL divergence from the original model on reasoning traces that the agent never sees, and checks promising ones with long generations to catch failures such as repetition loops. To make building fast, QDA provides a library of public PTQ methods that are compatible with one another and with new model architectures. Across four reasoning models, QDA improves accuracy over the strongest public recipe by 0.9, 1.4 and 2.2 percentage points on average at W4A16, W4A8 and W3A16, using 64 GPU-hours per search. On the 320B-parameter MoE model GLM-5.3-Flash at NVFP4 W4A4, it recovers 98.3% of the FP8 model's accuracy, against 96.9% for the best vendor checkpoint. Every QDA checkpoint also runs on existing serving kernels with no inference overhead. We will release the library, the evaluator and the harness.",
+     "authors": [
+      "Xingyang Li",
+      "Tianlang Zhao",
+      "Song Han",
+      "Ligeng Zhu"
+     ],
+     "published": "2026-11-17T19:00:09Z",
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23388",
+     "pdf_url": "https://arxiv.org/pdf/2611.23388v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.25071",
+     "title": "FinVeriQA: Financial Research Agents for Question Answering: Routing, Retrieval, MCP Tool Use, and Provenance-Aware Evidence Verification",
+     "abstract": "Large language models (LLMs) write fluent financial analyses but miscompute ratios, recall stale prices, and route questions to the wrong tool with high confidence. We ask which component should do each job in a financial question-answering assistant, and study it with FinVeriQA, an open-source multi-agent research prototype over SEC filings and live market data: a compact typed-decision model (Laya) routes each question and screens out advice requests, Python computes every number, retrieval and tools fetch evidence, Mistral-7B writes a cited answer, a code validator checks that cited IDs exist and that numbers match computed notes, and a Model Context Protocol (MCP) server exposes the pipeline. In live experiments, Laya routed better than Mistral-7B (0.85 vs. 0.52; overall 0.86 vs. 0.68, McNemar p = 0.0003); a 12B Mistral decided no better, and DeepSeek-R1-8B decided better (0.79 vs. 0.68, p = 0.0192) but about 9.9 times more slowly. Mistral-7B computed 29% of 100 financial calculations correctly against 100% for Python, a live quote cut price error from 210% to 0.00%, and hybrid retrieval reached 76% Hit@5 on 50 filing questions. Yet in a live case study, both agent answers passed validation while describing AMD sample data under NVIDIA's and Alphabet's names. A controlled upper-bound study on the FinRank benchmark explains why: when one figure in the shared evidence is corrupted, self-consistency stays confident (agreement 0.55 to 0.59 while accuracy falls from 0.50 to 0.00), and a shared-evidence check (the kind our validator performs) catches 35% of the errors, whereas a check against the original passage catches 77% ($p = 5.96 \\times 10^{-8}$); for DeepSeek-R1-8B, 68% vs. 90%. Verification must be independent of the evidence the writer saw.",
+     "authors": [
+      "Meenakshi Rajpurohit",
+      "Anna Phan",
+      "Ravikumar Komandur Narayanan",
+      "Gunanidhi Ramakrishnan",
+      "Nathan Howland"
+     ],
+     "published": "2026-11-18T19:13:45Z",
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.IR",
+      "cs.MA"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25071",
+     "pdf_url": "https://arxiv.org/pdf/2611.25071v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.24535",
+     "title": "ProbMedTOD: A Bayesian Network Guided Task-Oriented Dialogue System for Patient History Taking",
+     "abstract": "Patient history taking is a strategic, multi-turn process that refines diagnostic hypotheses through iterative questioning, mirroring clinical reasoning where each inquiry updates beliefs over candidate diagnoses. Deploying AI in this setting is constrained by privacy, cost, and latency, making Small Language Models (SLMs) a more desirable backbone compared to larger LLMs. However, SLMs capture only the fast, intuitive \"System 1\" side of this process and lack explicit mechanisms for the deliberative \"System 2\" reasoning needed to maintain and update diagnostic uncertainty over time. Bayesian Networks (BayesNets) offer a natural complement, providing an interpretable framework for auditable probabilistic belief tracking. Yet, clinical BayesNets are difficult to construct due to their reliance on expert curated structure, dependencies, and parameters. We introduce ProbMedTOD, which automatically synthesizes a clinical BayesNet from a small number of clinical notes in three stages: ontology building, structure prediction, and parameter estimation. ProbMedTOD then integrates the resulting BayesNet with SLMs, enabling probabilistic reasoning in multi-turn dialogues. A BayesNet Agent maintains real-time posterior distributions over diagnoses, while a Policy Agent picks diagnostically informative questions. Experiments on DDXPlus and MIMIC-IV Notes show that ProbMedTOD outperforms LLM-only and retrieval-based baselines, with especially strong gains for smaller models.",
+     "authors": [
+      "Vishal Vivek Saley",
+      "Bhavesh Gurnani",
+      "Dinesh Raghu",
+      "Mausam"
+     ],
+     "published": "2026-11-18T14:47:24Z",
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.24535",
+     "pdf_url": "https://arxiv.org/pdf/2611.24535v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "cs.CL",
+    "cs.DC"
+   ],
+   "overview": "Recent research highlights a strong focus on energy-efficient computing, spanning embedded processors, AI inference accelerators, and residential energy management. Studies investigate hardware-workload matching for RISC-V parallel accelerators, low-order bit-splicing for matrix multiplication, and interpretable machine learning for home systems. Additional work addresses energy-latency trade-offs in multimodal large language models and adaptive routing for spiking vision transformers.",
+   "beyond": [
+    {
+     "title": "GREEN-AI: Grounding Research on Energy- and Resource-Efficient Networks for Sustainable AI | Proceedings of the 35th ACM International Conference on Information and Knowledge Management",
+     "url": "https://dl.acm.org/doi/10.1145/3799682.3839283",
+     "snippet": "The GREEN-AI workshop addresses the growing need for environmentally sustainable Artificial Intelligence (AI). As AI models continue to scale in size and complexity, their energy…",
+     "host": "dl.acm.org"
+    },
+    {
+     "title": "An Artificial Intelligence Approach for Coordinating Electric Vehicle Charging and Renewable Energy in Power Systems",
+     "url": "https://www.mdpi.com/2071-1050/18/21/11352",
+     "snippet": "\\, has the potential to flatten the load curve and improve the efficiency and stability of the grid. Furthermore, the intelligent coordination of EV charging with the intermittent…",
+     "host": "mdpi.com"
+    },
+    {
+     "title": "Recent development of wastewater treatment technologies towards sustainable energy recovery, environmental protection and circular economy - ScienceDirect",
+     "url": "https://www.sciencedirect.com/science/article/pii/S2666789426000905",
+     "snippet": "hubs to achieve global carbon neutrality. A key innovation is the integration of an intelligence layer comprising artificial intelligence and digital twin technology to optimize…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "Sustainability and environmental impact analysis for AI-driven multi-energy systems - ScienceDirect",
+     "url": "https://www.sciencedirect.com/science/article/pii/B9780443340291000177",
+     "snippet": "These cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our…",
+     "host": "sciencedirect.com"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.25947",
+     "title": "Matching Architecture to Workload: Comparing RISC-V Parallel Accelerators for Energy-Efficient Embedded Computing",
+     "abstract": "Embedded computing demands high performance and energy efficiency across workloads with widely different computational characteristics. Choosing the most suitable execution model therefore requires a quantitative understanding of how each model maps to different workload classes. In this paper, we compare three execution models for energy-efficient embedded computing: scalar multicore, stream ing multicore, and vector processing. We use three open-source RISC-V accelerators as representative implementations: the PULP Cluster, the Snitch Cluster, and Spatz, respectively. Their open-source hardware and software stacks enable a controlled comparison based on implementations in the same 12 nm technology and a common benchmark suite. Our results reveal that no single execution model performs best across all workload classes. Spatz delivers the greatest benefits for regular and highly vectorizable compute-intensive applications, achieving up to 4.29x higher performance and 5.17x greater energy efficiency than the other architectures. However, its effectiveness strongly depends on the availability of data-level parallelism and regular computation and memory-access patterns, making it the most sensitive to workload characteristics. The Snitch Cluster performs particularly well on applications with limited parallelism and streamable memory-access patterns, providing up to 5.53x higher performance and 1.45x greater energy efficiency. Conversely, the PULP Cluster is most effective on irregular and control-dominated applications, achieving improvements of up to 5.66x in performance and 2.80x in energy efficiency. Compared with Spatz, however, the greater flexibility offered by PULP and Snitch comes at a non-negligible cost in terms of both area and power.",
+     "authors": [
+      "Luca Colombo",
+      "Luigi Ghionda",
+      "Amirhossein Kiamarzi",
+      "Yvan Tortorella",
+      "Riccardo Giunti",
+      "Niccolò Giuliani",
+      "Samuele Colmi",
+      "Angelo Garofalo",
+      "Giuseppe Tagliavini",
+      "Davide Rossi"
+     ],
+     "published": "2026-11-19T11:34:18Z",
+     "categories": [
+      "cs.DC",
+      "cs.AR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25947",
+     "pdf_url": "https://arxiv.org/pdf/2611.25947v1",
+     "insight": {
+      "tldr": "Researchers have conducted a controlled comparison of three RISC-V parallel execution models for energy-efficient embedded computing using the same 12 nm technology. They report that no single architecture excels across all workloads, highlighting the need to match execution models to specific computational patterns.",
+      "problem": "Embedded and edge computing systems face strict power budgets, silicon footprint limits, and memory bandwidth constraints while running diverse workloads with distinct computational characteristics—such as regular linear algebra, digital signal processing, machine learning, and irregular control-heavy tasks—making it difficult to choose a single optimal execution model.",
+      "approach": "The authors compare three execution models for energy-efficient embedded computing: scalar multicore, streaming multicore, and vector processing. They evaluate three open-source RISC-V accelerators as representative implementations—the PULP Cluster, the Snitch Cluster, and Spatz, respectively—using implementations in the same 12 nm technology and a common benchmark suite.",
+      "key_findings": [
+       "Spatz achieves up to 4.29x higher performance and 5.17x greater energy efficiency than the other architectures on regular and highly vectorizable compute-intensive applications.",
+       "The Snitch Cluster provides up to 5.53x higher performance and 1.45x greater energy efficiency on applications with limited parallelism and streamable memory-access patterns.",
+       "The PULP Cluster excels on irregular and control-dominated applications, yielding improvements of up to 5.66x in performance and 2.80x in energy efficiency.",
+       "The greater flexibility offered by the PULP and Snitch clusters incurs a non-negligible cost in terms of both area and power compared to Spatz."
+      ],
+      "limitations": "Spatz exhibits the greatest performance variability and is highly sensitive to workload characteristics, with its worst-case results often falling below those of the other two architectures.",
+      "why_it_matters": "Edge deployment of machine learning and language models requires high energy efficiency under tight power and carbon constraints. Understanding how different workload classes map to specific hardware architectures provides practical guidance for designing heterogeneous systems that minimize compute overhead and power consumption.",
+      "tags": [
+       "risc-v",
+       "embedded computing",
+       "energy efficiency"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "GitHub - ahmad-mirsalari/PULP: A public repository discussing the PULP (Parallel Ultra Low Power) platform for open-source RISC-V processors and associated software. · GitHub",
+       "url": "https://github.com/ahmad-mirsalari/PULP",
+       "snippet": "Image Description Figure 10 Multi-Cluster components They have also expanded their work to handle larger workloads, where a PULP system containing multiple clusters is connected…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - x-heep/x-heep: eXtensible Heterogeneous Energy-Efficient Platform based on RISC-V · GitHub",
+       "url": "https://github.com/x-heep/x-heep",
+       "snippet": "Configurable RISC-V CPUs: Supports CV32E2, CV32E40P, CV32E40PX (with CV-X-IF), and CV32E40X cores Extensible architecture: Add custom accelerators via the CV-X-IF interface or as…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - theuppercaseguy/FYP--Risc-V-32-bit-Matrix-Mac: A risc v based architecture to develop a core/ processor which is capable of Matrix MAC Operations · GitHub",
+       "url": "https://github.com/theuppercaseguy/FYP--Risc-V-32-bit-Matrix-Mac",
+       "snippet": "This project aims to develop a hardware-based acceleration solution for matrix multiply-accumulate (MAC) operations. We are designing a RISC-V-based processor with a custom…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.25617",
+     "title": "Splice-Core: Low-Order-Bit-Splicing GEMM for Highly Energy-Efficient AI Inference Accelerators",
+     "abstract": "Splice-Core is a temporal-unary/binary (tub) hybrid general matrix multiplication (GEMM) unit that minimizes low-order accumulation latency, while retaining value-dependent execution for high-order activation bits. We present two novel processing element (PE) variants: (i) Splice-BP utilizing bit planes, and (ii) Splice-LUT, which selects a shared weight multiple in a single cycle. Compared to a binary systolic array, Splice-BP/Splice-LUT achieve 77.4%/76.4% geometric-mean tile energy reductions, respectively, across 26 INT4 convolutional neural network (CNN) and large language model (LLM) workloads in 45nm. Splice-LUT further increases geometric-mean tile throughput by 44.4% and reduces geometric-mean energy-delay product (EDP) by 6.13x across the 26 configurations. Across the evaluated W8A8 convolution and expert-projection workloads, Splice-BP and Splice-LUT reduce tile energy by 77.3-88.1%. Post-place-and-route INT4 yields 14%/9% smaller area for Splice-BP/Splice-LUT, compared to the systolic array.",
+     "authors": [
+      "Prabhu Vellaisamy",
+      "Hsien-Fu Hung",
+      "Andrew Kim",
+      "Shawn Blanton",
+      "John Paul Shen"
+     ],
+     "published": "2026-11-19T07:03:38Z",
+     "categories": [
+      "cs.AR",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25617",
+     "pdf_url": "https://arxiv.org/pdf/2611.25617v1",
+     "insight": {
+      "tldr": "Researchers have introduced Splice-Core, a hybrid matrix multiplication unit that uses low-order bit-splicing to significantly improve energy efficiency and throughput in AI inference accelerators.",
+      "problem": "Temporal-unary design efficiency varies with precision, array size, and operand distribution, while low-order accumulation latency can degrade performance in AI inference workloads.",
+      "approach": "The authors developed Splice-Core, a temporal-unary/binary hybrid general matrix multiplication (GEMM) unit featuring two processing element variants: Splice-BP (utilizing bit planes) and Splice-LUT (selecting a shared weight multiple in a single cycle).",
+      "key_findings": [
+       "Splice-BP and Splice-LUT achieve 77.4% and 76.4% geometric-mean tile energy reductions, respectively, compared to a binary systolic array across 26 INT4 CNN and LLM workloads in 45nm.",
+       "Splice-LUT increases geometric-mean tile throughput by 44.4% and reduces geometric-mean energy-delay product by 6.13x across the 26 configurations.",
+       "Across evaluated W8A8 convolution and expert-projection workloads, Splice-BP and Splice-LUT reduce tile energy by 77.3% to 88.1%.",
+       "Post-place-and-route INT4 evaluation yields 14% and 9% smaller areas for Splice-BP and Splice-LUT, respectively, compared to the systolic array."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "By drastically cutting energy consumption and chip area for INT4 and INT8 AI inference workloads without sacrificing accuracy, Splice-Core enables more sustainable machine learning hardware with lower compute costs and energy footprints.",
+      "tags": [
+       "ai accelerators",
+       "energy efficiency",
+       "gemm"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=parallel+prefill",
+       "snippet": "the NPUs but with an accuracy loss. To solve this issue, based on the insight that low-bit can enable target computation encoded within an acceptably sized table, we propose table…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=prefill",
+       "snippet": "fixed-sized chunks while maintaining data dependencies; (2) At tensor level, it identifies and extracts significant outliers to run on the CPU/GPU in parallel with minimal…",
+       "host": "huggingface.co"
+      },
+      {
+       "title": "Daily Papers - Hugging Face",
+       "url": "https://huggingface.co/papers?q=key+energy",
+       "snippet": "Energy is now a critical ML computing resource. While measuring energy consumption and observing trends is a valuable first step, accurately understanding and diagnosing why those…",
+       "host": "huggingface.co"
+      }
+     ]
+    },
+    {
+     "id": "2611.26412",
+     "title": "How to Effectively Manage the Energy in Residential Systems: Development and Comparison of Methods",
+     "abstract": "The transition from fossil fuels presents significant challenges in energy management. To ensure a sustainable energy future, it is crucial to reduce energy consumption when possible and to synchronize electricity consumption and storage with the production from sources with low greenhouse gas emissions. This thesis explores a variety of energy management methods used to manage batteries, heat pumps, and other energy-related systems. The thesis presents three simulation cases alongside one real-world experiment to compare energy management done through simple rules, optimization, and machine learning methods. Furthermore, this thesis introduces TreeC, a novel machine learning-based method that learns understandable yet efficient energy management strategies, applicable to many cases. The three key contributions of this thesis can be summarized as follows: 1) The developed TreeC method demonstrates competitive performance compared to a variety of energy management approaches, such as model predictive control and reinforcement learning, across a diverse set of energy management problems. The understandability of TreeC's energy management strategies greatly improves the transparency and trustworthiness of machine learning-based energy management. 2) The real-world experiment highlights the need to validate energy management methods on actual hardware and not solely on simulations. Both TreeC and model predictive control performed worse than in simulations, due to, respectively, insufficiently representative training data and the real-time input data not being reliable enough. 3) Energy management algorithms reduce costs in electrified Belgian dwellings, particularly in poorly insulated dwellings, electric vehicle chargers, and photovoltaic installations. However, on average, these cost savings do not yet outweigh the current costs and effort required to implement such algorithms.",
+     "authors": [
+      "Julian Ruddick"
+     ],
+     "published": "2026-11-19T16:59:58Z",
+     "categories": [
+      "eess.SY",
+      "cs.LG",
+      "cs.NE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.26412",
+     "pdf_url": "https://arxiv.org/pdf/2611.26412v1",
+     "insight": {
+      "tldr": "A new doctoral thesis explores advanced energy management methods for residential systems, introducing a machine learning approach that balances competitive performance with interpretability.",
+      "problem": "The transition from fossil fuels creates energy management challenges, requiring methods to reduce energy consumption and synchronize electricity usage and storage with low-emission sources.",
+      "approach": "The author compares simple rules, optimization, and machine learning methods across three simulation cases and one real-world experiment, and introduces TreeC, a novel machine learning-based method designed to learn understandable and efficient energy management strategies.",
+      "key_findings": [
+       "The developed TreeC method demonstrates competitive performance compared to approaches like model predictive control and reinforcement learning across diverse energy management problems.",
+       "TreeC's understandability improves the transparency and trustworthiness of machine learning-based energy management.",
+       "A real-world experiment revealed that TreeC and model predictive control performed worse than in simulations due to insufficiently representative training data and unreliable real-time input data, respectively.",
+       "Energy management algorithms reduce costs in electrified Belgian dwellings—particularly poorly insulated homes, electric vehicle chargers, and photovoltaic installations—though average savings do not yet outweigh current implementation costs and efforts."
+      ],
+      "limitations": "Real-world performance is hindered by insufficiently representative training data for machine learning approaches and unreliable real-time input data for model predictive control, and current cost savings do not yet outweigh implementation costs and effort.",
+      "why_it_matters": "The research addresses how machine learning techniques can be made more transparent and trustworthy for managing residential energy systems, balancing computational strategies with practical cost and deployment realities.",
+      "tags": [
+       "energy management",
+       "machine learning",
+       "residential systems"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "Causal Machine Learning in IoT-based Engineering Problems",
+       "url": "https://openreview.net/pdf/abf2ee877fd51d287c1047dc8d3109210996453f.pdf",
+       "snippet": "for probabilistic forecasting of the total load of a residential community and its base and thermal components, combining conformalized quantile regression and causal machine…",
+       "host": "openreview.net"
+      },
+      {
+       "title": "GitHub - goruck/nilm: Energy Management Using Real-Time Non-Intrusive Load Monitoring · GitHub",
+       "url": "https://github.com/goruck/nilm",
+       "snippet": "sector is one of the key sectors that utilize more energy. Therefore, efforts are being made to monitor and manage energy consumption effectively in residential and commercial…",
+       "host": "github.com"
+      },
+      {
+       "title": "awesome-sustainable-technology/README.md at master · OpenEnergyPlatform/awesome-sustainable-technology · GitHub",
+       "url": "https://github.com/OpenEnergyPlatform/awesome-sustainable-technology/blob/master/README.md",
+       "snippet": "CEA - helps you to analyse the effects of building retrofits, land-use planning, district heating and cooling and renewable energy on the future costs, emissions and energy…",
+       "host": "github.com"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.23728",
+     "title": "AdaS-ViT: Test-Time Adaptive Routing for Spiking Vision Transformers with Ultra-High Energy Efficiency",
+     "abstract": "Spiking Neural Networks (SNNs) promise event-driven and energy-efficient vision, yet existing spiking vision transformers (S-ViTs) largely confine spiking tokens to fixed and uniform firing schemes along the temporal, spatial and channel dimensions, whereas suppressing the computational redundancy thus incurred calls for adaptive firing mechanisms that operate jointly across all three axes at test time. To this end, we propose the Adaptive Efficient Integrate-and-Fire (AdaE-IF) model, which consults the attention score of each spiking token and routes salient regions to fine-grained firing patterns while assigning energy-frugal coarse patterns to the remaining regions. Building on AdaE-IF, we further introduce Spiking Gated Self-Attention (S-GSA) and Spiking Local-Gated Unit (S-LGU), which enforce selective spike emission at token and channel granularity. We integrate the aforementioned mechanisms and modules into AdaS-ViT, a test-time adaptive-routing architecture trained with a progressive spatio-temporal curriculum that stabilizes the co-adaptation of firing precision and routing masks. Extensive experiments across benchmarks spanning diverse data scales and modalities demonstrate that AdaS-ViT consistently achieves highly competitive performance. Notably, on ImageNet-1k it consumes only 1.02 to 2.45 millijoules per image and attains an accuracy-per-energy ratio of 32$\\times$ to 72$\\times$, operating in an economical inference regime and thereby pushing the energy-efficiency boundary further.",
+     "authors": [
+      "Zecheng Hao",
+      "Zihan Huang",
+      "Shenghao Xie",
+      "Jiyuan Zhang",
+      "Zhaofei Yu",
+      "Tiejun Huang"
+     ],
+     "published": "2026-11-18T02:40:45Z",
+     "categories": [
+      "cs.NE",
+      "cs.AI",
+      "cs.CV"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.23728",
+     "pdf_url": "https://arxiv.org/pdf/2611.23728v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.21165",
+     "title": "A Matter of Stages: Energy-Latency Trade-offs in Multimodal LLM Serving",
+     "abstract": "Online serving of multimodal large language models requires deciding whether to separate visual encoding (E), prefill (P), and decode (D) across GPUs and how to configure their frequencies. EPD disaggregation enables independent stage control, but it also changes communication and queueing behavior. Lowering one stage's frequency can increase queueing and prolong execution across the EPD pipeline. Consequently, reducing power at one stage does not necessarily reduce total GPU energy per request. In this paper, we systematically characterize fused and EPD-disaggregated serving across four multimodal models under a fixed three-GPU budget, followed by single-stage and uniform downclocking experiments across 18 workload combinations. We find that disaggregation reduces GPU energy per successful request by 13.3-37.0% at nearly identical output-token throughput, but increases mean TTFT. Downclocking exhibits distinct stage sensitivities, and aggressive frequency reductions can offset power savings through queueing and longer execution. Across the evaluated workloads, uniform downclocking to 80% reduces GPU energy by 11.7-18.6% with modest mean-latency changes. Guided by these findings, we develop a budgeted frequency exploration strategy to select energy-efficient configurations under latency constraints. Evaluation shows that four probes can identify the lowest-energy feasible configuration among 25 measured candidates across all 288 evaluated positive-margin SLO scenarios. These results provide practical guidance for energy-efficient multimodal serving.",
+     "authors": [
+      "Yifan Sun",
+      "Jiantong Jiang",
+      "Zhexiang Zhang",
+      "Xu Bai",
+      "Feng Liu",
+      "Rajkumar Buyya",
+      "Adel N. Toosi"
+     ],
+     "published": "2026-11-16T14:29:27Z",
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21165",
+     "pdf_url": "https://arxiv.org/pdf/2611.21165v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.25141",
+     "title": "CAIMS: Scalable Cross-Array In-Memory Search",
+     "abstract": "Search, especially top-k similarity search, plays a vital role in many applications, but its performance can be severely limited by memory access overhead. In-memory search (IMS), an alternative to CPU/GPU-based approaches, exploits massive parallelism within a content-addressable memory (CAM) array to perform search in situ and provides both low latency and high energy efficiency. However, the capacity of a single CAM array is often insufficient for modern workloads, requiring data to be distributed across multiple arrays. Deploying scalable top-k similarity search across multiple CAM arrays poses a fundamental problem that existing designs fail to address: how to accurately and efficiently reduce local binary match results to global top-k results. This work introduces CAIMS, a cross-array IMS framework that is agnostic to memory technologies and applications, enabling scalable and efficient top-k similarity search while preserving accuracy. To enable accurate top-k result reduction, CAIMS leverages the existing threshold match functionality with a combined offline and online parameter selection approach to transform local binary match results that lack globally comparable similarity information into global coarse-grained similarity scores. To further improve efficiency, CAIMS conducts hierarchical reduction and transfers only the selection results and necessary control signals with lightweight local peripherals. Implemented on a 3D NAND Flash model and demonstrated using the retrieval phase of retrieval-augmented generation, CAIMS improves throughput by up to $22.3\\times/10.1\\times$ and energy efficiency by $426.6\\times/23.7\\times$ compared to the server-class CPU baseline and prior 3D NAND Flash accelerators, respectively, while maintaining comparable accuracy.",
+     "authors": [
+      "Yi-Chun Liao",
+      "Liu Liu",
+      "Ruiyang Qin",
+      "Yiran Chen",
+      "X. Sharon Hu"
+     ],
+     "published": "2026-11-18T20:19:55Z",
+     "categories": [
+      "cs.AR",
+      "cs.ET",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25141",
+     "pdf_url": "https://arxiv.org/pdf/2611.25141v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.22160",
+     "title": "Collecting Infrastructure-Level Measures for Energy Analysis in Modern Computing Infrastructures",
+     "abstract": "Modern HPC facilities are complex environments in which all components are tightly coupled; consequently, precisely modeling and accounting for energy consumption requires approaches that go beyond instrumenting individual compute nodes. Aiming for a cluster-wide vision, we designed a scalable data collection pipeline that aggregates fine-grained measurements from multiple subsystems-spanning component loads, software and hardware counters, sensors and energy-ensuring consistent sampling frequencies and synchronized data acquisition across the infrastructure. We present a dataset of comprehensive metrics collected at 1 Hz over one month from a production research data center supporting heterogeneous workloads, including HPC, Kubernetes services, and distributed storage. To illustrate what this approach makes possible in practice, we analyze two case studies-distributed I/O and large-language-model inference-showing how cluster-wide measurement reveals system-level dynamics missed by localized instrumentation. The proposed dataset and collection methodology provide a foundation for future work on predictive modeling, energy-aware resource management, and more efficient computing infrastructures.",
+     "authors": [
+      "Isac Pasianotto",
+      "Stefano Cozzini",
+      "Niccolo Tosato"
+     ],
+     "published": "2026-11-17T03:44:53Z",
+     "categories": [
+      "cs.DC"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22160",
+     "pdf_url": "https://arxiv.org/pdf/2611.22160v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.20686",
+     "title": "UbiHearo: Bringing Scenario-Aware Sound Guidance to DHH Users with Mobile Agents",
+     "abstract": "For Deaf and Hard-of-Hearing (DHH) users, effective sound awareness goes beyond detecting \\emph{what} sound occurs; it requires understanding \\emph{what it means}, \\emph{how urgent it is}, and \\emph{what to do}. However, existing mobile assistants largely reduce acoustic scenes to isolated labels or generic alerts, failing to provide contextual guidance when the same sound implies different risks across scenarios. We present \\sysname, a mobile hearing assistant agent that closes the sensing--reasoning--action loop for \\textit{scenario-aware} and \\textit{personalized} DHH assistance. \\sysname adopts a \\textit{neuro-symbolic} design that transforms continuous acoustic and physical context streams into structured intermediate representations (IRs) for controllable reasoning and guidance. It introduces three key mechanisms. \\textit{First}, a perception-thresholded sensing mechanism enables energy-efficient always-on awareness by activating processing only for perceptually meaningful events while preserving safety-critical cues through deterministic overrides. \\textit{Second}, a staged neuro-symbolic reasoning framework performs promptless scenario understanding by conditioning an on-device audio-language model on structured IRs instead of user-authored context descriptions. \\textit{Third}, a bounded human-in-the-loop personalization mechanism adapts user-specific guidance through lightweight on-device decision-boundary updates while preserving population-aligned reasoning. We evaluate \\sysname on smartphones and in-vehicle systems across diverse scenarios. It achieves favorable accuracy--latency--energy tradeoffs and personalized guidance.",
+     "authors": [
+      "Fengmin Wu",
+      "Sicong Liu",
+      "Zimu Zhou",
+      "Chenren Xu",
+      "Wanbing Zhao",
+      "Peiwen Sun",
+      "Zhiwen Yu"
+     ],
+     "published": "2026-11-16T07:51:11Z",
+     "categories": [
+      "cs.AI",
+      "cs.CY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20686",
+     "pdf_url": "https://arxiv.org/pdf/2611.20686v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.20390",
+     "title": "Architectural Principles for Parameter-Efficient Unitary Transformations in Coherent Optical Neural Networks",
+     "abstract": "Coherent optical neural networks based on interferometric architectures offer a promising route toward high-throughput, energy-efficient computation by exploiting the multiple degrees of freedom of light, including spatial, temporal, and spectral modes. However, practical implementations are constrained by the number of tunable parameters due to fabrication complexity, device footprint, and control overhead. In such parameter-constrained settings, achieving high expressive power remains a central challenge. We identify two key architectural requirements for maintaining high expressive power under these constraints: (i) statistical uniformity in the implemented transformations and (ii) strong mixing capability per parameter, which enables rapid and unbiased redistribution of information across modes. To realize these requirements, we develop a logarithmic-depth butterfly-topology architecture whose fundamental building block is a single phase-shifter--beam-splitter pair, in contrast to conventional rectangular mesh architectures based on Mach-Zehnder interferometers. Computational evaluations show that, particularly at restricted parameter counts, the proposed architecture achieves lower matrix-reconstruction errors and higher classification accuracies than conventional meshes in both feedforward and recurrent networks. We further quantify these design principles using graph-theoretic measures, expected squared moduli of transformation-matrix entries, and matrix-reconstruction error. The resulting framework provides a quantitative and physically interpretable basis for parameter-efficient optical neural networks.",
+     "authors": [
+      "Kazuo Aoyama",
+      "Hiroshi Sawada",
+      "Shota Kita",
+      "Akihiko Shinya",
+      "Masaya Notomi"
+     ],
+     "published": "2026-11-16T01:35:20Z",
+     "categories": [
+      "cs.LG",
+      "cs.AR",
+      "physics.app-ph",
+      "physics.optics"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.20390",
+     "pdf_url": "https://arxiv.org/pdf/2611.20390v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "categories": [
+    "eess.SY",
+    "eess.SP",
+    "cs.LG",
+    "stat.ML",
+    "physics.app-ph",
+    "cond-mat.mtrl-sci"
+   ],
+   "overview": "This week's research highlights significant advancements in battery management systems, focusing on battery health and lifetime prediction through methods such as the MARS deep learning framework. Additional studies address electrode analysis using cryogenic atom probe tomography and material design to overcome performance tradeoffs in lithium-metal batteries. Furthermore, developments in LLM-assisted Bayesian optimization and laser processing for energy applications are reported.",
+   "beyond": [
+    {
+     "title": "Evaluation of Advances in Battery Health Prediction for Electric Vehicles from Traditional Linear Filters to Latest Machine Learning Approaches",
+     "url": "https://www.mdpi.com/2313-0105/10/10/356",
+     "snippet": "variety of Machine Learning (ML) techniques for SOH estimation in lithium-ion batteries. Techniques such as Adaptive Integral Correction-Based State of Charge Estimation (AIC-SE)…",
+     "host": "mdpi.com"
+    },
+    {
+     "title": "Fast State-of-Health Estimation of Lithium-Ion Batteries Using Short-Term Relaxation-Voltage Features Integrated with a Differential Evolution-Optimized Extreme Learning Machine Algorithm",
+     "url": "https://www.mdpi.com/2313-0105/12/11/470",
+     "snippet": "descriptors and quasi-OCV showed overall, chemistry- and direction-dependent associations with SOH rather than a universally monotonic relationship. In the reported experiments,…",
+     "host": "mdpi.com"
+    },
+    {
+     "title": "Embedded artificial intelligence in battery management systems: Pruning and quantization for efficient state-of-charge and state-of-health estimation - ScienceDirect",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626026552",
+     "snippet": "architecture in PyTorch Both SOC and SOH estimators employ the same recurrent equation set but differ in size according to their training releases. The SOC configuration uses H =…",
+     "host": "sciencedirect.com"
+    },
+    {
+     "title": "Just a moment...",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352152X26034766",
+     "snippet": "# Are you a robot? Please confirm you are a human by completing the captcha challenge below. - Reference number: a5db72307b0f0e2e - IP Address: 62.45.67.220 - User Agent:…",
+     "host": "sciencedirect.com"
+    }
+   ],
+   "featured": [
+    {
+     "id": "2611.22455",
+     "title": "MARS: Feature-guided physics-informed deep learning for real-time battery health and lifetime prediction",
+     "abstract": "Accurate and robust estimation of battery state-of-health (SOH) and remaining useful life (RUL) is essential for safe and cost-effective operation of electrified transportation systems, yet it remains challenging under operating variability, non-stationary aging, and non-Gaussian measurement disturbances. This paper proposes Multi-scale Adaptive Robust State Estimation (MARS), a multi-scale adaptive robust state-estimation framework that couples a dual-branch temporal encoder with an equivalent-circuit-model-constrained differentiable generalized-correntropy adaptive Kalman filter. The encoder disentangles fast intra-cycle voltage-current-temperature dynamics from slow inter-cycle degradation, and the fused degradation context adaptively parameterizes the cycle-level process covariance, measurement covariance, and correntropy bandwidth. Through the unrolled robust filtering recursion, MARS performs physics-consistent state propagation and generalized-correntropy-based innovation correction, while uncertainty decomposition and Monte Carlo dropout provide calibrated prediction intervals for SOH estimation and conditional RUL prediction. Experiments on the NASA and CALCE benchmarks demonstrate improved SOH accuracy, achieving mean absolute error/root mean square error values of 0.72%/0.92% and 0.63%/0.80%, respectively, together with competitive conditional RUL performance against representative data-driven and hybrid baselines. The resulting conditional-RUL prediction intervals achieve coverage probabilities of 100.00% and 99.24% on NASA and CALCE, respectively. Ablation, disturbance-sensitivity, near-end-of-life, and runtime analyses further verify the contribution of each module and the practical inference cost for online battery management.",
+     "authors": [
+      "Innocent Izabayo",
+      "Haiquan Zhao"
+     ],
+     "published": "2026-11-17T09:19:43Z",
+     "categories": [
+      "eess.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.22455",
+     "pdf_url": "https://arxiv.org/pdf/2611.22455v1",
+     "insight": {
+      "tldr": "Researchers have proposed a new multi-scale adaptive robust framework called MARS to improve battery health and remaining useful life predictions under variable operating conditions. The method combines a dual-branch temporal encoder with a differentiable generalized-correntropy adaptive Kalman filter.",
+      "problem": "Accurate estimation of battery state-of-health and remaining useful life remains challenging in electrified transportation systems due to operating variability, non-stationary aging, and non-Gaussian measurement disturbances.",
+      "approach": "The authors propose Multi-scale Adaptive Robust State Estimation (MARS), a framework that couples a dual-branch temporal encoder with an equivalent-circuit-model-constrained differentiable generalized-correntropy adaptive Kalman filter. The encoder separates fast intra-cycle dynamics from slow inter-cycle degradation, while uncertainty decomposition and Monte Carlo dropout generate calibrated prediction intervals.",
+      "key_findings": [
+       "Experiments on the NASA benchmark demonstrate state-of-health mean absolute error and root mean square error values of 0.72% and 0.92%, respectively.",
+       "Experiments on the CALCE benchmark demonstrate state-of-health mean absolute error and root mean square error values of 0.63% and 0.80%, respectively.",
+       "Conditional remaining useful life prediction intervals achieve coverage probabilities of 100.00% on NASA and 99.24% on CALCE.",
+       "Computational profiling on a laptop graphics processing unit indicates inference times of a few milliseconds per cycle."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Accurate state-of-health estimation and remaining useful life prediction are crucial enabling functions for battery management systems, supporting preventive maintenance, warranty-risk management, fleet-level planning, and safe, cost-effective operation of electrified transportation systems.",
+      "tags": [
+       "battery management systems",
+       "state-of-health estimation",
+       "remaining useful life"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "GitHub - 513351/formation-stage-battery-lifetime-prediction: Code for ultra-early prediction of lithium-ion battery lifetime and degradation knee point from formation-stage data. · GitHub",
+       "url": "https://github.com/513351/formation-stage-battery-lifetime-prediction",
+       "snippet": "`Formation-stage data ↓ Physics-informed semantic encoding ↓ 244-dimensional feature representation ↓ 145-cell dataset ↓ Random 117/28 train-test split ↓ Training-set-only…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - DeepCar/Early-Cycle-Battery-Lifetime-Prediction: Early-cycle battery lifetime prediction from degradation features using a physics-inspired hybrid ensemble under strict cell-wise validation. · GitHub",
+       "url": "https://github.com/DeepCar/Early-Cycle-Battery-Lifetime-Prediction",
+       "snippet": "`cap_mean_50 cap_std_50 cap_slope_50 cap_c1 cap_c3 cap_c5 cap_delta_50 cap_ratio_50 fading_mean_50 fading_slope_50` Detailed feature descriptions are provided in:…",
+       "host": "github.com"
+      },
+      {
+       "title": "physics-informed-neural-network · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/physics-informed-neural-network",
+       "snippet": "LINC-PINN: latent-increment physics-informed network for lithium-ion battery state-of-health estimation under label scarcity (code and data release for the Journal of Energy…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.21357",
+     "title": "Accessing Electrode Edges: Upright Mounting for Site-Specific Cryogenic Atom Probe Tomography of Lithium-Ion Batteries",
+     "abstract": "Cryogenic atom probe tomography (cryo-APT) is increasingly being used to map the three-dimensional distribution of highly reactive species in heterogeneous materials, including those found in battery systems. However, site-specific preparation of localised features and liquid-solid interfaces remains challenging, particularly when regions of interest (ROIs) are concentrated along electrode edges that are difficult to access using conventional mounting geometries. Here, we present a cryo-APT workflow incorporating an upright-mounting procedure that enables targeted specimen preparation of localised regions using plasma focused ion beam (PFIB) microscopy and milling under cryogenic conditions. We first demonstrate the approach using an electrolyte-wetted graphite electrode, successfully preparing and analysing a specimen containing both an edge-localised electrolyte deposit and the underlying graphite and Cu current collector. We then apply the workflow to a cycled graphite electrode, targeting Li dendrites concentrated around the electrode perimeter and successfully preparing and analysing the targeted Li-rich region. Beyond battery systems, this approach offers potential for site-specific cryo-APT of edge-localised features across a broader range of material systems, where conventional specimen preparation geometries may limit access to ROIs.",
+     "authors": [
+      "Syeda Ramin Jannat",
+      "James O. Douglas",
+      "Neil Mulcahy",
+      "Lukas Worch",
+      "Aigerim Omirkhan",
+      "Zhenyu Guo",
+      "Yuanzhu Zhao",
+      "Maria-Magdalena Titirici",
+      "Ifan E. L. Stephens",
+      "Mary P. Ryan",
+      "Baptiste Gault",
+      "Michele Shelly Conroy"
+     ],
+     "published": "2026-11-16T16:30:57Z",
+     "categories": [
+      "cond-mat.mtrl-sci"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21357",
+     "pdf_url": "https://arxiv.org/pdf/2611.21357v1",
+     "insight": {
+      "tldr": "Researchers have developed an upright-mounting workflow for cryogenic atom probe tomography that enables targeted site-specific analysis of edge-localised features in lithium-ion battery electrodes.",
+      "problem": "Site-specific preparation of localised features and liquid-solid interfaces remains challenging in battery systems, particularly when regions of interest are concentrated along electrode edges that are difficult to access using conventional flat mounting geometries.",
+      "approach": "The authors present a cryo-APT workflow incorporating an upright-mounting procedure, where folded copper tape secures the electrode perpendicular to a conventional cryogenic sample holder, allowing targeted specimen preparation using plasma focused ion beam microscopy and milling under cryogenic conditions.",
+      "key_findings": [
+       "Successfully prepared and analysed an electrolyte-wetted graphite electrode specimen containing an edge-localised electrolyte deposit alongside underlying graphite and copper current collector.",
+       "Identified electrolyte-associated species including Li, HxF, P, and CxHyOz in the wetted electrode specimen.",
+       "Successfully applied the workflow to a cycled graphite electrode to target and analyse lithium dendrites concentrated around the perimeter.",
+       "Allowed different phases to be positioned sequentially along the atom probe tomography field-evaporation axis rather than laterally."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Accurate characterisation of degradation phenomena such as lithium plating, dendrite formation, and interface evolution along electrode edges is vital for understanding battery degradation mechanisms, which directly underpins reliable state-of-charge, state-of-health estimation, and remaining useful life prediction models.",
+      "tags": [
+       "cryo-apt",
+       "lithium-ion batteries",
+       "electrode edges"
+      ],
+      "source": "llm"
+     },
+     "links": [
+      {
+       "title": "GitHub - mehrpad/pyccapt: Atom Probe Tomography software · GitHub",
+       "url": "https://github.com/mmonajem/pyccapt",
+       "snippet": "Control GUI electrode labels are stored in `pyccapt/control/electrode.toml`: `[electrodes] names = [ \"NiC1\", # Nickel electrode \"CuC1\", # Copper electrode ]` For device toggles,…",
+       "host": "github.com"
+      },
+      {
+       "title": "lithium-ion-batteries · GitHub Topics · GitHub",
+       "url": "https://github.com/topics/lithium-ion-batteries",
+       "snippet": "### NatLabRockies / MATBOX\\_Microstructure\\_analysis\\_toolbox Star 76 MATBOX is an open-source MATLAB toolbox dedicated to microstructure analsyis of porous/heterogeneous…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - VaibhavBhujade/RUL-of-Lithium-Ion-Battery: Prediction of RUL of Lithium ion battery · GitHub",
+       "url": "https://github.com/VaibhavBhujade/RUL-of-Lithium-Ion-Battery",
+       "snippet": "the positive to the negative electrode, where they become embedded in the porous electrode material in a process known as intercalation. Energy losses arising from electrical…",
+       "host": "github.com"
+      }
+     ]
+    },
+    {
+     "id": "2611.25375",
+     "title": "Weakly coordinating anions and solvents break the conductivity-transference-solvation tradeoff",
+     "abstract": "Lithium-metal batteries promise high energy density, but common electrolytes trade ionic conductivity against the share of current carried by lithium ions and against how strongly solvent binds those ions. We show that simultaneously weakening both interactions of the lithium ion, with solvent and with anion, relaxes this trade-off. Thus, a weakly coordinating perfluorinated alkoxyaluminate salt in liquefied fluoromethane conducts 39.2 mS cm$^{-1}$ at 25 $^\\circ$C while maintaining a lithium-ion transference number of 0.71. Molecular dynamics simulations further reveal that the anion prevents persistent ion aggregation and lowers the salt's dissociation penalty. Consistent with these properties, nickel-rich cathode/lithium-metal anode full cells charge at 10C at room temperature and at 2C at $-40$ $^\\circ$C. We advance coordination strength as a design axis for future energy storage devices.",
+     "authors": [
+      "Alex Liu",
+      "Ganesh Raghavendran",
+      "Eric S. Yang",
+      "Kevin J. Anderton",
+      "Vibhu Vardhan Singh",
+      "Aiden Larson",
+      "Kun Ryu",
+      "Kent J. Griffith",
+      "Joshua S. Figueroa",
+      "Ying Shirley Meng",
+      "Tod A. Pascal"
+     ],
+     "published": "2026-11-19T02:13:11Z",
+     "categories": [
+      "cond-mat.mtrl-sci"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.25375",
+     "pdf_url": "https://arxiv.org/pdf/2611.25375v1",
+     "insight": {
+      "tldr": "Lithium-metal batteries promise high energy density, but common electrolytes trade ionic conductivity against the share of current carried by lithium ions and against how strongly solvent binds those ions.",
+      "problem": "Not stated in the provided text.",
+      "approach": "We show that simultaneously weakening both interactions of the lithium ion, with solvent and with anion, relaxes this trade-off. Thus, a weakly coordinating perfluorinated alkoxyaluminate salt in liquefied fluoromethane conducts 39.2 mS cm$^{-1}$ at 25 $^\\circ$C while maintaining a lithium-ion transference number of 0.71.",
+      "key_findings": [
+       "Molecular dynamics simulations further reveal that the anion prevents persistent ion aggregation and lowers the salt's dissociation penalty.",
+       "Consistent with these properties, nickel-rich cathode/lithium-metal anode full cells charge at 10C at room temperature and at 2C at $-40$ $^\\circ$C.",
+       "We advance coordination strength as a design axis for future energy storage devices."
+      ],
+      "limitations": "Not stated in the provided text.",
+      "why_it_matters": "Matched the eess.SY topic filter: battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction.",
+      "tags": [
+       "lithium-ion"
+      ],
+      "source": "abstract"
+     },
+     "links": [
+      {
+       "title": "GitHub - HJLiRes/DGTHFSim: Molecular dynamics simulation files for investigating solvation structures, ion association behaviors, and ionic transport in 1 M NaPF6 DG/THF mixed electrolytes. · GitHub",
+       "url": "https://github.com/HJLiRes/DGTHFSim",
+       "snippet": "If you use the simulation files provided in this repository, please cite: Hongjin Li, Tao Wang, Shu Li, Tianying Yan; Effects of Strongly and Weakly Solvating Electrolytes on…",
+       "host": "github.com"
+      },
+      {
+       "title": "GitHub - MDAnalysis/solvation-analysis: A comprehensive tool for analyzing liquid solvation structure. · GitHub",
+       "url": "https://github.com/MDAnalysis/solvation-analysis",
+       "snippet": "SolvationAnalysis is available on PyPI and conda-forge can be installed with pip or conda: ``` # or # ``` ### Solvation Analysis Summarized With just a few lines of code,…",
+       "host": "github.com"
+      },
+      {
+       "title": "CPCM-X Solvation Model Does Not Recognize Abbreviations for DMSO and THF · Issue #1127 · grimme-lab/xtb · GitHub",
+       "url": "https://github.com/grimme-lab/xtb/issues/1127",
+       "snippet": "Expected Behavior: xtb should recognize both the full names and standard abbreviations (like DMSO and THF) when specifying solvents with CPCM-X. Actual Behavior: Abbreviated…",
+       "host": "github.com"
+      }
+     ]
+    }
+   ],
+   "more": [
+    {
+     "id": "2611.24377",
+     "title": "LLM-Assisted Multi-Fidelity Bayesian Optimization: Fusing Expert Knowledge with Numerical Data",
+     "abstract": "Multi-fidelity Bayesian optimization (MFBO) reduces engineering design cost by combining inexpensive low-fidelity (LF) models with a few accurate high-fidelity (HF) evaluations and sequentially selecting designs to evaluate. However, when HF data are scarce, the LF-HF discrepancy is difficult to learn from numerical data alone, especially when physics omitted in the LF model makes it design-dependent. Yet even without sufficient data, domain experts often know which physics the LF model omits and under which conditions its effect grows. Existing multi-fidelity (MF) models cannot use such qualitative knowledge directly, but large language models (LLMs) can interpret it and compare designs accordingly. The proposed LLM-Assisted MFBO adds a knowledge basis to the conventional MF model: from an expert description of the omitted physics, an LLM judges which of two designs requires the larger signed residual correction, and a pairwise Gaussian process converts these judgments into the basis. HF data calibrate its contribution and sign, so the knowledge is not trusted blindly. On a lithium-ion battery design problem, the proposed method reduced the regret area under the curve of conventional MFBO by 61%. Knowledge quality, rather than the choice of LLM, determined whether the search was accelerated, as shown by a controlled study that varied the two independently. A knowledge-level ablation further quantified the contribution of each knowledge statement. These results show that LLM-interpreted expert knowledge can complement numerical data as an information source in MFBO.",
+     "authors": [
+      "Dongjun Han",
+      "Mingyu Lee",
+      "Ikjin Lee"
+     ],
+     "published": "2026-11-18T13:07:03Z",
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.24377",
+     "pdf_url": "https://arxiv.org/pdf/2611.24377v1",
+     "insight": null,
+     "links": null
+    },
+    {
+     "id": "2611.21024",
+     "title": "Laser Processing for Energy Applications",
+     "abstract": "Laser processing has emerged as a transformative technology in the energy sector, enabling precise, efficient, and scalable solutions for energy generation, storage, and sustainability. This chapter explores the diverse applications of laser technology in energy applications. It begins with an overview of laser-driven inertial confinement fusion for energy production, highlighting key experimental facilities and crucial laser parameters. The role of lasers in solar energy harvesting is examined, including photovoltaic cell optimization, concentrated solar power, and laser-assisted recycling of solar modules. The chapter further reviews recent developments into laser-based techniques for enhancing electrochemical performance through surface texturing at various scales. Advancements in lithium-ion battery technology are also discussed, focusing on next-generation materials, battery manufacturing processes, and the impact of laser techniques on performance, safety, and scalability. The chapter concludes with insights into future prospects for laser applications in sustainable energy solutions.",
+     "authors": [
+      "Marcos Soldera",
+      "Robert Baumann",
+      "Bogdan Voisiat",
+      "Wilhelm Pfleging",
+      "Penghui Zhu",
+      "Jörn Bonse",
+      "Andrés Fabián Lasagni"
+     ],
+     "published": "2026-11-16T12:41:35Z",
+     "categories": [
+      "physics.optics",
+      "physics.app-ph"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.21024",
+     "pdf_url": "https://arxiv.org/pdf/2611.21024v1",
+     "insight": null,
+     "links": null
+    }
+   ]
+  }
+ ]
+}
