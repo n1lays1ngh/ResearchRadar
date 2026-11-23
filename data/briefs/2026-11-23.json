@@ -1,0 +1,159 @@
+{
+ "date": "2026-11-23",
+ "issued": "2026-11-23T17:29:23.169275+00:00",
+ "total": 568,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses evaluation challenges in conversational AI and large language model systems, introducing benchmarks and methodologies to measure role integrity, statistical physics properties, cross-episode self-improvement, attribution protocols, and precedent-induced policy violations in autonomous agents.",
+   "papers": [
+    {
+     "id": "2611.27139",
+     "title": "Do Senior Agents Do Their Job? Measuring Role Integrity in How LLM Agents Use Subordinate Material",
+     "abstract": "Multi-agent LLM systems increasingly divide long tasks among subagents whose reports a senior agent turns into the final answer. Such a division of labor pays off only if each agent, and above all the senior agent, carries out the duties of its role. Current evaluations, however, mostly score the final answer, and a fluent, well-cited answer cannot show whether the senior agent weighed its subagents' reports or merely aggregated them. To assess whether a senior agent meets its assigned responsibilities, we define role integrity as the preservation of an agent's functional responsibilities when it acts on its subordinates' material. To measure it, we introduce RI-Bench, a behavioral benchmark grounded in the structures and public records of three institutional hierarchies: peer review, appellate adjudication, and parliamentary inquiry. We choose these hierarchies because their rules explicitly assign the senior role a duty toward subordinate material, and together they cover three basic duties: to weigh, to verify, and to relay. Rather than scoring output correctness, we measure how senior agents' outputs respond to controlled changes in subordinate material, using rule-based checks and a rubric-guided LLM judge calibrated against human annotation. Across eight LLMs and over 12,000 agentic episodes, senior agents rarely adopt a planted procedural error (2.9% of rulings) but often follow a majority of generic reviews (up to 71% of decisions) or drop witnesses' stated limitations (up to 65% of cited claims). Obligation prompts reduce these failures without removing them, and they also shift behavior in the control conditions. These findings motivate direct, obligation-specific evaluation of role integrity rather than inferring it from general capability or explicit role instructions. Code and data are available at https://github.com/jxtse/ri-bench.",
+     "authors": [
+      "Jinxiang Xie",
+      "Xinyi Zhang",
+      "Changjiang Jiang",
+      "Kexu Liu",
+      "Qi Yang",
+      "Yuxin Su"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.27139",
+     "pdf_url": "https://arxiv.org/pdf/2611.27139",
+     "published": "2026-11-23",
+     "summary": "The authors introduce RI-Bench to measure role integrity in multi-agent systems and find that senior LLM agents rarely adopt procedural errors but frequently follow majority generic reviews or drop witness limitations.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.27618",
+     "title": "Potential emergence in LLM agents: a statistical physics perspective",
+     "abstract": "There has been significant recent interest in understanding the behaviour of LLM agents from the perspective of human preferences or corpus statistics. In this paper we propose agent states as intermediate variables through which post-training can be measured and predicted. From a statistical physics perspective, we study the emergence of a global potential which governs the transition of state in LLM agent reasoning. We introduce a partition function to model the ideal KL-regularised transition distribution and track potential structure, mean reward and state entropy. We demonstrate our approach in two Qwen3.5-9B tasks: safety-test selection and physics-reasoning auditing. We observe that the potential structure strengthens during post-training as predicted from our framework, while joint changes in reward and state entropy provide consistency evidence. States thus provide a quantitative description of how post-training organises agent behaviour.",
+     "authors": [
+      "Zhuo-Yang Song",
+      "Hua Xing Zhu"
+     ],
+     "categories": [
+      "cs.LG",
+      "cond-mat.stat-mech",
+      "cs.AI",
+      "cs.CL",
+      "nlin.AO"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.27618",
+     "pdf_url": "https://arxiv.org/pdf/2611.27618",
+     "published": "2026-11-23",
+     "summary": "The authors propose agent states as intermediate variables and utilize a statistical physics perspective to study the emergence of a global potential governing state transitions in LLM agent reasoning during post-training.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.26910",
+     "title": "AstronautBench: Measuring Agent Self-Improvement Across Episodes Through Knowledge, Evidence, and Progress",
+     "abstract": "LLM agents are expected to improve themselves from their own experience across episodes, with fixed weights. Self-improvement in an embodied world cannot be read from one measure. Existing benchmarks measure task progress, world-knowledge question answering (QA), and episodic memory, but a correct answer does not show that the agent ever observed the evidence for it, and progress does not show what the agent learned. We introduce AstronautBench, which measures one agent's self-improvement through three views on the same run: what it knows, whether its own evidence supports that knowledge, and how far it gets in the world. It is built on the game Outer Wilds, where each episode is a 22-minute loop after which the world resets, only the agent's knowledge carries over, and progress is gated by knowledge. After every episode, we measure the places reached and ship-log rumor facts revealed, the correctness of answers to 164 questions about the world, and whether each answer is supported by the frames and position the agent cites from its own recorded play. Two LLM judges from different model families check every answer. In eight-episode baselines with GPT-6.1 Sol and Gemini 4 Argon planners, which act through a learned controller or their own gamepad inputs, the three views do not move together, so any one of them alone gives an incomplete picture of whether the agent is improving. The GPT-6.1 Sol agent's correct answers grow from 14.6% to 26.8% of all questions, but at episode 8 only 59 to 68% of them are supported by its cited evidence. It reveals no new rumor facts after episode 3, while the places it reaches and its memory keep growing. More than half of the answers that become correct after episode 3 cite only evidence from earlier episodes.",
+     "authors": [
+      "Congyuan Yu",
+      "Runping Tian"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.26910",
+     "pdf_url": "https://arxiv.org/pdf/2611.26910",
+     "published": "2026-11-23",
+     "summary": "The authors introduce AstronautBench, which uses three views on Outer Wilds gameplay to measure agent self-improvement, finding that these metrics do not move together across episodes.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.27094",
+     "title": "Separating Automation Gains from Agent Contributions in AI-Assisted Model Validation",
+     "abstract": "LLM agents are being proposed for bank model validation, yet evaluations that compare agent-assisted work with manual practice credit the agent with gains that come from digitized evidence and deterministic tests. We propose a staged architecture in which an LLM-free controlled workflow (P1) is both the fallback and the control arm for individually authorized agent tasks (P2), and an attribution protocol that credits an agent only for faults P1 does not already report. The protocol charges decoy false alarms, unnecessary actions and endorsed developer assertions, counts invalid outputs as misses, folds newly automatable findings back into P1 with discovery credit, and fixes safety bounds and a break-even cost gate in advance. On a synthetic credit-scorecard harness, five scripted reference policies show why this matters: naive case accuracy (4/6) and pooled detection (3/5) tie four flawed policies, whereas the protocol separates all five and credits only the reference policy with detection beyond P1. One fold-back round raises a P1-parroting policy's naive scores without any change to the policy. A regression matrix of sixteen mutants covers nine ways in which earlier versions of the evaluation passed misleadingly. No LLM agent has been evaluated yet; we specify a falsifiable pilot.",
+     "authors": [
+      "M. Ahmadi Achachlouei"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.SE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.27094",
+     "pdf_url": "https://arxiv.org/pdf/2611.27094",
+     "published": "2026-11-23",
+     "summary": "The authors propose a staged architecture and attribution protocol to separate automation gains from agent contributions in model validation, demonstrating that naive evaluations can produce misleadingly tied scores.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.27216",
+     "title": "Correct Precedents Induce Policy Violations in On-Device LLM Agents",
+     "abstract": "Local-cloud agent systems pair a cloud model with a small on-device agent that acts on private data, often as the last check before an irreversible action. We identify, for the first time, a failure in which such an agent is led into a violation by its own correct decisions within a session. After it correctly releases an item whose restriction was lifted, it becomes more likely to release the next item that is still restricted. Because the trigger is a correct decision, a history with no faulty step can still end in a violation. We call this failure correct-precedent generalization and find it in 13 open-weight models from nine developers. A single correct precedent can cut the safe rate of the most affected agent roughly in half, and the risk compounds when a refused request is simply sent again in a new session. Interventions on the agent's history indicate that it carries its decision on the released item over to the restricted one instead of checking that item's status. Building on this finding, we propose Paired Decision Distillation (PDD), which distills the decisions of a weakly affected teacher into a LoRA adapter. PDD restores the safe rate to nearly 100% in every distilled model, without extra prompt text or model calls.",
+     "authors": [
+      "Chong Tian",
+      "Yu Wang",
+      "Steve Liu",
+      "Qirong Ho",
+      "Xiuying Chen"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.CR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.27216",
+     "pdf_url": "https://arxiv.org/pdf/2611.27216",
+     "published": "2026-11-23",
+     "summary": "The authors identify correct-precedent generalization where on-device LLM agents are led into policy violations by prior correct decisions and propose Paired Decision Distillation to restore safe rates.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses the challenge of deploying resource-constrained robotic systems by replacing general-purpose text generation with targeted classification models. These approaches demonstrate that efficient architectures can match or exceed existing performance while significantly reducing runtime and energy consumption.",
+   "papers": [
+    {
+     "id": "2611.27489",
+     "title": "Efficient Natural Language to Temporal Logic Translation for Real-Time Physical AI",
+     "abstract": "Robots can be controlled to perform tasks with guaranteed correctness when the task instructions are stated in a formal language. Large language models (LLMs) have been widely used to allow users to provide such instructions in natural language (NL), by translating NL into formal language. When deploying such translators on a robot, however, we face limited computing and energy resources, while offloading computation or data to the cloud may be infeasible or undesirable. Yet an LLM is a general-purpose text generator, whereas a formula in a fixed formal language fragment follows a well-defined syntax. We therefore ask whether text generation is needed at all. For the formal language of linear temporal logic (LTL), we show that this translation can instead be broken down into answering a set of questions with pre-defined answers. We then construct a System-One model, a recent class of NL-based classifier, to provide such answers and enable us to translate a natural language instruction into an LTL instruction. On three benchmarks, our translator matches or exceeds the accuracy of the best local LLMs available, at up to one order of magnitude lower runtime and energy consumption. We show that it generalizes to unseen atomic propositions and temporal patterns.",
+     "authors": [
+      "Oliver Sch\\\"on",
+      "Adrien Banse",
+      "John Lygeros",
+      "Lars Lindemann"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LO",
+      "cs.RO",
+      "cs.SY",
+      "eess.SY"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.27489",
+     "pdf_url": "https://arxiv.org/pdf/2611.27489",
+     "published": "2026-11-23",
+     "summary": "The authors report a System-One classification model that translates natural language into linear temporal logic by answering pre-defined questions, achieving accuracy comparable to or exceeding local large language models at up to one order of magnitude lower runtime and energy consumption.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "",
+   "papers": []
+  }
+ ],
+ "sent": true
+}
