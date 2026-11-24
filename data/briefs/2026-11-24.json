@@ -1,0 +1,197 @@
+{
+ "date": "2026-11-24",
+ "issued": "2026-11-24T17:00:45.277405+00:00",
+ "total": 1429,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "5 new preprints in cs.CL · Computation and Language matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.29356",
+     "title": "Automatic Construction of Persian E-Commerce Dialogue Datasets for Conversational Product Search",
+     "abstract": "Conversational product search lets users find products through a multi-turn dialogue instead of a single keyword query, but Persian lacks the large conversational datasets needed to train and evaluate such systems; existing Persian e-commerce dialogue resources cover few categories and small catalogs. We present a framework that builds such a dataset automatically from a real e-commerce catalog and release the resulting dataset. The framework crawls 12,926 products in seven categories of the Digikala marketplace, groups them into 170 semantically coherent clusters, and selects the question the assistant asks at every turn with the Regularized Partition Balance (RPB) score. The RPB score accounts for feature coverage, the probability that the user can answer and the number of values, and generalizes entropy-based question selection. An LLM then verbalizes each question plan into a natural Persian dialogue. In a simulation on the full catalog, the RPB score needs 0.11 fewer turns than the strongest entropy baseline when the difficulty of answering differs between features, and is practically equivalent to it when it does not. Using only a free LLM API, we generated 1,000 requirement-driven dialogues covering all 170 clusters, with turn-level feature annotations; automatic checks and an LLM judge confirm their consistency with the catalog, while their realism is lower than that of the first, GPT-4o-generated version. Code and data are publicly available.",
+     "authors": [
+      "Fariba Nafar",
+      "Hassan Naderi"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29356",
+     "pdf_url": "https://arxiv.org/pdf/2611.29356",
+     "published": "2026-11-24",
+     "summary": "Conversational product search lets users find products through a multi-turn dialogue instead of a single keyword query, but Persian lacks the large conversational datasets needed to train and evaluate such systems; existing Persian e-commerce dialogue resources cover few categories and…",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.29155",
+     "title": "ContextFact: Remembering Facts in Context for Long-Term Conversational Agents",
+     "abstract": "Agents built on large language models must maintain continuity across repeated interactions with users. However, long-term conversations scatter facts across turns and sessions, making it difficult to retrieve the right evidence with enough context. Memory for such conversations must therefore preserve facts with their context while keeping evidence selectively accessible. We first study how memory construction and retrieval-unit boundaries affect answerability and evidence access. Reading the entire memory bank reveals gaps that cannot be resolved by retrieval selection alone, showing that some context must be preserved during memory construction. Adjacent-turn grouping improves evidence access at matched unique-turn budgets, while wider windows do not consistently help. This motivates keeping fact-specific context local while organizing cross-session evidence separately. We propose ContextFact, which links context-preserving fact memories with source-grounded entity representations. Within sessions, it gathers the context needed to interpret each fact. Across sessions, it aligns recurring referents and revisits the source dialogue to reconstruct coherent entity representations linked to the supporting facts. At query time, ContextFact retrieves fact and entity views, reranks them independently, and uses entity-linked expansion to surface related facts; complete entity representations then provide organized cross-session evidence. With Qwen3.5-27B as the backbone, ContextFact achieves state-of-the-art performance while using only $21\\%$ of the evidence tokens consumed by the strongest evaluated baseline, obtaining $86.49\\%$ overall judge accuracy on LoCoMo and $91.00\\%$ on LongMemEval-S. Controlled ablations support context-preserving fact boundaries and source-grounded entity reconstruction, while entity readout improves multi-hop accuracy beyond adding more facts.",
+     "authors": [
+      "Jiayu Huang",
+      "Yichao Cai",
+      "Xinyu Li",
+      "Zhen Zhang",
+      "Javen Qinfeng Shi"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29155",
+     "pdf_url": "https://arxiv.org/pdf/2611.29155",
+     "published": "2026-11-24",
+     "summary": "Agents built on large language models must maintain continuity across repeated interactions with users.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.29467",
+     "title": "Beyond Accuracy: A Diagnostic Benchmark for Hypothesis-Driven Experiment Planning in LLM Agents",
+     "abstract": "Evaluating large language model (LLM) agents on scientific tasks typically reduces to final-task accuracy, which obscures where reasoning succeeds or breaks down. We introduce a benchmark and diagnostic evaluation framework for hypothesis-driven adaptive experimental planning in closed-world system identification, instantiated in kinetic mechanism identification. The framework goes beyond final accuracy in two ways. First, we evaluate exploration behavior by quantifying the extent to which agents exhibit space-filling or corner-seeking patterns in the experimental design space. Second, we decompose the reasoning process into four interpretable steps: belief update, hypothesis discrimination, discriminative experiment design, and predictive reasoning under interventions, each scored separately on reasoning traces. Across ten LLM agents, we find that stronger agents outperform both adaptive (Bayesian optimization) and non-adaptive (Latin hypercube) baselines and exhibit exploration patterns inconsistent with naive heuristics. Decomposing reasoning reveals that the stronger agents score consistently well across all four steps, whereas weaker agents often succeed at belief update and hypothesis discrimination but are less reliable at translating them into actionable designs and sharp contrastive predictions. Independent expert annotations support predictive reasoning under our stated validation criteria, while evidence for discriminative experiment design is positive but less consistent. The results suggest a gap between recognizing plausible hypotheses and translating them into contrastive predictions, with more tentative evidence for a corresponding experiment-design bottleneck. The benchmark website is available at https://schwallergroup.github.io/beyond-accuracy/.",
+     "authors": [
+      "Ryo Kuroki",
+      "Amin Mansouri",
+      "Philippe Schwaller"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29467",
+     "pdf_url": "https://arxiv.org/pdf/2611.29467",
+     "published": "2026-11-24",
+     "summary": "Evaluating large language model (LLM) agents on scientific tasks typically reduces to final-task accuracy, which obscures where reasoning succeeds or breaks down.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.29988",
+     "title": "SHAKTI: Evidence-Grounded Conversational AI for Nutrition and Health",
+     "abstract": "Large language models (LLMs) answer many diet and health questions but can state unsupported claims and cite sources that do not support them. We present SHAKTI (Smart Health Advisor for Knowledge-based Tailored Interventions), a conversational assistant that answers only from retrieved scholarly papers and exact food-composition data, and evaluate it with retrieval, generation, grounding, efficiency and contextawareness metrics. We indexed 484,368,086 OpenAlex works, searched exactly on a GPU for evaluation (10,065 NFCorpus, BioASQ, SciFact and PubMedQA questions) and through a compressed 230-million-abstract index in deployment. On 1,000 stratified questions, we compared single-shot, multi-hop, corrective and deep-research retrieval-augmented generation (RAG) with Claude Sonnet. SHAKTI adds conversational query rewriting, USDA FoodData Central lookups, source-link checks and online verification of quotes and numbers. It was tested in 36 scripted conversational turns, a 248-question memory-depth test and a 38-question load test. Claims were checked by a Claude Opus judge against exactly the text the system saw. MedCPT reranking of hybrid retrieval gave the best MRR (0.21) and MAP@100 (0.14). Across existing RAG methods, faithfulness was 0.95-0.96, claim hallucination 0.5-0.8% and context precision up to 0.98; the deep-research agent answered 73.2% of BioASQ questions correctly. In conversation, SHAKTI reached a context-awareness score of 97.1%, faithfulness 95.5%, 1.9% unsupported claims, no contradicted claims and 229/229 working source links; it resolved references to the first question after 16 unrelated questions. An answer cost 14,716 tokens (US$0.06) with a median latency of 24 s. Large-scale retrieval with agentic evidence selection and mechanical verification yields auditable, low-hallucination nutrition answers.",
+     "authors": [
+      "Chaitanya Pallerla",
+      "Dongyi Wang"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.IR"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29988",
+     "pdf_url": "https://arxiv.org/pdf/2611.29988",
+     "published": "2026-11-24",
+     "summary": "Large language models (LLMs) answer many diet and health questions but can state unsupported claims and cite sources that do not support them.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.28787",
+     "title": "DiscernBench: Evaluating Cooperative Discernment of LLM Agents in Institutional Settings",
+     "abstract": "The deployment of large language models in operational settings demands evaluation of judgment under institutional constraint. We introduce DiscernBench, a benchmark for evaluating cooperative discernment: the ability of an agent to determine whether to comply with, refuse, or escalate a request in an institutional setting. DiscernBench comprises scenarios derived from real-world incident reports across domains such as aviation, law enforcement, and emergency management. We evaluate eight LLMs across three decision-making configurations and analyze both final decisions and the intermediate judgments produced during multi-agent deliberation. Under disagreement, Final Responders exhibit model- and role-dependent aggregation patterns in which a lone specialist recommendation can disproportionately influence the collective decision, a phenomenon we term Minority-Signal Override. Role-specialized multi-agent deliberation raises average over-escalation from 3.79% under direct single-agent judgment to 28.27%, with the direction and magnitude of minority-signal influence varying substantially across models and specialist roles. These results reveal distinct collective decision behaviors that are not captured by final-answer accuracy alone. Trustworthy multi-agent systems therefore require evaluating not only individual specialist reasoning, but also how conflicting judgments are transformed into collective decisions. Code and data are available at https://github.com/Disha1001/DiscernBench.",
+     "authors": [
+      "Disha Sheshanarayana",
+      "Tanishka Magar"
+     ],
+     "categories": [
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.28787",
+     "pdf_url": "https://arxiv.org/pdf/2611.28787",
+     "published": "2026-11-24",
+     "summary": "The deployment of large language models in operational settings demands evaluation of judgment under institutional constraint.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "3 new preprints in cs.LG · Machine Learning matched the desk's interests today.",
+   "papers": [
+    {
+     "id": "2611.29410",
+     "title": "Motivo: A Motif-Based Algorithm-Architecture Co-Design for Fast and Energy-Efficient Graph-Based Genome Analysis",
+     "abstract": "Read mapping, a key step of genome sequence analysis, matches each fragment of a sequenced genome (a read) to its location in a reference genome. A genome graph is a graph-based reference genome that represents the genetic diversity of a population as alternative paths, and thus improves read mapping accuracy. However, the size and complexity of a genome graph make sequence-to-graph (S2G) mapping a major bottleneck. Prior software and hardware approaches for S2G mapping perform redundant costly operations (e.g., graph traversals and dynamic programming) that do not lead to valid mappings. Our key observation is that a genome graph consists of small subgraphs that share a limited set of recurring topologies, which we call motifs. We propose Motivo, a topology-aware algorithm-architecture co-design for S2G mapping. Motivo's algorithm uses motifs in two ways. First, it stores the precomputed motifs of each node in a compact index, which replaces a graph traversal with a single memory lookup. Second, it uses the topology of a motif and the properties of its nodes to identify the few most suitable mapping paths with arithmetic operations. The algorithm enables high-performance execution on CPUs and GPUs and high-performance, low-energy execution on Motivo-ASIC, an accelerator we co-design with it. Motivo-CPU provides 2.1-18.4x, 2.8-343x, and 1.4-10.1x speedups over GraphAligner, vg, and minigraph, and Motivo-GPU provides 1.5-1.6x speedups over vg-giraffe. Motivo-ASIC provides 7.4-11.7x (138-274x) speedups over state-of-the-art CPU-based tools for short (long) reads. Compared to SeGraM (short reads) and HARP (long reads), Motivo-ASIC achieves 5.3x and 4.0-4.3x higher throughput per Watt and 1.7x and 2.7-3.0x higher throughput per mm$^2$, respectively. Motivo maintains equal or higher mapping accuracy than other tools (96.8%-99.7%) for short and long reads on two types of genome graphs.",
+     "authors": [
+      "Eirini Maria Tzermpou",
+      "Konstantina Koliogeorgi",
+      "Konstantinos Kanellopoulos",
+      "Ataberk Olgun",
+      "Nisa Bostanc{\\i}",
+      "Dimitrios Soudris",
+      "Nika Mansouri Ghiasi",
+      "Onur Mutlu"
+     ],
+     "categories": [
+      "cs.AR",
+      "cs.DC",
+      "q-bio.GN",
+      "q-bio.QM"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29410",
+     "pdf_url": "https://arxiv.org/pdf/2611.29410",
+     "published": "2026-11-24",
+     "summary": "Read mapping, a key step of genome sequence analysis, matches each fragment of a sequenced genome (a read) to its location in a reference genome.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.30277",
+     "title": "A New Perspective on ANN-to-SNN Conversion: Hardware-Aligned Multi-Threshold Neuron Dynamics for Neuromorphic Inference",
+     "abstract": "By accumulating spikes over multiple timesteps, rate coding approximates the real-valued activations of an ANN, a principle that underpins numerous ANN-to-SNN conversion methods. However, the converted SNNs typically incur loss in accuracy compared to the original ANN. Existing methods either increase a number of timesteps or introduce more complex neuronal dynamics to reduce this accuracy gap. Yet, both approaches ultimately lead to the same outcome: redundancy either in information or in computation, thereby suffering from efficiency degradation. To address this issue, we propose \\textbf{PRIME} (\\underline{P}otential-\\underline{R}esidual \\underline{I}ntegration for \\underline{M}ulti-threshold \\underline{E}ncoding), a multi-threshold concurrent spiking neuron framework redesigned from a hardware data representation perspective:a) We introduce the Residual Membrane Potential Amplification (RMPA) mechanism, which replaces rate coding with Integration Coding by actively amplifying the residual membrane potential. RMPA enables the binary representation of spikes to carry substantially more information, achieving near-lossless conversion with as few as two timesteps.b) Complementarily, we implement concurrent spike firing in multi-threshold neurons, where spikes are decoded directly from the binary representation of floating-point data, eliminating membrane potential--threshold comparisons and replacing multiplications with lightweight bit-shift and accumulation operations that align with hardware computation primitives. At $T=2$ and $D=3$, we achieve competitive performance across both vision and language benchmarks with only 40.6\\% of the FP32 bit-transmission cost and 13.4\\% of the FP32 multiplication energy consumption. The PRIME framework establishes a new design principle for efficient ANN-to-SNN conversion, bridging the gap between algorithmic efficiency and hardware constraints.",
+     "authors": [
+      "Shaohong Gu",
+      "Jiyuan Zhang",
+      "Yimeng Shan",
+      "Chenxiao Dou",
+      "Wei Hua",
+      "Malu Zhang",
+      "Honglin Cao",
+      "Choonghyun Lee",
+      "Jingwei Chen"
+     ],
+     "categories": [
+      "cs.NE",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.30277",
+     "pdf_url": "https://arxiv.org/pdf/2611.30277",
+     "published": "2026-11-24",
+     "summary": "By accumulating spikes over multiple timesteps, rate coding approximates the real-valued activations of an ANN, a principle that underpins numerous ANN-to-SNN conversion methods.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.28746",
+     "title": "UNIFY: Unified Learning with One Model via Batch Norm Switching",
+     "abstract": "Neural networks are typically trained separately for individual datasets or tasks, resulting in many task-specific models. This redundancy increases memory footprint, deployment costs, and energy consumption limiting their scalability. We propose UNIFY, a unified learning framework that enables a single model to jointly learn and perform inference across multiple datasets via Batch Normalization Switching (BNS). Instead of maintaining separate models for each dataset, UNIFY shares the parameter-intensive backbone while maintaining dataset-specific BN statistics and parameters, along with dataset-specific classification heads. We validate our framework using five datasets (MNIST, Fashion-MNIST, CIFAR-10, CIFAR-100, Tiny-ImageNet) across six Convolutional Neural Networks (CNNs) of different sizes (SqueezeNet 1.1, WideResNet-40-2, WideResNet-16-8, ResNet-18, ResNet-34, ResNet-50). Notably, a single UNIFIED ResNet-34 trained on these datasets achieves accuracies of 99.53%, 94.84%, 96.12%, 80.32%, and 67.67%, respectively, outperforming the average performance of the corresponding independently trained task-specific models while reducing the memory footprint by approximately 4.94x, from 428.30 MB (five separate models) to 86.71 MB (one unified model). UNIFY aims not only to consolidate (K) models into a single model but also to enhance model-effectiveness by leveraging complementary knowledge across datasets. It paves the way for scalable, efficient, and unified learning capable of handling diverse image classification tasks. Code is available at: https://github.com/saktx/UNIFY.",
+     "authors": [
+      "Shaharyar Ahmed Khan Tareen",
+      "Xiaojing Yuan"
+     ],
+     "categories": [
+      "cs.CV",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.28746",
+     "pdf_url": "https://arxiv.org/pdf/2611.28746",
+     "published": "2026-11-24",
+     "summary": "Neural networks are typically trained separately for individual datasets or tasks, resulting in many task-specific models.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "",
+   "papers": []
+  }
+ ],
+ "sent": true
+}
