@@ -1,0 +1,227 @@
+{
+ "date": "2026-11-25",
+ "issued": "2026-11-25T16:51:19.311380+00:00",
+ "total": 851,
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses core challenges in conversational artificial intelligence and large language model agents, ranging from utility-centric memory systems and dynamic cache consolidation to state abstraction, automated hardware design benchmarking, and safety evaluations concerning validation bias in cancer treatment queries. These studies collectively investigate how agents manage memory, process context, and maintain reliable performance across complex tasks.",
+   "papers": [
+    {
+     "id": "2611.33005",
+     "title": "Leto: Utility-Centric Agent Memory",
+     "abstract": "Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory systems treat memory as a record of the past and evaluate it by fidelity to the conversation. However, the value of memory lies in whether it improves the agent's response. A memory system decides what to memorize and what to serve before that response exists, and fidelity checks neither decision against it. Faithful memory can therefore fail to improve the response. We instead view memory as a prediction problem and present \\textbf{\\emph{\\leto{}}}, a memory system for LLM agents that focuses on the utility of memory to the future rather than on its fidelity to the past. Because future requests are unknown, \\emph{\\leto{}} preserves access to conversation details through memory indexing, allowing information to remain available through its sources. When a request arrives, memory replay draws on this index to anticipate and supply the context the agent needs beyond what the request explicitly states. The utility of the served context remains uncertain until the response is generated, motivating a utility loop that uses response outcomes to refine future memory selection. We evaluate our system against six memory systems on five benchmarks across three scenarios. In personalization, it outperforms the strongest compared memory system by 16.3 percentage points in accuracy on PrefEval and by 3.1 points in task completion on PERMA. For long-horizon tasks, it achieves the best overall performance on MemoryArena averaged over five environments with a gain that increases with the chain depth. In long-context understanding, it is on par with retrieval over the raw history while serving fewer context tokens.",
+     "authors": [
+      "Shuguang Chen",
+      "Salman Paracha"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33005",
+     "pdf_url": "https://arxiv.org/pdf/2611.33005",
+     "published": "2026-11-25",
+     "summary": "The authors present Leto, a utility-centric memory system for large language model agents that frames memory as a prediction problem to anticipate future context needs, outperforming existing systems on personalization benchmarks such as PrefEval and PERMA.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31265",
+     "title": "SD-Cache: Learnable Memory Consolidation with State-Guided Dynamic Caching",
+     "abstract": "Large language models (LLMs) are increasingly deployed as persistent services that must reason over large volumes of external knowledge. Retrieval-augmented generation (RAG) grounds model responses in relevant documents, but the retrieved content must still be encoded and stored in the key-value (KV) cache. As this content accumulates, the cache grows linearly, increasing memory consumption and inference cost. Existing memory-compression methods address this problem either by retaining a subset of cached states or by learning context compressors that map documents to compact latent representations. Despite these advances, consolidating information under tight memory budgets while preserving its usefulness for future queries remains challenging. We investigate how the model's native KV states can be selectively consolidated into a fixed-size working memory without access to future queries. To this end, we introduce SD-Cache (State-guided and Dynamically updated Cache), a query-agnostic KV-memory consolidation framework that operates alongside a frozen generator LLM. SD-Cache learns to consolidate layer-wise KV states into fixed-size memory through selective anchor-based pooling and state-guided refinement, processing new contexts in a single forward pass without context-specific optimisation. Experiments on retrieval-augmented question answering and synthetic long-context benchmarks show that SD-Cache maintains competitive downstream performance under constrained memory budgets.",
+     "authors": [
+      "Yuanhong Chen",
+      "Yiping Ji",
+      "Cameron Gordon",
+      "Emily Hackett-Jones",
+      "Hemanth Saratchandran",
+      "Anton van den Hengel"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31265",
+     "pdf_url": "https://arxiv.org/pdf/2611.31265",
+     "published": "2026-11-25",
+     "summary": "The authors introduce SD-Cache, a query-agnostic framework that consolidates layer-wise key-value states into a fixed-size working memory using selective anchor-based pooling and state-guided refinement, maintaining competitive performance under constrained memory budgets.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31800",
+     "title": "Learning Compact State Abstractions for LLM Agents",
+     "abstract": "LLM agents commonly use the full interaction history as a proxy for state, retaining all past observations and actions regardless of whether they remain relevant. We instead ask what information an agent actually needs to carry forward. We define agent state as a compact abstraction of interaction history that preserves the competence of a fixed reference agent, with the minimal such abstraction as the ideal. Because matching the reference agent's behavior is unnecessarily restrictive and difficult for black-box policies, we define sufficiency through task performance rather than behavior matching. We represent state abstractions as deterministic recursive programs and search over them using an LLM-guided genetic algorithm. Across ALFWorld and ScienceWorld, the learned abstractions preserve near-reference task success while reducing mean policy input by up to 71% and 57%, respectively. The resulting programs are directly inspectable, providing an explicit account of what information is retained, updated, and discarded during interaction.",
+     "authors": [
+      "Yaswanth Chittepu",
+      "Raghavendra Addanki",
+      "Anup Rao",
+      "Branislav Kveton",
+      "Scott Niekum"
+     ],
+     "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL",
+      "cs.NE"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31800",
+     "pdf_url": "https://arxiv.org/pdf/2611.31800",
+     "published": "2026-11-25",
+     "summary": "The authors propose learning compact agent state abstractions as deterministic recursive programs using an LLM-guided genetic algorithm, which preserves near-reference task success while reducing mean policy input significantly on ALFWorld and ScienceWorld.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.33093",
+     "title": "AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design",
+     "abstract": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly. Agents implement quantized Qwen3.5, Gemma 3, Gemma 4, and Llama 3.2 decoders in synthesizable register-transfer-level (RTL) code against an executable integer reference that specifies the outputs and the stored state at every decoding step. They debug against public tests under fixed budgets; their frozen designs are graded on held-out token sequences, resets, memory stalls, and synthesis, and a second track asks them to speed up a correct design at nearly fixed area. Across 9,136 attempts by four coding agents, the difficulty lies in stored state. Feedback that points to the first state mismatch raises acceptance over output-only feedback in all 12 agent--task cells of a matched study, by 25.0 to 46.9 percentage points, and halves the agent-hours per accepted design. Regraded on new sequences and conditions, 45 of 69 accepted designs fail within the 32 steps their tests required. More than a third of attempts to speed up a correct design end without one. An overall score ranks Sol 5.6 and Fable 5.1 above Astra 6 and Opus 5.5, and both halves of the instances give this order in all 200 random splits. Hardware agents therefore need debugging feedback that exposes stored state, and their benchmarks need final tests well beyond the development cases.",
+     "authors": [
+      "Guangyuan Wang",
+      "Chengran Li",
+      "Minchen Luo",
+      "Jichen Feng",
+      "Mengdi Wang",
+      "Yifan Zhang"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33093",
+     "pdf_url": "https://arxiv.org/pdf/2611.33093",
+     "published": "2026-11-25",
+     "summary": "The authors introduce AIChipBench to evaluate large language model coding agents on automated AI accelerator design, finding that debugging feedback exposing stored state mismatches substantially improves acceptance rates and reduces agent-hours per accepted design.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31251",
+     "title": "Validation Bias in Large Language Model Responses to Cancer Treatment Queries: A Factorial Cross-Sectional Study",
+     "abstract": "Large language model (LLM) chatbots are increasingly used by patients seeking cancer information, but their safety when users present evidence-misaligned beliefs about treatment remains uncharacterized. We hypothesized that LLMs exhibit validation bias, affirming rather than correcting such beliefs, and evaluated this with a 2x2x2 factorial design crossing conversation format (single-turn vs multi-turn), treatment type (evidence-based vs alternative), and query valence (positive vs negative). Framing was evidence-aligned (supporting evidence-based treatments or questioning alternative therapies) or evidence-misaligned (promoting alternative treatments or questioning evidence-based therapies). We analyzed 1,272 conversations (6,360 interactions) across 14 LLMs from 6 vendors, scored by an LLM judge (GPT-5-mini) validated against human annotation on a 6-dimension safety rubric. The primary outcome was the unsafe response rate, defined as a Weak classification or any critical failure. Evidence-misaligned framing increased unsafe response rates compared with evidence-aligned framing (14.4% vs 5.1%; OR 3.14, 95% CI 2.07-4.78; P < .001), and the association persisted after accounting for clustering by LLM. Among 429 conversations classified as Strong under evidence-aligned framing, 22.6% were downgraded in their paired evidence-misaligned counterpart. Multi-turn conversations had lower unsafe response rates than single-turn conversations (5.2% vs 14.7%; P < .001). Unsafe response rates varied by vendor from 1.8% to 36.8%. LLMs exhibited significant validation bias in oncology, with unsafe responses nearly tripling under evidence-misaligned framing. Evaluations limited to neutral, fact-seeking queries may overestimate real-world safety, and safety testing of medical AI systems should include evidence-misaligned user framing.",
+     "authors": [
+      "Ramez Kouzy",
+      "Saketh Vinjamuri",
+      "Sarah Ghalayini",
+      "Jack Gallifant",
+      "Shan Chen",
+      "Marielle Fis Loperana",
+      "Roxanna Attar-Olyaee",
+      "Danielle S. Bitterman"
+     ],
+     "categories": [
+      "cs.CL",
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31251",
+     "pdf_url": "https://arxiv.org/pdf/2611.31251",
+     "published": "2026-11-25",
+     "summary": "The authors evaluate large language model chatbots using a factorial cross-sectional study and find that evidence-misaligned framing significantly increases unsafe response rates, whereas multi-turn conversations exhibit lower unsafe response rates than single-turn interactions.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research addresses energy efficiency and sustainable machine learning through advances in edge speculative decoding, ultra-low-precision quantization for wearable health devices, and noise-resilient diffusion models for analog hardware. These studies demonstrate significant performance gains and energy reductions across diverse computational paradigms.",
+   "papers": [
+    {
+     "id": "2611.32269",
+     "title": "Pando: Noise-Coupled Parallel Draft Trees for Efficient Edge Speculative Decoding",
+     "abstract": "Autoregressive (AR) decoding emits one token per forward pass, reloading the full model each time, so LLM inference on edge devices is memory-bound while the compute units sit idle. Speculative decoding puts that idle compute to work by verifying several drafted tokens in a single pass. State-of-the-art parallel drafters such as DFlash and DSpark propose an entire block of draft tokens in one forward pass, which makes drafting compute-efficient. However, they are deployed with draft chains whose length is capped by the block size they are trained for, leaving most of the computational budget for verification unused. To tackle this problem, we propose Pando, which builds dynamic draft trees on top of a parallel drafter and thereby removes this cap. Pando employs noise-coupled pruning, which draws the target model's sampling noise before drafting and ranks candidate branches under that noise, so the tree retains the branches the target will actually sample. Noise coupling is lossless and requires no retraining or additional model pass, yet increases acceptance length by up to $8.4\\%$ on Qwen3-8B. To optimize and evaluate Pando configurations across hardware, we normalize an operator-level roofline to AR decoding, reducing every platform to its ridge point. On a representative edge device, a 16-node Pando tree attains $5.3\\times$ speedup and $4.2\\times$ energy reduction over AR decoding: $25\\%$ faster than DSpark's released chain, and $27\\%$ faster and $72\\%$ more energy-efficient than an EAGLE-3 tree. The best configurations remain memory-bound on every edge device we model, so added compute capacity does not reduce their latency.",
+     "authors": [
+      "Joren Dumoulin",
+      "Hyoukjun Kwon",
+      "Subhankar Pal",
+      "Steven Li",
+      "Vignesh Vivekraja",
+      "Marian Verhelst"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.32269",
+     "pdf_url": "https://arxiv.org/pdf/2611.32269",
+     "published": "2026-11-25",
+     "summary": "The authors introduce Pando, a dynamic draft tree method for speculative decoding on edge devices that removes draft chain length caps via noise-coupled pruning, attaining a 5.3 times speedup and 4.2 times energy reduction over autoregressive decoding on a representative edge device.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31436",
+     "title": "Is 4 Bits Enough for EEG Sleep Staging? A Subject-Level Benchmark of MXFP4, NVFP4 and FP8",
+     "abstract": "Staging sleep on a wearable device keeps the raw electroencephalogram (EEG) private and saves the energy needed to transmit it. It also requires small, energy-efficient neural networks. We benchmark 13 post-training quantization (PTQ) configurations, from FP16 to the block-scaled 4-bit formats MXFP4 and NVFP4, for five-stage sleep staging from single-channel Fpz-Cz EEG. We use Sleep-EDF-78 (78 subjects), subject-wise cross-validation, three training seeds, value-exact emulation, and per-subject paired statistics. All 8- and 16-bit formats stay within 0.45 percentage points (pp) of FP32 Macro-F1. With 4-bit weights and activations, an epoch-wise CNN loses 1.98 to 3.04 pp, and a temporal-context network loses at most 1.19 pp. A same-encoder ablation shows that temporal context explains little of this gap. At equal block size, NVFP4 outperforms MXFP4. The first layer, which quantizes the raw EEG, is the most sensitive layer in both networks. Keeping the first and last layers in FP8 brings both tested 4-bit formats within 0.48 pp of FP32. This recipe adds at most 2.1% weight storage, needs no retraining, and is equivalent to quantization-aware training (QAT) within an exploratory 1-pp margin. The 4-bit losses fall on the same subjects across architectures (Spearman correlation coefficient = 0.69 to 0.79), and they reduce N3 recall the most. On the nested Sleep-EDF-20 subset, NVFP4 with FP8 first and last layers again stays within 0.25 pp of FP32. Under MXFP4, however, the ranking of the architectures reverses, and FP8 first and last layers do not fully recover two of the three tested models. In our emulation, NVFP4 with FP8 first and last layers thus loses little accuracy without QAT in both cohorts.",
+     "authors": [
+      "Emese Batizi",
+      "Hossein Valavi"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31436",
+     "pdf_url": "https://arxiv.org/pdf/2611.31436",
+     "published": "2026-11-25",
+     "summary": "The authors benchmark post-training quantization configurations down to block-scaled 4-bit formats for EEG sleep staging, finding that keeping the first and last layers in FP8 brings 4-bit formats within 0.48 percentage points of FP32 Macro-F1 without requiring retraining.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.32223",
+     "title": "Beyond Autoregression: Diffusion Language Model is All Analog In-Memory Computing Need",
+     "abstract": "Analog in-memory computing (AIMC) enables energy-efficient language-model inference, but hardware non-idealities perturb matrix--vector multiplications and degrade generation quality. Autoregressive (AR) models are especially vulnerable: each token is committed to the causal context at birth, so perturbation-induced errors cascade. We study diffusion language models (DLMs), which iteratively refine a masked sequence, as an alternative paradigm. Across scale-matched model pairs and open checkpoints, DLMs degrade more gracefully than AR counterparts under persistent weight perturbations. Controlled analyses rule out cross-round noise averaging and support delayed token commitment and progressive context resolution as the mechanism. A larger denoising-step budget further shrinks the clean--noisy gap, a DLM-specific latency--robustness knob. We perform large-scale simulation tests across diverse datasets and models using a noise model calibrated from real silicon measurements. Furthermore, on a 16-chip 28nm eFlash AIMC cluster, hybrid on-board measurements show DLMs tolerate $1.4$--$3\\times$ larger weight noise, making diffusion-based generation a promising paradigm for noise-resilient AIMC inference.",
+     "authors": [
+      "Yuanuo Feng",
+      "Yubing Ye",
+      "Yizhe Chen",
+      "Wenshuai Yao",
+      "Ngai Wong",
+      "Wenyong Zhou",
+      "Wang Kang"
+     ],
+     "categories": [
+      "cs.AR",
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.32223",
+     "pdf_url": "https://arxiv.org/pdf/2611.32223",
+     "published": "2026-11-25",
+     "summary": "The authors investigate diffusion language models as an alternative to autoregressive models for analog in-memory computing, finding that diffusion models degrade more gracefully under persistent weight perturbations and tolerate 1.4 to 3 times larger weight noise on a hybrid on-board cluster.",
+     "announce_type": "cross"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "New research investigates the stochastic modeling of lunar power harvesting and battery recharging systems affected by random pointing errors. The study derives probability density functions for state-of-charge, capacity, and efficiency, providing quantitative insights into battery metrics under realistic lunar operating conditions.",
+   "papers": [
+    {
+     "id": "2611.31802",
+     "title": "Modeling Lunar Power Harvesting and Battery Recharging In The Presence of Random Pointing Error",
+     "abstract": "In our work, we establish a lunar power beaming environment between a low-lunar orbiter and a circular solar panel mounted on top of a lunar vehicle located at the Lunar South Pole. Due to the random nature of the pointing errors, various upper bounds reflecting the severity of these errors are considered. Although harvested power is modelled stochastically in the literature, we extend this randomness to battery-storage analysis by deriving PDFs of state of charge, accumulated battery capacity and energy, and end-to-end efficiency for both battery charging modes. Then, our derivations are verified with extensive Monte Carlo simulations. Hence, our derivations provide a mathematical model that enables prediction and helps us understand the randomness of the corresponding variables. For the given pointing error levels, we quantify the differences between charging modes in these battery metrics. Our work explains the stochastic nature of these battery metrics in a realistic lunar environment. Regarding the end-to-end efficiency metric, which is the ratio of the stored electrical energy to the transmitted electrical energy, we observed that slow-charging efficiency is immune to pointing errors, and this mode can utilize only one-sixth of what the link can deliver under a mild pointing error.",
+     "authors": [
+      "Bar{\\i}\\c{s} D\\\"onmez",
+      "Yanni Jiwan-Mercier",
+      "Julien Magn\\'e",
+      "Guillaume Blanchette",
+      "Paolo Pino",
+      "S\\'ebastien Loranger",
+      "G\\\"une\\c{s} Karabulut Kurt"
+     ],
+     "categories": [
+      "eess.SP"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31802",
+     "pdf_url": "https://arxiv.org/pdf/2611.31802",
+     "published": "2026-11-25",
+     "summary": "Researchers established a lunar power beaming framework to derive probability density functions for state-of-charge, accumulated energy, and efficiency under random pointing errors, finding that slow-charging efficiency remains immune to such errors while utilizing a fraction of the link's potential capacity.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
