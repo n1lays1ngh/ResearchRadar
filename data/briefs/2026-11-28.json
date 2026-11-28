@@ -1,0 +1,284 @@
+{
+ "date": "2026-11-28",
+ "issued": "2026-11-28T15:07:03.663786+00:00",
+ "total": 3642,
+ "kind": "review",
+ "covered": [
+  "2026-11-23",
+  "2026-11-24",
+  "2026-11-25",
+  "2026-11-26"
+ ],
+ "sections": [
+  {
+   "key": "cs.CL",
+   "title": "cs.CL · Computation and Language",
+   "name": "Computation and Language",
+   "focus": "conversational AI, dialogue systems, LLM agents and retrieval-augmented generation",
+   "lede": "Recent research addresses core challenges in conversational AI, dialogue systems, and large language model agents. The studies introduce novel benchmarks and frameworks to improve multi-agent routing reliability, memory utility, dataset construction, and linguistic adaptability.",
+   "papers": [
+    {
+     "id": "2611.33242",
+     "title": "CypherMAS: Benchmarking Routing Reliability in LLM-Based Multi-Agent Systems",
+     "abstract": "Multi-agent systems (MAS) built on large language models (LLMs) distribute reasoning across specialized agents that must exchange messages and invoke tools reliably. Existing evaluations typically couple communication with open domain tasks, making it difficult to determine whether a failure arises from reasoning, malformed tool use, lost messages, or forgotten requests. Prior benchmarks do not isolate communication execution or measure routing redundancy against a known optimal path. We introduce CypherMAS, a synthetic benchmark that isolates communication and routing in fixed multi-agent graphs. Agents in chain, star, bipartite, or ring graphs route cyphered messages to remote peers holding the matching decoders; since the optimal route is known, redundant LLM calls can be measured and routing failures may be easily tracked. Across eleven open-weight models from 4B to 753B, small models fail at routing and tool use, dense models above 27B degrade with diameter, and successful runs exceed minimum LLM calls. These findings identify communication reliability as a distinct scaling bottleneck for multi-agent systems and provide a controlled diagnostic for complex multi-agent systems. The source code is freely available: https://github.com/Andoree/CypherMAS.",
+     "authors": [
+      "Danil Kostromin",
+      "Andrey Sakhovskiy",
+      "Semen Budennyy"
+     ],
+     "categories": [
+      "cs.MA",
+      "cs.AI",
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33242",
+     "pdf_url": "https://arxiv.org/pdf/2611.33242",
+     "published": "2026-11-26",
+     "summary": "The authors introduce CypherMAS, a synthetic benchmark isolating communication and routing in fixed multi-agent graphs, finding that routing reliability serves as a distinct scaling bottleneck for large language model systems.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.33005",
+     "title": "Leto: Utility-Centric Agent Memory",
+     "abstract": "Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory systems treat memory as a record of the past and evaluate it by fidelity to the conversation. However, the value of memory lies in whether it improves the agent's response. A memory system decides what to memorize and what to serve before that response exists, and fidelity checks neither decision against it. Faithful memory can therefore fail to improve the response. We instead view memory as a prediction problem and present \\textbf{\\emph{\\leto{}}}, a memory system for LLM agents that focuses on the utility of memory to the future rather than on its fidelity to the past. Because future requests are unknown, \\emph{\\leto{}} preserves access to conversation details through memory indexing, allowing information to remain available through its sources. When a request arrives, memory replay draws on this index to anticipate and supply the context the agent needs beyond what the request explicitly states. The utility of the served context remains uncertain until the response is generated, motivating a utility loop that uses response outcomes to refine future memory selection. We evaluate our system against six memory systems on five benchmarks across three scenarios. In personalization, it outperforms the strongest compared memory system by 16.3 percentage points in accuracy on PrefEval and by 3.1 points in task completion on PERMA. For long-horizon tasks, it achieves the best overall performance on MemoryArena averaged over five environments with a gain that increases with the chain depth. In long-context understanding, it is on par with retrieval over the raw history while serving fewer context tokens.",
+     "authors": [
+      "Shuguang Chen",
+      "Salman Paracha"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33005",
+     "pdf_url": "https://arxiv.org/pdf/2611.33005",
+     "published": "2026-11-25",
+     "summary": "The authors present Leto, a utility-centric memory system for large language model agents that frames memory as a prediction problem to anticipate future context needs, outperforming existing systems on personalization benchmarks such as PrefEval and PERMA.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.29356",
+     "title": "Automatic Construction of Persian E-Commerce Dialogue Datasets for Conversational Product Search",
+     "abstract": "Conversational product search lets users find products through a multi-turn dialogue instead of a single keyword query, but Persian lacks the large conversational datasets needed to train and evaluate such systems; existing Persian e-commerce dialogue resources cover few categories and small catalogs. We present a framework that builds such a dataset automatically from a real e-commerce catalog and release the resulting dataset. The framework crawls 12,926 products in seven categories of the Digikala marketplace, groups them into 170 semantically coherent clusters, and selects the question the assistant asks at every turn with the Regularized Partition Balance (RPB) score. The RPB score accounts for feature coverage, the probability that the user can answer and the number of values, and generalizes entropy-based question selection. An LLM then verbalizes each question plan into a natural Persian dialogue. In a simulation on the full catalog, the RPB score needs 0.11 fewer turns than the strongest entropy baseline when the difficulty of answering differs between features, and is practically equivalent to it when it does not. Using only a free LLM API, we generated 1,000 requirement-driven dialogues covering all 170 clusters, with turn-level feature annotations; automatic checks and an LLM judge confirm their consistency with the catalog, while their realism is lower than that of the first, GPT-4o-generated version. Code and data are publicly available.",
+     "authors": [
+      "Fariba Nafar",
+      "Hassan Naderi"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29356",
+     "pdf_url": "https://arxiv.org/pdf/2611.29356",
+     "published": "2026-11-24",
+     "summary": "Conversational product search lets users find products through a multi-turn dialogue instead of a single keyword query, but Persian lacks the large conversational datasets needed to train and evaluate such systems; existing Persian e-commerce dialogue resources cover few categories and…",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.33174",
+     "title": "MGMem: An Efficient, Deterministic, and Provenance-Preserving Framework for Long-Horizon Agent Memory",
+     "abstract": "Long-horizon Large Language Model (LLM) agents need persistent memory that surfaces the right past interaction at the right time across thousands of turns. Many systems index by invoking generative LLMs to rewrite history into summaries, facts, or knowledge graphs--a step that is (a) costly (thousands of generative calls per build), (b) non-deterministic (undermining reproducibility and giving inconsistent answers across runs), and (c) provenance-erasing (the reader sees synthesized text, not the original turn). We propose MGMem, a framework with no generative indexing calls that replaces this step with a deterministic discriminative-parser pipeline: recurring mentions across sessions are organized into an incidence graph, question mentions are resolved by a subject-conditioned three-stage resolver, and raw dialogue episodes are returned to the reader. On English multi-session dialogue QA, MGMem outperforms matched-protocol baselines on LoCoMo without generative indexing calls; on the full LongMemEval-S, it remains competitive overall and leads or ties on single-session types among local retrieval comparisons. Code: https://github.com/junhong-h/MGMem",
+     "authors": [
+      "Junhong Huang",
+      "Xin Tong",
+      "Jun Xia"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33174",
+     "pdf_url": "https://arxiv.org/pdf/2611.33174",
+     "published": "2026-11-26",
+     "summary": "The authors propose MGMem, a framework replacing generative indexing with a deterministic discriminative-parser pipeline, and report that it outperforms matched-protocol baselines on multi-session dialogue question answering.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.33499",
+     "title": "Evaluating Large Language Models on conversational African American English: Feature classification and next-turn generation",
+     "abstract": "Large Language Models (LLMs) are known to misinterpret and misrepresent regional and social varieties of English other than Mainstream American English (MAE), such as African American English (AAE), yet most evaluations of these biases have relied on synthetic, stylized or decontextualized data. This paper instead evaluates LLMs on authentic, conversational AAE to more closely reflect how such models may encounter AAE when deployed as chatbots. Concretely, we perform two complementary evaluation tasks on 100 six-turn segments randomly sampled from the Corpus of Regional African American Language (CORAAL; Kendall and Farrington, 2024), comparing three closed-weight LLM configurations: Gemini 2.5 Flash with and without reasoning, and GPT-4.1 mini. The first task compares the models against gold-standard manual annotations for five AAE morphosyntactic features, while the second assesses their ability to generate contextually appropriate next turns, evaluating outputs for AAE feature frequency, diversity (Self-BLEU), and pragmatic quality. Reasoning-enabled Gemini is the strongest feature detector by a clear margin (macro F1 of 0.91), outperforming both other LLMs as well as a finetuned BERT-based baseline (Masis et al., 2022). In generation, however, all LLMs underproduce AAE relative to the human speakers and produce relatively uniform continuations, with reasoning-enabled Gemini producing the least AAE and the least diverse output. We conclude that a model's ability to detect AAE does not straightforwardly translate into its spontaneous use of AAE in generation, and argue that addressing this gap requires changes upstream, in how pretraining and alignment data represent dialectal variation.",
+     "authors": [
+      "Romeo De Timmerman",
+      "Thomas Demeester",
+      "Els Lefever"
+     ],
+     "categories": [
+      "cs.CL"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33499",
+     "pdf_url": "https://arxiv.org/pdf/2611.33499",
+     "published": "2026-11-26",
+     "summary": "The authors evaluate large language models on authentic conversational African American English, discovering that while a reasoning-enabled model excels at feature detection, all tested models underproduce the variety and generate uniform continuations.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "cs.LG",
+   "title": "cs.LG · Machine Learning",
+   "name": "Machine Learning",
+   "focus": "energy-efficient and sustainable machine learning: lower compute, carbon and cost",
+   "lede": "Recent research in energy-efficient machine learning explores resource-optimized frameworks across agricultural forecasting, large language model inference, and genome sequencing. These studies demonstrate significant reductions in computational overhead, energy consumption, and hardware latency through innovative algorithmic and architectural designs.",
+   "papers": [
+    {
+     "id": "2611.33237",
+     "title": "Resource-Efficient Multimodal Fusion for Early Rice Blast Forecasting in Sustainable Agriculture",
+     "abstract": "Resource-efficient artificial intelligence has become increasingly important for sustainable agriculture, where timely disease forecasting must be achieved under computational and energy constraints. Early estimation of rice blast can enhance food security by optimizing crop management practices while reducing excessive pesticide use. However, existing frameworks often suffer from high computational overhead and limited capability to model the complex spectral-temporal dependencies present in heterogeneous meteorological and remote sensing data. To address these challenges, this paper proposes a lightweight multimodal fusion framework comprising an attentive positional encoding-based Transformer and a convolutional neural network (CNN)-embedded gated recurrent unit (GRU) for efficient spectral-temporal representation learning. The attention-enhanced positional encoding assigns adaptive importance to sequential meteorological tokens, enabling effective modelling of temporal characteristics. In parallel, the lightweight CNN extracts discriminative spectral features, while the GRU captures temporal dynamics from remote sensing imagery acquired over two time-instances. A multimodal fusion layer integrates these heterogeneous representations to forecast rice blast risk 5-10 days before symptom manifestation across diverse agro-climatic zones. Extensive experiments demonstrate that the proposed framework outperforms state-of-the-art methods, achieving a validation accuracy of 96.93% and an F1-score of 95.79%. In addition to its predictive performance, the lightweight multimodal architecture substantially reduces computational complexity, inference latency, and carbon emissions, making it an energy-efficient solution for large-scale disease forecasting. The proposed framework provides a practical foundation for resource-efficient artificial intelligence in sustainable agriculture.",
+     "authors": [
+      "Shubhajyoti Das",
+      "Pritam Bikram",
+      "Arindam Biswas",
+      "Samrat Paul",
+      "Parimal Sinha",
+      "Bhargab B. Bhattacharya"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33237",
+     "pdf_url": "https://arxiv.org/pdf/2611.33237",
+     "published": "2026-11-26",
+     "summary": "The authors propose a lightweight multimodal fusion framework combining a Transformer and a CNN-embedded gated recurrent unit to forecast rice blast risk under computational and energy constraints, achieving a validation accuracy of 96.93.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.32269",
+     "title": "Pando: Noise-Coupled Parallel Draft Trees for Efficient Edge Speculative Decoding",
+     "abstract": "Autoregressive (AR) decoding emits one token per forward pass, reloading the full model each time, so LLM inference on edge devices is memory-bound while the compute units sit idle. Speculative decoding puts that idle compute to work by verifying several drafted tokens in a single pass. State-of-the-art parallel drafters such as DFlash and DSpark propose an entire block of draft tokens in one forward pass, which makes drafting compute-efficient. However, they are deployed with draft chains whose length is capped by the block size they are trained for, leaving most of the computational budget for verification unused. To tackle this problem, we propose Pando, which builds dynamic draft trees on top of a parallel drafter and thereby removes this cap. Pando employs noise-coupled pruning, which draws the target model's sampling noise before drafting and ranks candidate branches under that noise, so the tree retains the branches the target will actually sample. Noise coupling is lossless and requires no retraining or additional model pass, yet increases acceptance length by up to $8.4\\%$ on Qwen3-8B. To optimize and evaluate Pando configurations across hardware, we normalize an operator-level roofline to AR decoding, reducing every platform to its ridge point. On a representative edge device, a 16-node Pando tree attains $5.3\\times$ speedup and $4.2\\times$ energy reduction over AR decoding: $25\\%$ faster than DSpark's released chain, and $27\\%$ faster and $72\\%$ more energy-efficient than an EAGLE-3 tree. The best configurations remain memory-bound on every edge device we model, so added compute capacity does not reduce their latency.",
+     "authors": [
+      "Joren Dumoulin",
+      "Hyoukjun Kwon",
+      "Subhankar Pal",
+      "Steven Li",
+      "Vignesh Vivekraja",
+      "Marian Verhelst"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.32269",
+     "pdf_url": "https://arxiv.org/pdf/2611.32269",
+     "published": "2026-11-25",
+     "summary": "The authors introduce Pando, a dynamic draft tree method for speculative decoding on edge devices that removes draft chain length caps via noise-coupled pruning, attaining a 5.3 times speedup and 4.2 times energy reduction over autoregressive decoding on a representative edge device.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.29410",
+     "title": "Motivo: A Motif-Based Algorithm-Architecture Co-Design for Fast and Energy-Efficient Graph-Based Genome Analysis",
+     "abstract": "Read mapping, a key step of genome sequence analysis, matches each fragment of a sequenced genome (a read) to its location in a reference genome. A genome graph is a graph-based reference genome that represents the genetic diversity of a population as alternative paths, and thus improves read mapping accuracy. However, the size and complexity of a genome graph make sequence-to-graph (S2G) mapping a major bottleneck. Prior software and hardware approaches for S2G mapping perform redundant costly operations (e.g., graph traversals and dynamic programming) that do not lead to valid mappings. Our key observation is that a genome graph consists of small subgraphs that share a limited set of recurring topologies, which we call motifs. We propose Motivo, a topology-aware algorithm-architecture co-design for S2G mapping. Motivo's algorithm uses motifs in two ways. First, it stores the precomputed motifs of each node in a compact index, which replaces a graph traversal with a single memory lookup. Second, it uses the topology of a motif and the properties of its nodes to identify the few most suitable mapping paths with arithmetic operations. The algorithm enables high-performance execution on CPUs and GPUs and high-performance, low-energy execution on Motivo-ASIC, an accelerator we co-design with it. Motivo-CPU provides 2.1-18.4x, 2.8-343x, and 1.4-10.1x speedups over GraphAligner, vg, and minigraph, and Motivo-GPU provides 1.5-1.6x speedups over vg-giraffe. Motivo-ASIC provides 7.4-11.7x (138-274x) speedups over state-of-the-art CPU-based tools for short (long) reads. Compared to SeGraM (short reads) and HARP (long reads), Motivo-ASIC achieves 5.3x and 4.0-4.3x higher throughput per Watt and 1.7x and 2.7-3.0x higher throughput per mm$^2$, respectively. Motivo maintains equal or higher mapping accuracy than other tools (96.8%-99.7%) for short and long reads on two types of genome graphs.",
+     "authors": [
+      "Eirini Maria Tzermpou",
+      "Konstantina Koliogeorgi",
+      "Konstantinos Kanellopoulos",
+      "Ataberk Olgun",
+      "Nisa Bostanc{\\i}",
+      "Dimitrios Soudris",
+      "Nika Mansouri Ghiasi",
+      "Onur Mutlu"
+     ],
+     "categories": [
+      "cs.AR",
+      "cs.DC",
+      "q-bio.GN",
+      "q-bio.QM"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.29410",
+     "pdf_url": "https://arxiv.org/pdf/2611.29410",
+     "published": "2026-11-24",
+     "summary": "Read mapping, a key step of genome sequence analysis, matches each fragment of a sequenced genome (a read) to its location in a reference genome.",
+     "announce_type": "cross"
+    },
+    {
+     "id": "2611.33764",
+     "title": "Improving Building Energy Efficiency with an Indoor Environmental World Model and Counterfactual Adaptive Learning",
+     "abstract": "Optimizing indoor climate systems plays a critical role in achieving the United Nations' Sustainable Development Goals 11 and 13. However, indoor delayed thermodynamic responses and partial observability severely hinder existing reinforcement learning (RL) methods, which are primarily limited by implicit thermal inertia, occupancy dynamic prediction, and cumulative prediction errors during long-horizon rollouts. Thus, we propose a novel occupant-centric indoor climate control framework. It develops indoor environmental world models to predict future physical thermal baselines and dynamic occupancy, explicitly capturing latent thermal inertia. By formulating adaptive regulation as counterfactual advantage learning against future environments via a Branching Dueling Q-Network, and integrating a Held-Action TD-{\\lambda} target, it effectively mitigates delayed credit assignment. Additionally, a proposed physics-aligned smoothness regularization suppresses high-frequency actuator fluctuations, potentially extending equipment service life. Experiments on SemiBuildingSim and Sinergym demonstrate that our method achieves a superior multi-objective trade-off. Compared to the best-performing methods, it further reduces energy consumption by 11.2%, occupant discomfort by 44.2%, and action fluctuation by 47.3%, achieving better sample efficiency and cross-region effectiveness. This interdisciplinary study offers an energy-efficient, occupant-centric AI solution for control science, building science, and energy sustainability.",
+     "authors": [
+      "Xu Yang",
+      "Kailai Sun",
+      "Dianyu Zhong",
+      "Irfan Qaisar",
+      "Yu Yang",
+      "Qianchuan Zhao",
+      "Jian Kang"
+     ],
+     "categories": [
+      "cs.AI"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.33764",
+     "pdf_url": "https://arxiv.org/pdf/2611.33764",
+     "published": "2026-11-26",
+     "summary": "The authors develop an occupant-centric indoor climate control framework featuring environmental world models and counterfactual adaptive learning, which reduces energy consumption by 11.2%, occupant discomfort by 44.2%, and action fluctuation by 47.3% compared to baseline methods.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31436",
+     "title": "Is 4 Bits Enough for EEG Sleep Staging? A Subject-Level Benchmark of MXFP4, NVFP4 and FP8",
+     "abstract": "Staging sleep on a wearable device keeps the raw electroencephalogram (EEG) private and saves the energy needed to transmit it. It also requires small, energy-efficient neural networks. We benchmark 13 post-training quantization (PTQ) configurations, from FP16 to the block-scaled 4-bit formats MXFP4 and NVFP4, for five-stage sleep staging from single-channel Fpz-Cz EEG. We use Sleep-EDF-78 (78 subjects), subject-wise cross-validation, three training seeds, value-exact emulation, and per-subject paired statistics. All 8- and 16-bit formats stay within 0.45 percentage points (pp) of FP32 Macro-F1. With 4-bit weights and activations, an epoch-wise CNN loses 1.98 to 3.04 pp, and a temporal-context network loses at most 1.19 pp. A same-encoder ablation shows that temporal context explains little of this gap. At equal block size, NVFP4 outperforms MXFP4. The first layer, which quantizes the raw EEG, is the most sensitive layer in both networks. Keeping the first and last layers in FP8 brings both tested 4-bit formats within 0.48 pp of FP32. This recipe adds at most 2.1% weight storage, needs no retraining, and is equivalent to quantization-aware training (QAT) within an exploratory 1-pp margin. The 4-bit losses fall on the same subjects across architectures (Spearman correlation coefficient = 0.69 to 0.79), and they reduce N3 recall the most. On the nested Sleep-EDF-20 subset, NVFP4 with FP8 first and last layers again stays within 0.25 pp of FP32. Under MXFP4, however, the ranking of the architectures reverses, and FP8 first and last layers do not fully recover two of the three tested models. In our emulation, NVFP4 with FP8 first and last layers thus loses little accuracy without QAT in both cohorts.",
+     "authors": [
+      "Emese Batizi",
+      "Hossein Valavi"
+     ],
+     "categories": [
+      "cs.LG"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31436",
+     "pdf_url": "https://arxiv.org/pdf/2611.31436",
+     "published": "2026-11-25",
+     "summary": "The authors benchmark post-training quantization configurations down to block-scaled 4-bit formats for EEG sleep staging, finding that keeping the first and last layers in FP8 brings 4-bit formats within 0.48 percentage points of FP32 Macro-F1 without requiring retraining.",
+     "announce_type": "new"
+    }
+   ]
+  },
+  {
+   "key": "eess.SY",
+   "title": "eess.SY · Systems and Control",
+   "name": "Systems and Control",
+   "focus": "battery management systems: state-of-charge and state-of-health estimation, degradation modelling and remaining useful life prediction",
+   "lede": "Recent research introduces non-invasive magnetic field mapping to detect internal leakage currents in lithium-ion cells and establishes a stochastic mathematical model for lunar power harvesting and battery recharging under random pointing errors. These studies advance battery diagnostics and storage analysis in complex operating environments.",
+   "papers": [
+    {
+     "id": "2611.34699",
+     "title": "Diagnosing internal leakage currents through magnetometry of lithium-ion cells",
+     "abstract": "Internal leakage currents are difficult to detect and to localize through measurements at the terminals of lithium-ion cells. We measured the magnetic fields of pouch cells non-invasively with a magnetometer while a battery cycler set the current and recorded the voltage. A three-axis magnetoresistive sensor remains fixed inside a three-layer magnetic shield, and two linear stages move the cell in two dimensions relative to the sensor to acquire a map of the magnetic field above the cell. The field of an intact cell was linear in current from 10 to 420 mA, and its maps were symmetric between charge and discharge. To create internal leakage currents, two 600 mAh cells were damaged by mechanical indentation. Both cells developed a magnetic field at zero applied current that decayed over hours, while the cell voltage showed a loss of charge by self-discharge. This field breaks the symmetry between the charge and discharge maps, which allows leakage to be detected while the cell is being cycled. At rest, the setup detects leakage currents down to about 1--3 mA. The results highlight opportunities for battery diagnostics and safety, and may help in designing techniques for characterizing soft shorts.",
+     "authors": [
+      "Shaurya Shukla",
+      "Chengtong Zhang",
+      "Yinan Hu",
+      "Stefan Benders",
+      "Mykhailo Flaks",
+      "Dmitry Budker",
+      "Alexej Jerschow"
+     ],
+     "categories": [
+      "physics.app-ph",
+      "physics.ins-det"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.34699",
+     "pdf_url": "https://arxiv.org/pdf/2611.34699",
+     "published": "2026-11-26",
+     "summary": "The authors report a non-invasive magnetometry method using a magnetoresistive sensor and linear stages to map magnetic fields above lithium-ion pouch cells, finding that mechanically damaged cells develop distinct zero-current magnetic fields and symmetry-breaking charge-discharge patterns that reveal internal leakage currents down to approximately 1 to 3 mA at rest.",
+     "announce_type": "new"
+    },
+    {
+     "id": "2611.31802",
+     "title": "Modeling Lunar Power Harvesting and Battery Recharging In The Presence of Random Pointing Error",
+     "abstract": "In our work, we establish a lunar power beaming environment between a low-lunar orbiter and a circular solar panel mounted on top of a lunar vehicle located at the Lunar South Pole. Due to the random nature of the pointing errors, various upper bounds reflecting the severity of these errors are considered. Although harvested power is modelled stochastically in the literature, we extend this randomness to battery-storage analysis by deriving PDFs of state of charge, accumulated battery capacity and energy, and end-to-end efficiency for both battery charging modes. Then, our derivations are verified with extensive Monte Carlo simulations. Hence, our derivations provide a mathematical model that enables prediction and helps us understand the randomness of the corresponding variables. For the given pointing error levels, we quantify the differences between charging modes in these battery metrics. Our work explains the stochastic nature of these battery metrics in a realistic lunar environment. Regarding the end-to-end efficiency metric, which is the ratio of the stored electrical energy to the transmitted electrical energy, we observed that slow-charging efficiency is immune to pointing errors, and this mode can utilize only one-sixth of what the link can deliver under a mild pointing error.",
+     "authors": [
+      "Bar{\\i}\\c{s} D\\\"onmez",
+      "Yanni Jiwan-Mercier",
+      "Julien Magn\\'e",
+      "Guillaume Blanchette",
+      "Paolo Pino",
+      "S\\'ebastien Loranger",
+      "G\\\"une\\c{s} Karabulut Kurt"
+     ],
+     "categories": [
+      "eess.SP"
+     ],
+     "abs_url": "https://arxiv.org/abs/2611.31802",
+     "pdf_url": "https://arxiv.org/pdf/2611.31802",
+     "published": "2026-11-25",
+     "summary": "Researchers established a lunar power beaming framework to derive probability density functions for state-of-charge, accumulated energy, and efficiency under random pointing errors, finding that slow-charging efficiency remains immune to such errors while utilizing a fraction of the link's potential capacity.",
+     "announce_type": "new"
+    }
+   ]
+  }
+ ],
+ "sent": true
+}
